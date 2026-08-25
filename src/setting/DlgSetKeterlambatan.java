@@ -23,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -32,12 +33,12 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  * @author perpustakaan
  */
 public class DlgSetKeterlambatan extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1;
-    private ResultSet rs, rs1;
+    private PreparedStatement ps, ps1, ps2;
+    private ResultSet rs, rs1, rs2;
     private int x = 0;
 
     /**
@@ -49,6 +50,10 @@ public class DlgSetKeterlambatan extends javax.swing.JDialog {
     public DlgSetKeterlambatan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+        
         this.setLocation(10, 10);
         setSize(457, 249);
 
@@ -121,6 +126,46 @@ public class DlgSetKeterlambatan extends javax.swing.JDialog {
             }
         }
         tbSift.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode2 = new DefaultTableModel(null, new String[]{
+            "Kelompok Kerja", "Hari Kerja", "Aktivasi Momen",
+            "Jam Datang (Normal)", "Jam Pulang (Normal)",
+            "Jam Datang (Ramadhan)", "Jam Pulang (Ramadhan)"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbJamKerja.setModel(tabMode2);
+        tbJamKerja.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbJamKerja.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 7; i++) {
+            TableColumn column = tbJamKerja.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(270);
+            } else if (i == 1) {
+                column.setPreferredWidth(130);
+            } else if (i == 2) {
+                column.setPreferredWidth(130);
+            } else if (i == 3) {
+                column.setPreferredWidth(130);
+            } else if (i == 4) {
+                column.setPreferredWidth(130);
+            } else if (i == 5) {
+                column.setPreferredWidth(130);
+            } else if (i == 6) {
+                column.setPreferredWidth(130);
+            }
+        }
+        tbJamKerja.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbJamKerja.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbJamKerja.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbJamKerja.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbJamKerja.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
 
         Toleransi.setDocument(new batasInput((byte) 10).getKata(Toleransi));
 
@@ -129,7 +174,6 @@ public class DlgSetKeterlambatan extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }
 
     /**
@@ -187,6 +231,35 @@ public class DlgSetKeterlambatan extends javax.swing.JDialog {
         jLabel20 = new widget.Label();
         Scroll1 = new widget.ScrollPane();
         tbSift = new widget.Table();
+        internalFrame22 = new widget.InternalFrame();
+        panelGlass9 = new widget.panelisi();
+        jLabel21 = new widget.Label();
+        cmbKelompok = new widget.ComboBox();
+        jLabel22 = new widget.Label();
+        cmbHari = new widget.ComboBox();
+        jLabel23 = new widget.Label();
+        cmbAktivasi = new widget.ComboBox();
+        jLabel24 = new widget.Label();
+        cmbJamDtgNormal = new widget.ComboBox();
+        cmbMntDtgNormal = new widget.ComboBox();
+        cmbDtkDtgNormal = new widget.ComboBox();
+        jLabel25 = new widget.Label();
+        cmbJamPlgNormal = new widget.ComboBox();
+        cmbMntPlgNormal = new widget.ComboBox();
+        cmbDtkPlgNormal = new widget.ComboBox();
+        jLabel26 = new widget.Label();
+        cmbJamDtgRama = new widget.ComboBox();
+        cmbMntDtgRama = new widget.ComboBox();
+        cmbDtkDtgRama = new widget.ComboBox();
+        jLabel27 = new widget.Label();
+        cmbJamPlgRama = new widget.ComboBox();
+        cmbMntPlgRama = new widget.ComboBox();
+        cmbDtkPlgRama = new widget.ComboBox();
+        jLabel28 = new widget.Label();
+        TCari = new widget.TextBox();
+        BtnCari = new widget.Button();
+        Scroll2 = new widget.ScrollPane();
+        tbJamKerja = new widget.Table();
         panelGlass5 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
@@ -307,6 +380,7 @@ public class DlgSetKeterlambatan extends javax.swing.JDialog {
 
         tbToleransi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbToleransi.setName("tbToleransi"); // NOI18N
+        tbToleransi.getTableHeader().setReorderingAllowed(false);
         tbToleransi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbToleransiMouseClicked(evt);
@@ -596,6 +670,7 @@ public class DlgSetKeterlambatan extends javax.swing.JDialog {
 
         tbSift.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbSift.setName("tbSift"); // NOI18N
+        tbSift.getTableHeader().setReorderingAllowed(false);
         tbSift.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSiftMouseClicked(evt);
@@ -611,6 +686,291 @@ public class DlgSetKeterlambatan extends javax.swing.JDialog {
         internalFrame21.add(Scroll1, java.awt.BorderLayout.CENTER);
 
         TabSetup.addTab("Pengaturan Jam Kerja", internalFrame21);
+
+        internalFrame22.setBorder(null);
+        internalFrame22.setName("internalFrame22"); // NOI18N
+        internalFrame22.setLayout(new java.awt.BorderLayout());
+
+        panelGlass9.setName("panelGlass9"); // NOI18N
+        panelGlass9.setPreferredSize(new java.awt.Dimension(44, 170));
+        panelGlass9.setLayout(null);
+
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setText("Kelompok Kerja :");
+        jLabel21.setName("jLabel21"); // NOI18N
+        panelGlass9.add(jLabel21);
+        jLabel21.setBounds(0, 10, 120, 23);
+
+        cmbKelompok.setForeground(new java.awt.Color(0, 0, 0));
+        cmbKelompok.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Manajemen", "Instalasi Rawat Jalan (Poliklinik)", "Loket Pendaftaran (TPPRJ)", "Instalasi Sanitasi", "Instalasi Rawat Inap (Keperawatan)", "Instalasi Gawat Darurat (IGD)", "Dokter Jaga", "Kasir", "Sentral Opname (TPPRI)", "Tenaga Teknis Kefarmasian (TTK)", "IPSRS", "Instalasi Radiologi", "Instalasi Pemulasaran Jenazah", "Instalasi Laboratorium", "Instalasi Pengelolaan Air Limbah (IPAL)", "Kepala Ruangan Rawat Inap", "Kepala Instalasi", "Administrasi", "Gudang Farmasi", "Apoteker", "Unit Hemodialisa", "Instalasi Gizi", "Pengolah dan Penyaji Makanan/Layanan Konsumsi", "Laundry", "CSSD", "Informasi dan SIPO", "Dokter Spesialis" }));
+        cmbKelompok.setName("cmbKelompok"); // NOI18N
+        cmbKelompok.setPreferredSize(new java.awt.Dimension(55, 23));
+        cmbKelompok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbKelompokMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbKelompok);
+        cmbKelompok.setBounds(125, 10, 275, 23);
+
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setText("Hari Kerja :");
+        jLabel22.setName("jLabel22"); // NOI18N
+        panelGlass9.add(jLabel22);
+        jLabel22.setBounds(0, 38, 120, 23);
+
+        cmbHari.setForeground(new java.awt.Color(0, 0, 0));
+        cmbHari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Senin s.d Kamis", "Senin s.d Jumat", "Senin s.d Sabtu", "Senin s.d Minggu", "Jumat", "Sabtu", "Subuh", "Sore", "Sift 1 (Pagi)", "Sift 2 (Siang)", "Sift 3 (Malam)" }));
+        cmbHari.setName("cmbHari"); // NOI18N
+        cmbHari.setPreferredSize(new java.awt.Dimension(55, 23));
+        cmbHari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbHariMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbHari);
+        cmbHari.setBounds(125, 38, 115, 23);
+
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setText("Aktivasi Momen :");
+        jLabel23.setName("jLabel23"); // NOI18N
+        panelGlass9.add(jLabel23);
+        jLabel23.setBounds(0, 66, 120, 23);
+
+        cmbAktivasi.setForeground(new java.awt.Color(0, 0, 0));
+        cmbAktivasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Hari Kerja Normal", "Hari Kerja Ramadhan" }));
+        cmbAktivasi.setName("cmbAktivasi"); // NOI18N
+        cmbAktivasi.setPreferredSize(new java.awt.Dimension(55, 23));
+        cmbAktivasi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbAktivasiMouseReleased(evt);
+            }
+        });
+        cmbAktivasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAktivasiActionPerformed(evt);
+            }
+        });
+        panelGlass9.add(cmbAktivasi);
+        cmbAktivasi.setBounds(125, 66, 135, 23);
+
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("Jam Datang Normal :");
+        jLabel24.setName("jLabel24"); // NOI18N
+        panelGlass9.add(jLabel24);
+        jLabel24.setBounds(0, 94, 120, 23);
+
+        cmbJamDtgNormal.setForeground(new java.awt.Color(0, 0, 0));
+        cmbJamDtgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cmbJamDtgNormal.setName("cmbJamDtgNormal"); // NOI18N
+        cmbJamDtgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbJamDtgNormalMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbJamDtgNormal);
+        cmbJamDtgNormal.setBounds(125, 94, 45, 23);
+
+        cmbMntDtgNormal.setForeground(new java.awt.Color(0, 0, 0));
+        cmbMntDtgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbMntDtgNormal.setName("cmbMntDtgNormal"); // NOI18N
+        cmbMntDtgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbMntDtgNormalMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbMntDtgNormal);
+        cmbMntDtgNormal.setBounds(175, 94, 45, 23);
+
+        cmbDtkDtgNormal.setForeground(new java.awt.Color(0, 0, 0));
+        cmbDtkDtgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbDtkDtgNormal.setName("cmbDtkDtgNormal"); // NOI18N
+        cmbDtkDtgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbDtkDtgNormalMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbDtkDtgNormal);
+        cmbDtkDtgNormal.setBounds(226, 94, 45, 23);
+
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel25.setText("Wita s.d Pukul : ");
+        jLabel25.setName("jLabel25"); // NOI18N
+        panelGlass9.add(jLabel25);
+        jLabel25.setBounds(280, 94, 80, 23);
+
+        cmbJamPlgNormal.setForeground(new java.awt.Color(0, 0, 0));
+        cmbJamPlgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cmbJamPlgNormal.setName("cmbJamPlgNormal"); // NOI18N
+        cmbJamPlgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbJamPlgNormalMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbJamPlgNormal);
+        cmbJamPlgNormal.setBounds(360, 94, 45, 23);
+
+        cmbMntPlgNormal.setForeground(new java.awt.Color(0, 0, 0));
+        cmbMntPlgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbMntPlgNormal.setName("cmbMntPlgNormal"); // NOI18N
+        cmbMntPlgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbMntPlgNormalMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbMntPlgNormal);
+        cmbMntPlgNormal.setBounds(412, 94, 45, 23);
+
+        cmbDtkPlgNormal.setForeground(new java.awt.Color(0, 0, 0));
+        cmbDtkPlgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbDtkPlgNormal.setName("cmbDtkPlgNormal"); // NOI18N
+        cmbDtkPlgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbDtkPlgNormalMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbDtkPlgNormal);
+        cmbDtkPlgNormal.setBounds(464, 94, 45, 23);
+
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("<html>Jam Datang :<br>Ramadhan&nbsp;&nbsp;</html>");
+        jLabel26.setName("jLabel26"); // NOI18N
+        panelGlass9.add(jLabel26);
+        jLabel26.setBounds(0, 122, 120, 30);
+
+        cmbJamDtgRama.setForeground(new java.awt.Color(0, 0, 0));
+        cmbJamDtgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cmbJamDtgRama.setName("cmbJamDtgRama"); // NOI18N
+        cmbJamDtgRama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbJamDtgRamaMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbJamDtgRama);
+        cmbJamDtgRama.setBounds(125, 122, 45, 23);
+
+        cmbMntDtgRama.setForeground(new java.awt.Color(0, 0, 0));
+        cmbMntDtgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbMntDtgRama.setName("cmbMntDtgRama"); // NOI18N
+        cmbMntDtgRama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbMntDtgRamaMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbMntDtgRama);
+        cmbMntDtgRama.setBounds(175, 122, 45, 23);
+
+        cmbDtkDtgRama.setForeground(new java.awt.Color(0, 0, 0));
+        cmbDtkDtgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbDtkDtgRama.setName("cmbDtkDtgRama"); // NOI18N
+        cmbDtkDtgRama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbDtkDtgRamaMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbDtkDtgRama);
+        cmbDtkDtgRama.setBounds(226, 122, 45, 23);
+
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel27.setText("Wita s.d Pukul : ");
+        jLabel27.setName("jLabel27"); // NOI18N
+        panelGlass9.add(jLabel27);
+        jLabel27.setBounds(280, 122, 80, 23);
+
+        cmbJamPlgRama.setForeground(new java.awt.Color(0, 0, 0));
+        cmbJamPlgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cmbJamPlgRama.setName("cmbJamPlgRama"); // NOI18N
+        cmbJamPlgRama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbJamPlgRamaMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbJamPlgRama);
+        cmbJamPlgRama.setBounds(360, 122, 45, 23);
+
+        cmbMntPlgRama.setForeground(new java.awt.Color(0, 0, 0));
+        cmbMntPlgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbMntPlgRama.setName("cmbMntPlgRama"); // NOI18N
+        cmbMntPlgRama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbMntPlgRamaMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbMntPlgRama);
+        cmbMntPlgRama.setBounds(412, 122, 45, 23);
+
+        cmbDtkPlgRama.setForeground(new java.awt.Color(0, 0, 0));
+        cmbDtkPlgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbDtkPlgRama.setName("cmbDtkPlgRama"); // NOI18N
+        cmbDtkPlgRama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbDtkPlgRamaMouseReleased(evt);
+            }
+        });
+        panelGlass9.add(cmbDtkPlgRama);
+        cmbDtkPlgRama.setBounds(464, 122, 45, 23);
+
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("Key Word :");
+        jLabel28.setName("jLabel28"); // NOI18N
+        panelGlass9.add(jLabel28);
+        jLabel28.setBounds(510, 122, 80, 23);
+
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
+        TCari.setName("TCari"); // NOI18N
+        TCari.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCariKeyPressed(evt);
+            }
+        });
+        panelGlass9.add(TCari);
+        TCari.setBounds(595, 122, 200, 23);
+
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('2');
+        BtnCari.setText("Tampilkan Data");
+        BtnCari.setName("BtnCari"); // NOI18N
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCariActionPerformed(evt);
+            }
+        });
+        BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCariKeyPressed(evt);
+            }
+        });
+        panelGlass9.add(BtnCari);
+        BtnCari.setBounds(800, 122, 130, 23);
+
+        internalFrame22.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
+
+        Scroll2.setName("Scroll2"); // NOI18N
+        Scroll2.setOpaque(true);
+
+        tbJamKerja.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbJamKerja.setName("tbJamKerja"); // NOI18N
+        tbJamKerja.getTableHeader().setReorderingAllowed(false);
+        tbJamKerja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbJamKerjaMouseClicked(evt);
+            }
+        });
+        tbJamKerja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbJamKerjaKeyPressed(evt);
+            }
+        });
+        Scroll2.setViewportView(tbJamKerja);
+
+        internalFrame22.add(Scroll2, java.awt.BorderLayout.CENTER);
+
+        TabSetup.addTab("Pengaturan Jam Kerja RSUD Ratu Zalecha", internalFrame22);
 
         internalFrame1.add(TabSetup, java.awt.BorderLayout.CENTER);
 
@@ -749,6 +1109,15 @@ public class DlgSetKeterlambatan extends javax.swing.JDialog {
             } else if (tabMode1.getRowCount() > 0) {
                 JOptionPane.showMessageDialog(null, "Maaf, Hanya diijinkan pengaturan satu jenis sift jam kerja saja...!!!!");
             }
+        } else if (TabSetup.getSelectedIndex() == 2) {
+            Sequel.menyimpan("pengaturan_jam_kerja", "'" + cmbKelompok.getSelectedItem().toString() + "','" + cmbHari.getSelectedItem().toString() + "','"
+                    + cmbAktivasi.getSelectedItem().toString() + "','"
+                    + cmbJamDtgNormal.getSelectedItem() + ":" + cmbMntDtgNormal.getSelectedItem() + ":" + cmbDtkDtgNormal.getSelectedItem() + "','"
+                    + cmbJamPlgNormal.getSelectedItem() + ":" + cmbMntPlgNormal.getSelectedItem() + ":" + cmbDtkPlgNormal.getSelectedItem() + "','"
+                    + cmbJamDtgRama.getSelectedItem() + ":" + cmbMntDtgRama.getSelectedItem() + ":" + cmbDtkDtgRama.getSelectedItem() + "','"
+                    + cmbJamPlgRama.getSelectedItem() + ":" + cmbMntPlgRama.getSelectedItem() + ":" + cmbDtkPlgRama.getSelectedItem() + "'", "Jam Kerja");
+            emptteksRaza();
+            tampilJamKerjaRaza();
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -766,6 +1135,9 @@ public class DlgSetKeterlambatan extends javax.swing.JDialog {
             tampil();
         } else if (TabSetup.getSelectedIndex() == 1) {
             tampilSift();
+        } else if (TabSetup.getSelectedIndex() == 2) {
+            emptteksRaza();
+            tampilJamKerjaRaza();
         }
 }//GEN-LAST:event_BtnBatalActionPerformed
 
@@ -808,6 +1180,26 @@ public class DlgSetKeterlambatan extends javax.swing.JDialog {
                     } else {
                         tampilSift();
                         emptTeks();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
+                    tbSift.requestFocus();
+                }
+            }
+        } else if (TabSetup.getSelectedIndex() == 2) {
+            if (tabMode2.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+            } else {
+                if (tbJamKerja.getSelectedRow() > -1) {
+                    x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (x == JOptionPane.YES_OPTION) {
+                        Sequel.queryu("delete from pengaturan_jam_kerja where kelompok_kerja='" + tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 0).toString() + "' "
+                                + "and hari='" + tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 1).toString() + "'");
+                        tampilJamKerjaRaza();
+                        emptteksRaza();
+                    } else {
+                        tampilJamKerjaRaza();
+                        emptteksRaza();
                     }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
@@ -894,6 +1286,21 @@ private void ToleransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
                 tbSift.requestFocus();
             }
+        } else if (TabSetup.getSelectedIndex() == 2) {
+            if (tbJamKerja.getSelectedRow() > -1) {
+                Sequel.mengedit("pengaturan_jam_kerja", "kelompok_kerja='" + tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 0).toString() + "'",
+                        "hari='" + cmbHari.getSelectedItem().toString() + "', aktivasi_momen='" + cmbAktivasi.getSelectedItem().toString() + "', "
+                        + "jam_datang_normal='" + cmbJamDtgNormal.getSelectedItem() + ":" + cmbMntDtgNormal.getSelectedItem() + ":" + cmbDtkDtgNormal.getSelectedItem() + "', "
+                        + "jam_pulang_normal='" + cmbJamPlgNormal.getSelectedItem() + ":" + cmbMntPlgNormal.getSelectedItem() + ":" + cmbDtkPlgNormal.getSelectedItem() + "', "
+                        + "jam_datang_ramadhan='" + cmbJamDtgRama.getSelectedItem() + ":" + cmbMntDtgRama.getSelectedItem() + ":" + cmbDtkDtgRama.getSelectedItem() + "', "
+                        + "jam_pulang_ramadhan='" + cmbJamPlgRama.getSelectedItem() + ":" + cmbMntPlgRama.getSelectedItem() + ":" + cmbDtkPlgRama.getSelectedItem() + "'");
+                
+                tampilJamKerjaRaza();
+                emptteksRaza();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
+                tbJamKerja.requestFocus();
+            }
         }
     }//GEN-LAST:event_BtnEditActionPerformed
 
@@ -918,6 +1325,9 @@ private void ToleransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             tampil();
         } else if (TabSetup.getSelectedIndex() == 1) {
             tampilSift();
+        } else if (TabSetup.getSelectedIndex() == 2) {
+            tampilJamKerjaRaza();
+            emptteksRaza();
         }
     }//GEN-LAST:event_TabSetupMouseClicked
 
@@ -1013,6 +1423,165 @@ private void ToleransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         AutoCompleteDecorator.decorate(cmbDtkMalam2);
     }//GEN-LAST:event_cmbDtkMalam2MouseReleased
 
+    private void tbJamKerjaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbJamKerjaMouseClicked
+        if (tabMode2.getRowCount() != 0) {
+            try {
+                getDataRaza();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
+    }//GEN-LAST:event_tbJamKerjaMouseClicked
+
+    private void tbJamKerjaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbJamKerjaKeyPressed
+        if (tabMode2.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {
+                    getDataRaza();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
+    }//GEN-LAST:event_tbJamKerjaKeyPressed
+
+    private void cmbKelompokMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbKelompokMouseReleased
+        AutoCompleteDecorator.decorate(cmbKelompok);
+    }//GEN-LAST:event_cmbKelompokMouseReleased
+
+    private void cmbHariMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbHariMouseReleased
+        AutoCompleteDecorator.decorate(cmbHari);
+    }//GEN-LAST:event_cmbHariMouseReleased
+
+    private void cmbAktivasiMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbAktivasiMouseReleased
+        AutoCompleteDecorator.decorate(cmbAktivasi);
+    }//GEN-LAST:event_cmbAktivasiMouseReleased
+
+    private void cmbJamDtgNormalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJamDtgNormalMouseReleased
+        AutoCompleteDecorator.decorate(cmbJamDtgNormal);
+    }//GEN-LAST:event_cmbJamDtgNormalMouseReleased
+
+    private void cmbMntDtgNormalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMntDtgNormalMouseReleased
+        AutoCompleteDecorator.decorate(cmbMntDtgNormal);
+    }//GEN-LAST:event_cmbMntDtgNormalMouseReleased
+
+    private void cmbDtkDtgNormalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtkDtgNormalMouseReleased
+        AutoCompleteDecorator.decorate(cmbDtkDtgNormal);
+    }//GEN-LAST:event_cmbDtkDtgNormalMouseReleased
+
+    private void cmbJamPlgNormalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJamPlgNormalMouseReleased
+        AutoCompleteDecorator.decorate(cmbJamPlgNormal);
+    }//GEN-LAST:event_cmbJamPlgNormalMouseReleased
+
+    private void cmbMntPlgNormalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMntPlgNormalMouseReleased
+        AutoCompleteDecorator.decorate(cmbMntPlgNormal);
+    }//GEN-LAST:event_cmbMntPlgNormalMouseReleased
+
+    private void cmbDtkPlgNormalMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtkPlgNormalMouseReleased
+        AutoCompleteDecorator.decorate(cmbDtkPlgNormal);
+    }//GEN-LAST:event_cmbDtkPlgNormalMouseReleased
+
+    private void cmbJamDtgRamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJamDtgRamaMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbJamDtgRamaMouseReleased
+
+    private void cmbMntDtgRamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMntDtgRamaMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbMntDtgRamaMouseReleased
+
+    private void cmbDtkDtgRamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtkDtgRamaMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbDtkDtgRamaMouseReleased
+
+    private void cmbJamPlgRamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJamPlgRamaMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbJamPlgRamaMouseReleased
+
+    private void cmbMntPlgRamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMntPlgRamaMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbMntPlgRamaMouseReleased
+
+    private void cmbDtkPlgRamaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtkPlgRamaMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbDtkPlgRamaMouseReleased
+
+    private void cmbAktivasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAktivasiActionPerformed
+        cmbJamDtgNormal.setSelectedIndex(0);
+        cmbMntDtgNormal.setSelectedIndex(0);
+        cmbDtkDtgNormal.setSelectedIndex(0);        
+        cmbJamPlgNormal.setSelectedIndex(0);
+        cmbMntPlgNormal.setSelectedIndex(0);
+        cmbDtkPlgNormal.setSelectedIndex(0);
+        
+        cmbJamDtgRama.setSelectedIndex(0);
+        cmbMntDtgRama.setSelectedIndex(0);
+        cmbDtkDtgRama.setSelectedIndex(0);
+        cmbJamPlgRama.setSelectedIndex(0);
+        cmbMntPlgRama.setSelectedIndex(0);
+        cmbDtkPlgRama.setSelectedIndex(0);
+        if (cmbAktivasi.getSelectedIndex() == 1) {
+            cmbJamDtgNormal.setEnabled(true);
+            cmbMntDtgNormal.setEnabled(true);
+            cmbDtkDtgNormal.setEnabled(true);
+            cmbJamPlgNormal.setEnabled(true);
+            cmbMntPlgNormal.setEnabled(true);
+            cmbDtkPlgNormal.setEnabled(true);
+            
+            cmbJamDtgRama.setEnabled(false);
+            cmbMntDtgRama.setEnabled(false);
+            cmbDtkDtgRama.setEnabled(false);
+            cmbJamPlgRama.setEnabled(false);
+            cmbMntPlgRama.setEnabled(false);
+            cmbDtkPlgRama.setEnabled(false);
+        } else if (cmbAktivasi.getSelectedIndex() == 2) {
+            cmbJamDtgNormal.setEnabled(false);
+            cmbMntDtgNormal.setEnabled(false);
+            cmbDtkDtgNormal.setEnabled(false);
+            cmbJamPlgNormal.setEnabled(false);
+            cmbMntPlgNormal.setEnabled(false);
+            cmbDtkPlgNormal.setEnabled(false);
+            
+            cmbJamDtgRama.setEnabled(true);
+            cmbMntDtgRama.setEnabled(true);
+            cmbDtkDtgRama.setEnabled(true);
+            cmbJamPlgRama.setEnabled(true);
+            cmbMntPlgRama.setEnabled(true);
+            cmbDtkPlgRama.setEnabled(true);
+        } else {
+            cmbJamDtgNormal.setEnabled(false);
+            cmbMntDtgNormal.setEnabled(false);
+            cmbDtkDtgNormal.setEnabled(false);
+            cmbJamPlgNormal.setEnabled(false);
+            cmbMntPlgNormal.setEnabled(false);
+            cmbDtkPlgNormal.setEnabled(false);
+            
+            cmbJamDtgRama.setEnabled(false);
+            cmbMntDtgRama.setEnabled(false);
+            cmbDtkDtgRama.setEnabled(false);
+            cmbJamPlgRama.setEnabled(false);
+            cmbMntPlgRama.setEnabled(false);
+            cmbDtkPlgRama.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbAktivasiActionPerformed
+
+    private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCariActionPerformed(null);
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
+            BtnCari.requestFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
+            BtnKeluar.requestFocus();
+        }
+    }//GEN-LAST:event_TCariKeyPressed
+
+    private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
+        tampilJamKerjaRaza();
+    }//GEN-LAST:event_BtnCariActionPerformed
+
+    private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnCariActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnCariKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -1031,37 +1600,56 @@ private void ToleransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnBatal;
+    private widget.Button BtnCari;
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll2;
+    public widget.TextBox TCari;
     private javax.swing.JTabbedPane TabSetup;
     private widget.TextBox Terlambat1;
     private widget.TextBox Terlambat2;
     private widget.TextBox Toleransi;
+    private widget.ComboBox cmbAktivasi;
+    private widget.ComboBox cmbDtkDtgNormal;
+    private widget.ComboBox cmbDtkDtgRama;
     private widget.ComboBox cmbDtkMalam1;
     private widget.ComboBox cmbDtkMalam2;
     private widget.ComboBox cmbDtkPagi1;
     private widget.ComboBox cmbDtkPagi2;
+    private widget.ComboBox cmbDtkPlgNormal;
+    private widget.ComboBox cmbDtkPlgRama;
     private widget.ComboBox cmbDtkSore1;
     private widget.ComboBox cmbDtkSore2;
+    private widget.ComboBox cmbHari;
+    private widget.ComboBox cmbJamDtgNormal;
+    private widget.ComboBox cmbJamDtgRama;
     private widget.ComboBox cmbJamMalam1;
     private widget.ComboBox cmbJamMalam2;
     private widget.ComboBox cmbJamPagi1;
     private widget.ComboBox cmbJamPagi2;
+    private widget.ComboBox cmbJamPlgNormal;
+    private widget.ComboBox cmbJamPlgRama;
     private widget.ComboBox cmbJamSore1;
     private widget.ComboBox cmbJamSore2;
+    private widget.ComboBox cmbKelompok;
+    private widget.ComboBox cmbMntDtgNormal;
+    private widget.ComboBox cmbMntDtgRama;
     private widget.ComboBox cmbMntMalam1;
     private widget.ComboBox cmbMntMalam2;
     private widget.ComboBox cmbMntPagi1;
     private widget.ComboBox cmbMntPagi2;
+    private widget.ComboBox cmbMntPlgNormal;
+    private widget.ComboBox cmbMntPlgRama;
     private widget.ComboBox cmbMntSore1;
     private widget.ComboBox cmbMntSore2;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame20;
     private widget.InternalFrame internalFrame21;
+    private widget.InternalFrame internalFrame22;
     private widget.Label jLabel12;
     private widget.Label jLabel13;
     private widget.Label jLabel14;
@@ -1071,6 +1659,14 @@ private void ToleransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.Label jLabel18;
     private widget.Label jLabel19;
     private widget.Label jLabel20;
+    private widget.Label jLabel21;
+    private widget.Label jLabel22;
+    private widget.Label jLabel23;
+    private widget.Label jLabel24;
+    private widget.Label jLabel25;
+    private widget.Label jLabel26;
+    private widget.Label jLabel27;
+    private widget.Label jLabel28;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
@@ -1080,6 +1676,8 @@ private void ToleransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.panelisi panelGlass5;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
+    private widget.panelisi panelGlass9;
+    private widget.Table tbJamKerja;
     private widget.Table tbSift;
     private widget.Table tbToleransi;
     // End of variables declaration//GEN-END:variables
@@ -1193,6 +1791,97 @@ private void ToleransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             cmbJamMalam2.setSelectedItem(tbSift.getValueAt(tbSift.getSelectedRow(), 11).toString().substring(0, 2));
             cmbMntMalam2.setSelectedItem(tbSift.getValueAt(tbSift.getSelectedRow(), 11).toString().substring(3, 5));
             cmbDtkMalam2.setSelectedItem(tbSift.getValueAt(tbSift.getSelectedRow(), 11).toString().substring(6, 8));
+        }
+    }
+    
+    private void emptteksRaza() {
+        cmbKelompok.setSelectedIndex(0);
+        cmbHari.setSelectedIndex(0);
+        cmbAktivasi.setSelectedIndex(0);
+        cmbJamDtgNormal.setSelectedIndex(0);
+        cmbMntDtgNormal.setSelectedIndex(0);
+        cmbDtkDtgNormal.setSelectedIndex(0);        
+        cmbJamPlgNormal.setSelectedIndex(0);
+        cmbMntPlgNormal.setSelectedIndex(0);
+        cmbDtkPlgNormal.setSelectedIndex(0);
+        
+        cmbJamDtgRama.setSelectedIndex(0);
+        cmbMntDtgRama.setSelectedIndex(0);
+        cmbDtkDtgRama.setSelectedIndex(0);
+        cmbJamPlgRama.setSelectedIndex(0);
+        cmbMntPlgRama.setSelectedIndex(0);
+        cmbDtkPlgRama.setSelectedIndex(0);
+
+        cmbJamDtgNormal.setEnabled(false);
+        cmbMntDtgNormal.setEnabled(false);
+        cmbDtkDtgNormal.setEnabled(false);
+        cmbJamPlgNormal.setEnabled(false);
+        cmbMntPlgNormal.setEnabled(false);
+        cmbDtkPlgNormal.setEnabled(false);
+
+        cmbJamDtgRama.setEnabled(false);
+        cmbMntDtgRama.setEnabled(false);
+        cmbDtkDtgRama.setEnabled(false);
+        cmbJamPlgRama.setEnabled(false);
+        cmbMntPlgRama.setEnabled(false);
+        cmbDtkPlgRama.setEnabled(false);
+    }
+    
+    private void tampilJamKerjaRaza() {
+        Valid.tabelKosong(tabMode2);
+        try {
+            ps2 = koneksi.prepareStatement("select * from pengaturan_jam_kerja where "
+                    + "kelompok_kerja like ? or "
+                    + "hari like ? or "
+                    + "aktivasi_momen like ? order by kelompok_kerja, aktivasi_momen");
+            try {
+                ps2.setString(1, "%" + TCari.getText().trim() + "%");
+                ps2.setString(2, "%" + TCari.getText().trim() + "%");
+                ps2.setString(3, "%" + TCari.getText().trim() + "%");
+                rs2 = ps2.executeQuery();
+                while (rs2.next()) {
+                    tabMode2.addRow(new String[]{
+                        rs2.getString("kelompok_kerja"),
+                        rs2.getString("hari"),
+                        rs2.getString("aktivasi_momen"),
+                        rs2.getString("jam_datang_normal"),
+                        rs2.getString("jam_pulang_normal"),
+                        rs2.getString("jam_datang_ramadhan"),                        
+                        rs2.getString("jam_pulang_ramadhan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (ps2 != null) {
+                    ps2.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void getDataRaza() {
+        if (tbJamKerja.getSelectedRow() != -1) {
+            cmbKelompok.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 0).toString());
+            cmbHari.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 1).toString());
+            cmbAktivasi.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 2).toString());
+            cmbJamDtgNormal.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 3).toString().substring(0, 2));
+            cmbMntDtgNormal.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 3).toString().substring(3, 5));
+            cmbDtkDtgNormal.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 3).toString().substring(6, 8));            
+            cmbJamPlgNormal.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 4).toString().substring(0, 2));
+            cmbMntPlgNormal.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 4).toString().substring(3, 5));
+            cmbDtkPlgNormal.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 4).toString().substring(6, 8));            
+            cmbJamDtgRama.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 5).toString().substring(0, 2));
+            cmbMntDtgRama.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 5).toString().substring(3, 5));
+            cmbDtkDtgRama.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 5).toString().substring(6, 8));            
+            cmbJamPlgRama.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 6).toString().substring(0, 2));
+            cmbMntPlgRama.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 6).toString().substring(3, 5));
+            cmbDtkPlgRama.setSelectedItem(tbJamKerja.getValueAt(tbJamKerja.getSelectedRow(), 6).toString().substring(6, 8));
         }
     }
 }

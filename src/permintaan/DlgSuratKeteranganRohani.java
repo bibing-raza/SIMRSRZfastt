@@ -255,15 +255,15 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnSuratRohaniMMPI = new javax.swing.JMenu();
-        MnTTDmmpi = new javax.swing.JMenuItem();
-        MnTTEmmpi = new javax.swing.JMenuItem();
-        MnSuratRohaniP3K = new javax.swing.JMenu();
-        MnTTDp3k = new javax.swing.JMenuItem();
-        MnTTEp3k = new javax.swing.JMenuItem();
-        MnSuratRohaniBiasa = new javax.swing.JMenu();
+        MnSuratRohani3poin = new javax.swing.JMenu();
         MnTTDbiasa = new javax.swing.JMenuItem();
         MnTTEbiasa = new javax.swing.JMenuItem();
+        MnSuratRohani4poin = new javax.swing.JMenu();
+        MnTTDmmpi = new javax.swing.JMenuItem();
+        MnTTEmmpi = new javax.swing.JMenuItem();
+        MnSuratRohaniKaryawan = new javax.swing.JMenu();
+        MnTTDp3k = new javax.swing.JMenuItem();
+        MnTTEp3k = new javax.swing.JMenuItem();
         Tnomor = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -334,99 +334,15 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnSuratRohaniMMPI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnSuratRohaniMMPI.setText("Cetak Surat Keterangan Rohani (MMPI)");
-        MnSuratRohaniMMPI.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnSuratRohaniMMPI.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnSuratRohaniMMPI.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnSuratRohaniMMPI.setIconTextGap(5);
-        MnSuratRohaniMMPI.setName("MnSuratRohaniMMPI"); // NOI18N
-        MnSuratRohaniMMPI.setOpaque(true);
-        MnSuratRohaniMMPI.setPreferredSize(new java.awt.Dimension(255, 26));
-
-        MnTTDmmpi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnTTDmmpi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        MnTTDmmpi.setText("TTD Basah");
-        MnTTDmmpi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnTTDmmpi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnTTDmmpi.setIconTextGap(5);
-        MnTTDmmpi.setName("MnTTDmmpi"); // NOI18N
-        MnTTDmmpi.setPreferredSize(new java.awt.Dimension(120, 26));
-        MnTTDmmpi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnTTDmmpiActionPerformed(evt);
-            }
-        });
-        MnSuratRohaniMMPI.add(MnTTDmmpi);
-
-        MnTTEmmpi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnTTEmmpi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        MnTTEmmpi.setText("TTE (QRCode)");
-        MnTTEmmpi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnTTEmmpi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnTTEmmpi.setIconTextGap(5);
-        MnTTEmmpi.setName("MnTTEmmpi"); // NOI18N
-        MnTTEmmpi.setPreferredSize(new java.awt.Dimension(120, 26));
-        MnTTEmmpi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnTTEmmpiActionPerformed(evt);
-            }
-        });
-        MnSuratRohaniMMPI.add(MnTTEmmpi);
-
-        jPopupMenu1.add(MnSuratRohaniMMPI);
-
-        MnSuratRohaniP3K.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnSuratRohaniP3K.setText("Cetak Surat Keterangan Rohani (PPPK)");
-        MnSuratRohaniP3K.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnSuratRohaniP3K.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnSuratRohaniP3K.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnSuratRohaniP3K.setIconTextGap(5);
-        MnSuratRohaniP3K.setName("MnSuratRohaniP3K"); // NOI18N
-        MnSuratRohaniP3K.setOpaque(true);
-        MnSuratRohaniP3K.setPreferredSize(new java.awt.Dimension(255, 26));
-
-        MnTTDp3k.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnTTDp3k.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        MnTTDp3k.setText("TTD Basah");
-        MnTTDp3k.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnTTDp3k.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnTTDp3k.setIconTextGap(5);
-        MnTTDp3k.setName("MnTTDp3k"); // NOI18N
-        MnTTDp3k.setPreferredSize(new java.awt.Dimension(120, 26));
-        MnTTDp3k.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnTTDp3kActionPerformed(evt);
-            }
-        });
-        MnSuratRohaniP3K.add(MnTTDp3k);
-
-        MnTTEp3k.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnTTEp3k.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        MnTTEp3k.setText("TTE (QRCode)");
-        MnTTEp3k.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnTTEp3k.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnTTEp3k.setIconTextGap(5);
-        MnTTEp3k.setName("MnTTEp3k"); // NOI18N
-        MnTTEp3k.setPreferredSize(new java.awt.Dimension(120, 26));
-        MnTTEp3k.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnTTEp3kActionPerformed(evt);
-            }
-        });
-        MnSuratRohaniP3K.add(MnTTEp3k);
-
-        jPopupMenu1.add(MnSuratRohaniP3K);
-
-        MnSuratRohaniBiasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnSuratRohaniBiasa.setText("Cetak Surat Keterangan Rohani");
-        MnSuratRohaniBiasa.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnSuratRohaniBiasa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnSuratRohaniBiasa.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnSuratRohaniBiasa.setIconTextGap(5);
-        MnSuratRohaniBiasa.setName("MnSuratRohaniBiasa"); // NOI18N
-        MnSuratRohaniBiasa.setOpaque(true);
-        MnSuratRohaniBiasa.setPreferredSize(new java.awt.Dimension(255, 26));
+        MnSuratRohani3poin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnSuratRohani3poin.setText("Cetak Surat Keterangan Rohani (3 Point)");
+        MnSuratRohani3poin.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSuratRohani3poin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSuratRohani3poin.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSuratRohani3poin.setIconTextGap(5);
+        MnSuratRohani3poin.setName("MnSuratRohani3poin"); // NOI18N
+        MnSuratRohani3poin.setOpaque(true);
+        MnSuratRohani3poin.setPreferredSize(new java.awt.Dimension(270, 26));
 
         MnTTDbiasa.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnTTDbiasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
@@ -441,7 +357,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
                 MnTTDbiasaActionPerformed(evt);
             }
         });
-        MnSuratRohaniBiasa.add(MnTTDbiasa);
+        MnSuratRohani3poin.add(MnTTDbiasa);
 
         MnTTEbiasa.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnTTEbiasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
@@ -456,9 +372,93 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
                 MnTTEbiasaActionPerformed(evt);
             }
         });
-        MnSuratRohaniBiasa.add(MnTTEbiasa);
+        MnSuratRohani3poin.add(MnTTEbiasa);
 
-        jPopupMenu1.add(MnSuratRohaniBiasa);
+        jPopupMenu1.add(MnSuratRohani3poin);
+
+        MnSuratRohani4poin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnSuratRohani4poin.setText("Cetak Surat Keterangan Rohani (4 Point)");
+        MnSuratRohani4poin.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSuratRohani4poin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSuratRohani4poin.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSuratRohani4poin.setIconTextGap(5);
+        MnSuratRohani4poin.setName("MnSuratRohani4poin"); // NOI18N
+        MnSuratRohani4poin.setOpaque(true);
+        MnSuratRohani4poin.setPreferredSize(new java.awt.Dimension(270, 26));
+
+        MnTTDmmpi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDmmpi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTDmmpi.setText("TTD Basah");
+        MnTTDmmpi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDmmpi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDmmpi.setIconTextGap(5);
+        MnTTDmmpi.setName("MnTTDmmpi"); // NOI18N
+        MnTTDmmpi.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDmmpi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTDmmpiActionPerformed(evt);
+            }
+        });
+        MnSuratRohani4poin.add(MnTTDmmpi);
+
+        MnTTEmmpi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEmmpi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTEmmpi.setText("TTE (QRCode)");
+        MnTTEmmpi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEmmpi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEmmpi.setIconTextGap(5);
+        MnTTEmmpi.setName("MnTTEmmpi"); // NOI18N
+        MnTTEmmpi.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEmmpi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEmmpiActionPerformed(evt);
+            }
+        });
+        MnSuratRohani4poin.add(MnTTEmmpi);
+
+        jPopupMenu1.add(MnSuratRohani4poin);
+
+        MnSuratRohaniKaryawan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnSuratRohaniKaryawan.setText("Cetak Surat Keterangan Rohani (Karyawan)");
+        MnSuratRohaniKaryawan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSuratRohaniKaryawan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSuratRohaniKaryawan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSuratRohaniKaryawan.setIconTextGap(5);
+        MnSuratRohaniKaryawan.setName("MnSuratRohaniKaryawan"); // NOI18N
+        MnSuratRohaniKaryawan.setOpaque(true);
+        MnSuratRohaniKaryawan.setPreferredSize(new java.awt.Dimension(270, 26));
+
+        MnTTDp3k.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDp3k.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTDp3k.setText("TTD Basah");
+        MnTTDp3k.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDp3k.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDp3k.setIconTextGap(5);
+        MnTTDp3k.setName("MnTTDp3k"); // NOI18N
+        MnTTDp3k.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDp3k.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTDp3kActionPerformed(evt);
+            }
+        });
+        MnSuratRohaniKaryawan.add(MnTTDp3k);
+
+        MnTTEp3k.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEp3k.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTEp3k.setText("TTE (QRCode)");
+        MnTTEp3k.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEp3k.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEp3k.setIconTextGap(5);
+        MnTTEp3k.setName("MnTTEp3k"); // NOI18N
+        MnTTEp3k.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEp3k.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEp3kActionPerformed(evt);
+            }
+        });
+        MnSuratRohaniKaryawan.add(MnTTEp3k);
+
+        jPopupMenu1.add(MnSuratRohaniKaryawan);
 
         Tnomor.setEditable(false);
         Tnomor.setForeground(new java.awt.Color(0, 0, 0));
@@ -512,7 +512,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -531,7 +530,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -550,7 +548,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -569,7 +566,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -588,7 +584,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -618,7 +613,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -633,7 +628,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -658,7 +653,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('1');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -680,7 +674,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('2');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+2");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -829,7 +822,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         TAlamat.setBounds(105, 122, 330, 23);
 
         Ttgl_psikiatrik.setEditable(false);
-        Ttgl_psikiatrik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
+        Ttgl_psikiatrik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2026" }));
         Ttgl_psikiatrik.setDisplayFormat("dd-MM-yyyy");
         Ttgl_psikiatrik.setName("Ttgl_psikiatrik"); // NOI18N
         Ttgl_psikiatrik.setOpaque(false);
@@ -849,7 +842,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         Tnmdokter.setBounds(812, 160, 460, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter.setMnemonic('2');
         BtnDokter.setToolTipText("Alt+2");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1023,7 +1015,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         jLabel25.setBounds(680, 188, 120, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2026" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
@@ -1037,7 +1029,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         TnoDokumen.setBounds(105, 38, 112, 23);
 
         BtnDokumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokumen.setMnemonic('2');
         BtnDokumen.setToolTipText("Alt+2");
         BtnDokumen.setName("BtnDokumen"); // NOI18N
         BtnDokumen.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1444,9 +1435,9 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Label LCount;
-    private javax.swing.JMenu MnSuratRohaniBiasa;
-    private javax.swing.JMenu MnSuratRohaniMMPI;
-    private javax.swing.JMenu MnSuratRohaniP3K;
+    private javax.swing.JMenu MnSuratRohani3poin;
+    private javax.swing.JMenu MnSuratRohani4poin;
+    private javax.swing.JMenu MnSuratRohaniKaryawan;
     private javax.swing.JMenuItem MnTTDbiasa;
     private javax.swing.JMenuItem MnTTDmmpi;
     private javax.swing.JMenuItem MnTTDp3k;
@@ -1676,12 +1667,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
        BtnSimpan.setEnabled(akses.getsurat_keterangan_kir_mcu());       
        BtnEdit.setEnabled(akses.getsurat_keterangan_kir_mcu());
        BtnHapus.setEnabled(akses.getsurat_keterangan_kir_mcu());
-       
-        if (akses.getadmin() == true) {
-            MnSuratRohaniMMPI.setVisible(true);
-        } else {
-            MnSuratRohaniMMPI.setVisible(false);
-        }
     }
     
     public void setData(String norw) {

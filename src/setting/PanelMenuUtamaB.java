@@ -30,6 +30,7 @@ import rekammedis.RMAsesmenMedikBedahRanap;
 import rekammedis.RMAsesmenMedikDewasaRanap;
 import rekammedis.RMAsesmenMedikKebidanan;
 import rekammedis.RMAsesmenMedikPerinatologi;
+import rekammedis.RMAsesmenPasienTerminal;
 import rekammedis.RMAsesmenPraSedasi;
 import rekammedis.RMAsesmenPraSedasiKonsepIAR;
 import rekammedis.RMAsesmenPreInduksi;
@@ -234,6 +235,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnSuratPernyataanDNR = new widget.ButtonBig();
         BtnInstruksiDokterDNR = new widget.ButtonBig();
         BtnScoreApgarPerinatologiLuar = new widget.ButtonBig();
+        BtnAsesmenPasienTerminal = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1473,6 +1475,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnScoreApgarPerinatologiLuar);
+
+        BtnAsesmenPasienTerminal.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenPasienTerminal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnAsesmenPasienTerminal.setText("<html><div style=\"text-align: center;\">Assesmen Pasien Terminal<br>Dan Keluarganya</div></html>");
+        BtnAsesmenPasienTerminal.setIconTextGap(0);
+        BtnAsesmenPasienTerminal.setName("BtnAsesmenPasienTerminal"); // NOI18N
+        BtnAsesmenPasienTerminal.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnAsesmenPasienTerminal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenPasienTerminalActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnAsesmenPasienTerminal);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -2952,12 +2967,29 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnScoreApgarPerinatologiLuarActionPerformed
 
+    private void BtnAsesmenPasienTerminalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenPasienTerminalActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMAsesmenPasienTerminal form = new RMAsesmenPasienTerminal(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnAsesmenPasienTerminal.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnAsesmenPasienTerminalActionPerformed
+
     /**
     * @param args the command line arguments
     */    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.ButtonBig BtnAsesmenMedikKebidanan;
+    private widget.ButtonBig BtnAsesmenPasienTerminal;
     private widget.ButtonBig BtnAsesmenPraSedasiKonsepIAR;
     private widget.ButtonBig BtnCatatanRuangPemulihan;
     private widget.ButtonBig BtnCatatanSedasiAnestesi;
@@ -3504,6 +3536,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             FormMenu.add(BtnInstruksiDokterDNR);
             jmlmenu++;
         }
+        
+        if (akses.getcppt() && BtnAsesmenPasienTerminal.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnAsesmenPasienTerminal);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -3611,6 +3648,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         if (akses.getcppt() == true) {
             FormMenu.add(btnTriasePonek);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            FormMenu.add(BtnAsesmenPasienTerminal);
             jmlmenu++;
         }
 

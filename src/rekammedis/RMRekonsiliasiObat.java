@@ -6,13 +6,10 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -568,6 +565,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -859,7 +857,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel22.setBounds(260, 66, 120, 23);
 
         TtglRekon.setEditable(false);
-        TtglRekon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2026" }));
+        TtglRekon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         TtglRekon.setDisplayFormat("dd-MM-yyyy");
         TtglRekon.setName("TtglRekon"); // NOI18N
         TtglRekon.setOpaque(false);
@@ -959,7 +957,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel65.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass10.add(jLabel65);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -973,7 +971,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel70.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel70);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1131,7 +1129,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel66.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass11.add(jLabel66);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1145,7 +1143,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel71.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass11.add(jLabel71);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1254,7 +1252,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel5.setBounds(0, 38, 135, 23);
 
         TtglResep.setEditable(false);
-        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2026" }));
+        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         TtglResep.setDisplayFormat("dd-MM-yyyy");
         TtglResep.setName("TtglResep"); // NOI18N
         TtglResep.setOpaque(false);
@@ -1442,7 +1440,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel29.setBounds(0, 66, 135, 23);
 
         TtglResep1.setEditable(false);
-        TtglResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2026" }));
+        TtglResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         TtglResep1.setDisplayFormat("dd-MM-yyyy");
         TtglResep1.setName("TtglResep1"); // NOI18N
         TtglResep1.setOpaque(false);
@@ -1624,7 +1622,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel67.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass12.add(jLabel67);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2026" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -1638,7 +1636,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel72.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass12.add(jLabel72);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2026" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -1772,6 +1770,25 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnGanti);
+
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText("Cetak");
+        BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setName("BtnPrint"); // NOI18N
+        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPrintActionPerformed(evt);
+            }
+        });
+        BtnPrint.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnPrintKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnPrint);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -2431,6 +2448,67 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCopasRanapActionPerformed
 
+    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+        if (tbRekon.getSelectedRow() > -1) {
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TNoRM1.getText());
+            param.put("nmpasien", TPasien1.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM1.getText() + "'"));
+
+            param.put("jnsRekon", cmbJnsRekon.getSelectedItem().toString());
+
+            if (cmbRiwAlergi.getSelectedIndex() == 2) {
+                if (TketAlergi.getText().equals("")) {
+                    param.put("riwAlergi", cmbRiwAlergi.getSelectedItem().toString() + " .............");
+                } else {
+                    param.put("riwAlergi", cmbRiwAlergi.getSelectedItem().toString() + " : " + TketAlergi.getText());
+                }
+            } else {
+                param.put("riwAlergi", cmbRiwAlergi.getSelectedItem().toString());
+            }
+
+            param.put("bawaObatLuar", cmbBawaObat.getSelectedItem().toString());
+            param.put("unitRalan", Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw1.getText() + "'"));
+            param.put("catatanIgd", TcatatanIgd.getText());
+            param.put("catatanRanap", TcatatanRanap.getText());
+            param.put("ketidaksesuaian", Tketidaksesuaian.getText());
+            param.put("saran", Tsaran.getText());
+            param.put("keputusan", Tkeputusan.getText());
+            param.put("direview", TnmPereview.getText());
+            param.put("apoteker", TnmApoteker.getText());
+            param.put("tglRekon", Valid.SetTglINDONESIA(Valid.SetTgl(TtglRekon.getSelectedItem() + "")));
+
+            Valid.MyReport("rptLembarRekonsiliasiObat.jasper", "report", "::[ Lembar Rekonsiliasi Obat ]::",
+                    "SELECT CASE WHEN x.jenis = 'IGD' THEN pl.nm_poli ELSE x.ruang_rawat END AS ruang_rawat, "
+                    + "d.nama_brng AS nmObat, x.rute, x.dosis, x.aturan_pakai AS aturanPakai, pg.nama AS nmDokter, "
+                    + "DATE_FORMAT(x.tgl_resep, '%d/%m/%Y') AS tglResep FROM (SELECT roi.no_rawat, roi.kode_brng, roi.rute, roi.dosis, "
+                    + "'' AS aturan_pakai, roi.tgl_resep, NULL AS ruang_rawat, rp.kd_dokter AS nip_dokter, 'IGD' AS jenis "
+                    + "FROM rekonsiliasi_obat_igd roi INNER JOIN reg_periksa rp  ON rp.no_rawat = roi.no_rawat WHERE roi.no_rawat = '" + TNoRw1.getText() + "' "
+                    + "UNION ALL "
+                    + "SELECT ror.no_rawat, ror.kode_brng, ror.rute, ror.dosis, ror.aturan_pakai, ror.tgl_resep, "
+                    + "ror.ruang_rawat, ror.nip_dokter, 'RANAP' AS jenis FROM rekonsiliasi_obat_ranap ror WHERE ror.no_rawat = '" + TNoRw1.getText() + "') x "
+                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = x.no_rawat "
+                    + "INNER JOIN pegawai pg ON pg.nik = x.nip_dokter "
+                    + "INNER JOIN databarang d ON d.kode_brng = x.kode_brng "
+                    + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli ORDER BY x.ruang_rawat, x.tgl_resep", param);
+            
+            BtnBatalActionPerformed(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih/klik dulu salah satu datanya pada tabel..!!!");
+            tbRekon.requestFocus();
+        }
+    }//GEN-LAST:event_BtnPrintActionPerformed
+
+    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnPrintActionPerformed(null);
+        } else {
+            Valid.pindah(evt, BtnGanti, BtnKeluar);
+        }
+    }//GEN-LAST:event_BtnPrintKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -2463,6 +2541,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnPereview;
+    private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
