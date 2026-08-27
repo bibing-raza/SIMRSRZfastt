@@ -2471,28 +2471,37 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
             param.put("bawaObatLuar", cmbBawaObat.getSelectedItem().toString());
             param.put("unitRalan", Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw1.getText() + "'"));
-            param.put("catatanIgd", TcatatanIgd.getText());
-            param.put("catatanRanap", TcatatanRanap.getText());
-            param.put("ketidaksesuaian", Tketidaksesuaian.getText());
-            param.put("saran", Tsaran.getText());
-            param.put("keputusan", Tkeputusan.getText());
+            param.put("catatanIgd", TcatatanIgd.getText().replaceAll("\n", "<br/>"));
+            param.put("catatanRanap", TcatatanRanap.getText().replaceAll("\n", "<br/>"));
+            param.put("ketidaksesuaian", Tketidaksesuaian.getText().replaceAll("\n", "<br/>"));
+            param.put("saran", Tsaran.getText().replaceAll("\n", "<br/>"));
+            param.put("keputusan", Tkeputusan.getText().replaceAll("\n", "<br/>"));
             param.put("direview", TnmPereview.getText());
             param.put("apoteker", TnmApoteker.getText());
             param.put("tglRekon", Valid.SetTglINDONESIA(Valid.SetTgl(TtglRekon.getSelectedItem() + "")));
-
+            
             Valid.MyReport("rptLembarRekonsiliasiObat.jasper", "report", "::[ Lembar Rekonsiliasi Obat ]::",
-                    "SELECT CASE WHEN x.jenis = 'IGD' THEN pl.nm_poli ELSE x.ruang_rawat END AS ruang_rawat, "
-                    + "d.nama_brng AS nmObat, x.rute, x.dosis, x.aturan_pakai AS aturanPakai, pg.nama AS nmDokter, "
-                    + "DATE_FORMAT(x.tgl_resep, '%d/%m/%Y') AS tglResep FROM (SELECT roi.no_rawat, roi.kode_brng, roi.rute, roi.dosis, "
-                    + "'' AS aturan_pakai, roi.tgl_resep, NULL AS ruang_rawat, rp.kd_dokter AS nip_dokter, 'IGD' AS jenis "
-                    + "FROM rekonsiliasi_obat_igd roi INNER JOIN reg_periksa rp  ON rp.no_rawat = roi.no_rawat WHERE roi.no_rawat = '" + TNoRw1.getText() + "' "
-                    + "UNION ALL "
-                    + "SELECT ror.no_rawat, ror.kode_brng, ror.rute, ror.dosis, ror.aturan_pakai, ror.tgl_resep, "
-                    + "ror.ruang_rawat, ror.nip_dokter, 'RANAP' AS jenis FROM rekonsiliasi_obat_ranap ror WHERE ror.no_rawat = '" + TNoRw1.getText() + "') x "
+                    "SELECT COALESCE(CASE WHEN x.jenis = 'IGD' THEN pl.nm_poli ELSE x.ruang_rawat END, '') AS ruang_rawat, "
+                    + "    COALESCE(d.nama_brng, '') AS nmObat, "
+                    + "    COALESCE(x.rute, '') AS rute, "
+                    + "    COALESCE(x.dosis, '') AS dosis, "
+                    + "    COALESCE(x.aturan_pakai, '') AS aturanPakai, "
+                    + "    COALESCE(pg.nama, '') AS nmDokter, "
+                    + "    COALESCE(DATE_FORMAT(x.tgl_resep, '%d/%m/%Y'), '') AS tglResep "
+                    + "FROM (SELECT roi.no_rawat, roi.kode_brng, roi.rute, roi.dosis,'' AS aturan_pakai, roi.tgl_resep, NULL AS ruang_rawat, rp.kd_dokter AS nip_dokter, 'IGD' AS jenis "
+                    + "    FROM rekonsiliasi_obat_igd roi INNER JOIN reg_periksa rp ON rp.no_rawat = roi.no_rawat WHERE roi.no_rawat = '" + TNoRw1.getText() + "' "
+                    + "    UNION ALL "
+                    + "    SELECT ror.no_rawat, ror.kode_brng, ror.rute, ror.dosis, ror.aturan_pakai, ror.tgl_resep, ror.ruang_rawat, ror.nip_dokter, 'RANAP' AS jenis "
+                    + "    FROM rekonsiliasi_obat_ranap ror WHERE ror.no_rawat = '" + TNoRw1.getText() + "') x "
                     + "INNER JOIN reg_periksa rp ON rp.no_rawat = x.no_rawat "
                     + "INNER JOIN pegawai pg ON pg.nik = x.nip_dokter "
                     + "INNER JOIN databarang d ON d.kode_brng = x.kode_brng "
-                    + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli ORDER BY x.ruang_rawat, x.tgl_resep", param);
+                    + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                    + "UNION ALL "
+                    + "SELECT '' AS ruang_rawat, '' AS nmObat, '' AS rute, '' AS dosis, '' AS aturanPakai, '' AS nmDokter, '' AS tglResep "
+                    + "FROM rekonsiliasi_obat ro WHERE ro.no_rawat = '" + TNoRw1.getText() + "' "
+                    + "AND NOT EXISTS (SELECT 1 FROM rekonsiliasi_obat_igd roi WHERE roi.no_rawat = ro.no_rawat) "
+                    + "AND NOT EXISTS (SELECT 1 FROM rekonsiliasi_obat_ranap ror WHERE ror.no_rawat = ro.no_rawat)", param);
             
             BtnBatalActionPerformed(null);
         } else {

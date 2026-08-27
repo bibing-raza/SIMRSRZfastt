@@ -1890,25 +1890,22 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                 Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(noId,6),signed)),0) from catatan_resep_antibiotik where "
                         + "tgl_perawatan like '%" + Sequel.cariIsi("select year(now())") + "%' ",
                         Sequel.cariIsi("select year(now())"), 6, noIdObat);
-                try {
-                    Sequel.menyimpan("catatan_resep_antibiotik", "?,?,?,?,?,?,?,?,?", "Data", 9, new String[]{
-                        noIdObat.getText(), TNoRw.getText(), Sequel.cariIsi("SELECT date(NOW())"), Sequel.cariIsi("SELECT TIME(NOW())"),
-                        TResepObat.getText(), "BELUM", akses.getkode(), Tket.getText(), cmbHari.getSelectedItem().toString()
-                    });
-
+                
+                if (Sequel.menyimpantf("catatan_resep_antibiotik", "?,?,?,?,?,?,?,?,?", "Data", 9, new String[]{
+                    noIdObat.getText(), TNoRw.getText(), Sequel.cariIsi("SELECT date(NOW())"), Sequel.cariIsi("SELECT TIME(NOW())"),
+                    TResepObat.getText(), "BELUM", akses.getkode(), Tket.getText(), cmbHari.getSelectedItem().toString()
+                }) == true) {
                     Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Resep Antibiotik Ralan Pasien", "Simpan");
                     Sequel.mengedit("reg_periksa", "no_rawat='" + TNoRw.getText() + "'", "stts='Sudah Diperiksa Dokter'");
                     TResepObat.setText("");
                     Tket.setText("");
                     TResepObat.requestFocus();
                     tampilResepObat();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan, Hubungi Admin ! " + e);
                 }
             } else if (status.equals("ranap") || status.equals("vk bersalin")) {
                 if (Sequel.cariInteger("select count(-1) from kamar_inap where no_rawat='" + TNoRw.getText() + "' and stts_pulang not in ('-','Pindah Kamar')") > 0) {
                     JOptionPane.showMessageDialog(null, "Maaf, pasien sudah dipulangkan dari ruangan, seluruh perawatan rawat inap           \n"
-                            + "sudah selesai, jika belum selesai batalkan dulu status pulangnya..!!!");
+                            + "sudah selesai, jika belum selesai batalkan dulu status pulangnya....");
                 } else {
                     jenisResep = "";
                     if (ChkCito.isSelected() == true) {
@@ -1920,20 +1917,17 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                     Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(noId,6),signed)),0) from catatan_resep_ranap_antibiotik where "
                             + "tgl_perawatan like '%" + Sequel.cariIsi("select year(now())") + "%' ",
                             Sequel.cariIsi("select year(now())"), 6, noIdObat);
-                    try {
-                        Sequel.menyimpan("catatan_resep_ranap_antibiotik", "?,?,?,?,?,?,?,?,?,?,?", "Data", 11, new String[]{
-                            noIdObat.getText(), TNoRw.getText(), Sequel.cariIsi("SELECT date(NOW())"), Sequel.cariIsi("SELECT TIME(NOW())"),
-                            TResepObat.getText(), "BELUM", akses.getkode(), jenisResep, cmbIniResep.getSelectedItem().toString(), Tket.getText(),
-                            cmbHari.getSelectedItem().toString()
-                        });
 
+                    if (Sequel.menyimpantf("catatan_resep_ranap_antibiotik", "?,?,?,?,?,?,?,?,?,?,?", "Data", 11, new String[]{
+                        noIdObat.getText(), TNoRw.getText(), Sequel.cariIsi("SELECT date(NOW())"), Sequel.cariIsi("SELECT TIME(NOW())"),
+                        TResepObat.getText(), "BELUM", akses.getkode(), jenisResep, cmbIniResep.getSelectedItem().toString(), Tket.getText(),
+                        cmbHari.getSelectedItem().toString()
+                    }) == true) {
                         Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Resep Antibiotik Ranap Pasien", "Simpan");
                         TResepObat.setText("");
                         Tket.setText("");
                         TResepObat.requestFocus();
                         tampilResepObat();
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan, Hubungi Admin ! " + e);
                     }
                 }
             }
@@ -2158,9 +2152,9 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
         if (tbResepObat.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Tidak ada data yang akan diperbaiki..!!!!");
+            JOptionPane.showMessageDialog(null, "Tidak ada data yang akan diperbaiki....");
         } else if (TResepObat.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Silakan pilih dulu salah satu datanya pada tabel..!!");
+            JOptionPane.showMessageDialog(rootPane, "Silakan pilih dulu salah satu datanya pada tabel....");
         } else if (akses.getadmin() == true) {
             JOptionPane.showMessageDialog(null, "Meskipun anda admin utama, tetaplah seorang dokter yang boleh merubah resepnya...!!!!");
         } else if (cmbHari.getSelectedIndex() == 0) {
@@ -2187,20 +2181,21 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                     if (tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("SUDAH")
                             || tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("DILUAR")) {
                         JOptionPane.showMessageDialog(null, "Untuk resep yang sudah diverifikasi apotek tdk. bisa diperbaiki,     \n"
-                                + "Silakan klik tombol simpan sbg. resep baru/lanjutan...!!!!");
+                                + "Silakan klik tombol simpan sbg. resep baru/lanjutan...");
                     } else {
-                        Sequel.mengedit("catatan_resep_antibiotik", "noId='" + TIdObat.getText() + "'",
-                                "no_rawat='" + TNoRw.getText() + "',tgl_perawatan='" + Sequel.cariIsi("SELECT date(NOW())") + "',"
-                                + "jam_perawatan='" + Sequel.cariIsi("SELECT TIME(NOW())") + "',nama_obat = '" + TResepObat.getText() + "', "
-                                + "keterangan='" + Tket.getText() + "', hari_ke='" + cmbHari.getSelectedItem().toString() + "'");
-                        
-                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Resep Antibiotik Ralan Pasien", "Ganti");
-                        TResepObat.setText("");
-                        Tket.setText("");
-                        tampilResepObat();
+                        if (Sequel.mengedittf("catatan_resep_antibiotik", "noId=?", "no_rawat=?, tgl_perawatan=?, jam_perawatan=?, nama_obat=?, keterangan=?, hari_ke=?", 7, new String[]{
+                            TNoRw.getText(), Sequel.cariIsi("SELECT date(NOW())"), Sequel.cariIsi("SELECT TIME(NOW())"),
+                            TResepObat.getText(), Tket.getText(), cmbHari.getSelectedItem().toString(),
+                            TIdObat.getText()
+                        }) == true) {
+                            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Resep Antibiotik Ralan Pasien", "Ganti");
+                            TResepObat.setText("");
+                            Tket.setText("");
+                            tampilResepObat();
+                        }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Silahkan pilih data yang mau diganti..!!");
+                    JOptionPane.showMessageDialog(rootPane, "Silahkan pilih data yang mau diganti....");
                     TCari.requestFocus();
                 }
             } else if (status.equals("ranap") || status.equals("vk bersalin")) {
@@ -2216,16 +2211,19 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                         } else {
                             jenisResep = "BIASA";
                         }
-                        Sequel.mengedit("catatan_resep_ranap_antibiotik", "noId='" + TIdObat.getText() + "'",
-                                "no_rawat='" + TNoRw.getText() + "',tgl_perawatan='" + Sequel.cariIsi("SELECT date(NOW())") + "',"
-                                + "jam_perawatan='" + Sequel.cariIsi("SELECT TIME(NOW())") + "',nama_obat = '" + TResepObat.getText() + "',"
-                                + "jenis_resep='" + jenisResep + "', resep_untuk='" + cmbIniResep.getSelectedItem().toString() + "', "
-                                + "keterangan='" + Tket.getText() + "', hari_ke='" + cmbHari.getSelectedItem().toString() + "'");
-                        
-                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Resep Antibiotik Ranap Pasien", "Ganti");
-                        TResepObat.setText("");
-                        Tket.setText("");
-                        tampilResepObat();
+
+                        if (Sequel.mengedittf("catatan_resep_ranap_antibiotik", "noId=?", "no_rawat=?, tgl_perawatan=?, "
+                                + "jam_perawatan=?, nama_obat=?, jenis_resep=?, resep_untuk=?, keterangan=?, hari_ke=?", 9, new String[]{
+                                    TNoRw.getText(), Sequel.cariIsi("SELECT date(NOW())"), Sequel.cariIsi("SELECT TIME(NOW())"),
+                                    TResepObat.getText(), jenisResep, cmbIniResep.getSelectedItem().toString(), Tket.getText(),
+                                    cmbHari.getSelectedItem().toString(),
+                                    TIdObat.getText()
+                                }) == true) {
+                            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Resep Antibiotik Ranap Pasien", "Ganti");
+                            TResepObat.setText("");
+                            Tket.setText("");
+                            tampilResepObat();
+                        }
                     }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Silahkan pilih data yang mau diganti..!!");
@@ -3178,6 +3176,16 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
             status = "vk bersalin";
         } else {
             status = "ralan";
+        }
+        
+        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
+            Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(noId,6),signed)),0) from catatan_resep_antibiotik where "
+                    + "tgl_perawatan like '%" + Sequel.cariIsi("select year(now())") + "%' ",
+                    Sequel.cariIsi("select year(now())"), 6, noIdObat);
+        } else if (status.equals("ranap") || status.equals("vk bersalin")) {
+            Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(noId,6),signed)),0) from catatan_resep_ranap_antibiotik where "
+                    + "tgl_perawatan like '%" + Sequel.cariIsi("select year(now())") + "%' ",
+                    Sequel.cariIsi("select year(now())"), 6, noIdObat);
         }
         
         try {

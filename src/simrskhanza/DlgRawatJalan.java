@@ -8495,6 +8495,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             cmbObat.setSelectedIndex(0);
             TCariObat.setText("");
             TResepObat.setText("");
+
+            Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(noId,6),signed)),0) from catatan_resep where "
+                    + "tgl_perawatan like '%" + DTPTgl.getSelectedItem().toString().substring(6, 10) + "%' ",
+                    DTPTgl.getSelectedItem().toString().substring(6, 10), 6, noIdObat);
             
             if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {

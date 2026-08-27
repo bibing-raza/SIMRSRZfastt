@@ -34,18 +34,27 @@
 	<parameter name="apoteker" class="java.lang.String"/>
 	<parameter name="tglRekon" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT CASE WHEN x.jenis = 'IGD' THEN pl.nm_poli ELSE x.ruang_rawat END AS ruang_rawat, 
-d.nama_brng AS nmObat, x.rute, x.dosis, x.aturan_pakai AS aturanPakai, pg.nama AS nmDokter, 
-DATE_FORMAT(x.tgl_resep, '%d/%m/%Y') AS tglResep FROM (SELECT roi.no_rawat, roi.kode_brng, roi.rute, roi.dosis, 
-'' AS aturan_pakai, roi.tgl_resep, NULL AS ruang_rawat, rp.kd_dokter AS nip_dokter, 'IGD' AS jenis 
-FROM rekonsiliasi_obat_igd roi INNER JOIN reg_periksa rp  ON rp.no_rawat = roi.no_rawat WHERE roi.no_rawat = '2026/04/26/000060' 
-UNION ALL 
-SELECT ror.no_rawat, ror.kode_brng, ror.rute, ror.dosis, ror.aturan_pakai, ror.tgl_resep, 
-ror.ruang_rawat, ror.nip_dokter, 'RANAP' AS jenis FROM rekonsiliasi_obat_ranap ror WHERE ror.no_rawat = '2026/04/26/000060') x 
-INNER JOIN reg_periksa rp ON rp.no_rawat = x.no_rawat 
-INNER JOIN pegawai pg ON pg.nik = x.nip_dokter 
-INNER JOIN databarang d ON d.kode_brng = x.kode_brng 
-INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli ORDER BY x.ruang_rawat, x.tgl_resep]]>
+		<![CDATA[SELECT COALESCE(CASE WHEN x.jenis = 'IGD' THEN pl.nm_poli ELSE x.ruang_rawat END, '') AS ruang_rawat,
+    COALESCE(d.nama_brng, '') AS nmObat,
+    COALESCE(x.rute, '') AS rute,
+    COALESCE(x.dosis, '') AS dosis,
+    COALESCE(x.aturan_pakai, '') AS aturanPakai,
+    COALESCE(pg.nama, '') AS nmDokter,
+    COALESCE(DATE_FORMAT(x.tgl_resep, '%d/%m/%Y'), '') AS tglResep
+FROM (SELECT roi.no_rawat, roi.kode_brng, roi.rute, roi.dosis,'' AS aturan_pakai, roi.tgl_resep, NULL AS ruang_rawat, rp.kd_dokter AS nip_dokter, 'IGD' AS jenis
+    FROM rekonsiliasi_obat_igd roi INNER JOIN reg_periksa rp ON rp.no_rawat = roi.no_rawat WHERE roi.no_rawat = '2026/08/14/000647'
+    UNION ALL
+    SELECT ror.no_rawat, ror.kode_brng, ror.rute, ror.dosis, ror.aturan_pakai, ror.tgl_resep, ror.ruang_rawat, ror.nip_dokter, 'RANAP' AS jenis
+    FROM rekonsiliasi_obat_ranap ror WHERE ror.no_rawat = '2026/08/14/000647') x
+INNER JOIN reg_periksa rp ON rp.no_rawat = x.no_rawat
+INNER JOIN pegawai pg ON pg.nik = x.nip_dokter
+INNER JOIN databarang d ON d.kode_brng = x.kode_brng
+INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli
+UNION ALL
+SELECT '' AS ruang_rawat, '' AS nmObat, '' AS rute, '' AS dosis, '' AS aturanPakai, '' AS nmDokter, '' AS tglResep
+FROM rekonsiliasi_obat ro WHERE ro.no_rawat = '2026/08/14/000647'
+AND NOT EXISTS (SELECT 1 FROM rekonsiliasi_obat_igd roi WHERE roi.no_rawat = ro.no_rawat)
+AND NOT EXISTS (SELECT 1 FROM rekonsiliasi_obat_ranap ror WHERE ror.no_rawat = ro.no_rawat)]]>
 	</queryString>
 	<field name="ruang_rawat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -617,7 +626,7 @@ Dokter]]></text>
 				<textElement verticalAlignment="Top" lineSpacing="Single" markup="html">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["<b>Apoteker : </b>"+$P{apoteker}+",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Paraf :</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <b>Tanggal : </b>"+$P{tglRekon}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["<b>Apoteker : </b>"+$P{apoteker}+",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Paraf :</b>...........&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, <b>Tanggal : </b>"+$P{tglRekon}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="Float" x="0" y="90" width="519" height="1">
