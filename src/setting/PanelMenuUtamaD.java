@@ -760,6 +760,7 @@ public class PanelMenuUtamaD extends javax.swing.JDialog {
             aplikasi.isCek();
             aplikasi.emptTeks();
             aplikasi.emptTeksRiwayatIGD();
+            aplikasi.emptTeksRiwayatRanap();
             aplikasi.awalData();
             formUtama.tampilkanDialogDiPanelUtama(aplikasi);
         } catch (Exception e) {

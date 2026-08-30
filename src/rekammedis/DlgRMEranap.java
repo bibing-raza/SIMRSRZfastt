@@ -2638,15 +2638,20 @@ public class DlgRMEranap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("DlgRMEranap");
-            RMRekonsiliasiObat form = new RMRekonsiliasiObat(null, false);
-            form.emptTeks();
-            form.emptTeksRiwayatIGD();
-            form.isCek();
-            form.setData(TNoRW.getText(), nmUnit.getText(), TNoRM.getText(), TNmPasien.getText());
-            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
+            if (akses.getadmin() == true) {
+                akses.setform("DlgRMEranap");
+                RMRekonsiliasiObat form = new RMRekonsiliasiObat(null, false);
+                form.emptTeks();
+                form.emptTeksRiwayatIGD();
+                form.emptTeksRiwayatRanap();
+                form.isCek();
+                form.setData(TNoRW.getText(), nmUnit.getText(), TNoRM.getText(), TNmPasien.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, untuk menu/fitur rekonsiliasi obat masih dalam perbaikan, segera dikabari jika sdh. selesai...");
+            }
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnRekonsiliasiObatActionPerformed

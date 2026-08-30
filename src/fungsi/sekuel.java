@@ -266,6 +266,29 @@ public final class sekuel {
             return false;
         }
     }
+    
+    public boolean menyimpantfIgnore(String table, String value, String sama, int i, String[] a) {
+        try {
+            ps = connect.prepareStatement("insert into " + table + " values(" + value + ")");
+            for (angka = 1; angka <= i; angka++) {
+                ps.setString(angka, a[angka - 1]);
+            }
+            ps.executeUpdate();
+
+            if (ps != null) {
+                ps.close();
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+            if (e.toString().contains("Duplicate")) {
+                System.out.println("Maaf, gagal menyimpan data. Kemungkinan ada " + sama + " yang sama dimasukkan sebelumnya...!");
+            } else {
+                System.out.println("Maaf, gagal menyimpan data. Ada kesalahan Query...!");
+            }
+            return false;
+        }
+    }
 
     public boolean menyimpantf3(String table, String value, String pesan, int i, String[] a) {
         bool = true;

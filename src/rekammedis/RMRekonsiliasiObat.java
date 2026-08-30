@@ -17,10 +17,10 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
@@ -32,18 +32,17 @@ import simrskhanza.frmUtama;
  * @author dosen
  */
 public class RMRekonsiliasiObat extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabMode4, tabMode5;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabMode4, tabMode5, tabMode6;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private Properties prop = new Properties();
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5;
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5;
     private int i = 0, x = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String kdObat = "", nipPereview = "", nipApoteker = "", nmDokter = "", tglreg = "", nipDokter = "",
-            ceknmDokter = "", cekNipDokter = "", itemObat = "";
+            ceknmDokter = "", cekNipDokter = "", itemObat = "", cekTglIGD = "", cekTglRanap = "";
     private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
@@ -52,11 +51,14 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     public RMRekonsiliasiObat(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         tabMode = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Tgl. Rekon", "Jns. Rekonsiliasi", "Riwayat Alergi", "Ket. Riwayat Alergi", "Obat Dari Luar",
             "Catatan Riw. Obat IGD", "Catatan Riw. Obat Rawat Inap", "Ketidaksesuaian", "Saran", "Keputusan", "Di Review Oleh", "Nama Apoteker",
-            "nip_pereview", "nip_apoteker", "tanggal", "waktu_simpan"
+            "nip_pereview", "nip_apoteker", "tanggal", "waktu_simpan", "catatan_obat_riwayat"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -68,7 +70,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         tbRekon.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbRekon.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 20; i++) {
+        for (i = 0; i < 21; i++) {
             TableColumn column = tbRekon.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -114,9 +116,17 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             } else if (i == 19) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 20) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } 
         }
         tbRekon.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbRekon.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbRekon.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbRekon.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbRekon.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         
         tabMode1 = new DefaultTableModel(null, new String[]{
             "No.", "Tgl. Resep", "Unit", "Nama Obat", "Jumlah", "Dokter Meresepkan", "kdObat", "tglresep"}) {
@@ -153,10 +163,13 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         }
         tbRiwayatObatIgd.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbRiwayatObatIgd.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbRiwayatObatIgd.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         
         tabMode2 = new DefaultTableModel(null, new String[]{
-            "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Resep", "Unit", "Nama Obat", "Rute", "Dosis", "Dilanjutkan", "Ket. Dilanjutkan",
-            "tgl_resep", "kode_brng", "waktu_simpan"
+            "No. Rawat", "No. RM", "Nama Pasien", "Tanggal", "Unit", "Nama Obat", "Rute", "Dosis", "Dilanjutkan", "Ket. Dilanjutkan",
+            "tgl_resep", "kode_brng", "waktu_simpan", "cek_stop", "tgl_stop"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -168,7 +181,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         tbRekonIgd.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbRekonIgd.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 13; i++) {
+        for (i = 0; i < 15; i++) {
             TableColumn column = tbRekonIgd.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -177,7 +190,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(220);
             } else if (i == 3) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(250);
             } else if (i == 4) {
                 column.setPreferredWidth(130);
             } else if (i == 5) {
@@ -199,9 +212,18 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             } else if (i == 12) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 13) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 14) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbRekonIgd.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbRekonIgd.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbRekonIgd.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         
         tabMode3 = new DefaultTableModel(null, new String[]{
             "Ruang Rawat", "Tgl. Pemberian", "Jam", "Nama Obat", "Rute dan Dosis", "Dokter Meresepkan"}) {
@@ -211,14 +233,14 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         };
         
-        tbObatRiwayat.setModel(tabMode3);
-        tbObatRiwayat.setPreferredScrollableViewportSize(new Dimension(500,500));
-        tbObatRiwayat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbResepIgd.setModel(tabMode3);
+        tbResepIgd.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbResepIgd.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 6; i++) {
-            TableColumn column = tbObatRiwayat.getColumnModel().getColumn(i);
+            TableColumn column = tbResepIgd.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(220);
             } else if (i == 1) {
                 column.setPreferredWidth(90);
             } else if (i == 2) {
@@ -231,7 +253,10 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                 column.setPreferredWidth(250);
             } 
         }
-        tbObatRiwayat.setDefaultRenderer(Object.class, new WarnaTable());
+        tbResepIgd.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbResepIgd.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbResepIgd.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         
         tabMode4 = new DefaultTableModel(null, new String[]{
             "No.", "Tgl. Resep", "Ruang Rawat", "Nama Obat", "Jumlah", "Dokter Meresepkan", "kdObat", "tglresep", "nip"}) {
@@ -252,7 +277,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(75);
             } else if (i == 2) {
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(220);
             } else if (i == 3) {
                 column.setPreferredWidth(300);
             } else if (i == 4) {
@@ -271,10 +296,13 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         }
         tbRiwayatObatRanap.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbRiwayatObatRanap.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbRiwayatObatRanap.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         
         tabMode5 = new DefaultTableModel(null, new String[]{
-            "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Resep", "Ruang Rawat", "Nama Obat", "Rute", "Dosis", "Aturan Pakai", "Dokter Meresepkan",
-            "tgl_resep", "kode_brng", "nip_dokter", "waktu_simpan"
+            "No. Rawat", "No. RM", "Nama Pasien", "Tanggal", "Ruang Rawat", "Nama Obat", "Rute", "Dosis", "Aturan Pakai", "Dokter Meresepkan",
+            "tgl_resep", "kode_brng", "nip_dokter", "waktu_simpan", "cek_stop", "tgl_stop"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -286,7 +314,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         tbRekonRanap.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbRekonRanap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 14; i++) {
+        for (i = 0; i < 16; i++) {
             TableColumn column = tbRekonRanap.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -295,9 +323,9 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(220);
             } else if (i == 3) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(250);
             } else if (i == 4) {
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(220);
             } else if (i == 5) {
                 column.setPreferredWidth(250);
             } else if (i == 6) {
@@ -320,9 +348,51 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             } else if (i == 13) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 14) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 15) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbRekonRanap.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbRekonRanap.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbRekonRanap.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        
+        tabMode6 = new DefaultTableModel(null, new String[]{
+            "Ruang Rawat", "Tgl. Pemberian", "Jam", "Nama Obat", "Rute dan Dosis", "Dokter Meresepkan"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbResepRanap.setModel(tabMode6);
+        tbResepRanap.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbResepRanap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 6; i++) {
+            TableColumn column = tbResepRanap.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(220);
+            } else if (i == 1) {
+                column.setPreferredWidth(90);
+            } else if (i == 2) {
+                column.setPreferredWidth(60);
+            } else if (i == 3) {
+                column.setPreferredWidth(400);
+            } else if (i == 4) {
+                column.setPreferredWidth(400);
+            } else if (i == 5) {
+                column.setPreferredWidth(250);
+            } 
+        }
+        tbResepRanap.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbResepRanap.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbResepRanap.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
 
         TketAlergi.setDocument(new batasInput((int) 200).getKata(TketAlergi));
         Trute.setDocument(new batasInput((int) 140).getKata(Trute));
@@ -423,6 +493,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         internalFrame1 = new widget.InternalFrame();
         TabRekon = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
+        Scroll7 = new widget.ScrollPane();
         FormInput1 = new widget.PanelBiasa();
         jLabel11 = new widget.Label();
         TNoRw1 = new widget.TextBox();
@@ -462,6 +533,11 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         chkSaya2 = new widget.CekBox();
         BtnCopasIgd = new widget.Button();
         BtnCopasRanap = new widget.Button();
+        jLabel38 = new widget.Label();
+        scrollPane8 = new widget.ScrollPane();
+        TcatatanRiwayat = new widget.TextArea();
+        BtnCopasRiwayat = new widget.Button();
+        panelGlass13 = new widget.panelisi();
         Scroll4 = new widget.ScrollPane();
         tbRekon = new widget.Table();
         panelGlass10 = new widget.panelisi();
@@ -475,35 +551,12 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
-        PanelInput1 = new javax.swing.JPanel();
-        FormInput2 = new widget.PanelBiasa();
-        jLabel23 = new widget.Label();
-        TNoRw2 = new widget.TextBox();
-        TNoRM2 = new widget.TextBox();
-        TPasien2 = new widget.TextBox();
-        jLabel24 = new widget.Label();
-        jLabel25 = new widget.Label();
-        TrgRawat = new widget.TextBox();
-        TtglMRS = new widget.TextBox();
-        Scroll1 = new widget.ScrollPane();
-        tbObatRiwayat = new widget.Table();
-        panelGlass11 = new widget.panelisi();
-        jLabel66 = new widget.Label();
-        DTPCari3 = new widget.Tanggal();
-        jLabel71 = new widget.Label();
-        DTPCari4 = new widget.Tanggal();
-        jLabel26 = new widget.Label();
-        TCari1 = new widget.TextBox();
-        BtnCari1 = new widget.Button();
-        BtnAll1 = new widget.Button();
-        jLabel27 = new widget.Label();
-        LCount1 = new widget.Label();
         PanelInput = new javax.swing.JPanel();
         FormInput = new widget.PanelBiasa();
         jLabel4 = new widget.Label();
-        TNoRw3 = new widget.TextBox();
-        TNoRM3 = new widget.TextBox();
-        TPasien3 = new widget.TextBox();
+        TNoRw2 = new widget.TextBox();
+        TNoRM2 = new widget.TextBox();
+        TPasien2 = new widget.TextBox();
         jLabel5 = new widget.Label();
         TtglResep = new widget.Tanggal();
         jLabel3 = new widget.Label();
@@ -517,17 +570,33 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         Tdilanjutkan = new widget.TextBox();
         jLabel36 = new widget.Label();
         TtglMRS1 = new widget.TextBox();
+        chkTglIgd = new widget.CekBox();
+        TtglStopIgd = new widget.Tanggal();
         internalFrame3 = new widget.InternalFrame();
         Scroll2 = new widget.ScrollPane();
         tbRekonIgd = new widget.Table();
         Scroll3 = new widget.ScrollPane();
         tbRiwayatObatIgd = new widget.Table();
+        panelGlass9 = new widget.panelisi();
+        Scroll8 = new widget.ScrollPane();
+        tbResepIgd = new widget.Table();
+        panelGlass14 = new widget.panelisi();
+        jLabel68 = new widget.Label();
+        DTPCari3 = new widget.Tanggal();
+        jLabel73 = new widget.Label();
+        DTPCari4 = new widget.Tanggal();
+        jLabel39 = new widget.Label();
+        TCari1 = new widget.TextBox();
+        BtnCari1 = new widget.Button();
+        BtnAll1 = new widget.Button();
+        jLabel40 = new widget.Label();
+        LCount1 = new widget.Label();
         PanelInput2 = new javax.swing.JPanel();
         FormInput3 = new widget.PanelBiasa();
         jLabel28 = new widget.Label();
-        TNoRw4 = new widget.TextBox();
-        TNoRM4 = new widget.TextBox();
-        TPasien4 = new widget.TextBox();
+        TNoRw3 = new widget.TextBox();
+        TNoRM3 = new widget.TextBox();
+        TPasien3 = new widget.TextBox();
         jLabel29 = new widget.Label();
         TtglResep1 = new widget.Tanggal();
         jLabel30 = new widget.Label();
@@ -539,12 +608,14 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel33 = new widget.Label();
         TnmDokter = new widget.TextBox();
         jLabel63 = new widget.Label();
-        TrgRawat1 = new widget.TextBox();
+        TrgRawat = new widget.TextBox();
         Taturan = new widget.TextBox();
         jLabel34 = new widget.Label();
         BtnDokter = new widget.Button();
         jLabel37 = new widget.Label();
-        TtglMRS2 = new widget.TextBox();
+        TtglMRS = new widget.TextBox();
+        chkTglRanap = new widget.CekBox();
+        TtglStopRanap = new widget.Tanggal();
         internalFrame4 = new widget.InternalFrame();
         Scroll5 = new widget.ScrollPane();
         tbRekonRanap = new widget.Table();
@@ -560,6 +631,20 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         TCari2 = new widget.TextBox();
         BtnCari2 = new widget.Button();
         BtnAll2 = new widget.Button();
+        panelGlass15 = new widget.panelisi();
+        Scroll9 = new widget.ScrollPane();
+        tbResepRanap = new widget.Table();
+        panelGlass16 = new widget.panelisi();
+        jLabel69 = new widget.Label();
+        DTPCari7 = new widget.Tanggal();
+        jLabel74 = new widget.Label();
+        DTPCari8 = new widget.Tanggal();
+        jLabel41 = new widget.Label();
+        TCari3 = new widget.TextBox();
+        BtnCari3 = new widget.Button();
+        BtnAll3 = new widget.Button();
+        jLabel42 = new widget.Label();
+        LCount2 = new widget.Label();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
@@ -594,8 +679,11 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         internalFrame2.setName("internalFrame2"); // NOI18N
         internalFrame2.setLayout(new java.awt.BorderLayout(1, 1));
 
+        Scroll7.setName("Scroll7"); // NOI18N
+        Scroll7.setOpaque(true);
+
         FormInput1.setName("FormInput1"); // NOI18N
-        FormInput1.setPreferredSize(new java.awt.Dimension(190, 410));
+        FormInput1.setPreferredSize(new java.awt.Dimension(190, 921));
         FormInput1.setLayout(null);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
@@ -677,10 +765,10 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         cmbBawaObat.setBounds(136, 66, 60, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Catatan Penggunaan Obat IGD : ");
+        jLabel15.setText("<html><div style=\"text-align: right;\">Catatan Penggunaan :&nbsp;<br>Obat IGD&nbsp;&nbsp;&nbsp;</div></html> ");
         jLabel15.setName("jLabel15"); // NOI18N
         FormInput1.add(jLabel15);
-        jLabel15.setBounds(0, 94, 190, 23);
+        jLabel15.setBounds(0, 220, 135, 30);
 
         scrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane3.setName("scrollPane3"); // NOI18N
@@ -698,7 +786,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         scrollPane3.setViewportView(TcatatanIgd);
 
         FormInput1.add(scrollPane3);
-        scrollPane3.setBounds(194, 94, 530, 120);
+        scrollPane3.setBounds(136, 220, 590, 120);
 
         scrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane4.setName("scrollPane4"); // NOI18N
@@ -716,19 +804,19 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         scrollPane4.setViewportView(TcatatanRanap);
 
         FormInput1.add(scrollPane4);
-        scrollPane4.setBounds(194, 218, 530, 120);
+        scrollPane4.setBounds(136, 345, 590, 120);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Cttn. Penggunaan Obat R. Inap : ");
+        jLabel16.setText("<html><div style=\"text-align: right;\">Catatan Penggunaan :&nbsp;<br>Obat Rawat Inap&nbsp;&nbsp;&nbsp;</div></html> ");
         jLabel16.setName("jLabel16"); // NOI18N
         FormInput1.add(jLabel16);
-        jLabel16.setBounds(0, 218, 190, 23);
+        jLabel16.setBounds(0, 345, 135, 30);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Ketidaksesuaian : ");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput1.add(jLabel17);
-        jLabel17.setBounds(740, 10, 110, 23);
+        jLabel17.setBounds(0, 471, 135, 23);
 
         scrollPane5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane5.setName("scrollPane5"); // NOI18N
@@ -746,7 +834,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         scrollPane5.setViewportView(Tketidaksesuaian);
 
         FormInput1.add(scrollPane5);
-        scrollPane5.setBounds(855, 10, 530, 120);
+        scrollPane5.setBounds(136, 471, 590, 120);
 
         scrollPane6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane6.setName("scrollPane6"); // NOI18N
@@ -764,13 +852,13 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         scrollPane6.setViewportView(Tsaran);
 
         FormInput1.add(scrollPane6);
-        scrollPane6.setBounds(855, 135, 530, 120);
+        scrollPane6.setBounds(136, 597, 590, 120);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Saran : ");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput1.add(jLabel18);
-        jLabel18.setBounds(740, 135, 110, 23);
+        jLabel18.setBounds(0, 597, 135, 23);
 
         scrollPane7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane7.setName("scrollPane7"); // NOI18N
@@ -788,19 +876,19 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         scrollPane7.setViewportView(Tkeputusan);
 
         FormInput1.add(scrollPane7);
-        scrollPane7.setBounds(855, 260, 530, 120);
+        scrollPane7.setBounds(136, 724, 590, 120);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Keputusan : ");
         jLabel19.setName("jLabel19"); // NOI18N
         FormInput1.add(jLabel19);
-        jLabel19.setBounds(740, 260, 110, 23);
+        jLabel19.setBounds(0, 724, 135, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Direview Oleh : ");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput1.add(jLabel20);
-        jLabel20.setBounds(0, 345, 190, 23);
+        jLabel20.setBounds(0, 850, 135, 23);
 
         TnmPereview.setEditable(false);
         TnmPereview.setForeground(new java.awt.Color(0, 0, 0));
@@ -808,7 +896,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         TnmPereview.setName("TnmPereview"); // NOI18N
         TnmPereview.setPreferredSize(new java.awt.Dimension(140, 23));
         FormInput1.add(TnmPereview);
-        TnmPereview.setBounds(194, 345, 430, 23);
+        TnmPereview.setBounds(136, 850, 430, 23);
 
         BtnPereview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPereview.setMnemonic('2');
@@ -821,13 +909,13 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnPereview);
-        BtnPereview.setBounds(626, 345, 28, 23);
+        BtnPereview.setBounds(570, 850, 28, 23);
 
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Apoteker : ");
         jLabel21.setName("jLabel21"); // NOI18N
         FormInput1.add(jLabel21);
-        jLabel21.setBounds(0, 373, 190, 23);
+        jLabel21.setBounds(0, 878, 135, 23);
 
         TnmApoteker.setEditable(false);
         TnmApoteker.setForeground(new java.awt.Color(0, 0, 0));
@@ -835,7 +923,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         TnmApoteker.setName("TnmApoteker"); // NOI18N
         TnmApoteker.setPreferredSize(new java.awt.Dimension(140, 23));
         FormInput1.add(TnmApoteker);
-        TnmApoteker.setBounds(194, 373, 430, 23);
+        TnmApoteker.setBounds(136, 878, 430, 23);
 
         BtnApoteker.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnApoteker.setMnemonic('2');
@@ -848,7 +936,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnApoteker);
-        BtnApoteker.setBounds(626, 373, 28, 23);
+        BtnApoteker.setBounds(570, 878, 28, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Tgl. Rekonsiliasi :");
@@ -857,7 +945,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel22.setBounds(260, 66, 120, 23);
 
         TtglRekon.setEditable(false);
-        TtglRekon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
+        TtglRekon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         TtglRekon.setDisplayFormat("dd-MM-yyyy");
         TtglRekon.setName("TtglRekon"); // NOI18N
         TtglRekon.setOpaque(false);
@@ -879,7 +967,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         });
         FormInput1.add(chkSaya1);
-        chkSaya1.setBounds(665, 345, 90, 23);
+        chkSaya1.setBounds(606, 850, 90, 23);
 
         chkSaya2.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya2.setForeground(new java.awt.Color(0, 0, 0));
@@ -895,12 +983,12 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         });
         FormInput1.add(chkSaya2);
-        chkSaya2.setBounds(665, 373, 90, 23);
+        chkSaya2.setBounds(606, 878, 90, 23);
 
         BtnCopasIgd.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopasIgd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
         BtnCopasIgd.setMnemonic('2');
-        BtnCopasIgd.setText("Copy & Paste Obat");
+        BtnCopasIgd.setText("<html>Copy &<br>Paste Obat</html>");
         BtnCopasIgd.setName("BtnCopasIgd"); // NOI18N
         BtnCopasIgd.setPreferredSize(new java.awt.Dimension(130, 23));
         BtnCopasIgd.addActionListener(new java.awt.event.ActionListener() {
@@ -909,12 +997,12 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnCopasIgd);
-        BtnCopasIgd.setBounds(20, 120, 160, 30);
+        BtnCopasIgd.setBounds(20, 256, 110, 35);
 
         BtnCopasRanap.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopasRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
         BtnCopasRanap.setMnemonic('2');
-        BtnCopasRanap.setText("Copy & Paste Obat");
+        BtnCopasRanap.setText("<html>Copy &<br>Paste Obat</html>");
         BtnCopasRanap.setName("BtnCopasRanap"); // NOI18N
         BtnCopasRanap.setPreferredSize(new java.awt.Dimension(130, 23));
         BtnCopasRanap.addActionListener(new java.awt.event.ActionListener() {
@@ -923,9 +1011,53 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnCopasRanap);
-        BtnCopasRanap.setBounds(20, 245, 160, 30);
+        BtnCopasRanap.setBounds(20, 381, 110, 35);
 
-        internalFrame2.add(FormInput1, java.awt.BorderLayout.PAGE_START);
+        jLabel38.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel38.setText("<html><div style=\"text-align: right;\">Catatan Riwayat :&nbsp;<br>Penggunaan Obat&nbsp;&nbsp;&nbsp;</div></html> ");
+        jLabel38.setName("jLabel38"); // NOI18N
+        FormInput1.add(jLabel38);
+        jLabel38.setBounds(0, 94, 135, 30);
+
+        scrollPane8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        scrollPane8.setName("scrollPane8"); // NOI18N
+
+        TcatatanRiwayat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TcatatanRiwayat.setColumns(20);
+        TcatatanRiwayat.setRows(5);
+        TcatatanRiwayat.setName("TcatatanRiwayat"); // NOI18N
+        TcatatanRiwayat.setPreferredSize(new java.awt.Dimension(162, 3000));
+        TcatatanRiwayat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TcatatanRiwayatKeyPressed(evt);
+            }
+        });
+        scrollPane8.setViewportView(TcatatanRiwayat);
+
+        FormInput1.add(scrollPane8);
+        scrollPane8.setBounds(136, 94, 590, 120);
+
+        BtnCopasRiwayat.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCopasRiwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopasRiwayat.setMnemonic('2');
+        BtnCopasRiwayat.setText("<html>Copy &<br>Paste Obat</html>");
+        BtnCopasRiwayat.setName("BtnCopasRiwayat"); // NOI18N
+        BtnCopasRiwayat.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCopasRiwayat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCopasRiwayatActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnCopasRiwayat);
+        BtnCopasRiwayat.setBounds(20, 130, 110, 35);
+
+        Scroll7.setViewportView(FormInput1);
+
+        internalFrame2.add(Scroll7, java.awt.BorderLayout.CENTER);
+
+        panelGlass13.setName("panelGlass13"); // NOI18N
+        panelGlass13.setPreferredSize(new java.awt.Dimension(900, 44));
+        panelGlass13.setLayout(new java.awt.BorderLayout());
 
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
@@ -945,7 +1077,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         });
         Scroll4.setViewportView(tbRekon);
 
-        internalFrame2.add(Scroll4, java.awt.BorderLayout.CENTER);
+        panelGlass13.add(Scroll4, java.awt.BorderLayout.CENTER);
 
         panelGlass10.setName("panelGlass10"); // NOI18N
         panelGlass10.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -957,7 +1089,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel65.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass10.add(jLabel65);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -971,7 +1103,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel70.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel70);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -986,7 +1118,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
         TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCari.setPreferredSize(new java.awt.Dimension(200, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariKeyPressed(evt);
@@ -1044,171 +1176,11 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         LCount.setPreferredSize(new java.awt.Dimension(50, 23));
         panelGlass10.add(LCount);
 
-        internalFrame2.add(panelGlass10, java.awt.BorderLayout.PAGE_END);
+        panelGlass13.add(panelGlass10, java.awt.BorderLayout.PAGE_END);
+
+        internalFrame2.add(panelGlass13, java.awt.BorderLayout.EAST);
 
         TabRekon.addTab(".: Rencana Penyesuaian Pengobatan", internalFrame2);
-
-        PanelInput1.setName("PanelInput1"); // NOI18N
-        PanelInput1.setOpaque(false);
-        PanelInput1.setPreferredSize(new java.awt.Dimension(192, 300));
-        PanelInput1.setLayout(new java.awt.BorderLayout(1, 1));
-
-        FormInput2.setName("FormInput2"); // NOI18N
-        FormInput2.setPreferredSize(new java.awt.Dimension(190, 75));
-        FormInput2.setLayout(null);
-
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel23.setText("No. Rawat : ");
-        jLabel23.setName("jLabel23"); // NOI18N
-        FormInput2.add(jLabel23);
-        jLabel23.setBounds(0, 10, 115, 23);
-
-        TNoRw2.setEditable(false);
-        TNoRw2.setBackground(new java.awt.Color(245, 250, 240));
-        TNoRw2.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRw2.setName("TNoRw2"); // NOI18N
-        FormInput2.add(TNoRw2);
-        TNoRw2.setBounds(116, 10, 122, 23);
-
-        TNoRM2.setEditable(false);
-        TNoRM2.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRM2.setName("TNoRM2"); // NOI18N
-        FormInput2.add(TNoRM2);
-        TNoRM2.setBounds(243, 10, 70, 23);
-
-        TPasien2.setEditable(false);
-        TPasien2.setBackground(new java.awt.Color(245, 250, 240));
-        TPasien2.setForeground(new java.awt.Color(0, 0, 0));
-        TPasien2.setName("TPasien2"); // NOI18N
-        FormInput2.add(TPasien2);
-        TPasien2.setBounds(317, 10, 415, 23);
-
-        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel24.setText("Tgl. Masuk RS : ");
-        jLabel24.setName("jLabel24"); // NOI18N
-        FormInput2.add(jLabel24);
-        jLabel24.setBounds(0, 38, 115, 23);
-
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setText("Rg. Rawat Terakhir :");
-        jLabel25.setName("jLabel25"); // NOI18N
-        FormInput2.add(jLabel25);
-        jLabel25.setBounds(265, 38, 115, 23);
-
-        TrgRawat.setEditable(false);
-        TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
-        TrgRawat.setName("TrgRawat"); // NOI18N
-        FormInput2.add(TrgRawat);
-        TrgRawat.setBounds(385, 38, 347, 23);
-
-        TtglMRS.setEditable(false);
-        TtglMRS.setBackground(new java.awt.Color(245, 250, 240));
-        TtglMRS.setForeground(new java.awt.Color(0, 0, 0));
-        TtglMRS.setName("TtglMRS"); // NOI18N
-        FormInput2.add(TtglMRS);
-        TtglMRS.setBounds(116, 38, 150, 23);
-
-        PanelInput1.add(FormInput2, java.awt.BorderLayout.PAGE_START);
-
-        Scroll1.setName("Scroll1"); // NOI18N
-        Scroll1.setOpaque(true);
-
-        tbObatRiwayat.setName("tbObatRiwayat"); // NOI18N
-        tbObatRiwayat.getTableHeader().setReorderingAllowed(false);
-        Scroll1.setViewportView(tbObatRiwayat);
-
-        PanelInput1.add(Scroll1, java.awt.BorderLayout.CENTER);
-
-        panelGlass11.setName("panelGlass11"); // NOI18N
-        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 44));
-        panelGlass11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
-
-        jLabel66.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel66.setText("Tgl. Pemberian :");
-        jLabel66.setName("jLabel66"); // NOI18N
-        jLabel66.setPreferredSize(new java.awt.Dimension(95, 23));
-        panelGlass11.add(jLabel66);
-
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
-        DTPCari3.setDisplayFormat("dd-MM-yyyy");
-        DTPCari3.setName("DTPCari3"); // NOI18N
-        DTPCari3.setOpaque(false);
-        DTPCari3.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelGlass11.add(DTPCari3);
-
-        jLabel71.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel71.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel71.setText("s.d.");
-        jLabel71.setName("jLabel71"); // NOI18N
-        jLabel71.setPreferredSize(new java.awt.Dimension(23, 23));
-        panelGlass11.add(jLabel71);
-
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
-        DTPCari4.setDisplayFormat("dd-MM-yyyy");
-        DTPCari4.setName("DTPCari4"); // NOI18N
-        DTPCari4.setOpaque(false);
-        DTPCari4.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelGlass11.add(DTPCari4);
-
-        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel26.setText("Key Word :");
-        jLabel26.setName("jLabel26"); // NOI18N
-        jLabel26.setPreferredSize(new java.awt.Dimension(70, 23));
-        panelGlass11.add(jLabel26);
-
-        TCari1.setForeground(new java.awt.Color(0, 0, 0));
-        TCari1.setName("TCari1"); // NOI18N
-        TCari1.setPreferredSize(new java.awt.Dimension(250, 23));
-        TCari1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TCari1KeyPressed(evt);
-            }
-        });
-        panelGlass11.add(TCari1);
-
-        BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('2');
-        BtnCari1.setText("Tampilkan Data");
-        BtnCari1.setName("BtnCari1"); // NOI18N
-        BtnCari1.setPreferredSize(new java.awt.Dimension(130, 23));
-        BtnCari1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCari1ActionPerformed(evt);
-            }
-        });
-        panelGlass11.add(BtnCari1);
-
-        BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll1.setMnemonic('M');
-        BtnAll1.setText("Semua");
-        BtnAll1.setToolTipText("Alt+M");
-        BtnAll1.setName("BtnAll1"); // NOI18N
-        BtnAll1.setPreferredSize(new java.awt.Dimension(100, 23));
-        BtnAll1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAll1ActionPerformed(evt);
-            }
-        });
-        panelGlass11.add(BtnAll1);
-
-        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel27.setText("Record :");
-        jLabel27.setName("jLabel27"); // NOI18N
-        jLabel27.setPreferredSize(new java.awt.Dimension(65, 23));
-        panelGlass11.add(jLabel27);
-
-        LCount1.setForeground(new java.awt.Color(0, 0, 0));
-        LCount1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LCount1.setText("0");
-        LCount1.setName("LCount1"); // NOI18N
-        LCount1.setPreferredSize(new java.awt.Dimension(50, 23));
-        panelGlass11.add(LCount1);
-
-        PanelInput1.add(panelGlass11, java.awt.BorderLayout.PAGE_END);
-
-        TabRekon.addTab(".: Riwayat Penggunaan Obat Yang Diresepkan", PanelInput1);
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
@@ -1225,34 +1197,34 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput.add(jLabel4);
         jLabel4.setBounds(0, 10, 135, 23);
 
-        TNoRw3.setEditable(false);
-        TNoRw3.setBackground(new java.awt.Color(245, 250, 240));
-        TNoRw3.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRw3.setName("TNoRw3"); // NOI18N
-        FormInput.add(TNoRw3);
-        TNoRw3.setBounds(136, 10, 122, 23);
+        TNoRw2.setEditable(false);
+        TNoRw2.setBackground(new java.awt.Color(245, 250, 240));
+        TNoRw2.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRw2.setName("TNoRw2"); // NOI18N
+        FormInput.add(TNoRw2);
+        TNoRw2.setBounds(136, 10, 122, 23);
 
-        TNoRM3.setEditable(false);
-        TNoRM3.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRM3.setName("TNoRM3"); // NOI18N
-        FormInput.add(TNoRM3);
-        TNoRM3.setBounds(263, 10, 70, 23);
+        TNoRM2.setEditable(false);
+        TNoRM2.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRM2.setName("TNoRM2"); // NOI18N
+        FormInput.add(TNoRM2);
+        TNoRM2.setBounds(263, 10, 70, 23);
 
-        TPasien3.setEditable(false);
-        TPasien3.setBackground(new java.awt.Color(245, 250, 240));
-        TPasien3.setForeground(new java.awt.Color(0, 0, 0));
-        TPasien3.setName("TPasien3"); // NOI18N
-        FormInput.add(TPasien3);
-        TPasien3.setBounds(337, 10, 390, 23);
+        TPasien2.setEditable(false);
+        TPasien2.setBackground(new java.awt.Color(245, 250, 240));
+        TPasien2.setForeground(new java.awt.Color(0, 0, 0));
+        TPasien2.setName("TPasien2"); // NOI18N
+        FormInput.add(TPasien2);
+        TPasien2.setBounds(337, 10, 390, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Tgl. Resep : ");
+        jLabel5.setText("Tgl. Resep / Mulai : ");
         jLabel5.setName("jLabel5"); // NOI18N
         FormInput.add(jLabel5);
         jLabel5.setBounds(0, 38, 135, 23);
 
         TtglResep.setEditable(false);
-        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
+        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         TtglResep.setDisplayFormat("dd-MM-yyyy");
         TtglResep.setName("TtglResep"); // NOI18N
         TtglResep.setOpaque(false);
@@ -1266,9 +1238,13 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput.add(jLabel3);
         jLabel3.setBounds(225, 38, 90, 23);
 
-        TnmObat.setEditable(false);
         TnmObat.setForeground(new java.awt.Color(0, 0, 0));
         TnmObat.setName("TnmObat"); // NOI18N
+        TnmObat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TnmObatKeyPressed(evt);
+            }
+        });
         FormInput.add(TnmObat);
         TnmObat.setBounds(320, 38, 407, 23);
 
@@ -1344,13 +1320,40 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput.add(TtglMRS1);
         TtglMRS1.setBounds(575, 66, 152, 23);
 
+        chkTglIgd.setBackground(new java.awt.Color(255, 255, 250));
+        chkTglIgd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkTglIgd.setForeground(new java.awt.Color(0, 0, 0));
+        chkTglIgd.setText("Tgl. Stop :");
+        chkTglIgd.setBorderPainted(true);
+        chkTglIgd.setBorderPaintedFlat(true);
+        chkTglIgd.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        chkTglIgd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkTglIgd.setName("chkTglIgd"); // NOI18N
+        chkTglIgd.setOpaque(false);
+        chkTglIgd.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkTglIgd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkTglIgdActionPerformed(evt);
+            }
+        });
+        FormInput.add(chkTglIgd);
+        chkTglIgd.setBounds(730, 10, 90, 23);
+
+        TtglStopIgd.setEditable(false);
+        TtglStopIgd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
+        TtglStopIgd.setDisplayFormat("dd-MM-yyyy");
+        TtglStopIgd.setName("TtglStopIgd"); // NOI18N
+        TtglStopIgd.setOpaque(false);
+        TtglStopIgd.setPreferredSize(new java.awt.Dimension(90, 23));
+        FormInput.add(TtglStopIgd);
+        TtglStopIgd.setBounds(825, 10, 90, 23);
+
         PanelInput.add(FormInput, java.awt.BorderLayout.PAGE_START);
 
         internalFrame3.setBorder(null);
         internalFrame3.setName("internalFrame3"); // NOI18N
-        internalFrame3.setLayout(new java.awt.GridLayout(1, 2));
+        internalFrame3.setLayout(new java.awt.GridLayout(1, 3));
 
-        Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Penggunaan Obat IGD ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
         Scroll2.setPreferredSize(new java.awt.Dimension(452, 500));
@@ -1372,7 +1375,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
         internalFrame3.add(Scroll2);
 
-        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Riwayat Peresepan Obat IGD ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Obat IGD Yang Dikeluarkan Farmasi ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
         Scroll3.setPreferredSize(new java.awt.Dimension(452, 500));
@@ -1394,6 +1397,122 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
         internalFrame3.add(Scroll3);
 
+        panelGlass9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Catatan/Resep Dokter Selama Dirawat ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelGlass9.setName("panelGlass9"); // NOI18N
+        panelGlass9.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass9.setLayout(new java.awt.BorderLayout());
+
+        Scroll8.setName("Scroll8"); // NOI18N
+        Scroll8.setOpaque(true);
+        Scroll8.setPreferredSize(new java.awt.Dimension(452, 500));
+
+        tbResepIgd.setName("tbResepIgd"); // NOI18N
+        tbResepIgd.getTableHeader().setReorderingAllowed(false);
+        Scroll8.setViewportView(tbResepIgd);
+
+        panelGlass9.add(Scroll8, java.awt.BorderLayout.CENTER);
+
+        panelGlass14.setName("panelGlass14"); // NOI18N
+        panelGlass14.setPreferredSize(new java.awt.Dimension(44, 75));
+        panelGlass14.setLayout(null);
+
+        jLabel68.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel68.setText("Tanggal : ");
+        jLabel68.setName("jLabel68"); // NOI18N
+        jLabel68.setPreferredSize(new java.awt.Dimension(95, 23));
+        panelGlass14.add(jLabel68);
+        jLabel68.setBounds(0, 10, 80, 23);
+
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
+        DTPCari3.setDisplayFormat("dd-MM-yyyy");
+        DTPCari3.setName("DTPCari3"); // NOI18N
+        DTPCari3.setOpaque(false);
+        DTPCari3.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass14.add(DTPCari3);
+        DTPCari3.setBounds(85, 10, 85, 23);
+
+        jLabel73.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel73.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel73.setText("s.d.");
+        jLabel73.setName("jLabel73"); // NOI18N
+        jLabel73.setPreferredSize(new java.awt.Dimension(23, 23));
+        panelGlass14.add(jLabel73);
+        jLabel73.setBounds(175, 10, 30, 23);
+
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
+        DTPCari4.setDisplayFormat("dd-MM-yyyy");
+        DTPCari4.setName("DTPCari4"); // NOI18N
+        DTPCari4.setOpaque(false);
+        DTPCari4.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass14.add(DTPCari4);
+        DTPCari4.setBounds(210, 10, 85, 23);
+
+        jLabel39.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel39.setText("Key Word : ");
+        jLabel39.setName("jLabel39"); // NOI18N
+        jLabel39.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass14.add(jLabel39);
+        jLabel39.setBounds(0, 38, 80, 23);
+
+        TCari1.setForeground(new java.awt.Color(0, 0, 0));
+        TCari1.setName("TCari1"); // NOI18N
+        TCari1.setPreferredSize(new java.awt.Dimension(200, 23));
+        TCari1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCari1KeyPressed(evt);
+            }
+        });
+        panelGlass14.add(TCari1);
+        TCari1.setBounds(85, 38, 200, 23);
+
+        BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('2');
+        BtnCari1.setText("Tampilkan Data");
+        BtnCari1.setName("BtnCari1"); // NOI18N
+        BtnCari1.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari1ActionPerformed(evt);
+            }
+        });
+        panelGlass14.add(BtnCari1);
+        BtnCari1.setBounds(290, 38, 130, 23);
+
+        BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll1.setMnemonic('M');
+        BtnAll1.setText("Semua");
+        BtnAll1.setToolTipText("Alt+M");
+        BtnAll1.setName("BtnAll1"); // NOI18N
+        BtnAll1.setPreferredSize(new java.awt.Dimension(100, 23));
+        BtnAll1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAll1ActionPerformed(evt);
+            }
+        });
+        panelGlass14.add(BtnAll1);
+        BtnAll1.setBounds(430, 38, 90, 23);
+
+        jLabel40.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel40.setText("Record : ");
+        jLabel40.setName("jLabel40"); // NOI18N
+        jLabel40.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelGlass14.add(jLabel40);
+        jLabel40.setBounds(300, 10, 60, 23);
+
+        LCount1.setForeground(new java.awt.Color(0, 0, 0));
+        LCount1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount1.setText("0");
+        LCount1.setName("LCount1"); // NOI18N
+        LCount1.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelGlass14.add(LCount1);
+        LCount1.setBounds(363, 10, 60, 23);
+
+        panelGlass9.add(panelGlass14, java.awt.BorderLayout.PAGE_END);
+
+        internalFrame3.add(panelGlass9);
+
         PanelInput.add(internalFrame3, java.awt.BorderLayout.CENTER);
 
         TabRekon.addTab(".: Resep Dari IGD Yang Dikeluarkan Farmasi", PanelInput);
@@ -1413,34 +1532,34 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput3.add(jLabel28);
         jLabel28.setBounds(0, 10, 135, 23);
 
-        TNoRw4.setEditable(false);
-        TNoRw4.setBackground(new java.awt.Color(245, 250, 240));
-        TNoRw4.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRw4.setName("TNoRw4"); // NOI18N
-        FormInput3.add(TNoRw4);
-        TNoRw4.setBounds(136, 10, 122, 23);
+        TNoRw3.setEditable(false);
+        TNoRw3.setBackground(new java.awt.Color(245, 250, 240));
+        TNoRw3.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRw3.setName("TNoRw3"); // NOI18N
+        FormInput3.add(TNoRw3);
+        TNoRw3.setBounds(136, 10, 122, 23);
 
-        TNoRM4.setEditable(false);
-        TNoRM4.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRM4.setName("TNoRM4"); // NOI18N
-        FormInput3.add(TNoRM4);
-        TNoRM4.setBounds(263, 10, 70, 23);
+        TNoRM3.setEditable(false);
+        TNoRM3.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRM3.setName("TNoRM3"); // NOI18N
+        FormInput3.add(TNoRM3);
+        TNoRM3.setBounds(263, 10, 70, 23);
 
-        TPasien4.setEditable(false);
-        TPasien4.setBackground(new java.awt.Color(245, 250, 240));
-        TPasien4.setForeground(new java.awt.Color(0, 0, 0));
-        TPasien4.setName("TPasien4"); // NOI18N
-        FormInput3.add(TPasien4);
-        TPasien4.setBounds(337, 10, 390, 23);
+        TPasien3.setEditable(false);
+        TPasien3.setBackground(new java.awt.Color(245, 250, 240));
+        TPasien3.setForeground(new java.awt.Color(0, 0, 0));
+        TPasien3.setName("TPasien3"); // NOI18N
+        FormInput3.add(TPasien3);
+        TPasien3.setBounds(337, 10, 390, 23);
 
         jLabel29.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel29.setText("Tgl. Resep : ");
+        jLabel29.setText("Tgl. Resep / Mulai : ");
         jLabel29.setName("jLabel29"); // NOI18N
         FormInput3.add(jLabel29);
         jLabel29.setBounds(0, 66, 135, 23);
 
         TtglResep1.setEditable(false);
-        TtglResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
+        TtglResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         TtglResep1.setDisplayFormat("dd-MM-yyyy");
         TtglResep1.setName("TtglResep1"); // NOI18N
         TtglResep1.setOpaque(false);
@@ -1454,9 +1573,13 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput3.add(jLabel30);
         jLabel30.setBounds(225, 66, 90, 23);
 
-        TnmObat1.setEditable(false);
         TnmObat1.setForeground(new java.awt.Color(0, 0, 0));
         TnmObat1.setName("TnmObat1"); // NOI18N
+        TnmObat1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TnmObat1KeyPressed(evt);
+            }
+        });
         FormInput3.add(TnmObat1);
         TnmObat1.setBounds(320, 66, 407, 23);
 
@@ -1510,11 +1633,11 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput3.add(jLabel63);
         jLabel63.setBounds(0, 38, 135, 23);
 
-        TrgRawat1.setEditable(false);
-        TrgRawat1.setForeground(new java.awt.Color(0, 0, 0));
-        TrgRawat1.setName("TrgRawat1"); // NOI18N
-        FormInput3.add(TrgRawat1);
-        TrgRawat1.setBounds(136, 38, 340, 23);
+        TrgRawat.setEditable(false);
+        TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
+        TrgRawat.setName("TrgRawat"); // NOI18N
+        FormInput3.add(TrgRawat);
+        TrgRawat.setBounds(136, 38, 340, 23);
 
         Taturan.setForeground(new java.awt.Color(0, 0, 0));
         Taturan.setName("Taturan"); // NOI18N
@@ -1551,20 +1674,47 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput3.add(jLabel37);
         jLabel37.setBounds(480, 38, 95, 23);
 
-        TtglMRS2.setEditable(false);
-        TtglMRS2.setBackground(new java.awt.Color(245, 250, 240));
-        TtglMRS2.setForeground(new java.awt.Color(0, 0, 0));
-        TtglMRS2.setName("TtglMRS2"); // NOI18N
-        FormInput3.add(TtglMRS2);
-        TtglMRS2.setBounds(577, 38, 150, 23);
+        TtglMRS.setEditable(false);
+        TtglMRS.setBackground(new java.awt.Color(245, 250, 240));
+        TtglMRS.setForeground(new java.awt.Color(0, 0, 0));
+        TtglMRS.setName("TtglMRS"); // NOI18N
+        FormInput3.add(TtglMRS);
+        TtglMRS.setBounds(577, 38, 150, 23);
+
+        chkTglRanap.setBackground(new java.awt.Color(255, 255, 250));
+        chkTglRanap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkTglRanap.setForeground(new java.awt.Color(0, 0, 0));
+        chkTglRanap.setText("Tgl. Stop :");
+        chkTglRanap.setBorderPainted(true);
+        chkTglRanap.setBorderPaintedFlat(true);
+        chkTglRanap.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        chkTglRanap.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkTglRanap.setName("chkTglRanap"); // NOI18N
+        chkTglRanap.setOpaque(false);
+        chkTglRanap.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkTglRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkTglRanapActionPerformed(evt);
+            }
+        });
+        FormInput3.add(chkTglRanap);
+        chkTglRanap.setBounds(730, 10, 90, 23);
+
+        TtglStopRanap.setEditable(false);
+        TtglStopRanap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
+        TtglStopRanap.setDisplayFormat("dd-MM-yyyy");
+        TtglStopRanap.setName("TtglStopRanap"); // NOI18N
+        TtglStopRanap.setOpaque(false);
+        TtglStopRanap.setPreferredSize(new java.awt.Dimension(90, 23));
+        FormInput3.add(TtglStopRanap);
+        TtglStopRanap.setBounds(825, 10, 90, 23);
 
         PanelInput2.add(FormInput3, java.awt.BorderLayout.PAGE_START);
 
         internalFrame4.setBorder(null);
         internalFrame4.setName("internalFrame4"); // NOI18N
-        internalFrame4.setLayout(new java.awt.GridLayout(1, 2));
+        internalFrame4.setLayout(new java.awt.GridLayout(1, 3));
 
-        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Penggunaan Obat R. Inap ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
         Scroll5.setPreferredSize(new java.awt.Dimension(452, 500));
@@ -1590,7 +1740,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput4.setPreferredSize(new java.awt.Dimension(190, 185));
         FormInput4.setLayout(new java.awt.BorderLayout());
 
-        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Riwayat Peresepan Obat Selama Di R. Inap ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Obat Rawat Inap Yang Dikeluarkan Farmasi ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
         Scroll6.setPreferredSize(new java.awt.Dimension(452, 500));
@@ -1613,21 +1763,23 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput4.add(Scroll6, java.awt.BorderLayout.CENTER);
 
         panelGlass12.setName("panelGlass12"); // NOI18N
-        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 44));
-        panelGlass12.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 75));
+        panelGlass12.setLayout(null);
 
         jLabel67.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel67.setText("Tgl. Resep :");
+        jLabel67.setText("Tanggal :");
         jLabel67.setName("jLabel67"); // NOI18N
         jLabel67.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass12.add(jLabel67);
+        jLabel67.setBounds(0, 10, 85, 23);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
         DTPCari5.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass12.add(DTPCari5);
+        DTPCari5.setBounds(91, 10, 90, 23);
 
         jLabel72.setForeground(new java.awt.Color(0, 0, 0));
         jLabel72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1635,19 +1787,22 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel72.setName("jLabel72"); // NOI18N
         jLabel72.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass12.add(jLabel72);
+        jLabel72.setBounds(186, 10, 23, 23);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
         DTPCari6.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass12.add(DTPCari6);
+        DTPCari6.setBounds(214, 10, 90, 23);
 
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setText("Key Word :");
         jLabel35.setName("jLabel35"); // NOI18N
         jLabel35.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass12.add(jLabel35);
+        jLabel35.setBounds(0, 38, 85, 23);
 
         TCari2.setForeground(new java.awt.Color(0, 0, 0));
         TCari2.setName("TCari2"); // NOI18N
@@ -1658,6 +1813,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(TCari2);
+        TCari2.setBounds(91, 38, 200, 23);
 
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
@@ -1671,6 +1827,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(BtnCari2);
+        BtnCari2.setBounds(300, 38, 130, 23);
 
         BtnAll2.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
@@ -1685,10 +1842,127 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(BtnAll2);
+        BtnAll2.setBounds(440, 38, 100, 23);
 
         FormInput4.add(panelGlass12, java.awt.BorderLayout.PAGE_END);
 
         internalFrame4.add(FormInput4);
+
+        panelGlass15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Catatan/Resep Dokter Selama Dirawat ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelGlass15.setName("panelGlass15"); // NOI18N
+        panelGlass15.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass15.setLayout(new java.awt.BorderLayout());
+
+        Scroll9.setName("Scroll9"); // NOI18N
+        Scroll9.setOpaque(true);
+        Scroll9.setPreferredSize(new java.awt.Dimension(452, 500));
+
+        tbResepRanap.setName("tbResepRanap"); // NOI18N
+        tbResepRanap.getTableHeader().setReorderingAllowed(false);
+        Scroll9.setViewportView(tbResepRanap);
+
+        panelGlass15.add(Scroll9, java.awt.BorderLayout.CENTER);
+
+        panelGlass16.setName("panelGlass16"); // NOI18N
+        panelGlass16.setPreferredSize(new java.awt.Dimension(44, 75));
+        panelGlass16.setLayout(null);
+
+        jLabel69.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel69.setText("Tanggal : ");
+        jLabel69.setName("jLabel69"); // NOI18N
+        jLabel69.setPreferredSize(new java.awt.Dimension(95, 23));
+        panelGlass16.add(jLabel69);
+        jLabel69.setBounds(0, 10, 80, 23);
+
+        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
+        DTPCari7.setDisplayFormat("dd-MM-yyyy");
+        DTPCari7.setName("DTPCari7"); // NOI18N
+        DTPCari7.setOpaque(false);
+        DTPCari7.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass16.add(DTPCari7);
+        DTPCari7.setBounds(85, 10, 85, 23);
+
+        jLabel74.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel74.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel74.setText("s.d.");
+        jLabel74.setName("jLabel74"); // NOI18N
+        jLabel74.setPreferredSize(new java.awt.Dimension(23, 23));
+        panelGlass16.add(jLabel74);
+        jLabel74.setBounds(175, 10, 30, 23);
+
+        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
+        DTPCari8.setDisplayFormat("dd-MM-yyyy");
+        DTPCari8.setName("DTPCari8"); // NOI18N
+        DTPCari8.setOpaque(false);
+        DTPCari8.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass16.add(DTPCari8);
+        DTPCari8.setBounds(210, 10, 85, 23);
+
+        jLabel41.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel41.setText("Key Word : ");
+        jLabel41.setName("jLabel41"); // NOI18N
+        jLabel41.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass16.add(jLabel41);
+        jLabel41.setBounds(0, 38, 80, 23);
+
+        TCari3.setForeground(new java.awt.Color(0, 0, 0));
+        TCari3.setName("TCari3"); // NOI18N
+        TCari3.setPreferredSize(new java.awt.Dimension(200, 23));
+        TCari3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCari3KeyPressed(evt);
+            }
+        });
+        panelGlass16.add(TCari3);
+        TCari3.setBounds(85, 38, 200, 23);
+
+        BtnCari3.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari3.setMnemonic('2');
+        BtnCari3.setText("Tampilkan Data");
+        BtnCari3.setName("BtnCari3"); // NOI18N
+        BtnCari3.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari3ActionPerformed(evt);
+            }
+        });
+        panelGlass16.add(BtnCari3);
+        BtnCari3.setBounds(290, 38, 130, 23);
+
+        BtnAll3.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAll3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll3.setMnemonic('M');
+        BtnAll3.setText("Semua");
+        BtnAll3.setToolTipText("Alt+M");
+        BtnAll3.setName("BtnAll3"); // NOI18N
+        BtnAll3.setPreferredSize(new java.awt.Dimension(100, 23));
+        BtnAll3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAll3ActionPerformed(evt);
+            }
+        });
+        panelGlass16.add(BtnAll3);
+        BtnAll3.setBounds(430, 38, 90, 23);
+
+        jLabel42.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel42.setText("Record : ");
+        jLabel42.setName("jLabel42"); // NOI18N
+        jLabel42.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelGlass16.add(jLabel42);
+        jLabel42.setBounds(300, 10, 60, 23);
+
+        LCount2.setForeground(new java.awt.Color(0, 0, 0));
+        LCount2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount2.setText("0");
+        LCount2.setName("LCount2"); // NOI18N
+        LCount2.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelGlass16.add(LCount2);
+        LCount2.setBounds(363, 10, 60, 23);
+
+        panelGlass15.add(panelGlass16, java.awt.BorderLayout.PAGE_END);
+
+        internalFrame4.add(panelGlass15);
 
         PanelInput2.add(internalFrame4, java.awt.BorderLayout.CENTER);
 
@@ -1821,43 +2095,57 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             if (TNoRw1.getText().equals("")) {
                 Valid.textKosong(TNoRw1, "Pasien");
             } else {
-                if (Sequel.menyimpantf("rekonsiliasi_obat", "?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 14, new String[]{
+                if (Sequel.menyimpantf("rekonsiliasi_obat", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 15, new String[]{
                     TNoRw1.getText(), cmbJnsRekon.getSelectedItem().toString(), cmbRiwAlergi.getSelectedItem().toString(),
                     TketAlergi.getText(), cmbBawaObat.getSelectedItem().toString(), TcatatanIgd.getText(), TcatatanRanap.getText(),
                     Tketidaksesuaian.getText(), Tsaran.getText(), Tkeputusan.getText(), nipPereview, nipApoteker, Valid.SetTgl(TtglRekon.getSelectedItem() + ""), 
-                    Sequel.cariIsi("select now()")
+                    Sequel.cariIsi("select now()"), TcatatanRiwayat.getText()
                 }) == true) {
                     emptTeks();
                     tampil();
+                }
+            }
+        } else if (TabRekon.getSelectedIndex() == 1) {
+            if (TNoRw2.getText().equals("")) {
+                Valid.textKosong(TNoRw2, "Pasien");
+            } else if (kdObat.equals("")) {
+                Valid.textKosong(TnmObat, "Nama Obat");
+            } else {
+                if (chkTglIgd.isSelected() == true) {
+                    cekTglIGD = "ya";
+                } else {
+                    cekTglIGD = "tidak";
+                }
+                
+                if (Sequel.menyimpantf("rekonsiliasi_obat_igd", "?,?,?,?,?,?,?,?,?,?", "No.Rawat", 10, new String[]{
+                    TNoRw2.getText(), Valid.SetTgl(TtglResep.getSelectedItem() + ""), kdObat, Trute.getText(), Tdosis.getText(),
+                    cmbDilanjut.getSelectedItem().toString(), Tdilanjutkan.getText(), Sequel.cariIsi("select now()"), cekTglIGD,
+                    Valid.SetTgl(TtglStopIgd.getSelectedItem() + "")
+                }) == true) {                    
+                    emptTeksRiwayatIGD();
+                    tampilRekonIGD(TNoRw2.getText());
+                    tampilRiwObatIGD();
                 }
             }
         } else if (TabRekon.getSelectedIndex() == 2) {
             if (TNoRw3.getText().equals("")) {
                 Valid.textKosong(TNoRw3, "Pasien");
             } else if (kdObat.equals("")) {
-                Valid.textKosong(TnmObat, "Nama Obat");
-            } else {
-                if (Sequel.menyimpantf("rekonsiliasi_obat_igd", "?,?,?,?,?,?,?,?", "No.Rawat", 8, new String[]{
-                    TNoRw3.getText(), Valid.SetTgl(TtglResep.getSelectedItem() + ""), kdObat, Trute.getText(), Tdosis.getText(),
-                    cmbDilanjut.getSelectedItem().toString(), Tdilanjutkan.getText(), Sequel.cariIsi("select now()")
-                }) == true) {                    
-                    emptTeksRiwayatIGD();
-                    tampilRekonIGD(TNoRw3.getText());
-                    tampilRiwObatIGD();
-                }
-            }
-        } else if (TabRekon.getSelectedIndex() == 3) {
-            if (TNoRw4.getText().equals("")) {
-                Valid.textKosong(TNoRw4, "Pasien");
-            } else if (kdObat.equals("")) {
                 Valid.textKosong(TnmObat1, "Nama Obat");
             } else {
-                if (Sequel.menyimpantf("rekonsiliasi_obat_ranap", "?,?,?,?,?,?,?,?,?", "No.Rawat", 9, new String[]{
-                    TNoRw4.getText(), TrgRawat1.getText(), Valid.SetTgl(TtglResep1.getSelectedItem() + ""), kdObat, Trute1.getText(),
-                    Tdosis1.getText(), Taturan.getText(), nipDokter, Sequel.cariIsi("select now()")
+                if (chkTglRanap.isSelected() == true) {
+                    cekTglRanap = "ya";
+                } else {
+                    cekTglRanap = "tidak";
+                }
+                
+                if (Sequel.menyimpantf("rekonsiliasi_obat_ranap", "?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 11, new String[]{
+                    TNoRw3.getText(), TrgRawat.getText(), Valid.SetTgl(TtglResep1.getSelectedItem() + ""), kdObat, Trute1.getText(),
+                    Tdosis1.getText(), Taturan.getText(), nipDokter, Sequel.cariIsi("select now()"), cekTglRanap,
+                    Valid.SetTgl(TtglStopRanap.getSelectedItem() + "")
                 }) == true) {           
                     emptTeksRiwayatRanap();
-                    tampilRekonRanap(TNoRw4.getText());
+                    tampilRekonRanap(TNoRw3.getText());
                     tampilRiwObatRanap();
                 }
             }
@@ -1875,12 +2163,10 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             emptTeks();
             tampil();
         } else if (TabRekon.getSelectedIndex() == 1) {
-            tampilRiwayatRanap();            
-        } else if (TabRekon.getSelectedIndex() == 2) {
             emptTeksRiwayatIGD();
             tampilRekonIGD(TNoRw1.getText());
             tampilRiwObatIGD();
-        } else if (TabRekon.getSelectedIndex() == 3) {
+        } else if (TabRekon.getSelectedIndex() == 2) {
             emptTeksRiwayatRanap();
             tampilRekonRanap(TNoRw1.getText());
             tampilRiwObatRanap();
@@ -1903,11 +2189,11 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                 if (tbRekon.getSelectedRow() > -1) {
                     if (Sequel.mengedittf("rekonsiliasi_obat", "waktu_simpan=?", "jns_rekon=?, riwayat_alergi=?, "
                             + "ket_riwayat_alergi=?, membawa_obat_dari_luar=?, catatan_obat_igd=?, catatan_obat_ranap=?, ketidaksesuaian=?, "
-                            + "saran=?, keputusan=?, nip_pereview=?, nip_apoteker=?, tanggal=?", 13, new String[]{
+                            + "saran=?, keputusan=?, nip_pereview=?, nip_apoteker=?, tanggal=?, catatan_obat_riwayat=?", 14, new String[]{
                                 cmbJnsRekon.getSelectedItem().toString(), cmbRiwAlergi.getSelectedItem().toString(),
                                 TketAlergi.getText(), cmbBawaObat.getSelectedItem().toString(), TcatatanIgd.getText(), TcatatanRanap.getText(),
                                 Tketidaksesuaian.getText(), Tsaran.getText(), Tkeputusan.getText(), nipPereview, nipApoteker, 
-                                Valid.SetTgl(TtglRekon.getSelectedItem() + ""),
+                                Valid.SetTgl(TtglRekon.getSelectedItem() + ""), TcatatanRiwayat.getText(),
                                 tbRekon.getValueAt(tbRekon.getSelectedRow(), 19).toString()
                             }) == true) {
                         emptTeks();
@@ -1918,32 +2204,44 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                     tbRekon.requestFocus();
                 }
             }
-        } else if (TabRekon.getSelectedIndex() == 2) {
+        } else if (TabRekon.getSelectedIndex() == 1) {
             if (tbRekonIgd.getSelectedRow() > -1) {
+                if (chkTglIgd.isSelected() == true) {
+                    cekTglIGD = "ya";
+                } else {
+                    cekTglIGD = "tidak";
+                }
+                
                 if (Sequel.mengedittf("rekonsiliasi_obat_igd", "waktu_simpan=?", "tgl_resep=?, kode_brng=?, rute=?, "
-                        + "dosis=?, dilanjutkan=?, ket_dilanjutkan=?", 7, new String[]{
+                        + "dosis=?, dilanjutkan=?, ket_dilanjutkan=?, cek_stop=?, tgl_stop=?", 9, new String[]{
                             Valid.SetTgl(TtglResep.getSelectedItem() + ""), kdObat, Trute.getText(), Tdosis.getText(),
-                            cmbDilanjut.getSelectedItem().toString(), Tdilanjutkan.getText(),
+                            cmbDilanjut.getSelectedItem().toString(), Tdilanjutkan.getText(), cekTglIGD, Valid.SetTgl(TtglStopIgd.getSelectedItem() + ""),
                             tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 12).toString()
                         }) == true) {
                     emptTeksRiwayatIGD();
-                    tampilRekonIGD(TNoRw3.getText());
+                    tampilRekonIGD(TNoRw2.getText());
                     tampilRiwObatIGD();
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
                 tbRekonIgd.requestFocus();
             }
-        } else if (TabRekon.getSelectedIndex() == 3) {
+        } else if (TabRekon.getSelectedIndex() == 2) {
             if (tbRekonRanap.getSelectedRow() > -1) {
+                if (chkTglRanap.isSelected() == true) {
+                    cekTglRanap = "ya";
+                } else {
+                    cekTglRanap = "tidak";
+                }
+                
                 if (Sequel.mengedittf("rekonsiliasi_obat_ranap", "waktu_simpan=?", "ruang_rawat=?, tgl_resep=?, "
-                        + "kode_brng=?, rute=?, dosis=?, aturan_pakai=?, nip_dokter=?", 8, new String[]{
-                            TrgRawat1.getText(), Valid.SetTgl(TtglResep1.getSelectedItem() + ""), kdObat, Trute1.getText(),
-                            Tdosis1.getText(), Taturan.getText(), nipDokter,
+                        + "kode_brng=?, rute=?, dosis=?, aturan_pakai=?, nip_dokter=?, cek_stop=?, tgl_stop=?", 10, new String[]{
+                            TrgRawat.getText(), Valid.SetTgl(TtglResep1.getSelectedItem() + ""), kdObat, Trute1.getText(),
+                            Tdosis1.getText(), Taturan.getText(), nipDokter, cekTglRanap, Valid.SetTgl(TtglStopRanap.getSelectedItem() + ""),
                             tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 13).toString()
                         }) == true) {
                     emptTeksRiwayatRanap();
-                    tampilRekonRanap(TNoRw4.getText());
+                    tampilRekonRanap(TNoRw3.getText());
                     tampilRiwObatRanap();
                 }
             } else {
@@ -2011,25 +2309,25 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         if (TabRekon.getSelectedIndex() == 0) {
             tampil();
         } else if (TabRekon.getSelectedIndex() == 1) {
-            tampilRiwayatRanap();
-        } else if (TabRekon.getSelectedIndex() == 2) {
-            TNoRw3.setText(TNoRw1.getText());
-            TNoRM3.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + TNoRw1.getText() + "'"));
-            TPasien3.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM3.getText() + "'"));
+            TNoRw2.setText(TNoRw1.getText());
+            TNoRM2.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + TNoRw1.getText() + "'"));
+            TPasien2.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM2.getText() + "'"));
             tglreg = Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw1.getText() + "'");
             TtglMRS1.setText(Valid.SetTglINDONESIA(tglreg));
             
             tampilRekonIGD(TNoRw1.getText());
             tampilRiwObatIGD();
-        } else if (TabRekon.getSelectedIndex() == 3) {
-            TNoRw4.setText(TNoRw1.getText());
-            TNoRM4.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + TNoRw1.getText() + "'"));
-            TPasien4.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM4.getText() + "'"));
+            tampilResepDokter(TNoRw2.getText(), Valid.SetTgl(DTPCari3.getSelectedItem() + ""), Valid.SetTgl(DTPCari4.getSelectedItem() + ""), TCari1.getText());
+        } else if (TabRekon.getSelectedIndex() == 2) {
+            TNoRw3.setText(TNoRw1.getText());
+            TNoRM3.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + TNoRw1.getText() + "'"));
+            TPasien3.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM3.getText() + "'"));
             tglreg = Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw1.getText() + "'");
-            TtglMRS2.setText(Valid.SetTglINDONESIA(tglreg));
+            TtglMRS.setText(Valid.SetTglINDONESIA(tglreg));
             
             tampilRekonRanap(TNoRw1.getText());
             tampilRiwObatRanap();
+            tampilResepDokter(TNoRw3.getText(), Valid.SetTgl(DTPCari7.getSelectedItem() + ""), Valid.SetTgl(DTPCari8.getSelectedItem() + ""), TCari3.getText());
         }
     }//GEN-LAST:event_TabRekonMouseClicked
 
@@ -2042,7 +2340,9 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     }//GEN-LAST:event_TdosisKeyPressed
 
     private void TdilanjutkanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdilanjutkanKeyPressed
-        Valid.pindah(evt, cmbDilanjut, BtnSimpan);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            chkTglIgd.requestFocus();
+        }        
     }//GEN-LAST:event_TdilanjutkanKeyPressed
 
     private void tbRekonIgdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRekonIgdMouseClicked
@@ -2202,7 +2502,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
                 tbRekon.requestFocus();
             }
-        } else if (TabRekon.getSelectedIndex() == 2) {
+        } else if (TabRekon.getSelectedIndex() == 1) {
             if (tbRekonIgd.getSelectedRow() > -1) {
                 x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
@@ -2210,21 +2510,21 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 12).toString()
                     }) == true) {
                         emptTeksRiwayatIGD();
-                        tampilRekonIGD(TNoRw3.getText());
+                        tampilRekonIGD(TNoRw2.getText());
                         tampilRiwObatIGD();
                     } else {
                         JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                     }
                 } else {
                     emptTeksRiwayatIGD();
-                    tampilRekonIGD(TNoRw3.getText());
+                    tampilRekonIGD(TNoRw2.getText());
                     tampilRiwObatIGD();
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
                 tbRekonIgd.requestFocus();
             }
-        } else if (TabRekon.getSelectedIndex() == 3) {
+        } else if (TabRekon.getSelectedIndex() == 2) {
             if (tbRekonRanap.getSelectedRow() > -1) {
                 x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
@@ -2232,14 +2532,14 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 13).toString()
                     }) == true) {
                         emptTeksRiwayatRanap();
-                        tampilRekonRanap(TNoRw4.getText());
+                        tampilRekonRanap(TNoRw3.getText());
                         tampilRiwObatRanap();
                     } else {
                         JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                     }
                 } else {
                     emptTeksRiwayatRanap();
-                    tampilRekonRanap(TNoRw4.getText());
+                    tampilRekonRanap(TNoRw3.getText());
                     tampilRiwObatRanap();
                 }
             } else {
@@ -2282,25 +2582,6 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             TnmApoteker.setText("-");
         }
     }//GEN-LAST:event_chkSaya2ActionPerformed
-
-    private void TCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari1KeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnCari1ActionPerformed(null);
-        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
-            BtnCari1.requestFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
-            BtnKeluar.requestFocus();
-        }
-    }//GEN-LAST:event_TCari1KeyPressed
-
-    private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari1ActionPerformed
-        tampilRiwayatRanap();
-    }//GEN-LAST:event_BtnCari1ActionPerformed
-
-    private void BtnAll1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAll1ActionPerformed
-        TCari1.setText("");
-        tampilRiwayatRanap();
-    }//GEN-LAST:event_BtnAll1ActionPerformed
 
     private void Trute1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Trute1KeyPressed
         Valid.pindah(evt, TtglResep1, Taturan);
@@ -2471,6 +2752,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
             param.put("bawaObatLuar", cmbBawaObat.getSelectedItem().toString());
             param.put("unitRalan", Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw1.getText() + "'"));
+            param.put("catatanRiwayat", TcatatanRiwayat.getText().replaceAll("\n", "<br/>"));
             param.put("catatanIgd", TcatatanIgd.getText().replaceAll("\n", "<br/>"));
             param.put("catatanRanap", TcatatanRanap.getText().replaceAll("\n", "<br/>"));
             param.put("ketidaksesuaian", Tketidaksesuaian.getText().replaceAll("\n", "<br/>"));
@@ -2518,6 +2800,72 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
 
+    private void chkTglIgdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkTglIgdActionPerformed
+        TtglStopIgd.setDate(new Date());
+        if (chkTglIgd.isSelected() == true) {
+            TtglStopIgd.setEnabled(true);
+        } else {
+            TtglStopIgd.setEnabled(false);
+        }
+    }//GEN-LAST:event_chkTglIgdActionPerformed
+
+    private void chkTglRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkTglRanapActionPerformed
+        TtglStopRanap.setDate(new Date());
+        if (chkTglRanap.isSelected() == true) {
+            TtglStopRanap.setEnabled(true);
+        } else {
+            TtglStopRanap.setEnabled(false);
+        }
+    }//GEN-LAST:event_chkTglRanapActionPerformed
+
+    private void TcatatanRiwayatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TcatatanRiwayatKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            TcatatanIgd.requestFocus();
+        }
+    }//GEN-LAST:event_TcatatanRiwayatKeyPressed
+
+    private void BtnCopasRiwayatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCopasRiwayatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnCopasRiwayatActionPerformed
+
+    private void TCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCari1ActionPerformed(null);
+        }
+    }//GEN-LAST:event_TCari1KeyPressed
+
+    private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari1ActionPerformed
+        tampilResepDokter(TNoRw2.getText(), Valid.SetTgl(DTPCari3.getSelectedItem() + ""), Valid.SetTgl(DTPCari4.getSelectedItem() + ""), TCari1.getText());
+    }//GEN-LAST:event_BtnCari1ActionPerformed
+
+    private void BtnAll1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAll1ActionPerformed
+        TCari1.setText("");
+        tampilResepDokter(TNoRw2.getText(), Valid.SetTgl(DTPCari3.getSelectedItem() + ""), Valid.SetTgl(DTPCari4.getSelectedItem() + ""), TCari1.getText());
+    }//GEN-LAST:event_BtnAll1ActionPerformed
+
+    private void TCari3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari3KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCari3ActionPerformed(null);
+        }
+    }//GEN-LAST:event_TCari3KeyPressed
+
+    private void BtnCari3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari3ActionPerformed
+        tampilResepDokter(TNoRw3.getText(), Valid.SetTgl(DTPCari7.getSelectedItem() + ""), Valid.SetTgl(DTPCari8.getSelectedItem() + ""), TCari3.getText());
+    }//GEN-LAST:event_BtnCari3ActionPerformed
+
+    private void BtnAll3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAll3ActionPerformed
+        TCari3.setText("");
+        tampilResepDokter(TNoRw3.getText(), Valid.SetTgl(DTPCari7.getSelectedItem() + ""), Valid.SetTgl(DTPCari8.getSelectedItem() + ""), TCari3.getText());
+    }//GEN-LAST:event_BtnAll3ActionPerformed
+
+    private void TnmObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmObatKeyPressed
+        Valid.pindah(evt, Trute, Trute);
+    }//GEN-LAST:event_TnmObatKeyPressed
+
+    private void TnmObat1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmObat1KeyPressed
+        Valid.pindah(evt, Trute1, Trute1);
+    }//GEN-LAST:event_TnmObat1KeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -2538,13 +2886,16 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnAll1;
     private widget.Button BtnAll2;
+    private widget.Button BtnAll3;
     private widget.Button BtnApoteker;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
     private widget.Button BtnCari2;
+    private widget.Button BtnCari3;
     private widget.Button BtnCopasIgd;
     private widget.Button BtnCopasRanap;
+    private widget.Button BtnCopasRiwayat;
     private widget.Button BtnDokter;
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
@@ -2558,41 +2909,43 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.Tanggal DTPCari4;
     private widget.Tanggal DTPCari5;
     private widget.Tanggal DTPCari6;
+    private widget.Tanggal DTPCari7;
+    private widget.Tanggal DTPCari8;
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormInput1;
-    private widget.PanelBiasa FormInput2;
     private widget.PanelBiasa FormInput3;
     private widget.PanelBiasa FormInput4;
     private widget.Label LCount;
     private widget.Label LCount1;
+    private widget.Label LCount2;
     private javax.swing.JPanel PanelInput;
-    private javax.swing.JPanel PanelInput1;
     private javax.swing.JPanel PanelInput2;
-    private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
     private widget.ScrollPane Scroll5;
     private widget.ScrollPane Scroll6;
+    private widget.ScrollPane Scroll7;
+    private widget.ScrollPane Scroll8;
+    private widget.ScrollPane Scroll9;
     public widget.TextBox TCari;
     public widget.TextBox TCari1;
     public widget.TextBox TCari2;
+    public widget.TextBox TCari3;
     private widget.TextBox TNoRM1;
     private widget.TextBox TNoRM2;
     private widget.TextBox TNoRM3;
-    private widget.TextBox TNoRM4;
     private widget.TextBox TNoRw1;
     private widget.TextBox TNoRw2;
     private widget.TextBox TNoRw3;
-    private widget.TextBox TNoRw4;
     private widget.TextBox TPasien1;
     private widget.TextBox TPasien2;
     private widget.TextBox TPasien3;
-    private widget.TextBox TPasien4;
     private javax.swing.JTabbedPane TabRekon;
     private widget.TextBox Taturan;
     private widget.TextArea TcatatanIgd;
     private widget.TextArea TcatatanRanap;
+    private widget.TextArea TcatatanRiwayat;
     private widget.TextBox Tdilanjutkan;
     private widget.TextBox Tdosis;
     private widget.TextBox Tdosis1;
@@ -2605,18 +2958,20 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.TextBox TnmObat1;
     private widget.TextBox TnmPereview;
     private widget.TextBox TrgRawat;
-    private widget.TextBox TrgRawat1;
     private widget.TextBox Trute;
     private widget.TextBox Trute1;
     private widget.TextArea Tsaran;
     private widget.TextBox TtglMRS;
     private widget.TextBox TtglMRS1;
-    private widget.TextBox TtglMRS2;
     private widget.Tanggal TtglRekon;
     private widget.Tanggal TtglResep;
     private widget.Tanggal TtglResep1;
+    private widget.Tanggal TtglStopIgd;
+    private widget.Tanggal TtglStopRanap;
     private widget.CekBox chkSaya1;
     private widget.CekBox chkSaya2;
+    public widget.CekBox chkTglIgd;
+    public widget.CekBox chkTglRanap;
     private widget.ComboBox cmbBawaObat;
     private widget.ComboBox cmbDilanjut;
     private widget.ComboBox cmbJnsRekon;
@@ -2638,11 +2993,6 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.Label jLabel20;
     private widget.Label jLabel21;
     private widget.Label jLabel22;
-    private widget.Label jLabel23;
-    private widget.Label jLabel24;
-    private widget.Label jLabel25;
-    private widget.Label jLabel26;
-    private widget.Label jLabel27;
     private widget.Label jLabel28;
     private widget.Label jLabel29;
     private widget.Label jLabel3;
@@ -2654,32 +3004,45 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.Label jLabel35;
     private widget.Label jLabel36;
     private widget.Label jLabel37;
+    private widget.Label jLabel38;
+    private widget.Label jLabel39;
     private widget.Label jLabel4;
+    private widget.Label jLabel40;
+    private widget.Label jLabel41;
+    private widget.Label jLabel42;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel63;
     private widget.Label jLabel65;
-    private widget.Label jLabel66;
     private widget.Label jLabel67;
+    private widget.Label jLabel68;
+    private widget.Label jLabel69;
     private widget.Label jLabel7;
     private widget.Label jLabel70;
-    private widget.Label jLabel71;
     private widget.Label jLabel72;
+    private widget.Label jLabel73;
+    private widget.Label jLabel74;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private widget.panelisi panelGlass10;
-    private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass12;
+    private widget.panelisi panelGlass13;
+    private widget.panelisi panelGlass14;
+    private widget.panelisi panelGlass15;
+    private widget.panelisi panelGlass16;
     private widget.panelisi panelGlass8;
+    private widget.panelisi panelGlass9;
     private widget.ScrollPane scrollPane3;
     private widget.ScrollPane scrollPane4;
     private widget.ScrollPane scrollPane5;
     private widget.ScrollPane scrollPane6;
     private widget.ScrollPane scrollPane7;
-    private widget.Table tbObatRiwayat;
+    private widget.ScrollPane scrollPane8;
     private widget.Table tbRekon;
     private widget.Table tbRekonIgd;
     private widget.Table tbRekonRanap;
+    private widget.Table tbResepIgd;
+    private widget.Table tbResepRanap;
     private widget.Table tbRiwayatObatIgd;
     private widget.Table tbRiwayatObatRanap;
     // End of variables declaration//GEN-END:variables
@@ -2757,7 +3120,8 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         rs.getString("nip_pereview"),
                         rs.getString("nip_apoteker"),
                         rs.getString("tanggal"),
-                        rs.getString("waktu_simpan")
+                        rs.getString("waktu_simpan"),
+                        rs.getString("catatan_obat_riwayat")
                     });
                 }                
             } catch (Exception e) {
@@ -2783,6 +3147,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         TketAlergi.setEnabled(false);
         cmbBawaObat.setSelectedIndex(0);
         TtglRekon.setDate(new Date());
+        TcatatanRiwayat.setText("");
         TcatatanIgd.setText("");
         TcatatanRanap.setText("");
         Tketidaksesuaian.setText("");
@@ -2804,17 +3169,23 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         cmbDilanjut.setSelectedIndex(0);
         Tdilanjutkan.setText("");
         Tdilanjutkan.setEnabled(false);
+        chkTglIgd.setSelected(false);
+        TtglStopIgd.setEnabled(false);
+        TtglStopIgd.setDate(new Date());
     }
     
     public void emptTeksRiwayatRanap() {
         TtglResep1.setDate(new Date());
-        TrgRawat1.setText("");
+        TrgRawat.setText("");
         TnmObat1.setText("");
         Trute1.setText("");
         Taturan.setText("");
         Tdosis1.setText("");
         nipDokter = "-";
         TnmDokter.setText("-");
+        chkTglRanap.setSelected(false);
+        TtglStopRanap.setEnabled(false);
+        TtglStopRanap.setDate(new Date());
     }
 
     private void getData() {
@@ -2827,9 +3198,6 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             TNoRw2.setText(TNoRw1.getText());
             TNoRM2.setText(TNoRM1.getText());
             TPasien2.setText(TPasien1.getText());            
-            TNoRw3.setText(TNoRw1.getText());
-            TNoRM3.setText(TNoRM1.getText());
-            TPasien3.setText(TPasien1.getText());            
             cmbJnsRekon.setSelectedItem(tbRekon.getValueAt(tbRekon.getSelectedRow(), 5).toString());
             cmbRiwAlergi.setSelectedItem(tbRekon.getValueAt(tbRekon.getSelectedRow(), 6).toString());
             TketAlergi.setText(tbRekon.getValueAt(tbRekon.getSelectedRow(), 7).toString());
@@ -2844,11 +3212,12 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             nipPereview = tbRekon.getValueAt(tbRekon.getSelectedRow(), 16).toString();
             nipApoteker = tbRekon.getValueAt(tbRekon.getSelectedRow(), 17).toString();
             Valid.SetTgl(TtglRekon, tbRekon.getValueAt(tbRekon.getSelectedRow(), 18).toString());
+            TcatatanRiwayat.setText(tbRekon.getValueAt(tbRekon.getSelectedRow(), 20).toString());
             
-            TtglMRS.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw1.getText() + "'")));
-            TrgRawat.setText(Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw1.getText() + "' "
-                    + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
+//            TtglMRS.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw1.getText() + "'")));
+//            TrgRawat.setText(Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+//                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw1.getText() + "' "
+//                    + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
 
             if (cmbRiwAlergi.getSelectedIndex() == 2) {
                 TketAlergi.setEnabled(true);
@@ -2871,7 +3240,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                     + "CONCAT(dpo.jml ,' ',LOWER(db.kode_sat)) jlh, d.nm_dokter, dpo.kode_brng, dpo.tgl_perawatan "
                     + "FROM detail_pemberian_obat dpo INNER JOIN databarang db ON dpo.kode_brng=db.kode_brng "
                     + "INNER JOIN reg_periksa rp ON rp.no_rawat=dpo.no_rawat INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli "
-                    + "WHERE dpo.no_rawat='" + TNoRw3.getText() + "' and dpo.status='ralan' order by dpo.tgl_perawatan, dpo.jam");
+                    + "WHERE dpo.no_rawat='" + TNoRw2.getText() + "' and dpo.status='ralan' order by dpo.tgl_perawatan, dpo.jam");
             try {
                 rs1 = ps1.executeQuery();
                 x = 1;
@@ -2912,8 +3281,8 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                     + "CONCAT(dpo.jml,' ',LOWER(db.kode_sat)) jlh, dpo.kode_brng, dpo.tgl_perawatan, dpo.no_rawat, ro.kode_unit FROM detail_pemberian_obat dpo "
                     + "INNER JOIN databarang db ON dpo.kode_brng=db.kode_brng INNER JOIN resep_obat ro on ro.no_rawat=dpo.no_rawat and ro.tgl_perawatan=dpo.tgl_perawatan and ro.jam=dpo.jam "
                     + "INNER JOIN kamar k on k.kd_kamar=ro.kode_unit INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE "
-                    + "dpo.tgl_perawatan between ? and ? and dpo.no_rawat='" + TNoRw4.getText() + "' and dpo.status='ranap' and db.nama_brng like ? or "
-                    + "dpo.tgl_perawatan between ? and ? and dpo.no_rawat='" + TNoRw4.getText() + "' and dpo.status='ranap' and b.nm_bangsal like ? "
+                    + "dpo.tgl_perawatan between ? and ? and dpo.no_rawat='" + TNoRw3.getText() + "' and dpo.status='ranap' and db.nama_brng like ? or "
+                    + "dpo.tgl_perawatan between ? and ? and dpo.no_rawat='" + TNoRw3.getText() + "' and dpo.status='ranap' and b.nm_bangsal like ? "
                     + "order by dpo.tgl_perawatan, dpo.jam");
             try {
                 ps4.setString(1, Valid.SetTgl(DTPCari5.getSelectedItem() + ""));
@@ -2970,9 +3339,11 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode2);
         try {
             ps2 = koneksi.prepareStatement("SELECT ro.*, p.no_rkm_medis, p.nm_pasien, date_format(ro.tgl_resep,'%d/%m/%Y') tglResep, pl.nm_poli, "
-                    + "db.nama_brng FROM rekonsiliasi_obat_igd ro inner join reg_periksa rp on rp.no_rawat=ro.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join poliklinik pl on pl.kd_poli=rp.kd_poli "
-                    + "inner join databarang db on db.kode_brng=ro.kode_brng WHERE ro.no_rawat='" + norw + "' order by ro.waktu_simpan");
+                    + "db.nama_brng, if(ro.cek_stop='ya',date_format(ro.tgl_stop,'%d/%m/%Y'),'-') tglStop, "
+                    + "if(ro.tgl_stop='0000-00-00',date(now()),ro.tgl_stop) tglStopDefault FROM rekonsiliasi_obat_igd ro "
+                    + "inner join reg_periksa rp on rp.no_rawat=ro.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli inner join databarang db on db.kode_brng=ro.kode_brng WHERE "
+                    + "ro.no_rawat='" + norw + "' order by ro.waktu_simpan");
             try {
                 rs2 = ps2.executeQuery();
                 while (rs2.next()) {
@@ -2980,7 +3351,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         rs2.getString("no_rawat"),
                         rs2.getString("no_rkm_medis"),
                         rs2.getString("nm_pasien"),
-                        rs2.getString("tglResep"),
+                        "Tgl. Mulai : " + rs2.getString("tglResep") + " Tgl. Stop : " + rs2.getString("tglStop"),
                         rs2.getString("nm_poli"),
                         rs2.getString("nama_brng"),
                         rs2.getString("rute"),
@@ -2989,7 +3360,9 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         rs2.getString("ket_dilanjutkan"),
                         rs2.getString("tgl_resep"),
                         rs2.getString("kode_brng"),
-                        rs2.getString("waktu_simpan")
+                        rs2.getString("waktu_simpan"),
+                        rs2.getString("cek_stop"),
+                        rs2.getString("tglStopDefault")
                     });
                 }
             } catch (Exception e) {
@@ -3011,7 +3384,8 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode5);
         try {
             ps5 = koneksi.prepareStatement("SELECT ro.*, p.no_rkm_medis, p.nm_pasien, date_format(ro.tgl_resep,'%d/%m/%Y') tglResep, "
-                    + "db.nama_brng, pg.nama nmDokter FROM rekonsiliasi_obat_ranap ro "
+                    + "db.nama_brng, pg.nama nmDokter, if(ro.cek_stop='ya',date_format(ro.tgl_stop,'%d/%m/%Y'),'-') tglStop, "
+                    + "if(ro.tgl_stop='0000-00-00',date(now()),ro.tgl_stop) tglStopDefault FROM rekonsiliasi_obat_ranap ro "
                     + "INNER JOIN reg_periksa rp ON rp.no_rawat = ro.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg on pg.nik = ro.nip_dokter INNER JOIN databarang db ON db.kode_brng = ro.kode_brng WHERE "
                     + "ro.no_rawat='" + norw + "' order by ro.waktu_simpan");
@@ -3022,7 +3396,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         rs5.getString("no_rawat"),
                         rs5.getString("no_rkm_medis"),
                         rs5.getString("nm_pasien"),
-                        rs5.getString("tglResep"),
+                        "Tgl. Mulai : " + rs5.getString("tglResep") + " Tgl. Stop : " + rs5.getString("tglStop"),
                         rs5.getString("ruang_rawat"),
                         rs5.getString("nama_brng"),
                         rs5.getString("rute"),
@@ -3032,7 +3406,9 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         rs5.getString("tgl_resep"),
                         rs5.getString("kode_brng"),
                         rs5.getString("nip_dokter"),
-                        rs5.getString("waktu_simpan")
+                        rs5.getString("waktu_simpan"),
+                        rs5.getString("cek_stop"),
+                        rs5.getString("tglStopDefault")
                     });
                 }
             } catch (Exception e) {
@@ -3050,26 +3426,27 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         }
     }
     
-    private void tampilRiwayatRanap() {
+    private void tampilResepDokter(String norwt, String tglA, String tglB, String cari) {
         nmDokter = "";
         Valid.tabelKosong(tabMode3);
+        Valid.tabelKosong(tabMode6);
         try {
             ps3 = koneksi.prepareStatement("SELECT *, date_format(tgl_pemberian, '%d/%m/%Y') tglPemberian, concat('Rute : ',cara_pemberian, ', Dosis : ',dosis) deskripsi, "
                     + "time(waktu_simpan) jam, status from pemberian_obat WHERE "
-                    + "tgl_pemberian between ? and ? and no_rawat='" + TNoRw2.getText() + "' and nm_unit like ? and nama_obat not in ('','-','.') or "
-                    + "tgl_pemberian between ? and ? and no_rawat='" + TNoRw2.getText() + "' and nama_obat like ? and nama_obat not in ('','-','.') or "
-                    + "tgl_pemberian between ? and ? and no_rawat='" + TNoRw2.getText() + "' and concat('Rute : ',cara_pemberian,', Dosis : ',dosis) like ? and nama_obat not in ('','-','.') "
+                    + "tgl_pemberian between ? and ? and no_rawat='" + norwt + "' and nm_unit like ? and nama_obat not in ('','-','.') or "
+                    + "tgl_pemberian between ? and ? and no_rawat='" + norwt + "' and nama_obat like ? and nama_obat not in ('','-','.') or "
+                    + "tgl_pemberian between ? and ? and no_rawat='" + norwt + "' and concat('Rute : ',cara_pemberian,', Dosis : ',dosis) like ? and nama_obat not in ('','-','.') "
                     + "order by tgl_pemberian, time(waktu_simpan)");
             try {
-                ps3.setString(1, Valid.SetTgl(DTPCari3.getSelectedItem() + ""));
-                ps3.setString(2, Valid.SetTgl(DTPCari4.getSelectedItem() + ""));
-                ps3.setString(3, "%" + TCari1.getText().trim() + "%");
-                ps3.setString(4, Valid.SetTgl(DTPCari3.getSelectedItem() + ""));
-                ps3.setString(5, Valid.SetTgl(DTPCari4.getSelectedItem() + ""));
-                ps3.setString(6, "%" + TCari1.getText().trim() + "%");
-                ps3.setString(7, Valid.SetTgl(DTPCari3.getSelectedItem() + ""));
-                ps3.setString(8, Valid.SetTgl(DTPCari4.getSelectedItem() + ""));
-                ps3.setString(9, "%" + TCari1.getText().trim() + "%");
+                ps3.setString(1, tglA);
+                ps3.setString(2, tglB);
+                ps3.setString(3, "%" + cari.trim() + "%");
+                ps3.setString(4, tglA);
+                ps3.setString(5, tglB);
+                ps3.setString(6, "%" + cari.trim() + "%");
+                ps3.setString(7, tglA);
+                ps3.setString(8, tglB);
+                ps3.setString(9, "%" + cari.trim() + "%");
                 rs3 = ps3.executeQuery();
                 while (rs3.next()) {
                     if (rs3.getString("status").equals("Ralan")) {
@@ -3081,14 +3458,27 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                                 + "c.no_rawat='" + rs3.getString("no_rawat") + "' and c.tgl_perawatan='" + rs3.getString("tgl_pemberian") + "' "
                                 + "order by c.noId desc limit 1");
                     }
-                    tabMode3.addRow(new String[]{
-                        rs3.getString("nm_unit"),
-                        rs3.getString("tglPemberian"),
-                        rs3.getString("jam"),
-                        rs3.getString("nama_obat"),
-                        rs3.getString("deskripsi"),
-                        nmDokter
-                    });
+
+                    if (TabRekon.getSelectedIndex() == 1) {
+                        tabMode3.addRow(new String[]{
+                            rs3.getString("nm_unit"),
+                            rs3.getString("tglPemberian"),
+                            rs3.getString("jam"),
+                            rs3.getString("nama_obat"),
+                            rs3.getString("deskripsi"),
+                            nmDokter
+                        });
+                    } else if (TabRekon.getSelectedIndex() == 2) {
+                        tabMode6.addRow(new String[]{
+                            rs3.getString("nm_unit"),
+                            rs3.getString("tglPemberian"),
+                            rs3.getString("jam"),
+                            rs3.getString("nama_obat"),
+                            rs3.getString("deskripsi"),
+                            nmDokter
+                        });
+                    }
+                    
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -3103,7 +3493,12 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }
-        LCount1.setText("" + tabMode3.getRowCount());
+      
+        if (TabRekon.getSelectedIndex() == 1) {
+            LCount1.setText("" + tabMode3.getRowCount());
+        } else if (TabRekon.getSelectedIndex() == 2) {
+            LCount2.setText("" + tabMode6.getRowCount());
+        }
     }
     
     private void getDataRiwObatIGD() {
@@ -3119,7 +3514,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         kdObat = "";
         nipDokter = "";
         if (tbRiwayatObatRanap.getSelectedRow() != -1) {
-            TrgRawat1.setText(tbRiwayatObatRanap.getValueAt(tbRiwayatObatRanap.getSelectedRow(), 2).toString());
+            TrgRawat.setText(tbRiwayatObatRanap.getValueAt(tbRiwayatObatRanap.getSelectedRow(), 2).toString());
             Valid.SetTgl(TtglResep1, tbRiwayatObatRanap.getValueAt(tbRiwayatObatRanap.getSelectedRow(), 7).toString());
             kdObat = tbRiwayatObatRanap.getValueAt(tbRiwayatObatRanap.getSelectedRow(), 6).toString();
             TnmObat1.setText(tbRiwayatObatRanap.getValueAt(tbRiwayatObatRanap.getSelectedRow(), 3).toString());
@@ -3130,10 +3525,12 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     
     private void getDataRekonIGD() {
         kdObat = "";
+        cekTglIGD = "";
+        
         if (tbRekonIgd.getSelectedRow() != -1) {
-            TNoRw3.setText(tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 0).toString());
-            TNoRM3.setText(tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 1).toString());
-            TPasien3.setText(tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 2).toString());
+            TNoRw2.setText(tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 0).toString());
+            TNoRM2.setText(tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 1).toString());
+            TPasien2.setText(tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 2).toString());
             Valid.SetTgl(TtglResep, tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 10).toString());
             kdObat = tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 11).toString();
             TnmObat.setText(tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 5).toString());
@@ -3141,11 +3538,21 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             Tdosis.setText(tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 7).toString());
             cmbDilanjut.setSelectedItem(tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 8).toString());
             Tdilanjutkan.setText(tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 9).toString());
+            cekTglIGD = tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 13).toString();
+            Valid.SetTgl(TtglStopIgd, tbRekonIgd.getValueAt(tbRekonIgd.getSelectedRow(), 14).toString());
             
             if (cmbDilanjut.getSelectedIndex() == 1) {
                 Tdilanjutkan.setEnabled(true);
             } else {
                 Tdilanjutkan.setEnabled(false);
+            }
+            
+            if (cekTglIGD.equals("ya")) {
+                chkTglIgd.setSelected(true);
+                TtglStopIgd.setEnabled(true);
+            } else if (cekTglIGD.equals("tidak")) {
+                chkTglIgd.setSelected(false);
+                TtglStopIgd.setEnabled(false);
             }
         }
     }
@@ -3153,11 +3560,13 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private void getDataRekonRanap() {
         kdObat = "";
         nipDokter = "";
+        cekTglRanap = "";
+        
         if (tbRekonRanap.getSelectedRow() != -1) {
-            TNoRw4.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 0).toString());
-            TNoRM4.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 1).toString());
-            TPasien4.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 2).toString());
-            TrgRawat1.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 4).toString());
+            TNoRw3.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 0).toString());
+            TNoRM3.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 1).toString());
+            TPasien3.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 2).toString());
+            TrgRawat.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 4).toString());
             Valid.SetTgl(TtglResep1, tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 10).toString());
             kdObat = tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 11).toString();
             TnmObat1.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 5).toString());
@@ -3166,6 +3575,16 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             Taturan.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 8).toString());
             nipDokter = tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 12).toString();
             TnmDokter.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 9).toString());
+            cekTglRanap = tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 14).toString();
+            Valid.SetTgl(TtglStopRanap, tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 15).toString());
+
+            if (cekTglRanap.equals("ya")) {
+                chkTglRanap.setSelected(true);
+                TtglStopRanap.setEnabled(true);
+            } else if (cekTglRanap.equals("tidak")) {
+                chkTglRanap.setSelected(false);
+                TtglStopRanap.setEnabled(false);
+            }
         }
     }
     
@@ -3173,26 +3592,24 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         TNoRw1.setText(norwt);
         TNoRw2.setText(norwt);
         TNoRw3.setText(norwt);
-        TNoRw4.setText(norwt);
         TNoRM1.setText(norm);
         TNoRM2.setText(norm);
         TNoRM3.setText(norm);
-        TNoRM4.setText(norm);
         TPasien1.setText(nmpasien);        
         TPasien2.setText(nmpasien);
         TPasien3.setText(nmpasien);
-        TPasien4.setText(nmpasien);
         tglreg = Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'");
-        TtglMRS.setText(Valid.SetTglINDONESIA(tglreg));
         TtglMRS1.setText(Valid.SetTglINDONESIA(tglreg));
-        TtglMRS2.setText(Valid.SetTglINDONESIA(tglreg));
+        TtglMRS.setText(Valid.SetTglINDONESIA(tglreg));
         TrgRawat.setText(rgrawat);
         Valid.SetTgl(DTPCari1, tglreg);
-        DTPCari2.setDate(new Date());
+        DTPCari2.setDate(new Date());        
         Valid.SetTgl(DTPCari3, tglreg);
-        DTPCari4.setDate(new Date());
+        DTPCari4.setDate(new Date());        
         Valid.SetTgl(DTPCari5, tglreg);
         DTPCari6.setDate(new Date());
+        Valid.SetTgl(DTPCari7, tglreg);
+        DTPCari8.setDate(new Date());
         TCari.setText(norwt);
     }
     
