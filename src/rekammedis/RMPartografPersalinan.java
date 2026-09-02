@@ -714,6 +714,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel132 = new widget.Label();
         Toksitosin = new widget.TextBox();
         jLabel36 = new widget.Label();
+        jLabel20 = new widget.Label();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
@@ -1061,7 +1062,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel10.setBounds(0, 94, 135, 23);
 
         TtglMasuk.setEditable(false);
-        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-05-2026" }));
+        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-09-2026" }));
         TtglMasuk.setDisplayFormat("dd-MM-yyyy");
         TtglMasuk.setName("TtglMasuk"); // NOI18N
         TtglMasuk.setOpaque(false);
@@ -2347,6 +2348,12 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(jLabel36);
         jLabel36.setBounds(375, 827, 90, 23);
 
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("<html><b>UNTUK DATA PARTOGRAF MASIH DALAM PERBAIKAN, DATA CATATAN PERSALINAN TETAP BISA DIISI ...</b></html>");
+        jLabel20.setName("jLabel20"); // NOI18N
+        internalFrame20.add(jLabel20);
+        jLabel20.setBounds(580, 150, 380, 30);
+
         Scroll3.setViewportView(internalFrame20);
 
         jPanel3.add(Scroll3, java.awt.BorderLayout.CENTER);
@@ -2357,6 +2364,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -2375,6 +2383,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -2393,6 +2402,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -2437,6 +2447,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -2484,7 +2495,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel53.setBounds(0, 38, 175, 23);
 
         TtglCatatan.setEditable(false);
-        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-05-2026" }));
+        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-09-2026" }));
         TtglCatatan.setDisplayFormat("dd-MM-yyyy");
         TtglCatatan.setName("TtglCatatan"); // NOI18N
         TtglCatatan.setOpaque(false);
@@ -4043,6 +4054,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         ThasilKala4.setBounds(180, 1251, 860, 23);
 
         BtnBidan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnBidan.setMnemonic('2');
         BtnBidan.setToolTipText("Alt+2");
         BtnBidan.setName("BtnBidan"); // NOI18N
         BtnBidan.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -4064,6 +4076,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -4082,6 +4095,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal1.setMnemonic('B');
         BtnBatal1.setText("Baru");
         BtnBatal1.setToolTipText("Alt+B");
         BtnBatal1.setName("BtnBatal1"); // NOI18N
@@ -4095,6 +4109,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnGanti1.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti1.setMnemonic('G');
         BtnGanti1.setText("Ganti");
         BtnGanti1.setToolTipText("Alt+G");
         BtnGanti1.setName("BtnGanti1"); // NOI18N
@@ -4139,6 +4154,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -4189,7 +4205,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         panelGlass10.add(jLabel118);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-05-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-09-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4204,7 +4220,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         panelGlass10.add(jLabel130);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-05-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-09-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4242,6 +4258,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 30));
@@ -4259,6 +4276,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -4290,6 +4308,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar2.setMnemonic('K');
         BtnKeluar2.setText("Keluar");
         BtnKeluar2.setToolTipText("Alt+K");
         BtnKeluar2.setName("BtnKeluar2"); // NOI18N
@@ -4328,108 +4347,109 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             cekData();
             if (Sequel.menyimpantf("partograf_persalinan", "?,?,?,?,?,?,?,?,?,?", "partograf persalinan", 10, new String[]{
                 TNoRw.getText(), TrgRawat.getText(), Tgravida.getText(), Tparitas.getText(), Tabortus.getText(), Valid.SetTgl(TtglMasuk.getSelectedItem() + ""),
-                cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), 
+                cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                 cmbKetuban.getSelectedItem().toString(), jamKetuban, Sequel.cariIsi("select now()")
             }) == true) {
-                if (tbDjj.getRowCount() != 0) {
-                    for (i = 0; i < tbDjj.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_djj",
-                                "'" + tbDjj.getValueAt(i, 0).toString() + "','"
-                                + tbDjj.getValueAt(i, 1).toString() + "','"
-                                + tbDjj.getValueAt(i, 2).toString() + "','"
-                                + tbDjj.getValueAt(i, 3).toString() + "','"
-                                + tbDjj.getValueAt(i, 4).toString() + "'", "Data DJJ");
-                    }
-                }
-
-                if (tbAirKetuban.getRowCount() != 0) {
-                    for (i = 0; i < tbAirKetuban.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_air_ketuban",
-                                "'" + tbAirKetuban.getValueAt(i, 0).toString() + "','"
-                                + tbAirKetuban.getValueAt(i, 1).toString() + "','"
-                                + tbAirKetuban.getValueAt(i, 2).toString() + "','"
-                                + tbAirKetuban.getValueAt(i, 3).toString() + "','"
-                                + tbAirKetuban.getValueAt(i, 4).toString() + "'", "Data Air Ketuban");
-                    }
-                }
-
-                if (tbServik.getRowCount() != 0) {
-                    for (i = 0; i < tbServik.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_pembukaan_serviks",
-                                "'" + tbServik.getValueAt(i, 0).toString() + "','"
-                                + tbServik.getValueAt(i, 1).toString() + "','"
-                                + tbServik.getValueAt(i, 2).toString() + "','"
-                                + tbServik.getValueAt(i, 3).toString() + "','"
-                                + tbServik.getValueAt(i, 4).toString() + "','"
-                                + tbServik.getValueAt(i, 5).toString() + "','"
-                                + tbServik.getValueAt(i, 6).toString() + "','"
-                                + tbServik.getValueAt(i, 7).toString() + "','"
-                                + tbServik.getValueAt(i, 8).toString() + "'", "Data Pembukaan Serviks");
-                    }
-                }
-
-                if (tbKontraksi.getRowCount() != 0) {
-                    for (i = 0; i < tbKontraksi.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_kontraksi",
-                                "'" + tbKontraksi.getValueAt(i, 0).toString() + "','"
-                                + tbKontraksi.getValueAt(i, 1).toString() + "','"
-                                + tbKontraksi.getValueAt(i, 2).toString() + "','"
-                                + tbKontraksi.getValueAt(i, 3).toString() + "'", "Data Kontraksi");
-                    }
-                }
                 
-                if (tbOksitosin.getRowCount() != 0) {
-                    for (i = 0; i < tbOksitosin.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_oksitosin",
-                                "'" + tbOksitosin.getValueAt(i, 0).toString() + "','"
-                                + tbOksitosin.getValueAt(i, 1).toString() + "','"
-                                + tbOksitosin.getValueAt(i, 2).toString() + "','"
-                                + tbOksitosin.getValueAt(i, 3).toString() + "'", "Data Oksitosin");
-                    }
-                }
-
-                if (tbObat.getRowCount() != 0) {
-                    for (i = 0; i < tbObat.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_obat_cairan",
-                                "'" + tbObat.getValueAt(i, 0).toString() + "','"
-                                + tbObat.getValueAt(i, 1).toString() + "','"
-                                + tbObat.getValueAt(i, 2).toString() + "'", "Data Obat & Cairan");
-                    }                
-                }
-
-                if (tbNadi.getRowCount() != 0) {
-                    for (i = 0; i < tbNadi.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_nadi_tensi",
-                                "'" + tbNadi.getValueAt(i, 0).toString() + "','"
-                                + tbNadi.getValueAt(i, 1).toString() + "','"
-                                + tbNadi.getValueAt(i, 2).toString() + "','"
-                                + tbNadi.getValueAt(i, 3).toString() + "','"
-                                + tbNadi.getValueAt(i, 4).toString() + "','"
-                                + tbNadi.getValueAt(i, 5).toString() + "'", "Data Nadi");
-                    }
-                }
-
-                if (tbSuhu.getRowCount() != 0) {
-                    for (i = 0; i < tbSuhu.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_suhu",
-                                "'" + tbSuhu.getValueAt(i, 0).toString() + "','"
-                                + tbSuhu.getValueAt(i, 1).toString() + "','"
-                                + tbSuhu.getValueAt(i, 2).toString() + "','"
-                                + tbSuhu.getValueAt(i, 3).toString() + "'", "Data Suhu");
-                    }
-                }
-                
-                if (tbUrin.getRowCount() != 0) {
-                    for (i = 0; i < tbUrin.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_urin",
-                                "'" + tbUrin.getValueAt(i, 0).toString() + "','"
-                                + tbUrin.getValueAt(i, 1).toString() + "','"
-                                + tbUrin.getValueAt(i, 2).toString() + "','"
-                                + tbUrin.getValueAt(i, 3).toString() + "','"
-                                + tbUrin.getValueAt(i, 4).toString() + "','"
-                                + tbUrin.getValueAt(i, 5).toString() + "'", "Data Urin");
-                    }
-                }
+//                if (tbDjj.getRowCount() != 0) {
+//                    for (i = 0; i < tbDjj.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_djj",
+//                                "'" + tbDjj.getValueAt(i, 0).toString() + "','"
+//                                + tbDjj.getValueAt(i, 1).toString() + "','"
+//                                + tbDjj.getValueAt(i, 2).toString() + "','"
+//                                + tbDjj.getValueAt(i, 3).toString() + "','"
+//                                + tbDjj.getValueAt(i, 4).toString() + "'", "Data DJJ");
+//                    }
+//                }
+//
+//                if (tbAirKetuban.getRowCount() != 0) {
+//                    for (i = 0; i < tbAirKetuban.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_air_ketuban",
+//                                "'" + tbAirKetuban.getValueAt(i, 0).toString() + "','"
+//                                + tbAirKetuban.getValueAt(i, 1).toString() + "','"
+//                                + tbAirKetuban.getValueAt(i, 2).toString() + "','"
+//                                + tbAirKetuban.getValueAt(i, 3).toString() + "','"
+//                                + tbAirKetuban.getValueAt(i, 4).toString() + "'", "Data Air Ketuban");
+//                    }
+//                }
+//
+//                if (tbServik.getRowCount() != 0) {
+//                    for (i = 0; i < tbServik.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_pembukaan_serviks",
+//                                "'" + tbServik.getValueAt(i, 0).toString() + "','"
+//                                + tbServik.getValueAt(i, 1).toString() + "','"
+//                                + tbServik.getValueAt(i, 2).toString() + "','"
+//                                + tbServik.getValueAt(i, 3).toString() + "','"
+//                                + tbServik.getValueAt(i, 4).toString() + "','"
+//                                + tbServik.getValueAt(i, 5).toString() + "','"
+//                                + tbServik.getValueAt(i, 6).toString() + "','"
+//                                + tbServik.getValueAt(i, 7).toString() + "','"
+//                                + tbServik.getValueAt(i, 8).toString() + "'", "Data Pembukaan Serviks");
+//                    }
+//                }
+//
+//                if (tbKontraksi.getRowCount() != 0) {
+//                    for (i = 0; i < tbKontraksi.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_kontraksi",
+//                                "'" + tbKontraksi.getValueAt(i, 0).toString() + "','"
+//                                + tbKontraksi.getValueAt(i, 1).toString() + "','"
+//                                + tbKontraksi.getValueAt(i, 2).toString() + "','"
+//                                + tbKontraksi.getValueAt(i, 3).toString() + "'", "Data Kontraksi");
+//                    }
+//                }
+//                
+//                if (tbOksitosin.getRowCount() != 0) {
+//                    for (i = 0; i < tbOksitosin.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_oksitosin",
+//                                "'" + tbOksitosin.getValueAt(i, 0).toString() + "','"
+//                                + tbOksitosin.getValueAt(i, 1).toString() + "','"
+//                                + tbOksitosin.getValueAt(i, 2).toString() + "','"
+//                                + tbOksitosin.getValueAt(i, 3).toString() + "'", "Data Oksitosin");
+//                    }
+//                }
+//
+//                if (tbObat.getRowCount() != 0) {
+//                    for (i = 0; i < tbObat.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_obat_cairan",
+//                                "'" + tbObat.getValueAt(i, 0).toString() + "','"
+//                                + tbObat.getValueAt(i, 1).toString() + "','"
+//                                + tbObat.getValueAt(i, 2).toString() + "'", "Data Obat & Cairan");
+//                    }                
+//                }
+//
+//                if (tbNadi.getRowCount() != 0) {
+//                    for (i = 0; i < tbNadi.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_nadi_tensi",
+//                                "'" + tbNadi.getValueAt(i, 0).toString() + "','"
+//                                + tbNadi.getValueAt(i, 1).toString() + "','"
+//                                + tbNadi.getValueAt(i, 2).toString() + "','"
+//                                + tbNadi.getValueAt(i, 3).toString() + "','"
+//                                + tbNadi.getValueAt(i, 4).toString() + "','"
+//                                + tbNadi.getValueAt(i, 5).toString() + "'", "Data Nadi");
+//                    }
+//                }
+//
+//                if (tbSuhu.getRowCount() != 0) {
+//                    for (i = 0; i < tbSuhu.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_suhu",
+//                                "'" + tbSuhu.getValueAt(i, 0).toString() + "','"
+//                                + tbSuhu.getValueAt(i, 1).toString() + "','"
+//                                + tbSuhu.getValueAt(i, 2).toString() + "','"
+//                                + tbSuhu.getValueAt(i, 3).toString() + "'", "Data Suhu");
+//                    }
+//                }
+//                
+//                if (tbUrin.getRowCount() != 0) {
+//                    for (i = 0; i < tbUrin.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_urin",
+//                                "'" + tbUrin.getValueAt(i, 0).toString() + "','"
+//                                + tbUrin.getValueAt(i, 1).toString() + "','"
+//                                + tbUrin.getValueAt(i, 2).toString() + "','"
+//                                + tbUrin.getValueAt(i, 3).toString() + "','"
+//                                + tbUrin.getValueAt(i, 4).toString() + "','"
+//                                + tbUrin.getValueAt(i, 5).toString() + "'", "Data Urin");
+//                    }
+//                }
 
                 cekData();
                 if (cmbPemberianOksi.getSelectedIndex() == 1) {
@@ -4456,7 +4476,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                             cmbDistosia.getSelectedItem().toString(), Tkala2YaTindakanDisto.getText(), Tkala2MasalahLain.getText(), cmbInisiasi.getSelectedItem().toString(),
                             Tkala3Tidak.getText(), Tkala3Lama.getText(), cmbPemberianOksi.getSelectedItem().toString(), dataKala3A, dataKala3B, dataKala3C,
                             cmbPemberianUlang.getSelectedItem().toString(), Tkala3PemberianUlang.getText(), cmbPenegangan.getSelectedItem().toString(), Tkala3Penegangan.getText(),
-                            cmbMasase.getSelectedItem().toString(), Tkala3Masase.getText(), cmbPlasenta25.getSelectedItem().toString(), Tkala3Plasenta25A.getText(), 
+                            cmbMasase.getSelectedItem().toString(), Tkala3Masase.getText(), cmbPlasenta25.getSelectedItem().toString(), Tkala3Plasenta25A.getText(),
                             Tkala3Plasenta25B.getText(), cmbPlasenta26.getSelectedItem().toString(), Tkala3Plasenta26.getText(), cmbLaserasi.getSelectedItem().toString(),
                             Tkala3Laserasi.getText(), cmbJika.getSelectedItem().toString(), cmbTindakan.getSelectedItem().toString(), Tkala3Alasan.getText(),
                             cmbAtonia.getSelectedItem().toString(), Tkala3Atonia.getText(), Tkala3Jumlah.getText(), Tkala3Masalah.getText(), Tkala3Penata.getText(),
@@ -4465,38 +4485,37 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                             sebutkan38b, sebutkan38a, TbayiTindakanA.getText(), TbayiTindakanB.getText(), TbayiTindakanC.getText(), cmbPemberianAsi.getSelectedItem().toString(),
                             TbayiYaPemberian.getText(), TbayiTidakAlasan.getText(), TbayiMasalah.getText(), TbayiHasilnya.getText(), Sequel.cariIsi("select now()")
                         }) == true) {
-                    System.out.println("Proses simpan data partograf catatan persalinan berhasil disimpan,...!!");
-                }
 
-                if (tbPemantauan.getRowCount() != 0) {
-                    for (i = 0; i < tbPemantauan.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_kala_4",
-                                "'" + tbPemantauan.getValueAt(i, 0).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 1).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 2).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 3).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 4).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 5).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 6).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 7).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 8).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 9).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 10).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 11).toString() + "'", "Data Pemantauan Persalinan Kala 4");
+                    if (tbPemantauan.getRowCount() != 0) {
+                        for (i = 0; i < tbPemantauan.getRowCount(); i++) {
+                            Sequel.menyimpanIgnore("partograf_kala_4",
+                                    "'" + tbPemantauan.getValueAt(i, 0).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 1).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 2).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 3).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 4).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 5).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 6).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 7).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 8).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 9).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 10).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 11).toString() + "'", "Data Pemantauan Persalinan Kala 4");
+                        }
                     }
-                }
-                
-                if (Sequel.menyimpantf("partograf_pemantauan_kala4", "?,?,?,?,?", "Pemantauan Kala 4", 5, new String[]{
-                            TNoRw.getText(), TmasalahKala4.getText(), TpenataKala4.getText(), ThasilKala4.getText(), Sequel.cariIsi("select now()")
-                        }) == true) {
-                    System.out.println("Proses simpan data partograf pemantauan kala 4 berhasil disimpan,...!!");
-                }
 
-                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Partograf Persalinan", "Simpan");
-                TCari.setText(TNoRw.getText());
-                TabPartograf.setSelectedIndex(2);
-                emptTeks();
-                tampil();
+                    if (Sequel.menyimpantf("partograf_pemantauan_kala4", "?,?,?,?,?", "Pemantauan Kala 4", 5, new String[]{
+                        TNoRw.getText(), TmasalahKala4.getText(), TpenataKala4.getText(), ThasilKala4.getText(), Sequel.cariIsi("select now()")
+                    }) == true) {
+                        System.out.println("Proses simpan data partograf pemantauan kala 4 berhasil disimpan,...!!");
+                    }
+
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Partograf Persalinan", "Simpan");
+                    TCari.setText(TNoRw.getText());
+                    TabPartograf.setSelectedIndex(2);
+                    emptTeks();
+                    tampil();
+                }
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -4509,7 +4528,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
-        TabPartograf.setSelectedIndex(0);
+//        TabPartograf.setSelectedIndex(0);
+        TabPartograf.setSelectedIndex(1);
         tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
@@ -6226,114 +6246,115 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 cmbKetuban.getSelectedItem().toString(), jamKetuban,
                 tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString()
             }) == true) {
-                if (tbDjj.getRowCount() != 0) {
-                    Sequel.queryu("delete from partograf_djj where no_rawat='" + TNoRw.getText() + "'");
-                    for (i = 0; i < tbDjj.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_djj",
-                                "'" + tbDjj.getValueAt(i, 0).toString() + "','"
-                                + tbDjj.getValueAt(i, 1).toString() + "','"
-                                + tbDjj.getValueAt(i, 2).toString() + "','"
-                                + tbDjj.getValueAt(i, 3).toString() + "','"
-                                + tbDjj.getValueAt(i, 4).toString() + "'", "Data DJJ");
-                    }
-                }
 
-                if (tbAirKetuban.getRowCount() != 0) {
-                    Sequel.queryu("delete from partograf_air_ketuban where no_rawat='" + TNoRw.getText() + "'");
-                    for (i = 0; i < tbAirKetuban.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_air_ketuban",
-                                "'" + tbAirKetuban.getValueAt(i, 0).toString() + "','"
-                                + tbAirKetuban.getValueAt(i, 1).toString() + "','"
-                                + tbAirKetuban.getValueAt(i, 2).toString() + "','"
-                                + tbAirKetuban.getValueAt(i, 3).toString() + "','"
-                                + tbAirKetuban.getValueAt(i, 4).toString() + "'", "Data Air Ketuban");
-                    }
-                }
-
-                if (tbServik.getRowCount() != 0) {
-                    Sequel.queryu("delete from partograf_pembukaan_serviks where no_rawat='" + TNoRw.getText() + "'");
-                    for (i = 0; i < tbServik.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_pembukaan_serviks",
-                                "'" + tbServik.getValueAt(i, 0).toString() + "','"
-                                + tbServik.getValueAt(i, 1).toString() + "','"
-                                + tbServik.getValueAt(i, 2).toString() + "','"
-                                + tbServik.getValueAt(i, 3).toString() + "','"
-                                + tbServik.getValueAt(i, 4).toString() + "','"
-                                + tbServik.getValueAt(i, 5).toString() + "','"
-                                + tbServik.getValueAt(i, 6).toString() + "','"
-                                + tbServik.getValueAt(i, 7).toString() + "','"
-                                + tbServik.getValueAt(i, 8).toString() + "'", "Data Pembukaan Serviks");
-                    }
-                }
-
-                if (tbKontraksi.getRowCount() != 0) {
-                    Sequel.queryu("delete from partograf_kontraksi where no_rawat='" + TNoRw.getText() + "'");
-                    for (i = 0; i < tbKontraksi.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_kontraksi",
-                                "'" + tbKontraksi.getValueAt(i, 0).toString() + "','"
-                                + tbKontraksi.getValueAt(i, 1).toString() + "','"
-                                + tbKontraksi.getValueAt(i, 2).toString() + "','"
-                                + tbKontraksi.getValueAt(i, 3).toString() + "'", "Data Kontraksi");
-                    }
-                }
-
-                if (tbOksitosin.getRowCount() != 0) {
-                    Sequel.queryu("delete from partograf_oksitosin where no_rawat='" + TNoRw.getText() + "'");
-                    for (i = 0; i < tbOksitosin.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_oksitosin",
-                                "'" + tbOksitosin.getValueAt(i, 0).toString() + "','"
-                                + tbOksitosin.getValueAt(i, 1).toString() + "','"
-                                + tbOksitosin.getValueAt(i, 2).toString() + "','"
-                                + tbOksitosin.getValueAt(i, 3).toString() + "'", "Data Oksitosin");
-                    }
-                }
-
-                if (tbObat.getRowCount() != 0) {
-                    Sequel.queryu("delete from partograf_obat_cairan where no_rawat='" + TNoRw.getText() + "'");
-                    for (i = 0; i < tbObat.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_obat_cairan",
-                                "'" + tbObat.getValueAt(i, 0).toString() + "','"
-                                + tbObat.getValueAt(i, 1).toString() + "','"
-                                + tbObat.getValueAt(i, 2).toString() + "'", "Data Obat & Cairan");
-                    }
-                }
-
-                if (tbNadi.getRowCount() != 0) {
-                    Sequel.queryu("delete from partograf_nadi_tensi where no_rawat='" + TNoRw.getText() + "'");
-                    for (i = 0; i < tbNadi.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_nadi_tensi",
-                                "'" + tbNadi.getValueAt(i, 0).toString() + "','"
-                                + tbNadi.getValueAt(i, 1).toString() + "','"
-                                + tbNadi.getValueAt(i, 2).toString() + "','"
-                                + tbNadi.getValueAt(i, 3).toString() + "','"
-                                + tbNadi.getValueAt(i, 4).toString() + "','"
-                                + tbNadi.getValueAt(i, 5).toString() + "'", "Data Nadi");
-                    }
-                }
-
-                if (tbSuhu.getRowCount() != 0) {
-                    Sequel.queryu("delete from partograf_suhu where no_rawat='" + TNoRw.getText() + "'");
-                    for (i = 0; i < tbSuhu.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_suhu",
-                                "'" + tbSuhu.getValueAt(i, 0).toString() + "','"
-                                + tbSuhu.getValueAt(i, 1).toString() + "','"
-                                + tbSuhu.getValueAt(i, 2).toString() + "','"
-                                + tbSuhu.getValueAt(i, 3).toString() + "'", "Data Suhu");
-                    }
-                }
-
-                if (tbUrin.getRowCount() != 0) {
-                    Sequel.queryu("delete from partograf_urin where no_rawat='" + TNoRw.getText() + "'");
-                    for (i = 0; i < tbUrin.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_urin",
-                                "'" + tbUrin.getValueAt(i, 0).toString() + "','"
-                                + tbUrin.getValueAt(i, 1).toString() + "','"
-                                + tbUrin.getValueAt(i, 2).toString() + "','"
-                                + tbUrin.getValueAt(i, 3).toString() + "','"
-                                + tbUrin.getValueAt(i, 4).toString() + "','"
-                                + tbUrin.getValueAt(i, 5).toString() + "'", "Data Urin");
-                    }
-                }
+//                if (tbDjj.getRowCount() != 0) {
+//                    Sequel.queryu("delete from partograf_djj where no_rawat='" + TNoRw.getText() + "'");
+//                    for (i = 0; i < tbDjj.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_djj",
+//                                "'" + tbDjj.getValueAt(i, 0).toString() + "','"
+//                                + tbDjj.getValueAt(i, 1).toString() + "','"
+//                                + tbDjj.getValueAt(i, 2).toString() + "','"
+//                                + tbDjj.getValueAt(i, 3).toString() + "','"
+//                                + tbDjj.getValueAt(i, 4).toString() + "'", "Data DJJ");
+//                    }
+//                }
+//
+//                if (tbAirKetuban.getRowCount() != 0) {
+//                    Sequel.queryu("delete from partograf_air_ketuban where no_rawat='" + TNoRw.getText() + "'");
+//                    for (i = 0; i < tbAirKetuban.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_air_ketuban",
+//                                "'" + tbAirKetuban.getValueAt(i, 0).toString() + "','"
+//                                + tbAirKetuban.getValueAt(i, 1).toString() + "','"
+//                                + tbAirKetuban.getValueAt(i, 2).toString() + "','"
+//                                + tbAirKetuban.getValueAt(i, 3).toString() + "','"
+//                                + tbAirKetuban.getValueAt(i, 4).toString() + "'", "Data Air Ketuban");
+//                    }
+//                }
+//
+//                if (tbServik.getRowCount() != 0) {
+//                    Sequel.queryu("delete from partograf_pembukaan_serviks where no_rawat='" + TNoRw.getText() + "'");
+//                    for (i = 0; i < tbServik.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_pembukaan_serviks",
+//                                "'" + tbServik.getValueAt(i, 0).toString() + "','"
+//                                + tbServik.getValueAt(i, 1).toString() + "','"
+//                                + tbServik.getValueAt(i, 2).toString() + "','"
+//                                + tbServik.getValueAt(i, 3).toString() + "','"
+//                                + tbServik.getValueAt(i, 4).toString() + "','"
+//                                + tbServik.getValueAt(i, 5).toString() + "','"
+//                                + tbServik.getValueAt(i, 6).toString() + "','"
+//                                + tbServik.getValueAt(i, 7).toString() + "','"
+//                                + tbServik.getValueAt(i, 8).toString() + "'", "Data Pembukaan Serviks");
+//                    }
+//                }
+//
+//                if (tbKontraksi.getRowCount() != 0) {
+//                    Sequel.queryu("delete from partograf_kontraksi where no_rawat='" + TNoRw.getText() + "'");
+//                    for (i = 0; i < tbKontraksi.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_kontraksi",
+//                                "'" + tbKontraksi.getValueAt(i, 0).toString() + "','"
+//                                + tbKontraksi.getValueAt(i, 1).toString() + "','"
+//                                + tbKontraksi.getValueAt(i, 2).toString() + "','"
+//                                + tbKontraksi.getValueAt(i, 3).toString() + "'", "Data Kontraksi");
+//                    }
+//                }
+//
+//                if (tbOksitosin.getRowCount() != 0) {
+//                    Sequel.queryu("delete from partograf_oksitosin where no_rawat='" + TNoRw.getText() + "'");
+//                    for (i = 0; i < tbOksitosin.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_oksitosin",
+//                                "'" + tbOksitosin.getValueAt(i, 0).toString() + "','"
+//                                + tbOksitosin.getValueAt(i, 1).toString() + "','"
+//                                + tbOksitosin.getValueAt(i, 2).toString() + "','"
+//                                + tbOksitosin.getValueAt(i, 3).toString() + "'", "Data Oksitosin");
+//                    }
+//                }
+//
+//                if (tbObat.getRowCount() != 0) {
+//                    Sequel.queryu("delete from partograf_obat_cairan where no_rawat='" + TNoRw.getText() + "'");
+//                    for (i = 0; i < tbObat.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_obat_cairan",
+//                                "'" + tbObat.getValueAt(i, 0).toString() + "','"
+//                                + tbObat.getValueAt(i, 1).toString() + "','"
+//                                + tbObat.getValueAt(i, 2).toString() + "'", "Data Obat & Cairan");
+//                    }
+//                }
+//
+//                if (tbNadi.getRowCount() != 0) {
+//                    Sequel.queryu("delete from partograf_nadi_tensi where no_rawat='" + TNoRw.getText() + "'");
+//                    for (i = 0; i < tbNadi.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_nadi_tensi",
+//                                "'" + tbNadi.getValueAt(i, 0).toString() + "','"
+//                                + tbNadi.getValueAt(i, 1).toString() + "','"
+//                                + tbNadi.getValueAt(i, 2).toString() + "','"
+//                                + tbNadi.getValueAt(i, 3).toString() + "','"
+//                                + tbNadi.getValueAt(i, 4).toString() + "','"
+//                                + tbNadi.getValueAt(i, 5).toString() + "'", "Data Nadi");
+//                    }
+//                }
+//
+//                if (tbSuhu.getRowCount() != 0) {
+//                    Sequel.queryu("delete from partograf_suhu where no_rawat='" + TNoRw.getText() + "'");
+//                    for (i = 0; i < tbSuhu.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_suhu",
+//                                "'" + tbSuhu.getValueAt(i, 0).toString() + "','"
+//                                + tbSuhu.getValueAt(i, 1).toString() + "','"
+//                                + tbSuhu.getValueAt(i, 2).toString() + "','"
+//                                + tbSuhu.getValueAt(i, 3).toString() + "'", "Data Suhu");
+//                    }
+//                }
+//
+//                if (tbUrin.getRowCount() != 0) {
+//                    Sequel.queryu("delete from partograf_urin where no_rawat='" + TNoRw.getText() + "'");
+//                    for (i = 0; i < tbUrin.getRowCount(); i++) {
+//                        Sequel.menyimpanIgnore("partograf_urin",
+//                                "'" + tbUrin.getValueAt(i, 0).toString() + "','"
+//                                + tbUrin.getValueAt(i, 1).toString() + "','"
+//                                + tbUrin.getValueAt(i, 2).toString() + "','"
+//                                + tbUrin.getValueAt(i, 3).toString() + "','"
+//                                + tbUrin.getValueAt(i, 4).toString() + "','"
+//                                + tbUrin.getValueAt(i, 5).toString() + "'", "Data Urin");
+//                    }
+//                }
 
                 cekData();
                 if (cmbPemberianOksi.getSelectedIndex() == 1) {
@@ -6383,40 +6404,39 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                             TbayiYaPemberian.getText(), TbayiTidakAlasan.getText(), TbayiMasalah.getText(), TbayiHasilnya.getText(),
                             tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString()
                         }) == true) {
-                    System.out.println("Proses ganti data partograf catatan persalinan berhasil disimpan,...!!");
-                }
 
-                if (tbPemantauan.getRowCount() != 0) {
-                    Sequel.queryu("delete from partograf_kala_4 where no_rawat='" + TNoRw.getText() + "'");
-                    for (i = 0; i < tbPemantauan.getRowCount(); i++) {
-                        Sequel.menyimpanIgnore("partograf_kala_4",
-                                "'" + tbPemantauan.getValueAt(i, 0).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 1).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 2).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 3).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 4).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 5).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 6).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 7).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 8).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 9).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 10).toString() + "','"
-                                + tbPemantauan.getValueAt(i, 11).toString() + "'", "Data Pemantauan Persalinan Kala 4");
+                    if (tbPemantauan.getRowCount() != 0) {
+                        Sequel.queryu("delete from partograf_kala_4 where no_rawat='" + TNoRw.getText() + "'");
+                        for (i = 0; i < tbPemantauan.getRowCount(); i++) {
+                            Sequel.menyimpanIgnore("partograf_kala_4",
+                                    "'" + tbPemantauan.getValueAt(i, 0).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 1).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 2).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 3).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 4).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 5).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 6).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 7).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 8).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 9).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 10).toString() + "','"
+                                    + tbPemantauan.getValueAt(i, 11).toString() + "'", "Data Pemantauan Persalinan Kala 4");
+                        }
                     }
-                }
 
-                if (Sequel.mengedittf("partograf_pemantauan_kala4", "no_rawat=?", "masalah=?, penatalaksanaan=?, hasilnya=?", 4, new String[]{
-                    TmasalahKala4.getText(), TpenataKala4.getText(), ThasilKala4.getText(),
-                    tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString()
-                }) == true) {
-                    System.out.println("Proses ganti data partograf pemantauan kala 4 berhasil disimpan,...!!");
-                }
+                    if (Sequel.mengedittf("partograf_pemantauan_kala4", "no_rawat=?", "masalah=?, penatalaksanaan=?, hasilnya=?", 4, new String[]{
+                        TmasalahKala4.getText(), TpenataKala4.getText(), ThasilKala4.getText(),
+                        tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString()
+                    }) == true) {
+                        System.out.println("Proses ganti data partograf pemantauan kala 4 berhasil disimpan,...!!");
+                    }
 
-                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Partograf Persalinan", "Ganti");
-                TCari.setText(TNoRw.getText());
-                TabPartograf.setSelectedIndex(2);
-                tampil();
-                emptTeks();
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Partograf Persalinan", "Ganti");
+                    TCari.setText(TNoRw.getText());
+                    TabPartograf.setSelectedIndex(2);
+                    tampil();
+                    emptTeks();
+                }
             }
         }
     }//GEN-LAST:event_BtnGantiActionPerformed
@@ -6756,6 +6776,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.Label jLabel17;
     private widget.Label jLabel18;
     private widget.Label jLabel19;
+    private widget.Label jLabel20;
     private widget.Label jLabel21;
     private widget.Label jLabel22;
     private widget.Label jLabel23;
@@ -7336,9 +7357,12 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         BtnSimpan1.setEnabled(akses.getcppt());
         BtnGanti1.setEnabled(akses.getcppt());
         BtnHapus1.setEnabled(akses.getcppt());
+        
+        BtnCetak.setEnabled(akses.getadmin());
+        BtnCetak1.setEnabled(akses.getadmin());
+        BtnCetak2.setEnabled(akses.getadmin());
 
         if (akses.getjml2() >= 1) {
-//            BtnBidan.setEnabled(false);
             nipBidan = akses.getkode();
             Sequel.cariIsi("select nama from pegawai where nik=?", TnmBidan, nipBidan);
             if (TnmBidan.getText().equals("")) {
@@ -7355,6 +7379,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TCari.setText(norwt);
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
         DTPCari2.setDate(new Date());
+        TabPartograf.setSelectedIndex(1);
     }
 
     private void urutkanDataPemantauanKala4() {

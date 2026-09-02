@@ -45,6 +45,7 @@ import rekammedis.RMCeklisKeselamatanOperasi;
 import rekammedis.RMCeklisKesiapanAnestesi;
 import rekammedis.RMCeklisPraOperasi;
 import rekammedis.RMEvaluasiPraAnestesi;
+import rekammedis.RMFormulirSiteMarkingOdontogram;
 import rekammedis.RMFormulirSiteMarkingOperasi;
 import rekammedis.RMGeneralConsent;
 import rekammedis.RMInformasiTindakanPembiusan;
@@ -236,6 +237,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnInstruksiDokterDNR = new widget.ButtonBig();
         BtnScoreApgarPerinatologiLuar = new widget.ButtonBig();
         BtnAsesmenPasienTerminal = new widget.ButtonBig();
+        BtnFormulirSiteMarkingOdon = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1488,6 +1490,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnAsesmenPasienTerminal);
+
+        BtnFormulirSiteMarkingOdon.setForeground(new java.awt.Color(0, 0, 0));
+        BtnFormulirSiteMarkingOdon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/sign-up.png"))); // NOI18N
+        BtnFormulirSiteMarkingOdon.setText("<html><div style=\"text-align: center;\">Formulir Site Marking<br>Odontogram</div></html>");
+        BtnFormulirSiteMarkingOdon.setIconTextGap(0);
+        BtnFormulirSiteMarkingOdon.setName("BtnFormulirSiteMarkingOdon"); // NOI18N
+        BtnFormulirSiteMarkingOdon.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnFormulirSiteMarkingOdon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFormulirSiteMarkingOdonActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnFormulirSiteMarkingOdon);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -2983,6 +2998,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenPasienTerminalActionPerformed
 
+    private void BtnFormulirSiteMarkingOdonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFormulirSiteMarkingOdonActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMFormulirSiteMarkingOdontogram form = new RMFormulirSiteMarkingOdontogram(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnFormulirSiteMarkingOdon.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnFormulirSiteMarkingOdonActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -2996,6 +3027,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnDataCancer;
     private widget.ButtonBig BtnEvaluasiPraAnestesi;
     private widget.ButtonBig BtnFormulirSiteMarking;
+    private widget.ButtonBig BtnFormulirSiteMarkingOdon;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
     private widget.ButtonBig BtnInstruksiDokterDNR;
     private widget.ButtonBig BtnLaporanOperasi;
@@ -3174,6 +3206,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         
         if (akses.getkegiatan_operasi() && BtnFormulirSiteMarking.getText().toLowerCase().trim().contains(cari)) {
             FormMenu.add(BtnFormulirSiteMarking);
+            jmlmenu++;
+        }
+        
+        if (akses.getkegiatan_operasi() && BtnFormulirSiteMarkingOdon.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnFormulirSiteMarkingOdon);
             jmlmenu++;
         }
         
@@ -3683,6 +3720,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         if (akses.getkegiatan_operasi() == true) {
             FormMenu.add(BtnFormulirSiteMarking);
+            jmlmenu++;
+        }
+        
+        if (akses.getkegiatan_operasi() == true) {
+            FormMenu.add(BtnFormulirSiteMarkingOdon);
             jmlmenu++;
         }
 

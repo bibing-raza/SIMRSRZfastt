@@ -299,6 +299,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnEvaluasiPraAnestesi = new widget.ButtonBig();
         BtnCeklisPraOperasi = new widget.ButtonBig();
         BtnFormulirSiteMarking = new widget.ButtonBig();
+        BtnFormulirSiteMarkingOdon = new widget.ButtonBig();
         BtnCeklisKesiapanAnestesi = new widget.ButtonBig();
         BtnAsesmenPraSedasiKonsepIAR = new widget.ButtonBig();
         BtnAsesmenPreInduksi = new widget.ButtonBig();
@@ -1545,6 +1546,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormIBS.add(BtnFormulirSiteMarking);
+
+        BtnFormulirSiteMarkingOdon.setForeground(new java.awt.Color(0, 0, 0));
+        BtnFormulirSiteMarkingOdon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/sign-up.png"))); // NOI18N
+        BtnFormulirSiteMarkingOdon.setText("<html><div style=\"text-align: center;\">Formulir Site Marking<br>Odontogram</div></html>");
+        BtnFormulirSiteMarkingOdon.setIconTextGap(0);
+        BtnFormulirSiteMarkingOdon.setName("BtnFormulirSiteMarkingOdon"); // NOI18N
+        BtnFormulirSiteMarkingOdon.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnFormulirSiteMarkingOdon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFormulirSiteMarkingOdonActionPerformed(evt);
+            }
+        });
+        FormIBS.add(BtnFormulirSiteMarkingOdon);
 
         BtnCeklisKesiapanAnestesi.setForeground(new java.awt.Color(0, 0, 0));
         BtnCeklisKesiapanAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/checklist.png"))); // NOI18N
@@ -3254,6 +3268,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenPasienTerminalActionPerformed
 
+    private void BtnFormulirSiteMarkingOdonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFormulirSiteMarkingOdonActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMFormulirSiteMarkingOdontogram form = new RMFormulirSiteMarkingOdontogram(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnFormulirSiteMarkingOdonActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3300,6 +3331,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnDokumenJangMed;
     private widget.ButtonBig BtnEvaluasiPraAnestesi;
     private widget.ButtonBig BtnFormulirSiteMarking;
+    private widget.ButtonBig BtnFormulirSiteMarkingOdon;
     private widget.ButtonBig BtnGeneralConsent;
     private widget.ButtonBig BtnGrafikPantauHarian;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
@@ -3459,6 +3491,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnLaporanOperasi.setEnabled(akses.getcppt());
         BtnCatatanRuangPemulihan.setEnabled(akses.getcppt());
         BtnFormulirSiteMarking.setEnabled(akses.getcppt());
+        BtnFormulirSiteMarkingOdon.setEnabled(akses.getcppt());
         BtnSerahTerimaPasca.setEnabled(akses.getcppt());
         BtnInformasiTindakanPembiusan.setEnabled(akses.getcppt());
         BtnEvaluasiPraAnestesi.setEnabled(akses.getcppt());
@@ -4389,7 +4422,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 + "    UNION ALL SELECT 12, 'catatan_ruang_pemulihan', 'Catatan Ruang Pemulihan' "
                 + "    UNION ALL SELECT 13, 'serah_terima_pasien_pasca_operasi', 'Serah Terima Pasca Operasi' "
                 + "    UNION ALL SELECT 14, 'informasi_tindakan_pembiusan_operasi', 'Informasi Tindakan Pembiusan' "
-                + "    UNION ALL SELECT 15, 'asesmen_pra_sedasi', 'Asesmen Pra Sedasi') AS t";
+                + "    UNION ALL SELECT 15, 'asesmen_pra_sedasi', 'Asesmen Pra Sedasi' "
+                + "    UNION ALL SELECT 16, 'formulir_site_marking_operasi_odontogram', 'Formulir Site Marking Odontogram') AS t";
 
         if (TNoRW.getText().isEmpty()) {
             return;

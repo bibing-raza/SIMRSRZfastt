@@ -3090,27 +3090,10 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (tbRekon.getSelectedRow() > -1) {
-            if (!htmlCetakRekonsiliasi.equals("")) {
-                bukaCetakBrowser(htmlCetakRekonsiliasi);
-            } else {
-                JOptionPane.showMessageDialog(null, "Data cetak belum tersedia.");
-            }
-            
-            emptTeksRiwayat();
-            tampilRekonRiwayat(TNoRw1.getText());
-            
-            emptTeksRiwayatIGD();
-            tampilRekonIGD(TNoRw1.getText());
-            
-            tampilRiwObatIGD();
-            emptTeksRiwayatRanap();
-            
-            tampilRekonRanap(TNoRw1.getText());
-            tampilRiwObatRanap();
-            
-            emptTeks();
-            tampil();            
-            return;            
+            previewData();
+        } else if (!akses.getPasteData().equals("")) {
+            tampilCetak(akses.getPasteData());
+            previewData();
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan pilih/klik dulu salah satu datanya pada tabel..!!!");
             tbRekon.requestFocus();
@@ -3615,6 +3598,8 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private void getData() {
         nipPereview = ""; 
         nipApoteker = "";
+        akses.setCopyData("");
+        
         if (tbRekon.getSelectedRow() != -1) {
             TNoRw1.setText(tbRekon.getValueAt(tbRekon.getSelectedRow(), 0).toString());
             TNoRM1.setText(tbRekon.getValueAt(tbRekon.getSelectedRow(), 1).toString());
@@ -3637,6 +3622,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             nipApoteker = tbRekon.getValueAt(tbRekon.getSelectedRow(), 17).toString();
             Valid.SetTgl(TtglRekon, tbRekon.getValueAt(tbRekon.getSelectedRow(), 18).toString());
             TcatatanRiwayat.setText(tbRekon.getValueAt(tbRekon.getSelectedRow(), 20).toString());
+            akses.setCopyData(tbRekon.getValueAt(tbRekon.getSelectedRow(), 19).toString());
             tampilCetak(tbRekon.getValueAt(tbRekon.getSelectedRow(), 19).toString());
             
             if (cmbRiwAlergi.getSelectedIndex() == 2) {
@@ -4915,5 +4901,29 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             System.out.println("Notifikasi buka cetak browser : " + e);
             JOptionPane.showMessageDialog(null, "Gagal membuka halaman cetak :\n" + e.getMessage());
         }
+    }
+    
+    private void previewData() {
+        if (!htmlCetakRekonsiliasi.equals("")) {
+            bukaCetakBrowser(htmlCetakRekonsiliasi);
+        } else {
+            JOptionPane.showMessageDialog(null, "Data cetak belum tersedia.");
+        }
+
+        emptTeksRiwayat();
+        tampilRekonRiwayat(TNoRw1.getText());
+
+        emptTeksRiwayatIGD();
+        tampilRekonIGD(TNoRw1.getText());
+
+        tampilRiwObatIGD();
+        emptTeksRiwayatRanap();
+
+        tampilRekonRanap(TNoRw1.getText());
+        tampilRiwObatRanap();
+
+        emptTeks();
+        tampil();
+        return;
     }
 }

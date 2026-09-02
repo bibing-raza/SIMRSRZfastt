@@ -1175,13 +1175,13 @@ public final class sekuel {
                 rmigd12 = 0, rmigd13 = 0, rmigd14 = 0, rmigd15 = 0, rmigd16 = 0, rmigd17 = 0, rmigd18 = 0, rmigd19 = 0, rmigd20 = 0, rmigd21 = 0,
                 rmigd22 = 0, rmigd23 = 0, rmigd24 = 0, rmigd25 = 0, rmigd26 = 0, rmigd27 = 0, rmigd28 = 0, rmigd29 = 0, rmigd30 = 0, rmigd31 = 0,
                 rmigd32 = 0, rmigd33 = 0, rmigd34 = 0, rmigd35 = 0, rmigd36 = 0, rmigd37 = 0, rmigd38 = 0, rmigd39 = 0, rmigd40 = 0, rmigd41 = 0,
-                rmigd42 = 0, rmigd43 = 0, rmigd44 = 0, rmigd45 = 0, rmigd46 = 0, rmigd47 = 0, rmigd48 = 0;
+                rmigd42 = 0, rmigd43 = 0, rmigd44 = 0, rmigd45 = 0, rmigd46 = 0, rmigd47 = 0, rmigd48 = 0, rmigd49 = 0;
 
         String tbl1 = "", tbl2 = "", tbl3 = "", tbl4 = "", tbl5 = "", tbl6 = "", tbl7 = "", tbl8 = "", tbl9 = "", tbl10 = "", tbl11 = "", tbl12 = "",
                 tbl13 = "", tbl14 = "", tbl15 = "", tbl16 = "", tbl17 = "", tbl18 = "", tbl19 = "", tbl20 = "", tbl21 = "", tbl22 = "", tbl23 = "",
                 tbl24 = "", tbl25 = "", tbl26 = "", tbl27 = "", tbl28 = "", tbl29 = "", tbl30 = "", tbl31 = "", tbl32 = "", tbl33 = "", tbl34 = "",
                 tbl35 = "", tbl36 = "", tbl37 = "", tbl38 = "", tbl39 = "", tbl40 = "", tbl41 = "", tbl42 = "", tbl43 = "", tbl44 = "", tbl45 = "",
-                tbl46 = "", tbl47 = "", tbl48 = "";
+                tbl46 = "", tbl47 = "", tbl48 = "", tbl49 = "";
         
         rmigd1 = cariInteger("select count(-1) from triase_igd where no_rawat='" + norawat + "'");
         rmigd2 = cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + norawat + "'");
@@ -1231,6 +1231,7 @@ public final class sekuel {
         rmigd46 = cariInteger("select count(-1) from surat_pernyataan_dnr where no_rawat='" + norawat + "'");
         rmigd47 = cariInteger("select count(-1) from instruksi_dokter_untuk_dnr where no_rawat='" + norawat + "'");
         rmigd48 = cariInteger("select count(-1) from skor_apgar_downe_cap_jari_perinatologi where no_rawat='" + norawat + "'");
+        rmigd49 = cariInteger("select count(-1) from formulir_site_marking_operasi_odontogram where no_rawat='" + norawat + "'");
 
         if (rmigd1 > 0) {
             tbl1 = "triase_igd\n";
@@ -1519,17 +1520,23 @@ public final class sekuel {
         } else {
             tbl48 = "";
         }
+        
+        if (rmigd49 > 0) {
+            tbl49 = "formulir_site_marking_operasi_odontogram\n";
+        } else {
+            tbl49 = "";
+        }
 
         angka = rmigd1 + rmigd2 + rmigd3 + rmigd4 + rmigd5 + rmigd6 + rmigd7 + rmigd8 + rmigd9 + rmigd10 + rmigd11 + rmigd12 + rmigd13 + rmigd14 + rmigd15
                 + rmigd16 + rmigd17 + rmigd18 + rmigd19 + rmigd20 + rmigd21 + rmigd22 + rmigd23 + rmigd24 + rmigd25 + rmigd26 + rmigd27 + rmigd28 + rmigd29
                 + rmigd30 + rmigd31 + rmigd32 + rmigd33 + rmigd34 + rmigd35 + rmigd36 + rmigd37 + rmigd38 + rmigd39 + rmigd40 + rmigd41 + rmigd42 + rmigd43
-                + rmigd44 + rmigd45 + rmigd46 + rmigd47 + rmigd48;
+                + rmigd44 + rmigd45 + rmigd46 + rmigd47 + rmigd48 + rmigd49;
 
         if (angka > 0) {
             System.out.println("\nPesan  : no. rawat " + norawat + " utk. data e-RM nya masih ada tersimpan ditabel berikut ini :\n"
                     + tbl1 + tbl2 + tbl3 + tbl4 + tbl5 + tbl6 + tbl7 + tbl8 + tbl9 + tbl10 + tbl11 + tbl12 + tbl13 + tbl14 + tbl15 + tbl16 + tbl17 + tbl18
                     + tbl19 + tbl20 + tbl21 + tbl22 + tbl23 + tbl24 + tbl25 + tbl26 + tbl27 + tbl28 + tbl29 + tbl30 + tbl31 + tbl32 + tbl33 + tbl34 + tbl35
-                    + tbl36 + tbl37 + tbl38 + tbl39 + tbl40 + tbl41 + tbl42 + tbl43 + tbl44 + tbl45 + tbl46 + tbl47 + tbl48
+                    + tbl36 + tbl37 + tbl38 + tbl39 + tbl40 + tbl41 + tbl42 + tbl43 + tbl44 + tbl45 + tbl46 + tbl47 + tbl48 + tbl49
             );
         }
         
@@ -1546,7 +1553,7 @@ public final class sekuel {
                 rm66 = 0, rm67 = 0, rm68 = 0, rm69 = 0, rm70 = 0, rm71 = 0, rm72 = 0, rm73 = 0, rm74 = 0, rm75 = 0, rm76 = 0, rm77 = 0, rm78 = 0, 
                 rm79 = 0, rm80 = 0, rm81 = 0, rm82 = 0, rm83 = 0, rm84 = 0, rm85 = 0, rm86 = 0, rm87 = 0, rm88 = 0, rm89 = 0, rm90 = 0, rm91 = 0,
                 rm92 = 0, rm93 = 0, rm94 = 0, rm95 = 0, rm96 = 0, rm97 = 0, rm98 = 0, rm99 = 0, rm100 = 0, rm101 = 0, rm102 = 0, rm103 = 0, rm104 = 0,
-                rm105 = 0, rm106 = 0, rm107 = 0, rm108 = 0;
+                rm105 = 0, rm106 = 0, rm107 = 0, rm108 = 0, rm109 = 0;
 
         String tbl1 = "", tbl2 = "", tbl3 = "", tbl4 = "", tbl5 = "", tbl6 = "", tbl7 = "", tbl8 = "", tbl9 = "", tbl10 = "", tbl11 = "", tbl12 = "",
                 tbl13 = "", tbl14 = "", tbl15 = "", tbl16 = "", tbl17 = "", tbl18 = "", tbl19 = "", tbl20 = "", tbl21 = "", tbl22 = "", tbl23 = "",
@@ -1557,7 +1564,7 @@ public final class sekuel {
                 tbl68 = "", tbl69 = "", tbl70 = "", tbl71 = "", tbl72 = "", tbl73 = "", tbl74 = "", tbl75 = "", tbl76 = "", tbl77 = "", tbl78 = "",
                 tbl79 = "", tbl80 = "", tbl81 = "", tbl82 = "", tbl83 = "", tbl84 = "", tbl85 = "", tbl86 = "", tbl87 = "", tbl88 = "", tbl89 = "",
                 tbl90 = "", tbl91 = "", tbl92 = "", tbl93 = "", tbl94 = "", tbl95 = "", tbl96 = "", tbl97 = "", tbl98 = "", tbl99 = "", tbl100 = "",
-                tbl101 = "", tbl102 = "", tbl103 = "", tbl104 = "", tbl105 = "", tbl106 = "", tbl107 = "", tbl108 = "";
+                tbl101 = "", tbl102 = "", tbl103 = "", tbl104 = "", tbl105 = "", tbl106 = "", tbl107 = "", tbl108 = "", tbl109 = "";
 
         rm1 = cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
         rm2 = cariInteger("select count(-1) from evaluasi_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
@@ -1667,6 +1674,7 @@ public final class sekuel {
         rm106 = cariInteger("select count(-1) from surat_pernyataan_dnr where no_rawat='" + norawat + "'");
         rm107 = cariInteger("select count(-1) from instruksi_dokter_untuk_dnr where no_rawat='" + norawat + "'");
         rm108 = cariInteger("select count(-1) from asesmen_pasien_terminal where no_rawat='" + norawat + "'");
+        rm109 = cariInteger("select count(-1) from formulir_site_marking_operasi_odontogram where no_rawat='" + norawat + "'");
         
         if (rm1 > 0) {
             tbl1 = "catatan_tindakan_keperawatan\n";
@@ -2315,13 +2323,19 @@ public final class sekuel {
         } else {
             tbl108 = "";
         }
+        
+        if (rm109 > 0) {
+            tbl109 = "formulir_site_marking_operasi_odontogram\n";
+        } else {
+            tbl109 = "";
+        }
 
         angka = rm1 + rm2 + rm3 + rm4 + rm5 + rm6 + rm7 + rm8 + rm9 + rm10 + rm11 + rm12 + rm13 + rm14 + rm15 + rm16 + rm17 + rm18 + rm19
                 + rm20 + rm21 + rm22 + rm23 + rm24 + rm25 + rm26 + rm27 + rm28 + rm29 + rm30 + rm31 + rm32 + rm33 + rm34 + rm35 + rm36 + rm37
                 + rm38 + rm39 + rm40 + rm41 + rm42 + rm43 + rm44 + rm45 + rm46 + rm47 + rm48 + rm49 + rm50 + rm51 + rm52 + rm53 + rm54 + rm55 + rm56
                 + rm57 + rm58 + rm59 + rm60 + rm61 + rm62 + rm63 + rm64 + rm65 + rm66 + rm67 + rm68 + rm69 + rm70 + rm71 + rm72 + rm73 + rm74
                 + rm75 + rm76 + rm77 + rm78 + rm79 + rm80 + rm81 + rm82 + rm83 + rm84 + rm85 + rm86 + rm87 + rm88 + rm89 + rm90 + rm91 + rm92
-                + rm93 + rm94 + rm95 + rm96 + rm97 + rm98 + rm99 + rm100 + rm101 + rm102 + rm103 + rm104 + rm105 + rm106 + rm107 + rm108;
+                + rm93 + rm94 + rm95 + rm96 + rm97 + rm98 + rm99 + rm100 + rm101 + rm102 + rm103 + rm104 + rm105 + rm106 + rm107 + rm108 + rm109;
 
         if (angka > 0) {
             System.out.println("\nPesan  : no. rawat " + norawat + " utk. data e-RM nya masih ada tersimpan ditabel berikut ini :\n"
@@ -2331,7 +2345,7 @@ public final class sekuel {
                     + tbl53 + tbl54 + tbl55 + tbl56 + tbl57 + tbl58 + tbl59 + tbl60 + tbl61 + tbl62 + tbl63 + tbl64 + tbl65 + tbl66 + tbl67 + tbl68 + tbl69
                     + tbl70 + tbl71 + tbl72 + tbl73 + tbl74 + tbl75 + tbl76 + tbl77 + tbl78 + tbl79 + tbl80 + tbl81 + tbl82 + tbl83 + tbl84 + tbl85 + tbl86
                     + tbl87 + tbl88 + tbl89 + tbl90 + tbl91 + tbl92 + tbl93 + tbl94 + tbl95 + tbl96 + tbl97 + tbl98 + tbl99 + tbl100 + tbl101 + tbl102 
-                    + tbl103 + tbl104 + tbl105 + tbl106 + tbl107 + tbl108
+                    + tbl103 + tbl104 + tbl105 + tbl106 + tbl107 + tbl108 + tbl109
             );
         }
 
