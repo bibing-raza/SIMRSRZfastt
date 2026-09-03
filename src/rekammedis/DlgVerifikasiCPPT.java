@@ -904,7 +904,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         dataKonfirmasi = "";
         Valid.tabelKosong(tabMode);
         try {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("vk bersalin")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("vk bersalin") || status.equals("ralan")) {
                 ps = koneksi.prepareStatement("SELECT c.verifikasi, DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tgl, if(c.cek_jam='ya',TIME_FORMAT(c.jam_cppt,'%H:%i'),'-') jam, "
                         + "c.jenis_bagian, pg1.nama nmdpjp, c.jenis_ppa, pg2.nama nmppa, c.cppt_shift, c.hasil_pemeriksaan, "
                         + "c.instruksi_nakes, c.waktu_simpan, c.no_rawat, c.tgl_cppt, c.jam_cppt, c.nip_dpjp, if(c.status='Ralan',pl.nm_poli,b.nm_gedung) ruangRwt from cppt c "

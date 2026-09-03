@@ -48,6 +48,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import rekammedis.RMLaporanOperasi;
 
 /**
  *
@@ -844,6 +845,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         Popup1 = new javax.swing.JPopupMenu();
         ppDiagnosa = new javax.swing.JMenuItem();
+        ppLaporanOperasi = new javax.swing.JMenuItem();
         Popup2 = new javax.swing.JPopupMenu();
         ppHapusDelivery = new javax.swing.JMenuItem();
         tglDiagnosa = new widget.Tanggal();
@@ -1301,6 +1303,22 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         });
         Popup1.add(ppDiagnosa);
 
+        ppLaporanOperasi.setBackground(new java.awt.Color(242, 242, 242));
+        ppLaporanOperasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppLaporanOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppLaporanOperasi.setText("Laporan Operasi");
+        ppLaporanOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppLaporanOperasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppLaporanOperasi.setIconTextGap(8);
+        ppLaporanOperasi.setName("ppLaporanOperasi"); // NOI18N
+        ppLaporanOperasi.setPreferredSize(new java.awt.Dimension(160, 25));
+        ppLaporanOperasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppLaporanOperasiBtnPrintActionPerformed(evt);
+            }
+        });
+        Popup1.add(ppLaporanOperasi);
+
         Popup2.setName("Popup2"); // NOI18N
 
         ppHapusDelivery.setBackground(new java.awt.Color(242, 242, 242));
@@ -1320,7 +1338,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         Popup2.add(ppHapusDelivery);
 
         tglDiagnosa.setEditable(false);
-        tglDiagnosa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026" }));
+        tglDiagnosa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2026" }));
         tglDiagnosa.setDisplayFormat("dd-MM-yyyy");
         tglDiagnosa.setName("tglDiagnosa"); // NOI18N
         tglDiagnosa.setOpaque(false);
@@ -1385,6 +1403,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnFinal.setForeground(new java.awt.Color(0, 0, 0));
         BtnFinal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Export.png"))); // NOI18N
+        BtnFinal.setMnemonic('F');
         BtnFinal.setText("Final Klaim");
         BtnFinal.setToolTipText("Alt+F");
         BtnFinal.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -1399,6 +1418,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnKirimOnline.setForeground(new java.awt.Color(0, 0, 0));
         BtnKirimOnline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnKirimOnline.setMnemonic('K');
         BtnKirimOnline.setText("Kirim Klaim Online");
         BtnKirimOnline.setToolTipText("Alt+K");
         BtnKirimOnline.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -1426,6 +1446,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnEditKlaim.setForeground(new java.awt.Color(0, 0, 0));
         BtnEditKlaim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-edit24.png"))); // NOI18N
+        BtnEditKlaim.setMnemonic('E');
         BtnEditKlaim.setText("Edit Ulang Klaim");
         BtnEditKlaim.setToolTipText("Alt+E");
         BtnEditKlaim.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -1440,6 +1461,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnHapusKlaim.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusKlaim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-remove24.png"))); // NOI18N
+        BtnHapusKlaim.setMnemonic('H');
         BtnHapusKlaim.setText("Hapus Klaim");
         BtnHapusKlaim.setToolTipText("Alt+H");
         BtnHapusKlaim.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -2195,7 +2217,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput.add(labelHRlm5);
         labelHRlm5.setBounds(735, 193, 80, 23);
 
-        tglIntubasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026 13:24:33" }));
+        tglIntubasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2026 09:00:02" }));
         tglIntubasi.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tglIntubasi.setName("tglIntubasi"); // NOI18N
         tglIntubasi.setOpaque(false);
@@ -2209,7 +2231,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput.add(labelHRlm6);
         labelHRlm6.setBounds(960, 193, 65, 23);
 
-        tglEkstubasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026 13:24:34" }));
+        tglEkstubasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2026 09:00:02" }));
         tglEkstubasi.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tglEkstubasi.setName("tglEkstubasi"); // NOI18N
         tglEkstubasi.setOpaque(false);
@@ -2786,7 +2808,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput4.add(labelHRlm22);
         labelHRlm22.setBounds(290, 8, 140, 23);
 
-        wktkelahiran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026 13:24:34" }));
+        wktkelahiran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2026 09:00:02" }));
         wktkelahiran.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         wktkelahiran.setName("wktkelahiran"); // NOI18N
         wktkelahiran.setOpaque(false);
@@ -2868,6 +2890,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnBaru.setForeground(new java.awt.Color(0, 0, 0));
         BtnBaru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaru.setMnemonic('B');
         BtnBaru.setText("Baru");
         BtnBaru.setToolTipText("Alt+B");
         BtnBaru.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -2883,6 +2906,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnTambah.setMnemonic('T');
         BtnTambah.setText("Tambahkan Data");
         BtnTambah.setToolTipText("Alt+T");
         BtnTambah.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -3366,6 +3390,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnGruper2.setForeground(new java.awt.Color(0, 0, 0));
         BtnGruper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/SeratusRibu.png"))); // NOI18N
+        BtnGruper2.setMnemonic('G');
         BtnGruper2.setText("Simpan & Grouper");
         BtnGruper2.setToolTipText("Alt+G");
         BtnGruper2.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -3653,6 +3678,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnGruperStage1.setForeground(new java.awt.Color(0, 0, 0));
         BtnGruperStage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/SeratusRibu.png"))); // NOI18N
+        BtnGruperStage1.setMnemonic('G');
         BtnGruperStage1.setText("Grouper Stage 2");
         BtnGruperStage1.setToolTipText("Alt+G");
         BtnGruperStage1.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -3668,6 +3694,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnRefres1.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        BtnRefres1.setMnemonic('R');
         BtnRefres1.setText("Refresh Diagn. & Pros.");
         BtnRefres1.setToolTipText("Alt+R");
         BtnRefres1.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -3812,6 +3839,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnAddEpisod.setForeground(new java.awt.Color(0, 0, 0));
         BtnAddEpisod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnAddEpisod.setMnemonic('S');
         BtnAddEpisod.setToolTipText("Alt+S");
         BtnAddEpisod.setGlassColor(new java.awt.Color(0, 153, 153));
         BtnAddEpisod.setName("BtnAddEpisod"); // NOI18N
@@ -3831,6 +3859,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnDelEpisod.setForeground(new java.awt.Color(0, 0, 0));
         BtnDelEpisod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnDelEpisod.setMnemonic('H');
         BtnDelEpisod.setToolTipText("Alt+H");
         BtnDelEpisod.setGlassColor(new java.awt.Color(0, 153, 153));
         BtnDelEpisod.setName("BtnDelEpisod"); // NOI18N
@@ -4196,6 +4225,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnAddUnggah.setForeground(new java.awt.Color(0, 0, 0));
         BtnAddUnggah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAddUnggah.setMnemonic('F');
         BtnAddUnggah.setText("Cari File");
         BtnAddUnggah.setToolTipText("Alt+F");
         BtnAddUnggah.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -4212,6 +4242,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnDelUnggah.setForeground(new java.awt.Color(0, 0, 0));
         BtnDelUnggah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnDelUnggah.setMnemonic('Y');
         BtnDelUnggah.setText("Hapus Filenya");
         BtnDelUnggah.setToolTipText("Alt+Y");
         BtnDelUnggah.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -4228,6 +4259,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnUploadFile.setForeground(new java.awt.Color(0, 0, 0));
         BtnUploadFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/upload24.png"))); // NOI18N
+        BtnUploadFile.setMnemonic('U');
         BtnUploadFile.setText("Upload File");
         BtnUploadFile.setToolTipText("Alt+U");
         BtnUploadFile.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -4454,6 +4486,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnDelUnggahPilihan.setForeground(new java.awt.Color(0, 0, 0));
         BtnDelUnggahPilihan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnDelUnggahPilihan.setMnemonic('H');
         BtnDelUnggahPilihan.setText("Hapus File");
         BtnDelUnggahPilihan.setToolTipText("Alt+H");
         BtnDelUnggahPilihan.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -4470,6 +4503,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnUnggahDipilih.setForeground(new java.awt.Color(0, 0, 0));
         BtnUnggahDipilih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnUnggahDipilih.setMnemonic('D');
         BtnUnggahDipilih.setText("File Dipilih");
         BtnUnggahDipilih.setToolTipText("Alt+D");
         BtnUnggahDipilih.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -4658,7 +4692,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput2.add(labeljam3);
         labeljam3.setBounds(475, 193, 60, 23);
 
-        tglIntubasi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026 13:24:34" }));
+        tglIntubasi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2026 09:00:02" }));
         tglIntubasi1.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tglIntubasi1.setName("tglIntubasi1"); // NOI18N
         tglIntubasi1.setOpaque(false);
@@ -4672,7 +4706,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput2.add(labeljam4);
         labeljam4.setBounds(475, 221, 60, 23);
 
-        tglEkstubasi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026 13:24:34" }));
+        tglEkstubasi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2026 09:00:02" }));
         tglEkstubasi1.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tglEkstubasi1.setName("tglEkstubasi1"); // NOI18N
         tglEkstubasi1.setOpaque(false);
@@ -6062,6 +6096,26 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnGruperStageIdrgActionPerformed
 
+    private void ppLaporanOperasiBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppLaporanOperasiBtnPrintActionPerformed
+        String unit = "";
+        if (labelrwt.getText().equals("INAP")) {
+            unit = Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + norawat + "' "
+                    + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
+        } else {
+            unit = Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl.kd_poli=rp.kd_poli where rp.no_rawat='" + norawat + "'");
+        }
+        
+        akses.setform("PengajuanKlaimINACBGraza");
+        RMLaporanOperasi form = new RMLaporanOperasi(null, false);
+        form.emptTeks();
+        form.isCek();
+        form.setData(norawat, norm.getText(), nmPasien.getText(), unit);
+        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setVisible(true);
+    }//GEN-LAST:event_ppLaporanOperasiBtnPrintActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6461,6 +6515,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private widget.Label pnb7;
     private javax.swing.JMenuItem ppDiagnosa;
     private javax.swing.JMenuItem ppHapusDelivery;
+    private javax.swing.JMenuItem ppLaporanOperasi;
     private widget.Label pros_inadrg1;
     private widget.Label pros_inadrg2;
     private widget.Label rad;
