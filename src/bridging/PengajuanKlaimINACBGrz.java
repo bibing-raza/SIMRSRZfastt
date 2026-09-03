@@ -6103,7 +6103,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + norawat + "' "
                     + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
         } else {
-            unit = Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl.kd_poli=rp.kd_poli where rp.no_rawat='" + norawat + "'");
+            unit = Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + norawat + "'");
         }
         
         akses.setform("PengajuanKlaimINACBGraza");
