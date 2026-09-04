@@ -1793,7 +1793,7 @@ public class RMAsesmenUlangResikoJatuhAnak extends javax.swing.JDialog {
         if (skor >= 7 && skor <= 11) {
             Tkategori.setText("Skor 7 - 11 : Resiko Rendah");
         } else if (skor >= 12 && skor <=23) {
-            Tkategori.setText("Skor >= 12 : Resiko Tinggi -> Pasang Kancing Penanda (Snap Alert) Warna Kuning");
+            Tkategori.setText("Skor >= 12 : Resiko Tinggi -> Pasang Stiker Penanda (Snap Alert) Warna Kuning");
         } else {
             Tkategori.setText("Skor minimal 7, maksimal 23");
         }

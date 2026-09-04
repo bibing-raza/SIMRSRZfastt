@@ -6689,9 +6689,9 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         
         TotSkorRJ.setText(Valid.SetAngka2(skor));
         if (skor > 45) {
-            kesimpulanResikoJatuh.setText("Resiko Tinggi (> 45), pasang kancing berwarna kuning");
+            kesimpulanResikoJatuh.setText("Resiko Tinggi (> 45), pasang Stiker berwarna kuning");
         } else if (skor >= 25 && skor <= 45) {
-            kesimpulanResikoJatuh.setText("Resiko Sedang (25-45), pasang kancing berwarna kuning");
+            kesimpulanResikoJatuh.setText("Resiko Sedang (25-45), pasang Stiker berwarna kuning");
         } else if (skor >= 0 && skor <= 24) {
             kesimpulanResikoJatuh.setText("Resiko Rendah (0-24)");
         }

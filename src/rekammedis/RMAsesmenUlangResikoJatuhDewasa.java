@@ -1818,9 +1818,9 @@ public class RMAsesmenUlangResikoJatuhDewasa extends javax.swing.JDialog {
         
         TtotSkor.setText(Valid.SetAngka2(skor));
         if (skor >= 45) {
-            Tkategori.setText("Resiko Tinggi : >= 45 --> Pasang Kancing Penanda Warna Kuning");
+            Tkategori.setText("Resiko Tinggi : >= 45 --> Pasang Stiker Penanda Warna Kuning");
         } else if (skor >= 25 && skor <= 44) {
-            Tkategori.setText("Resiko Sedang : 25 - 44 --> Pasang Kancing Penanda Warna Kuning");
+            Tkategori.setText("Resiko Sedang : 25 - 44 --> Pasang Stiker Penanda Warna Kuning");
         } else if (skor >= 0 && skor <= 24) {
             Tkategori.setText("Resiko Rendah : 0 - 24");
         }
