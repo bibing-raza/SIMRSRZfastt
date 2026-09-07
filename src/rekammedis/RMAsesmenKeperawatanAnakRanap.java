@@ -1258,7 +1258,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         FormInput.add(Truangan);
         Truangan.setBounds(136, 38, 420, 23);
 
-        TtglMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2026" }));
+        TtglMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-09-2026" }));
         TtglMsk.setDisplayFormat("dd-MM-yyyy");
         TtglMsk.setName("TtglMsk"); // NOI18N
         TtglMsk.setOpaque(false);
@@ -2551,7 +2551,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         cegahB.setBackground(new java.awt.Color(255, 255, 255));
         cegahB.setColumns(20);
         cegahB.setRows(5);
-        cegahB.setText("1. Lakukan semua pencegahan umum A\n2. Beri tanda segitiga warna kuning pada bed/RM\n3. Beri tanda identifikasi dengan stiker kuning pada gelang identitas\n4. Kunjungi dan monitor setiap 1 jam\n5. Libatkan keluarga untuk mengawasi pasien");
+        cegahB.setText("1. Lakukan semua pencegahan umum A\n2. Beri tanda segitiga warna kuning pada bed/RM\n3. Beri tanda identifikasi dengan stiker kuning pada gelang identitas\n4. Kunjungi dan monitor setiap shift/per shift\n5. Libatkan keluarga untuk mengawasi pasien");
         cegahB.setName("cegahB"); // NOI18N
         cegahB.setOpaque(true);
         panelBiasa10.add(cegahB, java.awt.BorderLayout.CENTER);
@@ -2939,7 +2939,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         FormInput.add(jLabel95);
         jLabel95.setBounds(0, 2573, 100, 23);
 
-        TtglAses.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2026" }));
+        TtglAses.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-09-2026" }));
         TtglAses.setDisplayFormat("dd-MM-yyyy");
         TtglAses.setName("TtglAses"); // NOI18N
         TtglAses.setOpaque(false);
@@ -4311,7 +4311,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-09-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4325,7 +4325,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-09-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

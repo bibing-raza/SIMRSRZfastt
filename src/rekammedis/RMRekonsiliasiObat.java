@@ -49,7 +49,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String kdObat = "", nipPereview = "", nipApoteker = "", nmDokter = "", tglreg = "", nipDokter = "",
-            ceknmDokter = "", cekNipDokter = "", itemObat = "", cekTglIGD = "", cekTglRanap = "", kode = "", htmlCetakRekonsiliasi = "";
+            ceknmDokter = "", cekNipDokter = "", itemObat = "", cekTglIGD = "", cekTglRanap = "", htmlCetakRekonsiliasi = "";
     private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
@@ -65,7 +65,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         tabMode = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Tgl. Rekon", "Jns. Rekonsiliasi", "Riwayat Alergi", "Ket. Riwayat Alergi", "Obat Dari Luar",
             "Catatan Riw. Obat IGD", "Catatan Riw. Obat Rawat Inap", "Ketidaksesuaian", "Saran", "Keputusan", "Di Review Oleh", "Nama Apoteker",
-            "nip_pereview", "nip_apoteker", "tanggal", "waktu_simpan", "catatan_obat_riwayat", "kd_data"
+            "nip_pereview", "nip_apoteker", "tanggal", "waktu_simpan", "catatan_obat_riwayat"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -77,7 +77,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         tbRekon.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbRekon.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 22; i++) {
+        for (i = 0; i < 21; i++) {
             TableColumn column = tbRekon.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -124,9 +124,6 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 20) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 21) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
@@ -312,7 +309,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         
         tabMode5 = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Tanggal", "Ruang Rawat", "Nama Obat", "Rute", "Dosis", "Aturan Pakai", "Dokter Meresepkan",
-            "tgl_resep", "kode_brng", "nip_dokter", "waktu_simpan", "cek_stop", "tgl_stop"
+            "tgl_resep", "kode_brng", "nip_dokter", "waktu_simpan", "cek_stop", "tgl_stop", "Kategori Obat"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -324,7 +321,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         tbRekonRanap.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbRekonRanap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 16; i++) {
+        for (i = 0; i < 17; i++) {
             TableColumn column = tbRekonRanap.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -364,6 +361,8 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             } else if (i == 15) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 16) {
+                column.setPreferredWidth(90);
             }
         }
         tbRekonRanap.setDefaultRenderer(Object.class, new WarnaTable());
@@ -651,6 +650,8 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         TtglMRS = new widget.TextBox();
         chkTglRanap = new widget.CekBox();
         TtglStopRanap = new widget.Tanggal();
+        jLabel44 = new widget.Label();
+        cmbKategori = new widget.ComboBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll5 = new widget.ScrollPane();
         tbRekonRanap = new widget.Table();
@@ -990,7 +991,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel5.setBounds(0, 38, 135, 23);
 
         TtglResep.setEditable(false);
-        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         TtglResep.setDisplayFormat("dd-MM-yyyy");
         TtglResep.setName("TtglResep"); // NOI18N
         TtglResep.setOpaque(false);
@@ -1102,7 +1103,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         chkTglIgd.setBounds(730, 10, 90, 23);
 
         TtglStopIgd.setEditable(false);
-        TtglStopIgd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        TtglStopIgd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         TtglStopIgd.setDisplayFormat("dd-MM-yyyy");
         TtglStopIgd.setName("TtglStopIgd"); // NOI18N
         TtglStopIgd.setOpaque(false);
@@ -1185,7 +1186,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         panelGlass14.add(jLabel68);
         jLabel68.setBounds(0, 10, 80, 23);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1201,7 +1202,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         panelGlass14.add(jLabel73);
         jLabel73.setBounds(175, 10, 30, 23);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1321,7 +1322,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel29.setBounds(0, 66, 135, 23);
 
         TtglResep1.setEditable(false);
-        TtglResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        TtglResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         TtglResep1.setDisplayFormat("dd-MM-yyyy");
         TtglResep1.setName("TtglResep1"); // NOI18N
         TtglResep1.setOpaque(false);
@@ -1459,13 +1460,25 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         chkTglRanap.setBounds(730, 10, 90, 23);
 
         TtglStopRanap.setEditable(false);
-        TtglStopRanap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        TtglStopRanap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         TtglStopRanap.setDisplayFormat("dd-MM-yyyy");
         TtglStopRanap.setName("TtglStopRanap"); // NOI18N
         TtglStopRanap.setOpaque(false);
         TtglStopRanap.setPreferredSize(new java.awt.Dimension(90, 23));
         FormInput3.add(TtglStopRanap);
         TtglStopRanap.setBounds(825, 10, 90, 23);
+
+        jLabel44.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel44.setText("Kategori Obat : ");
+        jLabel44.setName("jLabel44"); // NOI18N
+        FormInput3.add(jLabel44);
+        jLabel44.setBounds(727, 38, 95, 23);
+
+        cmbKategori.setForeground(new java.awt.Color(0, 0, 0));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Dalam Perawatan", "Pulang" }));
+        cmbKategori.setName("cmbKategori"); // NOI18N
+        FormInput3.add(cmbKategori);
+        cmbKategori.setBounds(825, 38, 120, 23);
 
         PanelInput2.add(FormInput3, java.awt.BorderLayout.PAGE_START);
 
@@ -1531,7 +1544,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         panelGlass12.add(jLabel67);
         jLabel67.setBounds(0, 10, 85, 23);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -1547,7 +1560,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         panelGlass12.add(jLabel72);
         jLabel72.setBounds(186, 10, 23, 23);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -1632,7 +1645,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         panelGlass16.add(jLabel69);
         jLabel69.setBounds(0, 10, 80, 23);
 
-        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         DTPCari7.setDisplayFormat("dd-MM-yyyy");
         DTPCari7.setName("DTPCari7"); // NOI18N
         DTPCari7.setOpaque(false);
@@ -1648,7 +1661,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         panelGlass16.add(jLabel74);
         jLabel74.setBounds(175, 10, 30, 23);
 
-        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         DTPCari8.setDisplayFormat("dd-MM-yyyy");
         DTPCari8.setName("DTPCari8"); // NOI18N
         DTPCari8.setOpaque(false);
@@ -1996,7 +2009,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel22.setBounds(260, 66, 120, 23);
 
         TtglRekon.setEditable(false);
-        TtglRekon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        TtglRekon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         TtglRekon.setDisplayFormat("dd-MM-yyyy");
         TtglRekon.setName("TtglRekon"); // NOI18N
         TtglRekon.setOpaque(false);
@@ -2140,7 +2153,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel65.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass10.add(jLabel65);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2154,7 +2167,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel70.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel70);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-08-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2373,10 +2386,10 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             } else if (TnmObat2.getText().equals("")) {
                 Valid.textKosong(TnmObat2, "Nama Obat");
             } else {
-                if (Sequel.menyimpantf("rekonsiliasi_obat_riwayat", "?,?,?,?,?,?,?,?,?,?", "No.Rawat", 10, new String[]{
+                if (Sequel.menyimpantf("rekonsiliasi_obat_riwayat", "?,?,?,?,?,?,?,?,?", "No.Rawat", 9, new String[]{
                     TNoRw4.getText(), TrgRawat1.getText(), TnmObat2.getText(), Trute2.getText(),
                     Tdosis2.getText(), Taturan1.getText(), Tsumber.getText(), cmbDilanjut1.getSelectedItem().toString(),
-                    Sequel.cariIsi("select now()"), kode
+                    Sequel.cariIsi("select now()")
                 }) == true) {
                     emptTeksRiwayat();
                     tampilRekonRiwayat(TNoRw4.getText());
@@ -2394,10 +2407,10 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                     cekTglIGD = "tidak";
                 }
 
-                if (Sequel.menyimpantf("rekonsiliasi_obat_igd", "?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 11, new String[]{
+                if (Sequel.menyimpantf("rekonsiliasi_obat_igd", "?,?,?,?,?,?,?,?,?,?", "No.Rawat", 10, new String[]{
                     TNoRw2.getText(), Valid.SetTgl(TtglResep.getSelectedItem() + ""), kdObat, Trute.getText(), Tdosis.getText(),
                     cmbDilanjut.getSelectedItem().toString(), Tdilanjutkan.getText(), Sequel.cariIsi("select now()"), cekTglIGD,
-                    Valid.SetTgl(TtglStopIgd.getSelectedItem() + ""), kode
+                    Valid.SetTgl(TtglStopIgd.getSelectedItem() + "")
                 }) == true) {
                     emptTeksRiwayatIGD();
                     tampilRekonIGD(TNoRw2.getText());
@@ -2409,6 +2422,8 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                 Valid.textKosong(TNoRw3, "Pasien");
             } else if (kdObat.equals("")) {
                 Valid.textKosong(TnmObat1, "Nama Obat");
+            } else if (cmbKategori.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu kategori obatnya dengan benar....");
             } else {
                 if (chkTglRanap.isSelected() == true) {
                     cekTglRanap = "ya";
@@ -2419,7 +2434,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                 if (Sequel.menyimpantf("rekonsiliasi_obat_ranap", "?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 12, new String[]{
                     TNoRw3.getText(), TrgRawat.getText(), Valid.SetTgl(TtglResep1.getSelectedItem() + ""), kdObat, Trute1.getText(),
                     Tdosis1.getText(), Taturan.getText(), nipDokter, Sequel.cariIsi("select now()"), cekTglRanap,
-                    Valid.SetTgl(TtglStopRanap.getSelectedItem() + ""), kode
+                    Valid.SetTgl(TtglStopRanap.getSelectedItem() + ""), cmbKategori.getSelectedItem().toString()
                 }) == true) {
                     emptTeksRiwayatRanap();
                     tampilRekonRanap(TNoRw3.getText());
@@ -2430,11 +2445,11 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             if (TNoRw1.getText().equals("")) {
                 Valid.textKosong(TNoRw1, "Pasien");
             } else {
-                if (Sequel.menyimpantf("rekonsiliasi_obat", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 16, new String[]{
+                if (Sequel.menyimpantf("rekonsiliasi_obat", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat dan Jenis Rekonsiliasi", 15, new String[]{
                     TNoRw1.getText(), cmbJnsRekon.getSelectedItem().toString(), cmbRiwAlergi.getSelectedItem().toString(),
                     TketAlergi.getText(), cmbBawaObat.getSelectedItem().toString(), TcatatanIgd.getText(), TcatatanRanap.getText(),
                     Tketidaksesuaian.getText(), Tsaran.getText(), Tkeputusan.getText(), nipPereview, nipApoteker, Valid.SetTgl(TtglRekon.getSelectedItem() + ""),
-                    Sequel.cariIsi("select now()"), TcatatanRiwayat.getText(), kode
+                    Sequel.cariIsi("select now()"), TcatatanRiwayat.getText()
                 }) == true) {
                     emptTeks();
                     tampil();
@@ -2521,21 +2536,26 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             }
         } else if (TabRekon.getSelectedIndex() == 2) {
             if (tbRekonRanap.getSelectedRow() > -1) {
-                if (chkTglRanap.isSelected() == true) {
-                    cekTglRanap = "ya";
+                if (cmbKategori.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu kategori obatnya dengan benar....");
                 } else {
-                    cekTglRanap = "tidak";
-                }
+                    if (chkTglRanap.isSelected() == true) {
+                        cekTglRanap = "ya";
+                    } else {
+                        cekTglRanap = "tidak";
+                    }
 
-                if (Sequel.mengedittf("rekonsiliasi_obat_ranap", "waktu_simpan=?", "ruang_rawat=?, tgl_resep=?, "
-                        + "kode_brng=?, rute=?, dosis=?, aturan_pakai=?, nip_dokter=?, cek_stop=?, tgl_stop=?", 10, new String[]{
-                            TrgRawat.getText(), Valid.SetTgl(TtglResep1.getSelectedItem() + ""), kdObat, Trute1.getText(),
-                            Tdosis1.getText(), Taturan.getText(), nipDokter, cekTglRanap, Valid.SetTgl(TtglStopRanap.getSelectedItem() + ""),
-                            tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 13).toString()
-                        }) == true) {
-                    emptTeksRiwayatRanap();
-                    tampilRekonRanap(TNoRw3.getText());
-                    tampilRiwObatRanap();
+                    if (Sequel.mengedittf("rekonsiliasi_obat_ranap", "waktu_simpan=?", "ruang_rawat=?, tgl_resep=?, "
+                            + "kode_brng=?, rute=?, dosis=?, aturan_pakai=?, nip_dokter=?, cek_stop=?, tgl_stop=?, kategori_obat=?", 11, new String[]{
+                                TrgRawat.getText(), Valid.SetTgl(TtglResep1.getSelectedItem() + ""), kdObat, Trute1.getText(),
+                                Tdosis1.getText(), Taturan.getText(), nipDokter, cekTglRanap, Valid.SetTgl(TtglStopRanap.getSelectedItem() + ""),
+                                cmbKategori.getSelectedItem().toString(),
+                                tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 13).toString()
+                            }) == true) {
+                        emptTeksRiwayatRanap();
+                        tampilRekonRanap(TNoRw3.getText());
+                        tampilRiwObatRanap();
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
@@ -2887,10 +2907,6 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                     if (Sequel.queryu2tf("delete from rekonsiliasi_obat where waktu_simpan=?", 1, new String[]{
                         tbRekon.getValueAt(tbRekon.getSelectedRow(), 19).toString()
                     }) == true) {
-                        Sequel.queryu("delete from rekonsiliasi_obat_riwayat where kd_data='" + tbRekon.getValueAt(tbRekon.getSelectedRow(), 21).toString() + "'");
-                        Sequel.queryu("delete from rekonsiliasi_obat_igd where kd_data='" + tbRekon.getValueAt(tbRekon.getSelectedRow(), 21).toString() + "'");
-                        Sequel.queryu("delete from rekonsiliasi_obat_ranap where kd_data='" + tbRekon.getValueAt(tbRekon.getSelectedRow(), 21).toString() + "'");
-                        
                         emptTeks();
                         tampil();
                     } else {
@@ -3371,6 +3387,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.ComboBox cmbDilanjut;
     private widget.ComboBox cmbDilanjut1;
     private widget.ComboBox cmbJnsRekon;
+    private widget.ComboBox cmbKategori;
     private widget.ComboBox cmbRiwAlergi;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
@@ -3407,6 +3424,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.Label jLabel41;
     private widget.Label jLabel42;
     private widget.Label jLabel43;
+    private widget.Label jLabel44;
     private widget.Label jLabel45;
     private widget.Label jLabel46;
     private widget.Label jLabel47;
@@ -3527,8 +3545,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         rs.getString("nip_apoteker"),
                         rs.getString("tanggal"),
                         rs.getString("waktu_simpan"),
-                        rs.getString("catatan_obat_riwayat"),
-                        rs.getString("kd_data")
+                        rs.getString("catatan_obat_riwayat")
                     });
                 }                
             } catch (Exception e) {
@@ -3593,6 +3610,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         chkTglRanap.setSelected(false);
         TtglStopRanap.setEnabled(false);
         TtglStopRanap.setDate(new Date());
+        cmbKategori.setSelectedIndex(0);
     }
 
     private void getData() {
@@ -3814,7 +3832,8 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         rs5.getString("nip_dokter"),
                         rs5.getString("waktu_simpan"),
                         rs5.getString("cek_stop"),
-                        rs5.getString("tglStopDefault")
+                        rs5.getString("tglStopDefault"),
+                        rs5.getString("kategori_obat")
                     });
                 }
             } catch (Exception e) {
@@ -4035,6 +4054,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
             TnmDokter.setText(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 9).toString());
             cekTglRanap = tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 14).toString();
             Valid.SetTgl(TtglStopRanap, tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 15).toString());
+            cmbKategori.setSelectedItem(tbRekonRanap.getValueAt(tbRekonRanap.getSelectedRow(), 16).toString());
 
             if (cekTglRanap.equals("ya")) {
                 chkTglRanap.setSelected(true);
@@ -4061,7 +4081,6 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         TPasien4.setText(nmpasien);
         TrgRawat.setText(rgrawat);
         TrgRawat1.setText(rgrawat);
-        kode = Sequel.cariIsi("SELECT DATE_FORMAT(NOW(6),'%Y%m%d%H%i%s%f')");
         
         tglreg = Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'");
         TtglMRS.setText(Valid.SetTglINDONESIA(tglreg));
@@ -4106,6 +4125,9 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                 ps.setString(1, wktSimpan);
                 rs = ps.executeQuery();
                 if (rs.next()) {
+                    String jenisRekon = rs.getString("jns_rekon") == null ? "" : rs.getString("jns_rekon").trim();
+                    boolean tampilRiwayat = jenisRekon.equalsIgnoreCase("Masuk RS");
+                    
                     String alergi = "", catatanRiwayat = "";
                     if (rs.getString("riwayat_alergi").equals("Ya")) {
                         if (rs.getString("ket_riwayat_alergi").equals("")) {
@@ -4122,169 +4144,169 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                     // DATA RIWAYAT PENGGUNAAN OBAT
                     StringBuilder dataRiwayat = new StringBuilder();
                     int jumlahRiwayat = 0;
-                    // catatan berasal dari MASTER rekonsiliasi_obat
-                    if (rs.getString("catatan_obat_riwayat") != null) {
-                        catatanRiwayat = rs.getString("catatan_obat_riwayat").replace("\n", "<br>");
+                    
+                    if (tampilRiwayat) {
+                        // catatan berasal dari MASTER rekonsiliasi_obat
+                        if (rs.getString("catatan_obat_riwayat") != null) {
+                            catatanRiwayat = rs.getString("catatan_obat_riwayat").replace("\n", "<br>");
+                        }
+
+                        try {
+                            // HITUNG JUMLAH DETAIL UNTUK ROWSPAN CATATAN
+                            ps7 = koneksi.prepareStatement("select count(*) as jumlah from rekonsiliasi_obat_riwayat where no_rawat=?");
+                            ps7.setString(1, rs.getString("no_rawat"));
+                            rs7 = ps7.executeQuery();
+
+                            if (rs7.next()) {
+                                jumlahRiwayat = rs7.getInt("jumlah");
+                            }
+
+                            if (rs7 != null) {
+                                rs7.close();
+                            }
+
+                            if (ps7 != null) {
+                                ps7.close();
+                            }
+
+                            // AMBIL DATA DETAIL RIWAYAT OBAT
+                            ps8 = koneksi.prepareStatement("select ror.nm_obat, ror.rute, ror.dosis, ror.aturan_pakai, ror.sumber_obat, "
+                                    + "ror.dilanjutkan, ror.waktu_simpan from rekonsiliasi_obat_riwayat ror where ror.no_rawat=? order by ror.waktu_simpan");
+                            ps8.setString(1, rs.getString("no_rawat"));
+                            rs8 = ps8.executeQuery();
+
+                            int urutRiwayat = 0;
+                            while (rs8.next()) {
+                                urutRiwayat++;
+                                String ya = "", tidak = "";
+
+                                if ("Ya".equalsIgnoreCase(rs8.getString("dilanjutkan"))) {
+                                    ya = "V";
+                                } else if ("Tidak".equalsIgnoreCase(rs8.getString("dilanjutkan"))) {
+                                    tidak = "V";
+                                }
+
+                                dataRiwayat.append(
+                                        "<tr>"
+                                        // NAMA OBAT
+                                        + "<td valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rs8.getString("nm_obat")
+                                        + "</td>"
+                                        // RUTE
+                                        + "<td align='left' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rs8.getString("rute")
+                                        + "</td>"
+                                        // DOSIS
+                                        + "<td align='left' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rs8.getString("dosis")
+                                        + "</td>"
+                                        // ATURAN PAKAI
+                                        + "<td align='left' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rs8.getString("aturan_pakai")
+                                        + "</td>"
+                                        // SUMBER OBAT
+                                        + "<td align='left' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rs8.getString("sumber_obat")
+                                        + "</td>"
+                                        // DILANJUTKAN YA
+                                        + "<td align='center' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + ya
+                                        + "</td>"
+                                        // DILANJUTKAN TIDAK
+                                        + "<td align='center' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + tidak
+                                        + "</td>"
+                                );
+
+                                // CATATAN HANYA DIBUAT PADA BARIS PERTAMA
+                                // ROWSPAN = JUMLAH DATA RIWAYAT
+                                if (urutRiwayat == 1) {
+                                    dataRiwayat.append("<td rowspan='" + jumlahRiwayat + "' align='left' valign='top' style='border-bottom:1px solid #000000;'>" + catatanRiwayat + "</td>");
+                                }
+
+                                dataRiwayat.append("</tr>");
+                            }
+
+                            // JIKA DETAIL RIWAYAT KOSONG TETAP TAMPILKAN CATATAN DARI MASTER
+                            if (jumlahRiwayat == 0) {
+                                dataRiwayat.append(
+                                        "<tr>"
+                                        // Nama Obat
+                                        + "<td valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Rute
+                                        + "<td align='center' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Dosis
+                                        + "<td align='center' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Aturan Pakai
+                                        + "<td align='center' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Sumber Obat
+                                        + "<td align='center' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Ya
+                                        + "<td align='center' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Tidak
+                                        + "<td align='center' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // CATATAN MASTER
+                                        + "<td align='left' valign='top' "
+                                        + "style='border-bottom:1px solid #000000;'>"
+                                        + catatanRiwayat
+                                        + "</td>"
+                                        + "</tr>"
+                                );
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Notifikasi tampil riwayat obat : " + e);
+                        } finally {
+                            if (rs8 != null) {
+                                rs8.close();
+                            }
+
+                            if (ps8 != null) {
+                                ps8.close();
+                            }
+
+                            if (rs7 != null) {
+                                rs7.close();
+                            }
+
+                            if (ps7 != null) {
+                                ps7.close();
+                            }
+                        }
                     }
-
-                    try {
-                        // HITUNG JUMLAH DETAIL UNTUK ROWSPAN CATATAN
-                        ps7 = koneksi.prepareStatement("select count(*) as jumlah from rekonsiliasi_obat_riwayat where kd_data=?");
-                        ps7.setString(1, rs.getString("kd_data"));
-                        rs7 = ps7.executeQuery();
-
-                        if (rs7.next()) {
-                            jumlahRiwayat = rs7.getInt("jumlah");
-                        }
-
-                        if (rs7 != null) {
-                            rs7.close();
-                        }
-
-                        if (ps7 != null) {
-                            ps7.close();
-                        }
-
-                        // AMBIL DATA DETAIL RIWAYAT OBAT
-                        ps8 = koneksi.prepareStatement("select ror.nm_obat, ror.rute, ror.dosis, ror.aturan_pakai, ror.sumber_obat, "
-                                + "ror.dilanjutkan, ror.waktu_simpan from rekonsiliasi_obat_riwayat ror where ror.kd_data=? order by ror.waktu_simpan");
-                        ps8.setString(1, rs.getString("kd_data"));
-                        rs8 = ps8.executeQuery();
-
-                        int urutRiwayat = 0;
-                        while (rs8.next()) {
-                            urutRiwayat++;
-                            String ya = "", tidak = "";
-
-                            if ("Ya".equalsIgnoreCase(rs8.getString("dilanjutkan"))) {
-                                ya = "V";
-                            } else if ("Tidak".equalsIgnoreCase(rs8.getString("dilanjutkan"))) {
-                                tidak = "V";
-                            }
-
-                            dataRiwayat.append(
-                                    "<tr>"
-                                    // NAMA OBAT
-                                    + "<td valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>"
-                                    + rs8.getString("nm_obat")
-                                    + "</td>"
-                                    // RUTE
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>"
-                                    + rs8.getString("rute")
-                                    + "</td>"
-                                    // DOSIS
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>"
-                                    + rs8.getString("dosis")
-                                    + "</td>"
-                                    // ATURAN PAKAI
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>"
-                                    + rs8.getString("aturan_pakai")
-                                    + "</td>"
-                                    // SUMBER OBAT
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>"
-                                    + rs8.getString("sumber_obat")
-                                    + "</td>"
-                                    // DILANJUTKAN YA
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>"
-                                    + ya
-                                    + "</td>"
-                                    // DILANJUTKAN TIDAK
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>"
-                                    + tidak
-                                    + "</td>"
-                            );
-
-                            // CATATAN HANYA DIBUAT PADA BARIS PERTAMA
-                            // ROWSPAN = JUMLAH DATA RIWAYAT
-                            if (urutRiwayat == 1) {
-                                dataRiwayat.append("<td rowspan='" + jumlahRiwayat + "' align='left' valign='top' style='border-bottom:1px solid #000000;'>" + catatanRiwayat + "</td>");
-                            }
-
-                            dataRiwayat.append("</tr>");
-                        }
-
-                        // JIKA DETAIL RIWAYAT KOSONG TETAP TAMPILKAN CATATAN DARI MASTER
-                        if (jumlahRiwayat == 0) {
-                            dataRiwayat.append(
-                                    "<tr>"
-                                    // Nama Obat
-                                    + "<td valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>&nbsp;</td>"
-                                    // Rute
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>&nbsp;</td>"
-                                    // Dosis
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>&nbsp;</td>"
-                                    // Aturan Pakai
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>&nbsp;</td>"
-                                    // Sumber Obat
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>&nbsp;</td>"
-                                    // Ya
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>&nbsp;</td>"
-                                    // Tidak
-                                    + "<td align='center' valign='top' "
-                                    + "style='border-right:1px solid #000000;"
-                                    + "border-bottom:1px solid #000000;'>&nbsp;</td>"
-                                    // CATATAN MASTER
-                                    + "<td align='left' valign='top' "
-                                    + "style='border-bottom:1px solid #000000;'>"
-                                    + catatanRiwayat
-                                    + "</td>"
-                                    + "</tr>"
-                            );
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Notifikasi tampil riwayat obat : " + e);
-                    } finally {
-                        if (rs8 != null) {
-                            rs8.close();
-                        }
-
-                        if (ps8 != null) {
-                            ps8.close();
-                        }
-
-                        if (rs7 != null) {
-                            rs7.close();
-                        }
-
-                        if (ps7 != null) {
-                            ps7.close();
-                        }
-                    }                    
                     
                     // DATA OBAT YANG DIRESEPKAN SAAT INI
                     StringBuilder dataObatSaatIni = new StringBuilder();
 
                     int jumlahObatSaatIni = 0;
-                    String catatanObatSaatIni = "";
-
-                    String catatanIgd = "";
-                    String catatanRanap = "";
+                    String catatanObatSaatIni = "", catatanIgd = "", catatanRanap = "", catatanRiwayatTransfer = "";
 
                     if (rs.getString("catatan_obat_igd") != null) {
                         catatanIgd = rs.getString("catatan_obat_igd").trim();
@@ -4294,32 +4316,102 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         catatanRanap = rs.getString("catatan_obat_ranap").trim();
                     }
 
-                    // Gabungkan catatan IGD dan Ranap
-                    if (!catatanIgd.equals("") && !catatanRanap.equals("")) {
-                        catatanObatSaatIni = catatanIgd.replace("\n", "<br>") + "<br><br>" + catatanRanap.replace("\n", "<br>");
-                    } else if (!catatanIgd.equals("")) {
+                    // CATATAN SESUAI JENIS REKONSILIASI
+                    if (jenisRekon.equalsIgnoreCase("Masuk RS")) {
+                        // MASUK RS -> hanya catatan IGD
                         catatanObatSaatIni = catatanIgd.replace("\n", "<br>");
-                    } else if (!catatanRanap.equals("")) {
+                    } else if (jenisRekon.equalsIgnoreCase("Transfer Antar Ruangan")) {
+                        // RIWAYAT = data IGD
+                        catatanRiwayatTransfer = catatanIgd.replace("\n", "<br>");
+                        // OBAT SAAT INI = data Ranap
+                        catatanObatSaatIni = catatanRanap.replace("\n", "<br>");
+                    } else if (jenisRekon.equalsIgnoreCase("Pulang")) {
+                        // PULANG -> hanya catatan Ranap
                         catatanObatSaatIni = catatanRanap.replace("\n", "<br>");
                     }
 
                     try {
-                        // 1. HITUNG JUMLAH OBAT UNTUK ROWSPAN KOLOM CATATAN
-                        ps10 = koneksi.prepareStatement(
-                                "SELECT COUNT(*) AS jumlah "
-                                + "FROM ( "
-                                + "   SELECT roi.kd_data "
-                                + "   FROM rekonsiliasi_obat_igd roi "
-                                + "   WHERE roi.kd_data=? "
-                                + "   UNION ALL "
-                                + "   SELECT ror.kd_data "
-                                + "   FROM rekonsiliasi_obat_ranap ror "
-                                + "   WHERE ror.kd_data=? "
-                                + ") x"
-                        );
+                        String sqlCount = "";
+                        String sqlData = "";
 
-                        ps10.setString(1, rs.getString("kd_data"));
-                        ps10.setString(2, rs.getString("kd_data"));
+                        // MASUK RS
+                        // RIWAYAT + IGD
+                        if (jenisRekon.equalsIgnoreCase("Masuk RS")) {
+                            sqlCount = "SELECT COUNT(*) AS jumlah FROM rekonsiliasi_obat_igd roi WHERE roi.no_rawat=?";
+                            sqlData = "SELECT "
+                                    + "COALESCE(pl.nm_poli,'') AS ruang_rawat, "
+                                    + "COALESCE(d.nama_brng,'') AS nmObat, "
+                                    + "COALESCE(roi.rute,'') AS rute, "
+                                    + "COALESCE(roi.dosis,'') AS dosis, "
+                                    + "'' AS aturanPakai, "
+                                    + "COALESCE(pg.nama,'') AS nmDokter, "
+                                    + "COALESCE(DATE_FORMAT(roi.tgl_resep,'%d/%m/%Y'),'') AS tglMulai, "
+                                    + "IF(roi.cek_stop='ya',"
+                                    + "DATE_FORMAT(roi.tgl_stop,'%d/%m/%Y'),'-') AS tglStop "
+                                    + "FROM rekonsiliasi_obat_igd roi "
+                                    + "INNER JOIN reg_periksa rp "
+                                    + "ON rp.no_rawat=roi.no_rawat "
+                                    + "LEFT JOIN pegawai pg "
+                                    + "ON pg.nik=rp.kd_dokter "
+                                    + "LEFT JOIN databarang d "
+                                    + "ON d.kode_brng=roi.kode_brng "
+                                    + "LEFT JOIN poliklinik pl "
+                                    + "ON pl.kd_poli=rp.kd_poli "
+                                    + "WHERE roi.no_rawat=? "
+                                    + "ORDER BY roi.waktu_simpan";
+
+                            // TRANSFER ANTAR RUANGAN
+                            // OBAT YANG DIRESEPKAN SAAT INI
+                            // HANYA DARI rekonsiliasi_obat_ranap                        
+                        } else if (jenisRekon.equalsIgnoreCase("Transfer Antar Ruangan")) {
+                            sqlCount = "SELECT COUNT(*) AS jumlah FROM rekonsiliasi_obat_ranap ror WHERE ror.no_rawat=? AND ror.kategori_obat='Dalam Perawatan'";
+                            sqlData = "SELECT "
+                                    + "COALESCE(ror.ruang_rawat,'') AS ruang_rawat, "
+                                    + "COALESCE(d.nama_brng,'') AS nmObat, "
+                                    + "COALESCE(ror.rute,'') AS rute, "
+                                    + "COALESCE(ror.dosis,'') AS dosis, "
+                                    + "COALESCE(ror.aturan_pakai,'') AS aturanPakai, "
+                                    + "COALESCE(pg.nama,'') AS nmDokter, "
+                                    + "COALESCE(DATE_FORMAT(ror.tgl_resep,'%d/%m/%Y'),'') AS tglMulai, "
+                                    + "IF(ror.cek_stop='ya',"
+                                    + "DATE_FORMAT(ror.tgl_stop,'%d/%m/%Y'),'-') AS tglStop "
+                                    + "FROM rekonsiliasi_obat_ranap ror "
+                                    + "LEFT JOIN pegawai pg "
+                                    + "ON pg.nik=ror.nip_dokter "
+                                    + "LEFT JOIN databarang d "
+                                    + "ON d.kode_brng=ror.kode_brng "
+                                    + "WHERE ror.no_rawat=? "
+                                    + "AND ror.kategori_obat='Dalam Perawatan' "
+                                    + "ORDER BY ror.waktu_simpan ASC";
+
+                            // PULANG
+                            // HANYA DARI rekonsiliasi_obat_ranap
+                            // kategori_obat = 'Pulang'
+                        } else if (jenisRekon.equalsIgnoreCase("Pulang")) {
+                            sqlCount = "SELECT COUNT(*) AS jumlah FROM rekonsiliasi_obat_ranap ror WHERE ror.no_rawat=? AND ror.kategori_obat='Pulang'";
+                            sqlData = "SELECT "
+                                    + "COALESCE(ror.ruang_rawat,'') AS ruang_rawat, "
+                                    + "COALESCE(d.nama_brng,'') AS nmObat, "
+                                    + "COALESCE(ror.rute,'') AS rute, "
+                                    + "COALESCE(ror.dosis,'') AS dosis, "
+                                    + "COALESCE(ror.aturan_pakai,'') AS aturanPakai, "
+                                    + "COALESCE(pg.nama,'') AS nmDokter, "
+                                    + "COALESCE(DATE_FORMAT(ror.tgl_resep,'%d/%m/%Y'),'') AS tglMulai, "
+                                    + "IF(ror.cek_stop='ya',"
+                                    + "DATE_FORMAT(ror.tgl_stop,'%d/%m/%Y'),'-') AS tglStop "
+                                    + "FROM rekonsiliasi_obat_ranap ror "
+                                    + "LEFT JOIN pegawai pg "
+                                    + "ON pg.nik=ror.nip_dokter "
+                                    + "LEFT JOIN databarang d "
+                                    + "ON d.kode_brng=ror.kode_brng "
+                                    + "WHERE ror.no_rawat=? "
+                                    + "AND ror.kategori_obat='Pulang' "
+                                    + "ORDER BY ror.waktu_simpan ASC";
+                        }
+                        
+                        // HITUNG ROWSPAN CATATAN
+                        ps10 = koneksi.prepareStatement(sqlCount);
+                        ps10.setString(1, rs.getString("no_rawat"));
                         rs10 = ps10.executeQuery();
 
                         if (rs10.next()) {
@@ -4328,84 +4420,39 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
                         rs10.close();
                         ps10.close();
-
-                        // 2. SETELAH JUMLAH DIKETAHUI BARU AMBIL DETAIL OBAT DENGAN ps9
-                        ps9 = koneksi.prepareStatement("SELECT "
-                                + "COALESCE(CASE WHEN x.jenis='IGD' "
-                                + "THEN pl.nm_poli ELSE x.ruang_rawat END,'') AS ruang_rawat, "
-                                + "COALESCE(d.nama_brng,'') AS nmObat, "
-                                + "COALESCE(x.rute,'') AS rute, "
-                                + "COALESCE(x.dosis,'') AS dosis, "
-                                + "COALESCE(x.aturan_pakai,'') AS aturanPakai, "
-                                + "COALESCE(pg.nama,'') AS nmDokter, "
-                                + "COALESCE(DATE_FORMAT(x.tgl_resep,'%d/%m/%Y'),'') AS tglMulai, "
-                                + "COALESCE(x.tglStop,'-') AS tglStop "
-                                + "FROM ( "
-                                // IGD
-                                + "SELECT roi.no_rawat, roi.kode_brng, "
-                                + "roi.rute, roi.dosis, "
-                                + "'' AS aturan_pakai, "
-                                + "roi.tgl_resep, "
-                                + "NULL AS ruang_rawat, "
-                                + "rp.kd_dokter AS nip_dokter, "
-                                + "'IGD' AS jenis, "
-                                + "IF(roi.cek_stop='ya',"
-                                + "DATE_FORMAT(roi.tgl_stop,'%d/%m/%Y'),'-') AS tglStop "
-                                + "FROM rekonsiliasi_obat_igd roi "
-                                + "INNER JOIN reg_periksa rp "
-                                + "ON rp.no_rawat=roi.no_rawat "
-                                + "WHERE roi.kd_data=? "
-                                + "UNION ALL "
-                                // RANAP
-                                + "SELECT ror.no_rawat, ror.kode_brng, "
-                                + "ror.rute, ror.dosis, "
-                                + "ror.aturan_pakai, "
-                                + "ror.tgl_resep, "
-                                + "ror.ruang_rawat, "
-                                + "ror.nip_dokter, "
-                                + "'RANAP' AS jenis, "
-                                + "IF(ror.cek_stop='ya',"
-                                + "DATE_FORMAT(ror.tgl_stop,'%d/%m/%Y'),'-') AS tglStop "
-                                + "FROM rekonsiliasi_obat_ranap ror "
-                                + "WHERE ror.kd_data=? "
-                                + ") x "
-                                + "INNER JOIN reg_periksa rp "
-                                + "ON rp.no_rawat=x.no_rawat "
-                                + "INNER JOIN pegawai pg "
-                                + "ON pg.nik=x.nip_dokter "
-                                + "INNER JOIN databarang d "
-                                + "ON d.kode_brng=x.kode_brng "
-                                + "INNER JOIN poliklinik pl "
-                                + "ON pl.kd_poli=rp.kd_poli "
-                                + "ORDER BY x.tgl_resep"
-                        );
-
-                        ps9.setString(1, rs.getString("kd_data"));
-                        ps9.setString(2, rs.getString("kd_data"));
-
+                        
+                        // AMBIL DETAIL
+                        ps9 = koneksi.prepareStatement(sqlData);
+                        ps9.setString(1, rs.getString("no_rawat"));
                         rs9 = ps9.executeQuery();
-                        // 3. SUSUN DATA HTML
+                        
+                        // SUSUN DATA HTML
                         int urutObatSaatIni = 0;
                         while (rs9.next()) {
                             urutObatSaatIni++;
                             dataObatSaatIni.append(
                                     "<tr>"
+                                    + "<td align='left' valign='top' "
+                                    + "style='border-right:1px solid #000000;"
+                                    + "border-bottom:1px solid #000000;'>"
+                                    + rs9.getString("ruang_rawat")
+                                    + "</td>"
                                     + "<td valign='top' "
                                     + "style='border-right:1px solid #000000;"
                                     + "border-bottom:1px solid #000000;'>"
                                     + rs9.getString("nmObat")
                                     + "</td>"
-                                    + "<td align='center' valign='top' "
+                                    + "<td align='left' valign='top' "
                                     + "style='border-right:1px solid #000000;"
                                     + "border-bottom:1px solid #000000;'>"
                                     + rs9.getString("rute")
                                     + "</td>"
-                                    + "<td align='center' valign='top' "
+                                    + "<td align='left' valign='top' "
                                     + "style='border-right:1px solid #000000;"
                                     + "border-bottom:1px solid #000000;'>"
                                     + rs9.getString("dosis")
                                     + "</td>"
-                                    + "<td align='center' valign='top' "
+                                    + "<td align='left' valign='top' "
                                     + "style='border-right:1px solid #000000;"
                                     + "border-bottom:1px solid #000000;'>"
                                     + rs9.getString("aturanPakai")
@@ -4424,12 +4471,11 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                                     + "style='border-right:1px solid #000000;"
                                     + "border-bottom:1px solid #000000;'>"
                                     + rs9.getString("tglStop")
-                                    + "</td>"
+                                    + "</td>"                                    
                             );
-
+                            
                             // CATATAN HANYA PADA BARIS PERTAMA
                             if (urutObatSaatIni == 1) {
-
                                 dataObatSaatIni.append(
                                         "<td rowspan='" + jumlahObatSaatIni + "' "
                                         + "align='left' valign='top' "
@@ -4446,6 +4492,10 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                         if (jumlahObatSaatIni == 0) {
                             dataObatSaatIni.append(
                                     "<tr>"
+                                    // Ruangan
+                                    + "<td align='center' valign='top' "
+                                    + "style='border-right:1px solid #000000;"
+                                    + "border-bottom:1px solid #000000;'>&nbsp;</td>"
                                     // Nama Obat
                                     + "<td valign='top' "
                                     + "style='border-right:1px solid #000000;"
@@ -4474,8 +4524,11 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                                     + "<td align='center' valign='top' "
                                     + "style='border-right:1px solid #000000;"
                                     + "border-bottom:1px solid #000000;'>&nbsp;</td>"
-                                    // CATATAN
-                                    + "<td align='left' valign='top' "
+                            );
+
+                            // CATATAN
+                            dataObatSaatIni.append(
+                                    "<td align='left' valign='top' "
                                     + "style='border-bottom:1px solid #000000;'>"
                                     + catatanObatSaatIni
                                     + "</td>"
@@ -4503,6 +4556,182 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                     }
 
                     String ketidaksesuaian = "", saran = "", keputusan = "";
+                    
+                    // RIWAYAT OBAT KHUSUS TRANSFER ANTAR RUANGAN
+                    // SUMBER : rekonsiliasi_obat_igd
+                    StringBuilder dataRiwayatTransfer = new StringBuilder();
+                    int jumlahRiwayatTransfer = 0;
+
+                    if (jenisRekon.equalsIgnoreCase("Transfer Antar Ruangan")) {
+                        PreparedStatement psRiwayatTransfer = null;
+                        ResultSet rsRiwayatTransfer = null;
+
+                        try {
+                            // HITUNG JUMLAH DATA IGD
+                            psRiwayatTransfer = koneksi.prepareStatement(
+                                    "SELECT COUNT(*) AS jumlah "
+                                    + "FROM rekonsiliasi_obat_igd roi "
+                                    + "WHERE roi.no_rawat=?"
+                            );
+
+                            psRiwayatTransfer.setString(1, rs.getString("no_rawat"));
+                            rsRiwayatTransfer = psRiwayatTransfer.executeQuery();
+
+                            if (rsRiwayatTransfer.next()) {
+                                jumlahRiwayatTransfer = rsRiwayatTransfer.getInt("jumlah");
+                            }
+
+                            rsRiwayatTransfer.close();
+                            rsRiwayatTransfer = null;
+
+                            psRiwayatTransfer.close();
+                            psRiwayatTransfer = null;
+
+                            // AMBIL DETAIL IGD
+                            psRiwayatTransfer = koneksi.prepareStatement(
+                                    "SELECT "
+                                    + "COALESCE(pl.nm_poli,'') AS ruang_rawat, "
+                                    + "COALESCE(d.nama_brng,'') AS nmObat, "
+                                    + "COALESCE(roi.rute,'') AS rute, "
+                                    + "COALESCE(roi.dosis,'') AS dosis, "
+                                    + "'' AS aturanPakai, "
+                                    + "COALESCE(pg.nama,'') AS nmDokter, "
+                                    + "COALESCE(DATE_FORMAT(roi.tgl_resep,'%d/%m/%Y'),'') AS tglMulai, "
+                                    + "IF(roi.cek_stop='ya',"
+                                    + "DATE_FORMAT(roi.tgl_stop,'%d/%m/%Y'),'-') AS tglStop "
+                                    + "FROM rekonsiliasi_obat_igd roi "
+                                    + "INNER JOIN reg_periksa rp "
+                                    + "ON rp.no_rawat=roi.no_rawat "
+                                    + "LEFT JOIN pegawai pg "
+                                    + "ON pg.nik=rp.kd_dokter "
+                                    + "LEFT JOIN databarang d "
+                                    + "ON d.kode_brng=roi.kode_brng "
+                                    + "LEFT JOIN poliklinik pl "
+                                    + "ON pl.kd_poli=rp.kd_poli "
+                                    + "WHERE roi.no_rawat=? "
+                                    + "ORDER BY roi.waktu_simpan ASC"
+                            );
+
+                            psRiwayatTransfer.setString(1, rs.getString("no_rawat"));
+                            rsRiwayatTransfer = psRiwayatTransfer.executeQuery();
+
+                            int urutRiwayatTransfer = 0;
+                            while (rsRiwayatTransfer.next()) {
+                                urutRiwayatTransfer++;
+                                dataRiwayatTransfer.append(
+                                        "<tr>"
+                                        // RUANGAN
+                                        + "<td align='left' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rsRiwayatTransfer.getString("ruang_rawat")
+                                        + "</td>"
+                                        // NAMA OBAT
+                                        + "<td valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rsRiwayatTransfer.getString("nmObat")
+                                        + "</td>"
+                                        // RUTE
+                                        + "<td align='left' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rsRiwayatTransfer.getString("rute")
+                                        + "</td>"
+                                        // DOSIS
+                                        + "<td align='left' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rsRiwayatTransfer.getString("dosis")
+                                        + "</td>"
+                                        // ATURAN PAKAI
+                                        + "<td align='left' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rsRiwayatTransfer.getString("aturanPakai")
+                                        + "</td>"
+                                        // DOKTER
+                                        + "<td align='left' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rsRiwayatTransfer.getString("nmDokter")
+                                        + "</td>"
+                                        // TANGGAL MULAI
+                                        + "<td align='center' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rsRiwayatTransfer.getString("tglMulai")
+                                        + "</td>"
+                                        // TANGGAL STOP
+                                        + "<td align='center' valign='top' "
+                                        + "style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>"
+                                        + rsRiwayatTransfer.getString("tglStop")
+                                        + "</td>"
+                                );
+
+                                // CATATAN IGD HANYA PADA BARIS PERTAMA
+                                if (urutRiwayatTransfer == 1) {
+
+                                    dataRiwayatTransfer.append(
+                                            "<td rowspan='" + jumlahRiwayatTransfer + "' "
+                                            + "align='left' valign='top' "
+                                            + "style='border-bottom:1px solid #000000;'>"
+                                            + catatanRiwayatTransfer
+                                            + "</td>"
+                                    );
+                                }
+
+                                dataRiwayatTransfer.append("</tr>");
+                            }
+
+                            // JIKA DATA IGD KOSONG
+                            if (jumlahRiwayatTransfer == 0) {
+                                dataRiwayatTransfer.append(
+                                        "<tr>"
+                                        // Ruangan
+                                        + "<td style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Nama Obat
+                                        + "<td style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Rute
+                                        + "<td style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Dosis
+                                        + "<td style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Aturan Pakai
+                                        + "<td style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Dokter
+                                        + "<td style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Mulai
+                                        + "<td style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Stop
+                                        + "<td style='border-right:1px solid #000000;"
+                                        + "border-bottom:1px solid #000000;'>&nbsp;</td>"
+                                        // Catatan IGD
+                                        + "<td style='border-bottom:1px solid #000000;'>"
+                                        + catatanRiwayatTransfer
+                                        + "</td>"
+                                        + "</tr>"
+                                );
+                            }
+
+                        } catch (Exception e) {
+                            System.out.println("Notifikasi tampil riwayat transfer : " + e);
+                        } finally {
+                            if (rsRiwayatTransfer != null) {
+                                rsRiwayatTransfer.close();
+                            }
+                            if (psRiwayatTransfer != null) {
+                                psRiwayatTransfer.close();
+                            }
+                        }
+                    }
 
                     if (rs.getString("ketidaksesuaian") != null) {
                         ketidaksesuaian = rs.getString("ketidaksesuaian").replace("\n", "<br>");
@@ -4515,6 +4744,198 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                     if (rs.getString("keputusan") != null) {
                         keputusan = rs.getString("keputusan").replace("\n", "<br>");
                     }
+                    
+                    String htmlRiwayat = "";
+                    if (tampilRiwayat) {
+                        htmlRiwayat = "<table width='100%' border='0' cellpadding='3' cellspacing='0' "
+                                + "style='border-left:1px solid #000000;"
+                                + "border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "border-top:0;"
+                                + "border-collapse:collapse;"
+                                + "font-family:Tahoma;"
+                                + "font-size:11px;'>"
+                                + "<tr>"
+                                + "<td align='left' "
+                                + "style='font-size:11px;font-weight:bold;'>RIWAYAT PENGGUNAAN OBAT HINGGA SAAT INI :"
+                                + "</td>"
+                                + "</tr>"
+                                + "</table>"
+                                + "<table width='100%' border='0' cellpadding='3' cellspacing='0' "
+                                + "style='border-left:1px solid #000000;"
+                                + "border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "border-top:0;"
+                                + "border-collapse:collapse;"
+                                + "font-family:Tahoma;"
+                                + "font-size:9px;'>"
+                                // HEADER BARIS PERTAMA
+                                + "<tr>"
+                                + "<td width='18%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Nama Obat<br>(Paten/Generik)"
+                                + "</td>"
+                                + "<td width='8%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Rute"
+                                + "</td>"
+                                + "<td width='8%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Dosis"
+                                + "</td>"
+                                + "<td width='12%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Aturan<br>Pakai"
+                                + "</td>"
+                                + "<td width='10%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Sumber<br>Obat"
+                                + "</td>"
+                                + "<td width='14%' colspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Dilanjutkan ?"
+                                + "</td>"
+                                + "<td width='30%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Catatan"
+                                + "</td>"
+                                + "</tr>"
+                                // HEADER BARIS KEDUA
+                                + "<tr>"
+                                + "<td width='7%' align='center' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Ya"
+                                + "</td>"
+                                + "<td width='7%' align='center' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Tidak"
+                                + "</td>"
+                                + "</tr>"
+                                // DATA
+                                + dataRiwayat.toString()
+                                + "</table>";
+                    }
+                    
+                    String htmlRiwayatTransfer = "";
+                    if (jenisRekon.equalsIgnoreCase("Transfer Antar Ruangan")) {
+                        htmlRiwayatTransfer
+                                = "<table width='100%' border='0' cellpadding='3' cellspacing='0' "
+                                + "style='border-left:1px solid #000000;"
+                                + "border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "border-top:0;"
+                                + "border-collapse:collapse;"
+                                + "font-family:Tahoma;"
+                                + "font-size:11px;'>"
+                                + "<tr>"
+                                + "<td align='left' "
+                                + "style='font-size:11px;font-weight:bold;'>"
+                                + "RIWAYAT PENGGUNAAN OBAT HINGGA SAAT INI :"
+                                + "</td>"
+                                + "</tr>"
+                                + "</table>"
+                                + "<table width='100%' border='0' cellpadding='3' cellspacing='0' "
+                                + "style='border-left:1px solid #000000;"
+                                + "border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "border-top:0;"
+                                + "border-collapse:collapse;"
+                                + "font-family:Tahoma;"
+                                + "font-size:9px;'>"
+                                + "<tr>"
+                                // RUANGAN
+                                + "<td width='10%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Ruangan"
+                                + "</td>"
+                                // NAMA OBAT
+                                + "<td width='16%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Nama Obat<br>(Paten/Generik)"
+                                + "</td>"
+                                // RUTE
+                                + "<td width='7%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Rute"
+                                + "</td>"
+                                // DOSIS
+                                + "<td width='7%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Dosis"
+                                + "</td>"
+                                // ATURAN PAKAI
+                                + "<td width='10%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Aturan<br>Pakai"
+                                + "</td>"
+                                // DOKTER
+                                + "<td width='12%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "R/<br>Dokter"
+                                + "</td>"
+                                // TANGGAL
+                                + "<td width='14%' colspan='2' align='center' valign='middle' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Tanggal"
+                                + "</td>"
+                                // CATATAN
+                                + "<td width='24%' rowspan='2' align='center' valign='middle' "
+                                + "style='border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Catatan"
+                                + "</td>"
+                                + "</tr>"
+                                // HEADER TANGGAL
+                                + "<tr>"
+                                + "<td width='7%' align='center' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Mulai"
+                                + "</td>"
+                                + "<td width='7%' align='center' "
+                                + "style='border-right:1px solid #000000;"
+                                + "border-bottom:1px solid #000000;"
+                                + "font-weight:bold;'>"
+                                + "Stop"
+                                + "</td>"
+                                + "</tr>"
+                                + dataRiwayatTransfer.toString()
+                                + "</table>";
+                    }
+
+                    String widthCatatan = "24%";
                     
                     htmlContent.append(
                             "<html>"
@@ -4629,91 +5050,16 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                             + "<td width='34%' align='left' valign='top'><span style='font-size:10px;font-weight:bold;'>Pasien Membawa Obat Dari Luar :</span><br>" + rs.getString("membawa_obat_dari_luar") + "</td>"
                             + "</tr>"
                             + "</table>"
-                                    
-                            + "<table width='100%' border='0' cellpadding='3' cellspacing='0' "
-                            + "style='border-left:1px solid #000000;"
-                            + "border-right:1px solid #000000;"
-                            + "border-bottom:1px solid #000000;"
-                            + "border-top:0;"
-                            + "border-collapse:collapse;"
-                            + "font-family:Tahoma;"
-                            + "font-size:11px;'>"
-                            + "<tr>"
-                            + "<td align='left' style='font-size:11px;font-weight:bold;'>RIWAYAT PENGGUNAAN OBAT HINGGA SAAT INI :</td>"
-                            + "</tr>"
-                            + "</table>"
-                                    
-                            + "<table width='100%' border='0' cellpadding='3' cellspacing='0' "
-                            + "style='border-left:1px solid #000000;"
-                            + "border-right:1px solid #000000;"
-                            + "border-bottom:1px solid #000000;"
-                            + "border-top:0;"
-                            + "border-collapse:collapse;"
-                            + "font-family:Tahoma;"
-                            + "font-size:9px;'>"
-                            // HEADER BARIS PERTAMA
-                            + "<tr>"
-                            + "<td width='18%' rowspan='2' align='center' valign='middle' "
-                            + "style='border-right:1px solid #000000;"
-                            + "border-bottom:1px solid #000000;"
-                            + "font-weight:bold;'>"
-                            + "Nama Obat<br>(Paten/Generik)"
-                            + "</td>"
-                            + "<td width='8%' rowspan='2' align='center' valign='middle' "
-                            + "style='border-right:1px solid #000000;"
-                            + "border-bottom:1px solid #000000;"
-                            + "font-weight:bold;'>"
-                            + "Rute"
-                            + "</td>"
-                            + "<td width='8%' rowspan='2' align='center' valign='middle' "
-                            + "style='border-right:1px solid #000000;"
-                            + "border-bottom:1px solid #000000;"
-                            + "font-weight:bold;'>"
-                            + "Dosis"
-                            + "</td>"
-                            + "<td width='12%' rowspan='2' align='center' valign='middle' "
-                            + "style='border-right:1px solid #000000;"
-                            + "border-bottom:1px solid #000000;"
-                            + "font-weight:bold;'>"
-                            + "Aturan<br>Pakai"
-                            + "</td>"
-                            + "<td width='10%' rowspan='2' align='center' valign='middle' "
-                            + "style='border-right:1px solid #000000;"
-                            + "border-bottom:1px solid #000000;"
-                            + "font-weight:bold;'>"
-                            + "Sumber<br>Obat"
-                            + "</td>"
-                            + "<td width='14%' colspan='2' align='center' valign='middle' "
-                            + "style='border-right:1px solid #000000;"
-                            + "border-bottom:1px solid #000000;"
-                            + "font-weight:bold;'>"
-                            + "Dilanjutkan ?"
-                            + "</td>"
-                            + "<td width='30%' rowspan='2' align='center' valign='middle' "
-                            + "style='border-bottom:1px solid #000000;"
-                            + "font-weight:bold;'>"
-                            + "Catatan"
-                            + "</td>"
-                            + "</tr>"
-                            // HEADER BARIS KEDUA
-                            + "<tr>"
-                            + "<td width='7%' align='center' "
-                            + "style='border-right:1px solid #000000;"
-                            + "border-bottom:1px solid #000000;"
-                            + "font-weight:bold;'>"
-                            + "Ya"
-                            + "</td>"
-                            + "<td width='7%' align='center' "
-                            + "style='border-right:1px solid #000000;"
-                            + "border-bottom:1px solid #000000;"
-                            + "font-weight:bold;'>"
-                            + "Tidak"
-                            + "</td>"
-                            + "</tr>"                            
-                            // DATA DARI DATABASE
-                            + dataRiwayat.toString()
-                            + "</table>"
-
+                            // ============================================
+                            // MASUK RS
+                            // ============================================
+                            + htmlRiwayat
+                            // ============================================
+                            // TRANSFER ANTAR RUANGAN
+                            + htmlRiwayatTransfer
+                            // ============================================
+                            // OBAT YANG DIRESEPKAN SAAT INI
+                            // ============================================
                             + "<table width='100%' border='0' cellpadding='3' cellspacing='0' "
                             + "style='border-left:1px solid #000000;"
                             + "border-right:1px solid #000000;"
@@ -4736,50 +5082,58 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                             + "font-family:Tahoma;"
                             + "font-size:9px;'>"
                             + "<tr>"
+                            // Ruangan
+                            + "<td width='10%' rowspan='2' align='center' valign='middle' "
+                            + "style='border-right:1px solid #000000;"
+                            + "border-bottom:1px solid #000000;"
+                            + "font-weight:bold;'>"
+                            + "Ruangan"
+                            + "</td>"
                             // Nama obat
-                            + "<td width='18%' rowspan='2' align='center' valign='middle' "
+                            + "<td width='16%' rowspan='2' align='center' valign='middle' "
                             + "style='border-right:1px solid #000000;"
                             + "border-bottom:1px solid #000000;"
                             + "font-weight:bold;'>"
                             + "Nama Obat<br>(Paten/Generik)"
                             + "</td>"
                             // Rute
-                            + "<td width='8%' rowspan='2' align='center' valign='middle' "
+                            + "<td width='7%' rowspan='2' align='center' valign='middle' "
                             + "style='border-right:1px solid #000000;"
                             + "border-bottom:1px solid #000000;"
                             + "font-weight:bold;'>"
                             + "Rute"
                             + "</td>"
                             // Dosis
-                            + "<td width='8%' rowspan='2' align='center' valign='middle' "
+                            + "<td width='7%' rowspan='2' align='center' valign='middle' "
                             + "style='border-right:1px solid #000000;"
                             + "border-bottom:1px solid #000000;"
                             + "font-weight:bold;'>"
                             + "Dosis"
                             + "</td>"
                             // Aturan pakai
-                            + "<td width='12%' rowspan='2' align='center' valign='middle' "
+                            + "<td width='10%' rowspan='2' align='center' valign='middle' "
                             + "style='border-right:1px solid #000000;"
                             + "border-bottom:1px solid #000000;"
                             + "font-weight:bold;'>"
                             + "Aturan<br>Pakai"
                             + "</td>"
                             // Dokter
-                            + "<td width='14%' rowspan='2' align='center' valign='middle' "
+                            + "<td width='12%' rowspan='2' align='center' valign='middle' "
                             + "style='border-right:1px solid #000000;"
                             + "border-bottom:1px solid #000000;"
                             + "font-weight:bold;'>"
                             + "R/<br>Dokter"
                             + "</td>"
                             // Tanggal
-                            + "<td width='16%' colspan='2' align='center' valign='middle' "
+                            + "<td width='14%' colspan='2' align='center' valign='middle' "
                             + "style='border-right:1px solid #000000;"
                             + "border-bottom:1px solid #000000;"
                             + "font-weight:bold;'>"
                             + "Tanggal"
                             + "</td>"
-                            // Catatan
-                            + "<td width='24%' rowspan='2' align='center' valign='middle' "
+                            // CATATAN
+                            + "<td width='" + widthCatatan + "' rowspan='2' "
+                            + "align='center' valign='middle' "
                             + "style='border-bottom:1px solid #000000;"
                             + "font-weight:bold;'>"
                             + "Catatan"
@@ -4787,13 +5141,13 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                             + "</tr>"
                             // HEADER TANGGAL
                             + "<tr>"
-                            + "<td width='8%' align='center' "
+                            + "<td width='7%' align='center' "
                             + "style='border-right:1px solid #000000;"
                             + "border-bottom:1px solid #000000;"
                             + "font-weight:bold;'>"
                             + "Mulai"
                             + "</td>"
-                            + "<td width='8%' align='center' "
+                            + "<td width='7%' align='center' "
                             + "style='border-right:1px solid #000000;"
                             + "border-bottom:1px solid #000000;"
                             + "font-weight:bold;'>"
