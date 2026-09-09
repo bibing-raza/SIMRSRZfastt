@@ -14839,7 +14839,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "if(c.serah_terima_cppt='ya',concat('<br/><br/>Tgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'<br/>','Menyerahkan :<br/>',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift, "
                         + "if(vc.no_rawat is not null,'terverif','belum') StatusVerif, if(vc.no_rawat is not null,pg5.nama,'-') nmVerifikator, "
-                        + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif "
+                        + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif, date_format(c.tgl_cppt,'%W') hariCppt "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -14851,7 +14851,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             "<table width='100%' class='isi'>"
                             + "<thead>"
                             + "<tr class='isi'>"
-                            + "<td width='20%' align='center' bgcolor='#f8fdf3'><b>TANGGAL<br/>JAM</b></td>"
+                            + "<td width='20%' align='center' bgcolor='#f8fdf3'><b>HARI<br>TANGGAL<br>JAM</b></td>"
                             + "<td width='50%' align='center' bgcolor='#f8fdf3'><b>BAGIAN</b></td>"
                             + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>HASIL PEMERIKSAAN, ANALISA, RENCANA,<br/>PENATALAKSANAAN PASIEN</b></td>"
                             + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>INSTRUKSI TENAGA KESEHATAN<br/>TERMASUK PASCA BEDAH/PROSEDUR</b></td>"
@@ -14888,7 +14888,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                                     || rsPrev.getString("bagian_cppt").contains("DPJP Raber")) {
                                 htmlContent.append(
                                         "<tr style='background-color: #d2e9e9' class='isi'>"
-                                        + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
                                         + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
                                         + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
                                         + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
@@ -14899,7 +14899,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             } else {
                                 htmlContent.append(
                                         "<tr class='isi'>"
-                                        + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
                                         + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
                                         + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
                                         + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
@@ -14914,7 +14914,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                                     || rsPrev.getString("bagian_cppt").contains("DPJP Raber")) {
                                 htmlContent.append(
                                         "<tr style='background-color: #d2e9e9' class='isi'>"
-                                        + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
                                         + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
                                         + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
                                         + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
@@ -14924,7 +14924,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             } else {
                                 htmlContent.append(
                                         "<tr class='isi'>"
-                                        + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
                                         + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
                                         + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
                                         + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
@@ -14974,7 +14974,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "if(c.serah_terima_cppt='ya',concat('<br/><br/>Tgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'<br/>','Menyerahkan :<br/>',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift, "
                         + "if(vc.no_rawat is not null,'terverif','belum') StatusVerif, if(vc.no_rawat is not null,pg5.nama,'-') nmVerifikator, "
-                        + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif "
+                        + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif, date_format(c.tgl_cppt,'%W') hariCppt "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -14990,7 +14990,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             "<table width='100%' class='isi'>"
                             + "<thead>"
                             + "<tr class='isi'>"
-                            + "<td width='20%' align='center' bgcolor='#f8fdf3'><b>TANGGAL<br/>JAM</b></td>"
+                            + "<td width='20%' align='center' bgcolor='#f8fdf3'><b>HARI<br>TANGGAL<br>JAM</b></td>"
                             + "<td width='50%' align='center' bgcolor='#f8fdf3'><b>BAGIAN</b></td>"
                             + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>HASIL PEMERIKSAAN, ANALISA, RENCANA,<br/>PENATALAKSANAAN PASIEN</b></td>"
                             + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>INSTRUKSI TENAGA KESEHATAN<br/>TERMASUK PASCA BEDAH/PROSEDUR</b></td>"
@@ -15024,7 +15024,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             
                             htmlContent.append(
                                     "<tr style='background-color: #d2e9e9' class='isi'>"
-                                    + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                    + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
                                     + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
                                     + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
                                     + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
@@ -15035,7 +15035,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         } else {
                             htmlContent.append(
                                     "<tr style='background-color: #d2e9e9' class='isi'>"
-                                    + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                    + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
                                     + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
                                     + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
                                     + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
@@ -15084,7 +15084,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "if(c.serah_terima_cppt='ya',concat('<br/><br/>Tgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'<br/>','Menyerahkan :<br/>',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift, "
                         + "if(vc.no_rawat is not null,'terverif','belum') StatusVerif, if(vc.no_rawat is not null,pg5.nama,'-') nmVerifikator, "
-                        + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif "
+                        + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif, date_format(c.tgl_cppt,'%W') hariCppt "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -15100,7 +15100,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             "<table width='100%' class='isi'>"
                             + "<thead>"
                             + "<tr class='isi'>"
-                            + "<td width='20%' align='center' bgcolor='#f8fdf3'><b>TANGGAL<br/>JAM</b></td>"
+                            + "<td width='20%' align='center' bgcolor='#f8fdf3'><b>HARI<br>TANGGAL<br>JAM</b></td>"
                             + "<td width='50%' align='center' bgcolor='#f8fdf3'><b>BAGIAN</b></td>"
                             + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>HASIL PEMERIKSAAN, ANALISA, RENCANA,<br/>PENATALAKSANAAN PASIEN</b></td>"
                             + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>INSTRUKSI TENAGA KESEHATAN<br/>TERMASUK PASCA BEDAH/PROSEDUR</b></td>"
@@ -15134,7 +15134,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             
                             htmlContent.append(
                                     "<tr class='isi'>"
-                                    + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                    + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
                                     + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
                                     + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
                                     + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
@@ -15146,7 +15146,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         } else {
                             htmlContent.append(
                                     "<tr class='isi'>"
-                                    + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                    + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
                                     + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
                                     + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
                                     + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
@@ -15234,7 +15234,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                     + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift, c.status, "
                     + "c.no_rawat, if(vc.no_rawat is not null,'terverif','belum') StatusVerif, if(vc.no_rawat is not null,pg5.nama,'-') nmVerifikator, "
-                    + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif "
+                    + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif, date_format(c.tgl_cppt,'%W') hariCppt "
                     + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                     + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -15274,7 +15274,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             "'" + rsCetak.getString("no_rkm_medis") + "','"
                             + rsCetak.getString("nm_pasien").replaceAll("'", "") + "','"
                             + rsCetak.getString("tgllhr") + "','"
-                            + rsCetak.getString("tglcppt") + "','"
+                            + Sequel.hariINDONESIAnamaHari(rsCetak.getString("hariCppt")) + "\n" + rsCetak.getString("tglcppt") + "','"
                             + rsCetak.getString("bagian") + "','"
                             + rsCetak.getString("bagian_cppt") + "','"
                             + rsCetak.getString("hasil_pemeriksaan") + "','"

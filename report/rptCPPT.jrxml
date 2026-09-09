@@ -309,7 +309,7 @@
 					<font fontName="Tahoma" size="8" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[TANGGAL, JAM]]></text>
+				<text><![CDATA[HARI, TANGGAL, JAM]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="57" y="29" width="81" height="33" uuid="0dc119d5-eeea-4249-a962-10b6a88e4515">

@@ -300,7 +300,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[TANGGAL, JAM]]></text>
+				<text><![CDATA[HARI, TANGGAL, JAM]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="57" y="29" width="81" height="33">

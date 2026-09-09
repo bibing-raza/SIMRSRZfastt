@@ -10,6 +10,7 @@
  */
 package simrskhanza;
 
+import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
@@ -17,6 +18,7 @@ import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -30,7 +32,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Properties;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.event.HyperlinkEvent;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
@@ -40,13 +47,13 @@ import javax.swing.text.html.StyleSheet;
  * @author perpustakaan
  */
 public final class DlgResumePerawatan extends javax.swing.JDialog {
-
+    private final DefaultTableModel tabMode;
     private final Connection koneksi = koneksiDB.condb();
     private final sekuel Sequel = new sekuel();
     private final Properties prop = new Properties();
     private validasi Valid = new validasi();
-    private PreparedStatement psRDO, psRDU, psRDD, psRDM, psdiag, pspros;
-    private ResultSet rs, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rshal, rsdiag, rspros, rsObat, rsDiag, rsDiag1, rsasesmenRJ,
+    private PreparedStatement ps1, psRDO, psRDU, psRDD, psRDM, psdiag, pspros;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rshal, rsdiag, rspros, rsObat, rsDiag, rsDiag1, rsasesmenRJ,
             rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsTHT, rsDiabet, rsRDO, rsRDU, rsRDD, rsRDM;
     private String sql, host = "", tipeDiabet = "", merokok = "", lmLuka = "", jnsAlas = "", traMekanik = "", traKimia = "",
             traTermis = "", spontan = "", lainPenyebab = "", tersandung = "", memakai = "", tertusuk = "", dllTraMeka = "",
@@ -66,8 +73,53 @@ public final class DlgResumePerawatan extends javax.swing.JDialog {
     public DlgResumePerawatan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+        
         this.setLocation(8, 1);
         setSize(885, 674);
+        
+        tabMode = new DefaultTableModel(null, new String[]{
+            "No.", "No. RM", "Nama Pasien", "Ruang Rawat", "Tgl. Masuk", "Tgl. Pulang", "Status Pulang", "DPJP", "no_rawat"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        tbResume.setModel(tabMode);
+        tbResume.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbResume.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 9; i++) {
+            TableColumn column = tbResume.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(35);
+            } else if (i == 1) {
+                column.setPreferredWidth(65);
+            } else if (i == 2) {
+                column.setPreferredWidth(220);
+            } else if (i == 3) {
+                column.setPreferredWidth(250);
+            } else if (i == 4) {
+                column.setPreferredWidth(75);
+            } else if (i == 5) {
+                column.setPreferredWidth(75);
+            } else if (i == 6) {
+                column.setPreferredWidth(100);
+            } else if (i == 7) {
+                column.setPreferredWidth(250);
+            } else if (i == 8) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
+        }
+        tbResume.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbResume.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbResume.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbResume.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbResume.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
         TKd.setDocument(new batasInput((byte) 20).getKata(TKd));
         NoRM.setDocument(new batasInput((byte) 6).getOnlyAngka(NoRM));        
@@ -370,6 +422,8 @@ public final class DlgResumePerawatan extends javax.swing.JDialog {
         Scroll4 = new widget.ScrollPane();
         LoadHTML5 = new widget.editorpane();
         internalFrame14 = new widget.InternalFrame();
+        Scroll47 = new widget.ScrollPane();
+        tbResume = new widget.Table();
         Scroll12 = new widget.ScrollPane();
         LoadHTML13 = new widget.editorpane();
         internalFrame7 = new widget.InternalFrame();
@@ -673,8 +727,24 @@ public final class DlgResumePerawatan extends javax.swing.JDialog {
         internalFrame14.setName("internalFrame14"); // NOI18N
         internalFrame14.setLayout(new java.awt.BorderLayout(1, 1));
 
+        Scroll47.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Riwayat Ringkasan Pulang Rawat Inap Pasien ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 13))); // NOI18N
+        Scroll47.setName("Scroll47"); // NOI18N
+        Scroll47.setPreferredSize(new java.awt.Dimension(452, 150));
+
+        tbResume.setToolTipText("Silahkan klik salah satu datanya untuk melihat/membaca data ringkasan pulang/resume medisnya...");
+        tbResume.setName("tbResume"); // NOI18N
+        tbResume.getTableHeader().setReorderingAllowed(false);
+        tbResume.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbResumeMouseClicked(evt);
+            }
+        });
+        Scroll47.setViewportView(tbResume);
+
+        internalFrame14.add(Scroll47, java.awt.BorderLayout.PAGE_START);
+
+        Scroll12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Preview Rekam Medis Ringkasan Pulang/Resume Medis ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 13))); // NOI18N
         Scroll12.setName("Scroll12"); // NOI18N
-        Scroll12.setOpaque(true);
 
         LoadHTML13.setBorder(null);
         LoadHTML13.setForeground(new java.awt.Color(0, 0, 0));
@@ -1250,7 +1320,13 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 tampilRanap();
                 break;
             case 5:
-                tampilRingkasanPulangRanap();
+                if (tbResume.getSelectedRow() != -1) {
+                    tampilRingkasanPulangRanap(tbResume.getValueAt(tbResume.getSelectedRow(), 8).toString());
+                } else {
+                    tampilRiwayatResum();
+                    tampilRingkasanPulangRanap(Sequel.cariIsi("select r.no_rawat from ringkasan_pulang_ranap r inner join reg_periksa rp on rp.no_rawat=r.no_rawat "
+                            + "where rp.no_rkm_medis='" + NoRM.getText() + "' order by r.no_rawat desc limit 1"));
+                }
                 break;
             case 6:
                 tampil6();
@@ -1281,6 +1357,15 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
     }//GEN-LAST:event_formWindowOpened
+
+    private void tbResumeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbResumeMouseClicked
+        if (tabMode.getRowCount() != 0) {
+            try {
+                tampilRingkasanPulangRanap(tbResume.getValueAt(tbResume.getSelectedRow(), 8).toString());
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
+    }//GEN-LAST:event_tbResumeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1326,6 +1411,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
+    private widget.ScrollPane Scroll47;
     private widget.ScrollPane Scroll5;
     private widget.ScrollPane Scroll6;
     private widget.ScrollPane Scroll7;
@@ -1355,6 +1441,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Label label19;
     private widget.panelisi panelGlass5;
     private widget.panelisi panelisi4;
+    private widget.Table tbResume;
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
@@ -10803,7 +10890,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         TPasien.setText(nama);
     }
     
-    private void tampilRingkasanPulangRanap() {
+    private void tampilRingkasanPulangRanap(String norwt) {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             StringBuilder htmlContent = new StringBuilder();
@@ -10815,7 +10902,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join penjab pj on pj.kd_pj=rp.kd_pj "
                         + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                         + "left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat left join pegawai pg on pg.nik=dr.kd_dokter WHERE "
-                        + "ki.stts_pulang not in ('-','Pindah Kamar') and p.no_rkm_medis ='" + NoRM.getText() + "' ORDER BY ki.no_rawat DESC limit 1").executeQuery();
+                        + "rpr.no_rawat ='" + norwt + "' ORDER BY ki.no_rawat DESC limit 1").executeQuery();
 
                 if (rs5.next()) {
                     rs5.beforeFirst();
@@ -11124,6 +11211,12 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         + htmlContent.toString()
                         + "</table>"
                         + "</html>");
+                
+                SwingUtilities.invokeLater(() -> {
+                    LoadHTML13.setCaretPosition(0);
+                    Scroll12.getVerticalScrollBar().setValue(0);
+                    Scroll12.getHorizontalScrollBar().setValue(0);
+                });
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -11136,5 +11229,49 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             System.out.println("Notifikasi : " + e);
         }
         this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void tampilRiwayatResum() {
+        Valid.tabelKosong(tabMode);
+        try {
+            ps1 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, b.nm_bangsal, DATE_FORMAT(rp.tgl_registrasi, '%d/%m/%Y') AS tglmrs, "
+                    + "IF(ki.stts_pulang NOT IN ('-', 'Pindah Kamar'), DATE_FORMAT(ki.tgl_keluar, '%d/%m/%Y'),'-') AS tglPulang, "
+                    + "ki.stts_pulang, pg.nama AS nmDpjp, rpr.no_rawat FROM ringkasan_pulang_ranap rpr INNER JOIN reg_periksa rp ON rp.no_rawat = rpr.no_rawat "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN kamar_inap ki ON ki.no_rawat = rpr.no_rawat AND  "
+                    + "CONCAT(ki.tgl_masuk, ' ', ki.jam_masuk) = (SELECT CONCAT(ki2.tgl_masuk, ' ', ki2.jam_masuk) FROM kamar_inap ki2 "
+                    + "WHERE ki2.no_rawat = rpr.no_rawat ORDER BY CASE WHEN ki2.stts_pulang = '-' THEN 0 ELSE 1 END, ki2.tgl_masuk DESC, ki2.jam_masuk DESC LIMIT 1) "
+                    + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                    + "INNER JOIN dpjp_ranap dr ON dr.no_rawat = rpr.no_rawat INNER JOIN pegawai pg ON pg.nik = dr.kd_dokter "
+                    + "WHERE rp.no_rkm_medis = '" + NoRM.getText() + "' ORDER BY rpr.no_rawat DESC");
+            try {
+                rs1 = ps1.executeQuery();
+                x = 1;
+                while (rs1.next()) {
+                    tabMode.addRow(new String[]{
+                        x + ".",
+                        rs1.getString("no_rkm_medis"),
+                        rs1.getString("nm_pasien"),
+                        rs1.getString("nm_bangsal"),
+                        rs1.getString("tglmrs"),
+                        rs1.getString("tglPulang"),
+                        rs1.getString("stts_pulang"),
+                        rs1.getString("nmDpjp"),
+                        rs1.getString("no_rawat")
+                    });
+                    x++;
+                }
+            } catch (Exception e) {
+                System.out.println("tampil() : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }

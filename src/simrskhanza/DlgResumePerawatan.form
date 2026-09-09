@@ -621,10 +621,52 @@
                 <Property name="verticalGap" type="int" value="1"/>
               </Layout>
               <SubComponents>
+                <Container class="widget.ScrollPane" name="Scroll47">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="[ Riwayat Ringkasan Pulang Rawat Inap Pasien ]">
+                          <Font PropertyName="font" name="Tahoma" size="13" style="1"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="Scroll47" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[452, 150]"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="First"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="widget.Table" name="tbResume">
+                      <Properties>
+                        <Property name="toolTipText" type="java.lang.String" value="Silahkan klik salah satu datanya untuk melihat/membaca data ringkasan pulang/resume medisnya..."/>
+                        <Property name="name" type="java.lang.String" value="tbResume" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbResumeMouseClicked"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
                 <Container class="widget.ScrollPane" name="Scroll12">
                   <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="[ Preview Rekam Medis Ringkasan Pulang/Resume Medis ]">
+                          <Font PropertyName="font" name="Tahoma" size="13" style="1"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
                     <Property name="name" type="java.lang.String" value="Scroll12" noResource="true"/>
-                    <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
