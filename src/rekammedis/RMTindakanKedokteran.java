@@ -2466,7 +2466,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                 param.put("kontakrs", akses.getkontakrs());
                 param.put("emailrs", akses.getemailrs());
                 param.put("logo", Sequel.cariGambar("select logo from setting"));
-                param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 11).toString()) + " Pukul ");
+                param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 12).toString()) + " Pukul ");
 
                 if (Sequel.cariInteger("select count(-1) from surat_tindakan_kedokteran s "
                         + "inner join pegawai pg on pg.nama=replace(s.nm_pihak_rs,' (Pihak RS)','') where s.waktu_simpan='" + wktSimpan + "'") > 0) {
