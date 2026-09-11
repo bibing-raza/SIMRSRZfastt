@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -3093,12 +3094,33 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                             + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
                     param.put("tglcetak", Sequel.cariIsi("select concat(date_format(now(),'%d-%m-%Y'),', Jam : ',time_format(now(),'%H:%i'))"));
                     param.put("dokterPeresep", Sequel.cariIsi("SELECT d.nm_dokter from catatan_resep_ranap_antibiotik c inner join dokter d on d.kd_dokter=c.kd_dokter "
-                            + "where noId in (" + idObat + ") order by noId desc limit 1"));
+                            + "where c.noId in (" + idObat + ") order by c.noId desc limit 1"));
+                    param.put("sipDokter", Sequel.cariIsi("SELECT d.no_ijn_praktek from catatan_resep_ranap_antibiotik c inner join dokter d on d.kd_dokter=c.kd_dokter "
+                            + "where c.noId in (" + idObat + ") order by c.noId desc limit 1"));
+
+                    //tte dokter
+                    String isi = "";
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
+                                    "Struk Resep Rawat Inap", Sequel.cariIsi("select d.nm_dokter from catatan_resep_ranap_antibiotik c "
+                                            + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.noId in (" + idObat + ") order by c.noId desc limit 1"),
+                                    Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep_ranap_antibiotik where "
+                                            + "noId in (" + idObat + ") order by noId desc limit 1"),
+                                    Sequel.cariIsi("select time(jam_perawatan) from catatan_resep_ranap_antibiotik where "
+                                            + "noId in (" + idObat + ") order by noId desc limit 1")) + "') from kalimat_tte where kode='009'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Resep", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='009'"));
 
                     Valid.MyReport("rptStrukResepRanap.jasper", "report", "::[ Struk Resep Dokter Rawat Inap Kertas Thermal ]::",
                             " SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, "
                             + "if(hari_ke not in ('1','6','11','16','21','26'),concat(nama_obat,' (Hari ke ',hari_ke,')'),concat(nama_obat,' (ket. ',keterangan,', Hari ke ',hari_ke,')')) obatnya "
                             + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by status, noId desc", param);
+                    
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 }
             }
         }
@@ -3196,11 +3218,32 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                             + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
                     param.put("tglcetak", Sequel.cariIsi("select concat(date_format(now(),'%d-%m-%Y'),', Jam : ',time_format(now(),'%H:%i'))"));
                     param.put("dokterPeresep", Sequel.cariIsi("SELECT d.nm_dokter from catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter "
-                            + "where noId in (" + idObat + ") order by noId desc limit 1"));
+                            + "where c.noId in (" + idObat + ") order by c.noId desc limit 1"));
+                    param.put("sipDokter", Sequel.cariIsi("SELECT d.no_ijn_praktek from catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter "
+                            + "where c.noId in (" + idObat + ") order by c.noId desc limit 1"));
+                    
+                    //tte dokter
+                    String isi = "";
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
+                                    "Struk Resep Rawat Inap", Sequel.cariIsi("select d.nm_dokter from catatan_resep_ranap c "
+                                            + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.noId in (" + idObat + ") order by c.noId desc limit 1"),
+                                    Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep_ranap where "
+                                            + "noId in (" + idObat + ") order by noId desc limit 1"),
+                                    Sequel.cariIsi("select time(jam_perawatan) from catatan_resep_ranap where "
+                                            + "noId in (" + idObat + ") order by noId desc limit 1")) + "') from kalimat_tte where kode='009'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Resep", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='009'"));
 
                     Valid.MyReport("rptStrukResepRanap.jasper", "report", "::[ Struk Resep Dokter Rawat Inap Kertas Thermal ]::",
                             " SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, nama_obat obatnya "
                             + "from catatan_resep_ranap where noId in (" + idObat + ") order by status, noId desc", param);
+                    
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 }
             }
         }
@@ -3303,14 +3346,32 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         param.put("nosep", Sequel.cariIsi("select no_sep from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") + " "
                                 + Sequel.cariIsi("select if(count(-1)>0,'(Program PRB BPJS)','') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'"));
                     }
+                    
+                    //tte dokter
+                    String isi = "";
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
+                                    "Struk Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep_antibiotik c "
+                                            + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.no_rawat ='" + TNoRw.getText() + "' order by noId desc limit 1"),
+                                    Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep_antibiotik where "
+                                            + "no_rawat='" + TNoRw.getText() + "' order by noId desc limit 1"),
+                                    Sequel.cariIsi("select time(jam_perawatan) from catatan_resep_antibiotik where "
+                                            + "no_rawat='" + TNoRw.getText() + "'  order by noId desc limit 1")) + "') from kalimat_tte where kode='009'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Resep", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='009'"));
 
                     Valid.MyReport("rptStrukResepRalan.jasper", "report", "::[ Struk Resep Dokter Poliklinik/Unit Rawat Jalan Kertas Thermal ]::",
-                            " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
+                            " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, d.no_ijn_praktek no_sip, "
                             + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, if(cr.hari_ke not in ('1','6','11','16','21','26'),concat(cr.nama_obat,' (Hari ke ',cr.hari_ke,')'),concat(cr.nama_obat,' (ket. ',cr.keterangan,', Hari ke ',cr.hari_ke,')')) nama_obat, "
                             + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep_antibiotik cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
                             + "WHERE cr.noId in (" + idObat + ") ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC, cr.noId DESC", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 }
             }
         }
@@ -3413,13 +3474,31 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         param.put("nosep", Sequel.cariIsi("select no_sep from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") + " "
                                 + Sequel.cariIsi("select if(count(-1)>0,'(Program PRB BPJS)','') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'"));
                     }
+                    
+                    //tte dokter
+                    String isi = "";
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
+                                    "Struk Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep c "
+                                            + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.no_rawat ='" + TNoRw.getText() + "' order by noId desc limit 1"),
+                                    Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep where "
+                                            + "no_rawat='" + TNoRw.getText() + "' order by noId desc limit 1"),
+                                    Sequel.cariIsi("select time(jam_perawatan) from catatan_resep where "
+                                            + "no_rawat='" + TNoRw.getText() + "'  order by noId desc limit 1")) + "') from kalimat_tte where kode='009'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Resep", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='009'"));
 
                     Valid.MyReport("rptStrukResepRalan.jasper", "report", "::[ Struk Resep Dokter Poliklinik/Unit Rawat Jalan Kertas Thermal ]::",
-                            " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
+                            " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, d.no_ijn_praktek no_sip, "
                             + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, cr.nama_obat, concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
                             + "WHERE cr.noId in (" + idObat + ") ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC, cr.noId DESC", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 }
             }
         }
