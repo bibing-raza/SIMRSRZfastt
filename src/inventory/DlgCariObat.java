@@ -682,7 +682,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('1');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -701,7 +700,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('2');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+2");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -720,7 +718,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambah.setMnemonic('3');
         BtnTambah.setText("Tambah Data");
         BtnTambah.setToolTipText("Alt+3");
         BtnTambah.setName("BtnTambah"); // NOI18N
@@ -734,7 +731,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnSeek5.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/011.png"))); // NOI18N
-        BtnSeek5.setMnemonic('4');
         BtnSeek5.setText("Konversi Satuan");
         BtnSeek5.setToolTipText("Alt+4");
         BtnSeek5.setName("BtnSeek5"); // NOI18N
@@ -753,7 +749,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -767,7 +762,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('5');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+5");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -890,7 +884,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         jLabel8.setBounds(4, 10, 55, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-12-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2026" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -992,7 +986,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnCekIter.setForeground(new java.awt.Color(0, 0, 0));
         BtnCekIter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCekIter.setMnemonic('1');
         BtnCekIter.setText("Cek Resep Iter");
         BtnCekIter.setToolTipText("Alt+1");
         BtnCekIter.setName("BtnCekIter"); // NOI18N
@@ -1045,7 +1038,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         Scroll4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Kode Resep Obat Iter ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll4.setName("Scroll4"); // NOI18N
-        Scroll4.setOpaque(true);
         Scroll4.setPreferredSize(new java.awt.Dimension(660, 422));
 
         tbResepIter.setAutoCreateRowSorter(true);
@@ -1096,7 +1088,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnVerif.setForeground(new java.awt.Color(0, 0, 0));
         BtnVerif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnVerif.setMnemonic('U');
         BtnVerif.setText("Verifikasi Resep");
         BtnVerif.setToolTipText("Alt+U");
         BtnVerif.setIconTextGap(7);
@@ -1123,7 +1114,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnCekResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnCekResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCekResep.setMnemonic('C');
         BtnCekResep.setText("Tampilkan Resep");
         BtnCekResep.setToolTipText("Alt+C");
         BtnCekResep.setName("BtnCekResep"); // NOI18N
@@ -1149,7 +1139,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnCetak.setForeground(new java.awt.Color(0, 0, 0));
         BtnCetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        BtnCetak.setMnemonic('C');
         BtnCetak.setText("Cetak Resep");
         BtnCetak.setToolTipText("Alt+C");
         BtnCetak.setIconTextGap(7);
@@ -1164,7 +1153,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnCetak1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCetak1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        BtnCetak1.setMnemonic('C');
         BtnCetak1.setText("Cetak Kode Iter");
         BtnCetak1.setToolTipText("Alt+C");
         BtnCetak1.setIconTextGap(7);
@@ -1192,7 +1180,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         BtnResepIter.setForeground(new java.awt.Color(0, 0, 0));
         BtnResepIter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/FirstAidKit.png"))); // NOI18N
-        BtnResepIter.setMnemonic('9');
         BtnResepIter.setText("Simpan Resep Iter BPJS");
         BtnResepIter.setToolTipText("Alt+9");
         BtnResepIter.setName("BtnResepIter"); // NOI18N
@@ -3277,7 +3264,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                     String isi = "";
                     isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
-                                    "Struk Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep_antibiotik c "
+                                    "Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep_antibiotik c "
                                             + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.no_rawat ='" + TNoRw.getText() + "' order by noId desc limit 1"),
                                     Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep_antibiotik where "
                                             + "no_rawat='" + TNoRw.getText() + "' order by noId desc limit 1"),
@@ -3405,7 +3392,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                     String isi = "";
                     isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
-                                    "Struk Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep c "
+                                    "Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep c "
                                             + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.no_rawat ='" + TNoRw.getText() + "' order by noId desc limit 1"),
                                     Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep where "
                                             + "no_rawat='" + TNoRw.getText() + "' order by noId desc limit 1"),

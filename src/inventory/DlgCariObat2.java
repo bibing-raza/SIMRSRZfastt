@@ -3102,7 +3102,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     String isi = "";
                     isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
-                                    "Struk Resep Rawat Inap", Sequel.cariIsi("select d.nm_dokter from catatan_resep_ranap_antibiotik c "
+                                    "Resep Rawat Inap", Sequel.cariIsi("select d.nm_dokter from catatan_resep_ranap_antibiotik c "
                                             + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.noId in (" + idObat + ") order by c.noId desc limit 1"),
                                     Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep_ranap_antibiotik where "
                                             + "noId in (" + idObat + ") order by noId desc limit 1"),
@@ -3226,7 +3226,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     String isi = "";
                     isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
-                                    "Struk Resep Rawat Inap", Sequel.cariIsi("select d.nm_dokter from catatan_resep_ranap c "
+                                    "Resep Rawat Inap", Sequel.cariIsi("select d.nm_dokter from catatan_resep_ranap c "
                                             + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.noId in (" + idObat + ") order by c.noId desc limit 1"),
                                     Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep_ranap where "
                                             + "noId in (" + idObat + ") order by noId desc limit 1"),
@@ -3351,7 +3351,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     String isi = "";
                     isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
-                                    "Struk Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep_antibiotik c "
+                                    "Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep_antibiotik c "
                                             + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.no_rawat ='" + TNoRw.getText() + "' order by noId desc limit 1"),
                                     Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep_antibiotik where "
                                             + "no_rawat='" + TNoRw.getText() + "' order by noId desc limit 1"),
@@ -3479,7 +3479,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     String isi = "";
                     isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
-                                    "Struk Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep c "
+                                    "Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep c "
                                             + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.no_rawat ='" + TNoRw.getText() + "' order by noId desc limit 1"),
                                     Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep where "
                                             + "no_rawat='" + TNoRw.getText() + "' order by noId desc limit 1"),

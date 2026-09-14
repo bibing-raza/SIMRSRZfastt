@@ -81,7 +81,7 @@
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[- STRUK RESEP RAWAT INAP -
+				<text><![CDATA[- RESEP RAWAT INAP -
 RSUD Ratu Zalecha]]></text>
 			</staticText>
 			<staticText>

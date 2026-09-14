@@ -1076,7 +1076,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                     String isi = "";
                     isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
-                                    "Struk Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep c "
+                                    "Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep c "
                                             + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.no_rawat ='" + norawat + "' order by noId desc limit 1"),
                                     Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep where "
                                             + "no_rawat='" + norawat + "' order by noId desc limit 1"),
@@ -1100,7 +1100,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                     String isi = "";
                     isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='009'"),
-                                    "Struk Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep_antibiotik c "
+                                    "Resep Rawat Jalan", Sequel.cariIsi("select d.nm_dokter from catatan_resep_antibiotik c "
                                             + "inner join dokter d on d.kd_dokter = c.kd_dokter where c.no_rawat ='" + norawat + "' order by noId desc limit 1"),
                                     Sequel.cariIsi("select date_format(tgl_perawatan,'%d/%m/%Y') from catatan_resep_antibiotik where "
                                             + "no_rawat='" + norawat + "' order by noId desc limit 1"),
