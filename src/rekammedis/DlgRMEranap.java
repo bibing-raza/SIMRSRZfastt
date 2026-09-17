@@ -4280,14 +4280,13 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 + "    UNION ALL SELECT 38, 'surat_konsul_unit_ranap', 'Permintaan Konsul Antar Unit' "
                 + "    UNION ALL SELECT 39, 'surat_tindakan_kedokteran', 'Persetujuan/Penolakan/Penundaan Tindakan' "
                 + "    UNION ALL SELECT 40, 'pemantauan_harian_24jam', 'Pemantauan Harian Pasien' "
-                + "    UNION ALL SELECT 41, 'protokol_kemoterapi', 'Protokol Kemoterapi' "
-                + "    UNION ALL SELECT 42, 'skrining_gizi_ulang', 'Skrining Gizi Ulang' "
-                + "    UNION ALL SELECT 43, 'asuhan_gizi_ranap', 'Asuhan Gizi Rawat Inap' "
-                + "    UNION ALL SELECT 44, 'monev_asuhan_gizi', 'Monitoring dan Evaluasi Asuhan Gizi' "
-                + "    UNION ALL SELECT 45, 'assesmen_gizi_ulang', 'Asesmen Gizi Ulang' "
-                + "    UNION ALL SELECT 46, 'surat_pernyataan_dnr', 'Surat Pernyataan DNR (Do Not Resucitate)' "
-                + "    UNION ALL SELECT 47, 'instruksi_dokter_untuk_dnr', 'Instruksi Dokter Untuk DNR (Do Not Resucitate)' "
-                + "    UNION ALL SELECT 48, 'asesmen_pasien_terminal', 'Assesmen Pasien Terminal Dan Keluarganya') AS t";
+                + "    UNION ALL SELECT 41, 'protokol_kemoterapi', 'Protokol Kemoterapi' "                
+                + "    UNION ALL SELECT 42, 'asuhan_gizi_ranap', 'Asuhan Gizi Rawat Inap' "
+                + "    UNION ALL SELECT 43, 'monev_asuhan_gizi', 'Monitoring dan Evaluasi Asuhan Gizi' "
+                + "    UNION ALL SELECT 44, 'assesmen_gizi_ulang', 'Asesmen Gizi Ulang' "
+                + "    UNION ALL SELECT 45, 'surat_pernyataan_dnr', 'Surat Pernyataan DNR (Do Not Resucitate)' "
+                + "    UNION ALL SELECT 46, 'instruksi_dokter_untuk_dnr', 'Instruksi Dokter Untuk DNR (Do Not Resucitate)' "
+                + "    UNION ALL SELECT 47, 'asesmen_pasien_terminal', 'Assesmen Pasien Terminal Dan Keluarganya') AS t";
 
         if (TNoRW.getText().isEmpty()) {
             return;

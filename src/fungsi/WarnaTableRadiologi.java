@@ -46,6 +46,10 @@ public class WarnaTableRadiologi extends DefaultTableCellRenderer {
                 } else if (warna.equalsIgnoreCase("hijau")) {
                     component.setBackground(Color.GREEN);
                     component.setForeground(Color.BLACK);
+                    
+                } else if (warna.equalsIgnoreCase("merah")) {
+                    component.setBackground(Color.RED);
+                    component.setForeground(Color.BLACK);
                 }
             }
         }

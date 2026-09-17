@@ -3856,7 +3856,16 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
-        param.put("logo", Sequel.cariGambar("select logo from setting"));        
+        param.put("logo", Sequel.cariGambar("select logo from setting"));   
+        
+        /*
+         * Nilai awal lokasi QR dikosongkan agar JasperReports tidak memakai
+         * nilai atau gambar QR dari proses cetak sebelumnya.
+         */
+        param.put("lokasiQrSerahBlm", "");
+        param.put("lokasiQrTerimaBlm", "");
+        param.put("lokasiQrSerahSdh", "");
+        param.put("lokasiQrTerimaSdh", "");
 
         if (TabTransfer.getSelectedIndex() == 0) {
             param.put("norm", TNoRMBelum.getText());
@@ -4042,163 +4051,184 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
                     tglBelum = "", jamBelum = "", tglSudah = "", jamSudah = "";
             
             param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+            String jenisDokumen = Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'");
 
+            /*
+             * =============================================================
+             * CETAK DARI TAB TRANSFER SEBELUM TINDAKAN
+             * =============================================================
+             */
             if (TabTransfer.getSelectedIndex() == 0) {
-                //transfer sebelum
-                tglBelum = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sebelum_tindakan where "
-                        + "waktu_simpan='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 47).toString() + "'");
-                jamBelum = Sequel.cariIsi("select time(waktu_simpan) from transfer_sebelum_tindakan where "
-                        + "waktu_simpan='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 47).toString() + "'");
+                String waktuSimpanBelum = tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 47).toString();
+                String kodeTransfer = tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString();
+                tglBelum = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sebelum_tindakan where waktu_simpan='" + waktuSimpanBelum + "'");
+                jamBelum = Sequel.cariIsi("select time(waktu_simpan) from transfer_sebelum_tindakan where waktu_simpan='" + waktuSimpanBelum + "'");
 
-                if (TnmPetugasSerahBelum.getText().equals("") || TnmPetugasSerahBelum.getText().equals("-") || TnmPetugasSerahBelum.getText().equals("--")) {
-                    JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menyerahkan transfer sebelum tindakan harus diisi dulu,..");
-                } else if (TnmPetugasTerimaBelum.getText().equals("") || TnmPetugasTerimaBelum.getText().equals("-") || TnmPetugasTerimaBelum.getText().equals("--")) {
-                    JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menerima transfer sebelum tindakan harus diisi dulu,..");
-                } else {
-                    isiMenyerahkanBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                    "Transfer Pasien Sebelum Tindakan", TnmPetugasSerahBelum.getText() + " (Petugas Menyerahkan)", tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
-                    isiMenerimaBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                    "Transfer Pasien Sebelum Tindakan", TnmPetugasTerimaBelum.getText() + " (Petugas Menerima)", tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
+                String namaSerahBlm = TnmPetugasSerahBelum.getText().trim();
+                String namaTerimaBlm = TnmPetugasTerimaBelum.getText().trim();
+                String nipSerahBelumCek = nipSerahBlm == null ? "" : nipSerahBlm.trim();
+                String nipTerimaBelumCek = nipTerimaBlm == null ? "" : nipTerimaBlm.trim();
+                
+                boolean namaSerahBlmKosong = namaSerahBlm.isEmpty() || namaSerahBlm.equals("-") || namaSerahBlm.equals("--");
+                boolean namaTerimaBlmKosong = namaTerimaBlm.isEmpty() || namaTerimaBlm.equals("-") || namaTerimaBlm.equals("--");
+                boolean nipSerahBlmTidakTte = nipSerahBelumCek.isEmpty() || nipSerahBelumCek.startsWith("PR") || nipSerahBelumCek.startsWith("PP") || nipSerahBelumCek.startsWith("D");
+                boolean nipTerimaBlmTidakTte = nipTerimaBelumCek.isEmpty() || nipTerimaBelumCek.startsWith("PR") || nipTerimaBelumCek.startsWith("PP") || nipTerimaBelumCek.startsWith("D");
+                
+                //QR petugas yang menyerahkan
+                if (!namaSerahBlmKosong && !nipSerahBlmTidakTte) {
+                    isiMenyerahkanBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,'" + Valid.kalimatQRcode(jenisDokumen, "Transfer Pasien Sebelum Tindakan",
+                            namaSerahBlm + " (Petugas Menyerahkan)", tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
 
                     Valid.cetakQrTte(isiMenyerahkanBlm, Sequel.cariFolderTte(), "QRTteSerahBelum.jpg", "select logo from setting");
                     param.put("lokasiQrSerahBlm", Sequel.cariFolderTte() + File.separator + "QRTteSerahBelum.jpg");
+                } else {
+                    param.put("lokasiQrSerahBlm", "");
+                }
+
+                //QR petugas yang menerima
+                if (!namaTerimaBlmKosong && !nipTerimaBlmTidakTte) {
+                    isiMenerimaBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,'" + Valid.kalimatQRcode(jenisDokumen, "Transfer Pasien Sebelum Tindakan",
+                            namaTerimaBlm + " (Petugas Menerima)", tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
+
                     Valid.cetakQrTte(isiMenerimaBlm, Sequel.cariFolderTte(), "QRTteTerimaBelum.jpg", "select logo from setting");
                     param.put("lokasiQrTerimaBlm", Sequel.cariFolderTte() + File.separator + "QRTteTerimaBelum.jpg");
-
-                    //cek nip PR/PP/D
-                    if (nipSerahBlm.contains("PR") == true || nipSerahBlm.contains("PP") == true || nipSerahBlm.contains("D") == true) {
-                        param.put("lokasiQrSerahBlm", "");
-                    } else if (nipTerimaBlm.contains("PR") == true || nipTerimaBlm.contains("PP") == true || nipTerimaBlm.contains("D") == true) {
-                        param.put("lokasiQrTerimaBlm", "");
-                    }
-
-                    if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where "
-                            + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "'") > 0) {
-                        tglSudah = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sesudah_tindakan where "
-                                + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "'");
-                        jamSudah = Sequel.cariIsi("select time(waktu_simpan) from transfer_sesudah_tindakan where "
-                                + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "'");
-
-                        if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where "
-                                + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "' and nip_menyerahkan in ('','-','--')") > 0) {
-                            JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menyerahkan transfer sesudah tindakan harus diisi dulu,..");
-                        } else if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where "
-                                + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "' and nip_menerima in ('','-','--')") > 0) {
-                            JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menerima transfer sesudah tindakan harus diisi dulu,..");
-                        } else {
-                            isiMenyerahkanSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                            "Transfer Pasien Sesudah Tindakan", TnmPetugasSerahSudah.getText() + " (Petugas Menyerahkan)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
-                            isiMenerimaSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                            "Transfer Pasien Sesudah Tindakan", TnmPetugasTerimaSudah.getText() + " (Petugas Menerima)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
-
-                            Valid.cetakQrTte(isiMenyerahkanSdh, Sequel.cariFolderTte(), "QRTteSerahSudah.jpg", "select logo from setting");
-                            param.put("lokasiQrSerahSdh", Sequel.cariFolderTte() + File.separator + "QRTteSerahSudah.jpg");
-                            Valid.cetakQrTte(isiMenerimaSdh, Sequel.cariFolderTte(), "QRTteTerimaSudah.jpg", "select logo from setting");
-                            param.put("lokasiQrTerimaSdh", Sequel.cariFolderTte() + File.separator + "QRTteTerimaSudah.jpg");
-                        }
-
-                        if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where "
-                                + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "' "
-                                + "and (nip_menyerahkan like '%PR%' or nip_menyerahkan like '%PP%' or nip_menyerahkan like '%D%')") > 0) {
-                            param.put("lokasiQrSerahSdh", "");
-                        } else if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where "
-                                + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "' "
-                                + "and (nip_menerima like '%PR%' or nip_menerima like '%PP%' or nip_menerima like '%D%')") > 0) {
-                            param.put("lokasiQrTerimaSdh", "");
-                        }
-                    } else {
-                        tglSudah = "";
-                        jamSudah = "";
-                        param.put("lokasiQrSerahSdh", "");
-                        param.put("lokasiQrTerimaSdh", "");
-                    }
-
-                    Valid.MyReport("rptTransferTindakanQr.jasper", "report", "::[ Lembar Transfer Pasien Untuk Tindakan ]::",
-                            "SELECT now() tanggal", param);
-                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                } else {
+                    param.put("lokasiQrTerimaBlm", "");
                 }
                 
-            } else {
-                //transfer sebelum
-                tglBelum = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sebelum_tindakan where "
-                        + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "'");
-                jamBelum = Sequel.cariIsi("select time(waktu_simpan) from transfer_sebelum_tindakan where "
-                        + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "'");
-                
-                if (Sequel.cariInteger("select count(-1) from transfer_sebelum_tindakan where "
-                        + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "' and nip_menyerahkan in ('','-','--')") > 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menyerahkan transfer sebelum tindakan harus diisi dulu,..");
-                } else if (Sequel.cariInteger("select count(-1) from transfer_sebelum_tindakan where "
-                        + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "' and nip_menerima in ('','-','--')") > 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menerima transfer sebelum tindakan harus diisi dulu,..");
-                } else {
-                    isiMenyerahkanBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                    "Transfer Pasien Sebelum Tindakan", Sequel.cariIsi("select pg.nama from transfer_sebelum_tindakan t "
-                                            + "inner join pegawai pg on pg.nik=t.nip_menyerahkan where "
-                                            + "t.kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "'") + " (Petugas Menyerahkan)",
-                                    tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
-                    isiMenerimaBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                    "Transfer Pasien Sebelum Tindakan", Sequel.cariIsi("select pg.nama from transfer_sebelum_tindakan t "
-                                            + "inner join pegawai pg on pg.nik=t.nip_menerima where "
-                                            + "t.kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "'") + " (Petugas Menerima)",
-                                    tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
+                //Periksa apakah sudah terdapat transfer sesudah tindakan.
+                if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where kode_transfer='" + kodeTransfer + "'") > 0) {
+                    tglSudah = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sesudah_tindakan where kode_transfer='" + kodeTransfer + "'");
+                    jamSudah = Sequel.cariIsi("select time(waktu_simpan) from transfer_sesudah_tindakan where kode_transfer='" + kodeTransfer + "'");
 
-                    Valid.cetakQrTte(isiMenyerahkanBlm, Sequel.cariFolderTte(), "QRTteSerahBelum.jpg", "select logo from setting");
-                    param.put("lokasiQrSerahBlm", Sequel.cariFolderTte() + File.separator + "QRTteSerahBelum.jpg");
-                    Valid.cetakQrTte(isiMenerimaBlm, Sequel.cariFolderTte(), "QRTteTerimaBelum.jpg", "select logo from setting");
-                    param.put("lokasiQrTerimaBlm", Sequel.cariFolderTte() + File.separator + "QRTteTerimaBelum.jpg");
+                    String nipSerahSesudah = Sequel.cariIsi("select nip_menyerahkan from transfer_sesudah_tindakan where kode_transfer='" + kodeTransfer + "'");
+                    String nipTerimaSesudah = Sequel.cariIsi("select nip_menerima from transfer_sesudah_tindakan where kode_transfer='" + kodeTransfer + "'");
+                    String namaSerahSesudah = Sequel.cariIsi("select pg.nama from transfer_sesudah_tindakan t inner join pegawai pg on pg.nik=t.nip_menyerahkan where "
+                            + "t.kode_transfer='" + kodeTransfer + "'").trim();
+                    String namaTerimaSesudah = Sequel.cariIsi("select pg.nama from transfer_sesudah_tindakan t inner join pegawai pg on pg.nik=t.nip_menerima where "
+                            + "t.kode_transfer='" + kodeTransfer + "'").trim();
+                    nipSerahSesudah = nipSerahSesudah == null ? "" : nipSerahSesudah.trim();
+                    nipTerimaSesudah = nipTerimaSesudah == null ? "" : nipTerimaSesudah.trim();
 
-                    //cek nip PR/PP/D
-                    if (Sequel.cariInteger("select count(-1) from transfer_sebelum_tindakan where "
-                            + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "' "
-                            + "and (nip_menyerahkan like '%PR%' or nip_menyerahkan like '%PP%' or nip_menyerahkan like '%D%')") > 0) {
-                        param.put("lokasiQrSerahBlm", "");
-                    } else if (Sequel.cariInteger("select count(-1) from transfer_sebelum_tindakan where "
-                            + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "' "
-                            + "and (nip_menerima like '%PR%' or nip_menerima like '%PP%' or nip_menerima like '%D%')") > 0) {
-                        param.put("lokasiQrTerimaBlm", "");
-                    }
+                    boolean namaSerahSdhKosong = namaSerahSesudah.isEmpty() || namaSerahSesudah.equals("-") || namaSerahSesudah.equals("--");
+                    boolean namaTerimaSdhKosong = namaTerimaSesudah.isEmpty() || namaTerimaSesudah.equals("-") || namaTerimaSesudah.equals("--");
+                    boolean nipSerahSdhTidakTte = nipSerahSesudah.isEmpty() || nipSerahSesudah.startsWith("PR") || nipSerahSesudah.startsWith("PP") || nipSerahSesudah.startsWith("D");
+                    boolean nipTerimaSdhTidakTte = nipTerimaSesudah.isEmpty() || nipTerimaSesudah.startsWith("PR") || nipTerimaSesudah.startsWith("PP") || nipTerimaSesudah.startsWith("D");
 
-                    //transfer sesudah
-                    tglSudah = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sesudah_tindakan where "
-                            + "waktu_simpan='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 47).toString() + "'");
-                    jamSudah = Sequel.cariIsi("select time(waktu_simpan) from transfer_sesudah_tindakan where "
-                            + "waktu_simpan='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 47).toString() + "'");
-
-                    if (TnmPetugasSerahSudah.getText().equals("") || TnmPetugasSerahSudah.getText().equals("-") || TnmPetugasSerahSudah.getText().equals("--")) {
-                        JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menyerahkan transfer sesudah tindakan harus diisi dulu,..");
-                    } else if (TnmPetugasTerimaSudah.getText().equals("") || TnmPetugasTerimaSudah.getText().equals("-") || TnmPetugasTerimaSudah.getText().equals("--")) {
-                        JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menerima transfer sesudah tindakan harus diisi dulu,..");
-                    } else {
-                        isiMenyerahkanSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                        "Transfer Pasien Sesudah Tindakan", TnmPetugasSerahSudah.getText() + " (Petugas Menyerahkan)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
-                        isiMenerimaSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                        "Transfer Pasien Sesudah Tindakan", TnmPetugasTerimaSudah.getText() + " (Petugas Menerima)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
+                    //QR petugas yang menyerahkan
+                    if (!namaSerahSdhKosong && !nipSerahSdhTidakTte) {
+                        isiMenyerahkanSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,'" + Valid.kalimatQRcode(jenisDokumen, "Transfer Pasien Sesudah Tindakan", namaSerahSesudah
+                                + " (Petugas Menyerahkan)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
 
                         Valid.cetakQrTte(isiMenyerahkanSdh, Sequel.cariFolderTte(), "QRTteSerahSudah.jpg", "select logo from setting");
                         param.put("lokasiQrSerahSdh", Sequel.cariFolderTte() + File.separator + "QRTteSerahSudah.jpg");
+                    } else {
+                        param.put("lokasiQrSerahSdh", "");
+                    }
+
+                    //QR petugas yang menerima
+                    if (!namaTerimaSdhKosong && !nipTerimaSdhTidakTte) {
+                        isiMenerimaSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,'" + Valid.kalimatQRcode(jenisDokumen, "Transfer Pasien Sesudah Tindakan", namaTerimaSesudah
+                                + " (Petugas Menerima)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
+
                         Valid.cetakQrTte(isiMenerimaSdh, Sequel.cariFolderTte(), "QRTteTerimaSudah.jpg", "select logo from setting");
                         param.put("lokasiQrTerimaSdh", Sequel.cariFolderTte() + File.separator + "QRTteTerimaSudah.jpg");
-                    }
-
-                    if (nipSerahSdh.contains("PR") == true || nipSerahSdh.contains("PP") == true || nipSerahSdh.contains("D") == true) {
-                        param.put("lokasiQrSerahSdh", "");
-                    } else if (nipTerimaSdh.contains("PR") == true || nipTerimaSdh.contains("PP") == true || nipTerimaSdh.contains("D") == true) {
+                    } else {
                         param.put("lokasiQrTerimaSdh", "");
                     }
-
-                    Valid.MyReport("rptTransferTindakanQr.jasper", "report", "::[ Lembar Transfer Pasien Untuk Tindakan ]::",
-                            "SELECT now() tanggal", param);
-                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 }
+                
+                Valid.MyReport("rptTransferTindakanQr.jasper", "report", "::[ Lembar Transfer Pasien Untuk Tindakan ]::", "SELECT now() tanggal", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                
+            /*
+             * =============================================================
+             * CETAK DARI TAB TRANSFER SESUDAH TINDAKAN
+             * =============================================================
+             */
+            } else {
+                String kodeTransfer = tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString();
+                
+                //Data transfer sebelum tindakan diambil dari database.                
+                tglBelum = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sebelum_tindakan where kode_transfer='" + kodeTransfer + "'");
+                jamBelum = Sequel.cariIsi("select time(waktu_simpan) from transfer_sebelum_tindakan where kode_transfer='" + kodeTransfer + "'");
+
+                String nipSerahSebelum = Sequel.cariIsi("select nip_menyerahkan from transfer_sebelum_tindakan where kode_transfer='" + kodeTransfer + "'");
+                String nipTerimaSebelum = Sequel.cariIsi("select nip_menerima from transfer_sebelum_tindakan where kode_transfer='" + kodeTransfer + "'");
+                String namaSerahSebelum = Sequel.cariIsi("select pg.nama from transfer_sebelum_tindakan t inner join pegawai pg on pg.nik=t.nip_menyerahkan where "
+                        + "t.kode_transfer='" + kodeTransfer + "'").trim();
+                String namaTerimaSebelum = Sequel.cariIsi("select pg.nama from transfer_sebelum_tindakan t inner join pegawai pg on pg.nik=t.nip_menerima where "
+                        + "t.kode_transfer='" + kodeTransfer + "'").trim();
+
+                nipSerahSebelum = nipSerahSebelum == null ? "" : nipSerahSebelum.trim();
+                nipTerimaSebelum = nipTerimaSebelum == null ? "" : nipTerimaSebelum.trim();
+                
+                boolean namaSerahBlmKosong = namaSerahSebelum.isEmpty() || namaSerahSebelum.equals("-") || namaSerahSebelum.equals("--");
+                boolean namaTerimaBlmKosong = namaTerimaSebelum.isEmpty() || namaTerimaSebelum.equals("-") || namaTerimaSebelum.equals("--");
+                boolean nipSerahBlmTidakTte = nipSerahSebelum.isEmpty() || nipSerahSebelum.startsWith("PR") || nipSerahSebelum.startsWith("PP") || nipSerahSebelum.startsWith("D");
+                boolean nipTerimaBlmTidakTte = nipTerimaSebelum.isEmpty() || nipTerimaSebelum.startsWith("PR") || nipTerimaSebelum.startsWith("PP") || nipTerimaSebelum.startsWith("D");
+                
+                //QR petugas yang menyerahkan
+                if (!namaSerahBlmKosong && !nipSerahBlmTidakTte) {
+                    isiMenyerahkanBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,'" + Valid.kalimatQRcode(jenisDokumen, "Transfer Pasien Sebelum Tindakan",
+                            namaSerahSebelum + " (Petugas Menyerahkan)", tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiMenyerahkanBlm, Sequel.cariFolderTte(), "QRTteSerahBelum.jpg", "select logo from setting");
+                    param.put("lokasiQrSerahBlm", Sequel.cariFolderTte() + File.separator + "QRTteSerahBelum.jpg");
+                } else {
+                    param.put("lokasiQrSerahBlm", "");
+                }
+
+                //QR petugas yang menerima
+                if (!namaTerimaBlmKosong && !nipTerimaBlmTidakTte) {
+                    isiMenerimaBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,'" + Valid.kalimatQRcode(jenisDokumen, "Transfer Pasien Sebelum Tindakan",
+                            namaTerimaSebelum + " (Petugas Menerima)", tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiMenerimaBlm, Sequel.cariFolderTte(), "QRTteTerimaBelum.jpg", "select logo from setting");
+                    param.put("lokasiQrTerimaBlm", Sequel.cariFolderTte() + File.separator + "QRTteTerimaBelum.jpg");
+                } else {
+                    param.put("lokasiQrTerimaBlm", "");
+                }
+                
+                //Data transfer sesudah tindakan dari komponen form.
+                String waktuSimpanSudah = tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 47).toString();
+                tglSudah = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sesudah_tindakan where waktu_simpan='" + waktuSimpanSudah + "'");
+                jamSudah = Sequel.cariIsi("select time(waktu_simpan) from transfer_sesudah_tindakan where waktu_simpan='" + waktuSimpanSudah + "'");
+
+                String namaSerahSdh = TnmPetugasSerahSudah.getText().trim();
+                String namaTerimaSdh = TnmPetugasTerimaSudah.getText().trim();
+                String nipSerahSudahCek = nipSerahSdh == null ? "" : nipSerahSdh.trim();
+                String nipTerimaSudahCek = nipTerimaSdh == null ? "" : nipTerimaSdh.trim();
+
+                boolean namaSerahSdhKosong = namaSerahSdh.isEmpty() || namaSerahSdh.equals("-") || namaSerahSdh.equals("--");
+                boolean namaTerimaSdhKosong = namaTerimaSdh.isEmpty() || namaTerimaSdh.equals("-") || namaTerimaSdh.equals("--");
+                boolean nipSerahSdhTidakTte = nipSerahSudahCek.isEmpty() || nipSerahSudahCek.startsWith("PR") || nipSerahSudahCek.startsWith("PP") || nipSerahSudahCek.startsWith("D");
+                boolean nipTerimaSdhTidakTte = nipTerimaSudahCek.isEmpty() || nipTerimaSudahCek.startsWith("PR") || nipTerimaSudahCek.startsWith("PP") || nipTerimaSudahCek.startsWith("D");
+                
+                //QR petugas yang menyerahkan
+                if (!namaSerahSdhKosong && !nipSerahSdhTidakTte) {
+                    isiMenyerahkanSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,'" + Valid.kalimatQRcode(jenisDokumen, "Transfer Pasien Sesudah Tindakan",
+                            namaSerahSdh + " (Petugas Menyerahkan)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiMenyerahkanSdh, Sequel.cariFolderTte(), "QRTteSerahSudah.jpg", "select logo from setting");
+                    param.put("lokasiQrSerahSdh", Sequel.cariFolderTte() + File.separator + "QRTteSerahSudah.jpg");
+                } else {
+                    param.put("lokasiQrSerahSdh", "");
+                }
+
+                //QR petugas yang menerima
+                if (!namaTerimaSdhKosong && !nipTerimaSdhTidakTte) {
+                    isiMenerimaSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,'" + Valid.kalimatQRcode(jenisDokumen, "Transfer Pasien Sesudah Tindakan",
+                            namaTerimaSdh + " (Petugas Menerima)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiMenerimaSdh, Sequel.cariFolderTte(), "QRTteTerimaSudah.jpg", "select logo from setting");
+                    param.put("lokasiQrTerimaSdh", Sequel.cariFolderTte() + File.separator + "QRTteTerimaSudah.jpg");
+                } else {
+                    param.put("lokasiQrTerimaSdh", "");
+                }
+                
+                Valid.MyReport("rptTransferTindakanQr.jasper", "report", "::[ Lembar Transfer Pasien Untuk Tindakan ]::", "SELECT now() tanggal", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             }
         
         } else {
