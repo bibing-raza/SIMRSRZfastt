@@ -52,8 +52,8 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private Connection koneksi = koneksiDB.condb();
     private Jurnal jur = new Jurnal();
-    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private DlgCariDokter dokter = new DlgCariDokter(null, false);
+    private DlgCariPetugas petugas;
+    private DlgCariDokter dokter;
     private PreparedStatement psset_tarif, pssetpj, pspemeriksaan, pspemeriksaan2, pspemeriksaan3, pspemeriksaan4, psbhp, psrekening, ps1, ps2, ps3, ps4, ps5;
     private ResultSet rs, rsset_tarif, rssetpj, rsrekening, rs1, rs2, rs3, rs4, rs5;
     private boolean[] pilih;
@@ -264,86 +264,6 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         
         ChkJln.setSelected(true);
         jam();
-
-        petugas.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DlgPeriksaRadiologi")) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        KdPtg.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
-                        NmPtg.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                    }
-                    tbPemeriksaan.requestFocus();
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-
-        dokter.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DlgPeriksaRadiologi")) {
-                    if (dokter.getTable().getSelectedRow() != -1) {
-                        if (pilihan.equals("perujuk")) {
-                            KodePerujuk.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
-                            NmPerujuk.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            KodePerujuk.requestFocus();
-                        } else if (pilihan.equals("penjab")) {
-                            KodePj.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
-                            NmDokterPj.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            KodePj.requestFocus();
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
 
         try {
             psrekening = koneksi.prepareStatement("select * from set_akun_ranap");
@@ -1182,6 +1102,7 @@ private void KdPtgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KdP
 }//GEN-LAST:event_KdPtgKeyPressed
 
 private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugasActionPerformed
+    initPetugas();
     akses.setform("DlgPeriksaRadiologi");
     petugas.emptTeks();
     petugas.tampil();
@@ -1460,6 +1381,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     }//GEN-LAST:event_KodePerujukKeyPressed
 
     private void btnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterActionPerformed
+        initDokter();
         pilihan = "perujuk";
         akses.setform("DlgPeriksaRadiologi");
         dokter.emptTeks();
@@ -1472,6 +1394,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     }//GEN-LAST:event_btnDokterActionPerformed
 
     private void btnDokterPjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterPjActionPerformed
+        initDokter();
         pilihan = "penjab";
         akses.setform("DlgPeriksaRadiologi");
         dokter.emptTeks();
@@ -2090,12 +2013,12 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 
                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 24, new String[]{
+                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 25, new String[]{
                             TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), tglperiksa, jamperiksa, KodePerujuk.getText(),
                             tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
                             tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
                             tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
-                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "", "", "", "", ""
+                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "", "", "", "", "", "00:00:00"
                         }) == true) {
                             ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
                             ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
@@ -2174,12 +2097,12 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 
                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 24, new String[]{
+                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 25, new String[]{
                             TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), tglperiksa, jamperiksa, KodePerujuk.getText(),
                             tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
                             tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
                             tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
-                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "", "", "", "", ""
+                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "", "", "", "", "", "00:00:00"
                         }) == true) {
                             ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
                             ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
@@ -2448,6 +2371,98 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             }
         } else {
             isReset();
+        }
+    }
+    
+    private void initPetugas() {
+        if (petugas == null) {
+            petugas = new DlgCariPetugas(null, false);
+
+            petugas.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("DlgPeriksaRadiologi")) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            KdPtg.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
+                            NmPtg.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                        }
+                        tbPemeriksaan.requestFocus();
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+    
+    private void initDokter() {
+        if (dokter == null) {
+            dokter = new DlgCariDokter(null, false);
+
+            dokter.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("DlgPeriksaRadiologi")) {
+                        if (dokter.getTable().getSelectedRow() != -1) {
+                            if (pilihan.equals("perujuk")) {
+                                KodePerujuk.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
+                                NmPerujuk.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                KodePerujuk.requestFocus();
+                            } else if (pilihan.equals("penjab")) {
+                                KodePj.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
+                                NmDokterPj.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                KodePj.requestFocus();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
         }
     }
 }
