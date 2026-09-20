@@ -8,7 +8,6 @@ import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -18,7 +17,6 @@ import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -1592,7 +1590,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             tbObat.requestFocus();
         } else {
             DlgGantiAturanPakai aturan = new DlgGantiAturanPakai(null, false);
-            aturan.setSize(743, 316);
+            aturan.setSize(743, 345);
             aturan.setLocationRelativeTo(internalFrame1);
             aturan.setData(no_nota, kd_obat,
                     Sequel.cariIsi("SELECT p.tgl_jual FROM penjualan p INNER JOIN detailjual dj on p.nota_jual = dj.nota_jual WHERE dj.nota_jual='" + no_nota + "'"),
@@ -1623,7 +1621,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 //            Valid.MyReport("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Minum ]::",
 //                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
 //                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
-//                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
+//                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired "
 //                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
 //                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
 //                    + "ap.no_nota='" + no_nota + "' and ap.kode_brng='" + kd_obat + "'", param);
@@ -1631,7 +1629,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             Valid.AutoPrintMulti("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Minum ]::",
                     "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
                     + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
-                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
+                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired "
                     + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
                     + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
                     + "ap.no_nota='" + no_nota + "' and ap.kode_brng='" + kd_obat + "'", param, nmPrinter1);
@@ -1661,7 +1659,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 //            Valid.MyReport("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Luar ]::",
 //                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
 //                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
-//                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
+//                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired "
 //                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
 //                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
 //                    + "ap.no_nota = '" + no_nota + "' AND ap.kode_brng = '" + kd_obat + "'", param);
@@ -1669,7 +1667,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             Valid.AutoPrintMulti("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Luar ]::",
                     "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
                     + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
-                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
+                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired "
                     + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
                     + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
                     + "ap.no_nota = '" + no_nota + "' AND ap.kode_brng = '" + kd_obat + "'", param, nmPrinter2);

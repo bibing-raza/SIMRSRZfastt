@@ -17,7 +17,6 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import inventory.DlgPemberianObat;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -1326,7 +1325,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 tampilObat();
             } else if (conteng == 1) {
                 DlgGantiAturanPakai ganti = new DlgGantiAturanPakai(null, false);
-                ganti.setSize(743, 316);
+                ganti.setSize(743, 345);
                 ganti.setLocationRelativeTo(internalFrame1);
                 ganti.setData(TNoRw.getText(), kodeobat, tglrsp, jamrsp, "transaksi_rs");
                 ganti.setVisible(true);
@@ -1922,7 +1921,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 //            Valid.MyReport("rptAturanPakai.jasper", "report", "::[ Labeling Obat Minum ]::",
 //                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
 //                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-//                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+//                    + "ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
 //                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
 //                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
 //                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
@@ -1932,7 +1931,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             Valid.AutoPrintMulti("rptAturanPakai.jasper", "report", "::[ Labeling Obat Minum ]::",
                     "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
                     + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+                    + "ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
                     + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                     + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
                     + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
@@ -1943,7 +1942,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 //            Valid.MyReport("rptAturanPakai8x6koma5cm.jasper", "report", "::[ Labeling Obat Minum ]::",
 //                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
 //                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-//                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+//                    + "ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
 //                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
 //                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
 //                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
@@ -1953,7 +1952,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             Valid.AutoPrintMulti("rptAturanPakai8x6koma5cm.jasper", "report", "::[ Labeling Obat Minum ]::",
                     "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
                     + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+                    + "ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
                     + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                     + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
                     + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
@@ -1977,7 +1976,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 //            Valid.MyReport("rptAturanPakai.jasper", "report", "::[ Labeling Obat Luar ]::",
 //                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
 //                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-//                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+//                    + "ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
 //                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
 //                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
 //                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
@@ -1987,7 +1986,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             Valid.AutoPrintMulti("rptAturanPakai.jasper", "report", "::[ Labeling Obat Luar ]::",
                     "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
                     + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+                    + "ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
                     + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                     + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
                     + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
@@ -1998,7 +1997,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 //            Valid.MyReport("rptAturanPakai8x6koma5cm.jasper", "report", "::[ Labeling Obat Luar ]::",
 //                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
 //                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-//                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+//                    + "ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
 //                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
 //                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
 //                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
@@ -2008,7 +2007,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             Valid.AutoPrintMulti("rptAturanPakai8x6koma5cm.jasper", "report", "::[ Labeling Obat Luar ]::",
                     "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
                     + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+                    + "ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
                     + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                     + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
                     + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "

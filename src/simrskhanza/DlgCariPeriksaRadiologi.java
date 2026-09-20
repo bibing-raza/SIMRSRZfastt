@@ -5947,7 +5947,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     + "    x.`Nama Pemeriksaan Rad.`, "
                     + "    x.`Tgl. Pemeriksaan`, "
                     + "    x.`Jam Input`, "
-                    + "    x.`Jam Pemeriksaan`, "
+                    + "    x.`Jam Pmrksn. Selesai`, "
                     + "    x.`Cara Bayar`, "
                     + "    x.`Rg. Rawat/Poli/Inst.`, "
                     + "    x.`Parameter kV`, "
@@ -5968,7 +5968,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     + "ORDER BY ki2.tgl_masuk DESC, ki2.jam_masuk DESC, ki2.tgl_keluar DESC, ki2.jam_keluar DESC LIMIT 1), pl.nm_poli, '-') AS `Rg. Rawat/Poli/Inst.`, "
                     + "pr.nilai_kv AS `Parameter kV`, pr.nilai_mas AS `Parameter mAs`, pr.nilai_ma AS `Parameter mA/CTDi`, pr.nilai_fase AS `Parameter s/Fase`, "
                     + "pr.nilai_dlp AS `Parameter DLP`, pr.tgl_periksa AS tgl_periksa_sort, pr.jam AS jam_sort, p.no_rkm_medis AS no_rkm_medis_sort, "
-                    + "if(pr.jam_pemeriksaan='00:00:00','',pr.jam_pemeriksaan) AS `Jam Pemeriksaan` FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "if(pr.jam_pemeriksaan='00:00:00','',pr.jam_pemeriksaan) AS `Jam Pmrksn. Selesai` FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj INNER JOIN periksa_radiologi pr ON pr.no_rawat = rp.no_rawat  "
                     + "INNER JOIN jns_perawatan_radiologi jpr ON jpr.kd_jenis_prw = pr.kd_jenis_prw INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
                     + "WHERE rp.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "') sub "
@@ -5999,7 +5999,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     + "    x.`Nama Pemeriksaan Rad.`, "
                     + "    x.`Tgl. Pemeriksaan`, "
                     + "    x.`Jam Input`, "
-                    + "    x.`Jam Pemeriksaan`, "
+                    + "    x.`Jam Pmrksn. Selesai`, "
                     + "    x.`Cara Bayar`, "
                     + "    x.`Rg. Rawat/Poli/Inst.`, "
                     + "    x.`Parameter kV`, "
@@ -6020,7 +6020,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     + "ORDER BY ki2.tgl_masuk DESC, ki2.jam_masuk DESC, ki2.tgl_keluar DESC, ki2.jam_keluar DESC LIMIT 1), pl.nm_poli, '-') AS `Rg. Rawat/Poli/Inst.`, "
                     + "pr.nilai_kv AS `Parameter kV`, pr.nilai_mas AS `Parameter mAs`, pr.nilai_ma AS `Parameter mA/CTDi`, pr.nilai_fase AS `Parameter s/Fase`, "
                     + "pr.nilai_dlp AS `Parameter DLP`, pr.tgl_periksa AS tgl_periksa_sort, pr.jam AS jam_sort, p.no_rkm_medis AS no_rkm_medis_sort, "
-                    + "if(pr.jam_pemeriksaan='00:00:00','',pr.jam_pemeriksaan) AS `Jam Pemeriksaan` FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "if(pr.jam_pemeriksaan='00:00:00','',pr.jam_pemeriksaan) AS `Jam Pmrksn. Selesai` FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj INNER JOIN periksa_radiologi pr ON pr.no_rawat = rp.no_rawat  "
                     + "INNER JOIN jns_perawatan_radiologi jpr ON jpr.kd_jenis_prw = pr.kd_jenis_prw INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
                     + "WHERE pr.tgl_periksa BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "') sub "
@@ -6067,7 +6067,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     + "    x.`Nama Pemeriksaan Rad.`, "
                     + "    x.`Tgl. Pemeriksaan`, "
                     + "    x.`Jam Input`, "
-                    + "    x.`Jam Pemeriksaan`, "
+                    + "    x.`Jam Pmrksn. Selesai`, "
                     + "    x.`Cara Bayar`, "
                     + "    x.`Rg. Rawat/Poli/Inst.`, "
                     + "    x.`Parameter kV`, "
@@ -6083,7 +6083,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     + "DATE_FORMAT(pr.tgl_periksa,'%d-%m-%Y') AS `Tgl. Pemeriksaan`, TIME_FORMAT(pr.jam,'%H:%i:%s') AS `Jam Input`, pj.png_jawab AS `Cara Bayar`, "
                     + "pl.nm_poli AS `Rg. Rawat/Poli/Inst.`, pr.nilai_kv AS `Parameter kV`, pr.nilai_mas AS `Parameter mAs`, pr.nilai_ma AS `Parameter mA/CTDi`, "
                     + "pr.nilai_fase AS `Parameter s/Fase`, pr.nilai_dlp AS `Parameter DLP`, pr.tgl_periksa AS tgl_periksa_sort, pr.jam AS jam_sort, "
-                    + "if(pr.jam_pemeriksaan='00:00:00','',pr.jam_pemeriksaan) AS `Jam Pemeriksaan` FROM periksa_radiologi pr "
+                    + "if(pr.jam_pemeriksaan='00:00:00','',pr.jam_pemeriksaan) AS `Jam Pmrksn. Selesai` FROM periksa_radiologi pr "
                     + "INNER JOIN reg_periksa rp ON rp.no_rawat=pr.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis INNER JOIN petugas pt ON pt.nip=pr.nip "
                     + "INNER JOIN dokter d ON d.kd_dokter=pr.kd_dokter INNER JOIN penjab pj ON pj.kd_pj=rp.kd_pj "
                     + "INNER JOIN jns_perawatan_radiologi jpr ON jpr.kd_jenis_prw=pr.kd_jenis_prw INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
@@ -7264,7 +7264,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     rs.getString("nilai_kv"), rs.getString("nilai_mas"), rs.getString("nilai_ma"), rs.getString("nilai_fase"), rs.getString("nilai_dlp"), rs.getString("warna"), ""
                 });
                 tabMode.addRow(new Object[]{"Cara Bayar", ": " + rs.getString("png_jawab") + " (" + rs.getString("cekBayar") + ") | Berat Badan : " + rs.getString("bb"),
-                    "Kode Periksa", "Nama Pemeriksaan", "Biaya Pemeriksaan", "Jam Selesai", "Durasi Pelayanan", "", "", "", "",
+                    "Kode Periksa :", "Nama Pemeriksaan :", "Biaya Pmrksn. :", "Jam Selesai Hasil Bacaan :", "Durasi Pelayanan :", "", "", "", "",
                     "s/Fase : " + rs.getString("fase") + ", DLP : " + rs.getString("dlp"), "", "", "", "", "", "", ""});
 
                 ps2.setString(1, rs.getString("no_rawat"));
@@ -7279,16 +7279,17 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                             + "hr.no_rawat='" + rs.getString("no_rawat") + "' and hr.tgl_periksa='" + rs.getString("tgl_periksa") + "' and hr.jam='" + rs.getString("jam") + "' "
                             + "and hr.kd_jenis_prw='" + rs2.getString("kd_jenis_prw") + "'");
 
-                    cekDurasi = Sequel.cariIsi("select ifnull(CASE WHEN time(hr.waktu_simpan) < pr.jam THEN "
-                            + "CASE WHEN TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan) + INTERVAL 1 DAY) < 3600 "
-                            + "THEN CONCAT(FLOOR(TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan) + INTERVAL 1 DAY) / 60), ' Menit') "
-                            + "ELSE CONCAT(FLOOR(TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan) + INTERVAL 1 DAY) / 3600), ' Jam ', "
-                            + "FLOOR((TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan) + INTERVAL 1 DAY) % 3600) / 60), ' Menit') END "
-                            + "ELSE CASE WHEN TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan)) < 3600 "
-                            + "THEN CONCAT(FLOOR(TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan)) / 60), ' Menit') "
-                            + "ELSE CONCAT(FLOOR(TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan)) / 3600), ' Jam ', "
-                            + "FLOOR((TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan)) % 3600) / 60), ' Menit') END END,'-') from periksa_radiologi pr "
-                            + "inner join hasil_radiologi hr on hr.no_rawat=pr.no_rawat where "
+                    cekDurasi = Sequel.cariIsi("SELECT IFNULL(CASE WHEN TIMESTAMPDIFF(SECOND,TIMESTAMP(pr.tgl_periksa, pr.jam),hr.waktu_simpan) < 0 THEN '-' "
+                            + "WHEN TIMESTAMPDIFF(SECOND,TIMESTAMP(pr.tgl_periksa, pr.jam),hr.waktu_simpan) < 3600 "
+                            + "THEN CONCAT(FLOOR(TIMESTAMPDIFF(SECOND,TIMESTAMP(pr.tgl_periksa, pr.jam),hr.waktu_simpan) / 60),' Menit') "
+                            + "WHEN TIMESTAMPDIFF(SECOND,TIMESTAMP(pr.tgl_periksa, pr.jam),hr.waktu_simpan) < 86400 "
+                            + "THEN CONCAT(FLOOR(TIMESTAMPDIFF(SECOND,TIMESTAMP(pr.tgl_periksa, pr.jam),hr.waktu_simpan) / 3600),' Jam ', "
+                            + "FLOOR((TIMESTAMPDIFF(SECOND,TIMESTAMP(pr.tgl_periksa, pr.jam), hr.waktu_simpan) % 3600) / 60),' Menit') ELSE "
+                            + "CONCAT(FLOOR(TIMESTAMPDIFF(SECOND,TIMESTAMP(pr.tgl_periksa, pr.jam), hr.waktu_simpan) / 86400),' Hari ', "
+                            + "FLOOR((TIMESTAMPDIFF(SECOND,TIMESTAMP(pr.tgl_periksa, pr.jam), hr.waktu_simpan) % 86400) / 3600),' Jam ', "
+                            + "FLOOR((TIMESTAMPDIFF(SECOND,TIMESTAMP(pr.tgl_periksa, pr.jam), hr.waktu_simpan) % 3600) / 60),' Menit') END,'-') "
+                            + "FROM periksa_radiologi pr INNER JOIN hasil_radiologi hr ON hr.no_rawat = pr.no_rawat "
+                            + "AND hr.tgl_periksa = pr.tgl_periksa AND hr.jam = pr.jam AND hr.kd_jenis_prw = pr.kd_jenis_prw where "
                             + "hr.no_rawat='" + rs.getString("no_rawat") + "' and hr.tgl_periksa='" + rs.getString("tgl_periksa") + "' and hr.jam='" + rs.getString("jam") + "' "
                             + "and hr.kd_jenis_prw='" + rs2.getString("kd_jenis_prw") + "'");
 
@@ -7301,7 +7302,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                         warnaKritis = "merah";
                     }
                     
-                    tabMode.addRow(new Object[]{"Jam Pemeriksaan", ": " + jamPemeriksaan, rs2.getString("kd_jenis_prw"), rs2.getString("nm_perawatan"),
+                    tabMode.addRow(new Object[]{"Jam Pmrksn. Selesai", ": " + jamPemeriksaan, rs2.getString("kd_jenis_prw"), rs2.getString("nm_perawatan"),
                         Valid.SetAngka(rs2.getDouble("biaya")), cekJamSelesai, cekDurasi, "",
                         "", "", "", "", "", "", "", "", "", warnaKritis, ""});
                 }

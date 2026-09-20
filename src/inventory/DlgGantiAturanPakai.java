@@ -1,39 +1,24 @@
 package inventory;
 
-import laporan.*;
-import fungsi.WarnaTable;
-import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
-import fungsi.akses;
 import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import fungsi.akses;
 
 /**
  *
  * @author dosen
  */
 public final class DlgGantiAturanPakai extends javax.swing.JDialog {
-
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
@@ -94,6 +79,8 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
         jLabel15 = new widget.Label();
         cmbket = new widget.ComboBox();
         cmbmasasimpan = new widget.ComboBox();
+        chkTglKadaluarsa = new widget.CekBox();
+        TtglKadaluarsa = new widget.Tanggal();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -108,6 +95,7 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(243, 238, 238)));
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
         jPanel3.setPreferredSize(new java.awt.Dimension(44, 48));
@@ -316,6 +304,33 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
         PanelInput.add(cmbmasasimpan);
         cmbmasasimpan.setBounds(103, 208, 545, 23);
 
+        chkTglKadaluarsa.setBackground(new java.awt.Color(255, 255, 250));
+        chkTglKadaluarsa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkTglKadaluarsa.setForeground(new java.awt.Color(0, 0, 0));
+        chkTglKadaluarsa.setText("Tgl. Kadaluarsa :");
+        chkTglKadaluarsa.setBorderPainted(true);
+        chkTglKadaluarsa.setBorderPaintedFlat(true);
+        chkTglKadaluarsa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkTglKadaluarsa.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkTglKadaluarsa.setName("chkTglKadaluarsa"); // NOI18N
+        chkTglKadaluarsa.setOpaque(false);
+        chkTglKadaluarsa.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkTglKadaluarsa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkTglKadaluarsaActionPerformed(evt);
+            }
+        });
+        PanelInput.add(chkTglKadaluarsa);
+        chkTglKadaluarsa.setBounds(103, 236, 105, 23);
+
+        TtglKadaluarsa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2026" }));
+        TtglKadaluarsa.setDisplayFormat("dd-MM-yyyy");
+        TtglKadaluarsa.setName("TtglKadaluarsa"); // NOI18N
+        TtglKadaluarsa.setOpaque(false);
+        TtglKadaluarsa.setPreferredSize(new java.awt.Dimension(90, 23));
+        PanelInput.add(TtglKadaluarsa);
+        TtglKadaluarsa.setBounds(213, 236, 90, 23);
+
         internalFrame1.add(PanelInput, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
@@ -345,6 +360,7 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
                         + "keterangan='" + cmbket.getSelectedItem().toString() + "', "
                         + "waktu_simpan='" + cmbmasasimpan.getSelectedItem().toString() + "'");
 
+                
             } else if (transaksi.equals("jual_bebas")) {
                 if (Sequel.cariInteger("select count(-1) from aturan_pakai_jual_bebas where no_nota='" + norawat.getText() + "' and "
                         + "tgl_perawatan='" + tglresep.getText() + "' and kode_brng='" + kdobat.getText() + "'") > 0) {
@@ -364,6 +380,12 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
                             + "'" + cmbket.getSelectedItem().toString() + "','" + cmbmasasimpan.getSelectedItem().toString() + "'", "Aturan Pakai Obat Penjualan Bebas");
                 }
             }
+            
+            if (chkTglKadaluarsa.isSelected() == true) {
+                Sequel.mengedit("databarang", "kode_brng='" + kdobat.getText() + "'", "expire='" + Valid.SetTgl(TtglKadaluarsa.getSelectedItem() + "") + "'");
+            } else {
+                Sequel.mengedit("databarang", "kode_brng='" + kdobat.getText() + "'", "expire='0000-00-00'");
+            }
 
             BtnKeluarActionPerformed(null);
             this.setCursor(Cursor.getDefaultCursor());
@@ -377,6 +399,16 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
     private void cmbketMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbketMouseReleased
         AutoCompleteDecorator.decorate(cmbket);
     }//GEN-LAST:event_cmbketMouseReleased
+
+    private void chkTglKadaluarsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkTglKadaluarsaActionPerformed
+        TtglKadaluarsa.setDate(new Date());
+        if (chkTglKadaluarsa.isSelected() == true) {
+            TtglKadaluarsa.setEnabled(true);
+            TtglKadaluarsa.requestFocus();
+        } else {
+            TtglKadaluarsa.setEnabled(false);
+        }
+    }//GEN-LAST:event_chkTglKadaluarsaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -398,6 +430,8 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
     private widget.Button BtnGanti;
     private widget.Button BtnKeluar;
     private javax.swing.JPanel PanelInput;
+    private widget.Tanggal TtglKadaluarsa;
+    public widget.CekBox chkTglKadaluarsa;
     private widget.ComboBox cmbaturan1;
     private widget.ComboBox cmbaturan2;
     private widget.ComboBox cmbaturan3;
@@ -443,6 +477,17 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
 
         kdobat.setText(kodeobat);
         nmobat.setText(Sequel.cariIsi("select nama_brng from databarang where kode_brng='" + kodeobat + "'"));
+        
+        if (Sequel.cariIsi("select if(expire='0000-00-00','',expire) from databarang where kode_brng='" + kodeobat + "'").equals("")) {
+            chkTglKadaluarsa.setSelected(false);
+            TtglKadaluarsa.setEnabled(false);
+            TtglKadaluarsa.setDate(new Date());
+        } else {
+            chkTglKadaluarsa.setSelected(true);
+            TtglKadaluarsa.setEnabled(true);
+            Valid.SetTgl(TtglKadaluarsa, Sequel.cariIsi("select expire from databarang where kode_brng='" + kodeobat + "'"));
+        }
+        
         tglresep.setText(tgl);
         jamresep.setText(jam);
         transaksi = jns_transaksi;

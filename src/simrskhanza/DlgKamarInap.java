@@ -15605,26 +15605,40 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         kesimpulanGizi = "Resiko malnutrisi berat, perlu pemantauan lanjutan oleh Tim Gizi/Dietsien";
                     }
                     
+                    String teks1 = "", teks2 = "", teks3 = "", teks4 = "", teks5 = "", teks6 = "", ketIntervensi = "";
+                    teks1 = "1. Terdapat penurunan berat badan atau berat badan menetap (pada bayi < 1 tahun) selama >= 2 bulan";
+                    teks2 = "2. Terdapat tanda-tanda klinis gangguan gizi (tampak kurus, gemuk, pendek, edema, moon face,\n"
+                            + "     tampak tua, iga gambang, baggy pant, anoreksia) selama 1 bulan terakhir";
+                    teks3 = "3. Terdapat salah satu penyakit/kondisi yang beresiko mengakibatkan malnutrisi berikut :\n"
+                            + "     * Diare berat (> 5 x/hari) dan atau muntah (> 3 x/hari)\n"
+                            + "     * Penurunan asupan makanan selama lebih dari 7 hari";
+                    teks4 = "4. Terdapat penyakit-penyakit atau keadaan yang meningkatkan resiko malnutrisi antara lain : ";
+                    teks5 = "* Diare kronik (lebih dari 2 minggu)<br>* (Tersangka) Penyakit jantung bawaan<br>* (Tersangka) Infeksi Human Immunodeficiency Virus (HIV)"
+                            + "<br>* (Tersangka) Kanker<br>* Penyakit hati kronik<br>* Penyakit ginjal kronik<br>* TB Paru<br>* Terpasang stoma";
+                    teks6 = "* Trauma<br>* Luka bakar luas<br>* Kelainan anatomi daerah mulut yang menyebabkan kesulitan makan (misal : bibir sumbing)"
+                            + "<br>* Rencana atau paska operasi mayor (misalnya : laparatomi, terakotomi)<br>* Kelainan metabolisme bawaan (inborn error metabolism)"
+                            + "<br>* Retardasi mental<br>* Keterlambatan perkembangan<br>* Lain-lain (berdasarkan pertimbangan dokter)";
+         
+                    if (rsLaprm.getString("intervensi").equals("-")) {
+                        ketIntervensi = "Keterangan : -";
+                    } else if (rsLaprm.getString("intervensi").equals("Resiko Rendah")) {
+                        ketIntervensi = "Keterangan : Lakukan asuhan gizi, skrining ulang bila dirawat >= 7 hari.";
+                    } else if (rsLaprm.getString("intervensi").equals("Resiko Menengah")) {
+                        ketIntervensi = "Keterangan : Lakukan asuhan gizi, skrining ulang setelah 3 hari.";
+                    } else if (rsLaprm.getString("intervensi").equals("Resiko Tinggi")) {
+                        ketIntervensi = "Keterangan : Lakukan asuhan gizi, monev gizi harian.";
+                    }
+                    
                     //skrining gizi
-                    param.put("kalimatSkrining", "1. Terdapat penurunan berat badan atau berat badan menetap (pada bayi < 1 tahun) selama >= 2 bulan (Skor : " + skorGZanak1 + ")\n\n"
-                            + "2. Terdapat tanda-tanda klinis gangguan gizi (tampak kurus, gemuk, pendek, edema, moon face, tampak tua, iga gambang, (Skor : " + skorGZanak2 + ")\n    baggy pant, anoreksia) selama 1 bulan terakhir\n\n"
-                            + "3. Terdapat salah satu penyakit/kondisi yang beresiko mengakibatkan malnutrisi berikut :  (Skor : " + skorGZanak3 + ")\n    * Diare berat (> 5 x/hari) dan atau muntah (> 3 x/hari)\n    * Penurunan asupan makanan selama lebih dari 7 hari\n\n"
-                            + "4. Terdapat penyakit-penyakit atau keadaan yang meningkatkan resiko malnutrisi antara lain :  (Skor : " + skorGZanak4 + ")\n    "
-                            + "* Diare kronik > 2 minggu\n    "
-                            + "* Penyakit Jantung bawaan (tersangka)\n    "
-                            + "* Infeksi HIV (tersangka)\n    "
-                            + "* Kelainan anatomi bawaan\n    "
-                            + "* Kelainan metabolisme bawaan\n    "
-                            + "* Retardasi mental\n    "
-                            + "* Keterlambatan perkembangan\n    "
-                            + "* Kanker (tersangka)\n    "
-                            + "* Penyakit hati/ginjal kronik\n    "
-                            + "* TB Paru\n    "
-                            + "* Rencana/pasca operasi mayor\n    "
-                            + "* Luka bakar luas\n    "
-                            + "* Terpasang stoma\n    "
-                            + "* Trauma\n\n"
-                            + "TOTAL SKOR : " + Valid.SetAngka2(Total) + "\nKesimpulan Skrining Gizi : " + kesimpulanGizi + "\n");
+                    param.put("kalimatSkrining", teks1 + " (Skor : " + skorGZanak1 + ")\n\n"
+                            + teks2 + "                                         (Skor : " + skorGZanak2 + ")\n\n"
+                            + teks3 + "                                                                     (Skor : " + skorGZanak3 + ")\n\n"
+                            + teks4 + "                 (Skor : " + skorGZanak4 + ")\n"
+                            + teks5.replaceAll("<br>", "\n") + "\n"
+                            + teks6.replaceAll("<br>", "\n") + "\n\n"
+                            + "Intervensi : " + rsLaprm.getString("intervensi") + "\n"
+                            + ketIntervensi + "\n\n"
+                            + "TOTAL SKOR : " + Valid.SetAngka2(Total) + "\nInterpretasi Skrining Gizi : " + kesimpulanGizi + "\n");
 
                     if (rsLaprm.getString("obat_obatan").equals("ya")) {
                         param.put("obat", "V");
@@ -16008,7 +16022,10 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             + "2. Apakah asupan makan pasien berkurang karena penurunan nafsu makan / kesulitan menerima makanan ?\n"
                             + rsLaprm.getString("gizi_2") + "   Skor (" + skorGizi2 + ")\n"
                             + "_______________________________________________________________________\n"
-                            + "Total Skor : " + Valid.SetAngka2(Total) + ", Kesimpulan : " + kesimpulanGizi + "\n");
+                            + "Total Skor : " + Valid.SetAngka2(Total) + ", Pasien dengan diagnosa khusus : " + rsLaprm.getString("diagnosa_khusus") + "\n"
+                            + "Kondisi khusus penyakit :\n"
+                            + "pasien penurunan imunitas, penyakit ginjal kronis, geriatri, kanker, kemoterapi, diabetes mellitus, stroke, luka bakar, hepatitis, dll\n"
+                            + "Interpretasi : " + kesimpulanGizi + "\n");
                     param.put("skala", rsLaprm.getString("skala_nyeri"));
                     param.put("onset", rsLaprm.getString("onset"));
                     

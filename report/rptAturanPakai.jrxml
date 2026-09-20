@@ -12,7 +12,7 @@
 	<queryString>
 		<![CDATA[select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, 
 d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, 
-ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng 
+ap.jam, if(d.expire='0000-00-00','-',date_format(d.expire,'%d/%m/%Y')) tglExpired from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng 
 inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis
 where ap.no_rawat='2022/11/03/000001' and ap.tgl_perawatan='2022-11-10' and ap.jam='13:55:59' and ap.kode_brng='F00000000001243']]>
 	</queryString>
@@ -58,6 +58,7 @@ where ap.no_rawat='2022/11/03/000001' and ap.tgl_perawatan='2022-11-10' and ap.j
 	<field name="jam" class="java.sql.Time">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="tglExpired" class="java.lang.String"/>
 	<title>
 		<band height="106">
 			<textField>
@@ -244,6 +245,13 @@ where ap.no_rawat='2022/11/03/000001' and ap.tgl_perawatan='2022-11-10' and ap.j
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="46" y="96" width="50" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tglExpired}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 </jasperReport>
