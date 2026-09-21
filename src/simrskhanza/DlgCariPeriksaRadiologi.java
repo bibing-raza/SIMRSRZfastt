@@ -301,7 +301,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         tbItem.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         tbItem.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
 
-        tabMode5 = new DefaultTableModel(null, new String[]{"No. Rawat", "No. RM", "Nama Pasien", "Tgl. Periksa", "Jam Input", "Nama Petugas", "Nama Pemeriksaan", "Jam Pmrksaan.",
+        tabMode5 = new DefaultTableModel(null, new String[]{"No. Rawat", "No. RM", "Nama Pasien", "Tgl. Periksa", "Jam Input", "Nama Petugas", "Nama Pemeriksaan", "Jam Pmrksaan. Selesai",
             "Jam Lapor", "Jam Lap. Diterima", "Petugas Penerima Lap.", "Keterangan",
             "kd_jenis_prw", "tgl_periksa", "jam", "nip_petugas", "cek_pemeriksaan", "jam_pemeriksaan", "cek_lapor", "jam_lapor", "cek_lap_diterima", "jam_lap_diterima",
             "nip_penerima_lap", "keterangan", "waktu_simpan"
@@ -333,11 +333,11 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(200);
             } else if (i == 7) {
-                column.setPreferredWidth(95);
+                column.setPreferredWidth(130);
             } else if (i == 8) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(70);
             } else if (i == 9) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(100);
             } else if (i == 10) {
                 column.setPreferredWidth(220);
             } else if (i == 11) {
@@ -2082,7 +2082,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel51.setBounds(0, 25, 130, 23);
 
         tanggalPeriksa.setEditable(false);
-        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2026" }));
+        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2026" }));
         tanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         tanggalPeriksa.setName("tanggalPeriksa"); // NOI18N
         tanggalPeriksa.setOpaque(false);
@@ -2950,7 +2950,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         chkPemeriksaan.setBackground(new java.awt.Color(255, 255, 250));
         chkPemeriksaan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkPemeriksaan.setForeground(new java.awt.Color(0, 0, 0));
-        chkPemeriksaan.setText("Jam Pemeriksaan :");
+        chkPemeriksaan.setText("Jam Pemeriksaan Selesai :");
         chkPemeriksaan.setBorderPainted(true);
         chkPemeriksaan.setBorderPaintedFlat(true);
         chkPemeriksaan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -2964,7 +2964,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(chkPemeriksaan);
-        chkPemeriksaan.setBounds(114, 171, 140, 23);
+        chkPemeriksaan.setBounds(114, 171, 160, 23);
 
         chkLapor.setBackground(new java.awt.Color(255, 255, 250));
         chkLapor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2983,7 +2983,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(chkLapor);
-        chkLapor.setBounds(114, 199, 140, 23);
+        chkLapor.setBounds(114, 199, 160, 23);
 
         chkLapDiterima.setBackground(new java.awt.Color(255, 255, 250));
         chkLapDiterima.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -3002,7 +3002,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(chkLapDiterima);
-        chkLapDiterima.setBounds(114, 227, 140, 23);
+        chkLapDiterima.setBounds(114, 227, 160, 23);
 
         cmbJam2.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -3013,7 +3013,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(cmbJam2);
-        cmbJam2.setBounds(260, 171, 45, 23);
+        cmbJam2.setBounds(280, 171, 45, 23);
 
         cmbJam3.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -3024,7 +3024,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(cmbJam3);
-        cmbJam3.setBounds(260, 199, 45, 23);
+        cmbJam3.setBounds(280, 199, 45, 23);
 
         cmbJam4.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -3035,7 +3035,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(cmbJam4);
-        cmbJam4.setBounds(260, 227, 45, 23);
+        cmbJam4.setBounds(280, 227, 45, 23);
 
         cmbMnt2.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -3046,7 +3046,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(cmbMnt2);
-        cmbMnt2.setBounds(313, 171, 45, 23);
+        cmbMnt2.setBounds(333, 171, 45, 23);
 
         cmbMnt3.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -3057,7 +3057,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(cmbMnt3);
-        cmbMnt3.setBounds(313, 199, 45, 23);
+        cmbMnt3.setBounds(333, 199, 45, 23);
 
         cmbMnt4.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -3068,7 +3068,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(cmbMnt4);
-        cmbMnt4.setBounds(313, 227, 45, 23);
+        cmbMnt4.setBounds(333, 227, 45, 23);
 
         cmbDtk2.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -3079,7 +3079,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(cmbDtk2);
-        cmbDtk2.setBounds(366, 171, 45, 23);
+        cmbDtk2.setBounds(386, 171, 45, 23);
 
         cmbDtk3.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -3090,7 +3090,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(cmbDtk3);
-        cmbDtk3.setBounds(366, 199, 45, 23);
+        cmbDtk3.setBounds(386, 199, 45, 23);
 
         cmbDtk4.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -3101,7 +3101,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(cmbDtk4);
-        cmbDtk4.setBounds(366, 227, 45, 23);
+        cmbDtk4.setBounds(386, 227, 45, 23);
 
         internalFrame15.add(internalFrame16, java.awt.BorderLayout.PAGE_START);
 
@@ -3139,7 +3139,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel54.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel54);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3153,7 +3153,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel55.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel55);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3858,7 +3858,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         panelisi1.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2026" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -6795,14 +6795,14 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     + "    x.`Poli/Inst./Ruang Rawat`, "
                     + "    x.`Nama Petugas`, "
                     + "    x.`Nama Pemeriksaan`, "
-                    + "    x.`Jam Pmrksaan.`, "
+                    + "    x.`Jam Pmrksaan. Selesai`, "
                     + "    x.`Jam Lapor`, "
                     + "    x.`Jam Lap. Diterima`, "
                     + "    x.`Petugas Penerima Lap.`, "
                     + "    x.`Keterangan` "
                     + "FROM (SELECT p.no_rkm_medis AS `No. RM`, p.nm_pasien AS `Nama Pasien`, DATE_FORMAT(nk.tgl_periksa,'%d-%m-%Y') AS `Tgl. Periksa`, "
                     + "        TIME_FORMAT(nk.jam,'%H:%i:%s') AS `Jam Input`, IF(rp.status_lanjut = 'Ralan',pl.nm_poli,b.nm_bangsal) AS `Poli/Inst./Ruang Rawat`, "
-                    + "        pg1.nama AS `Nama Petugas`, jpr.nm_perawatan AS `Nama Pemeriksaan`, IF(nk.cek_pemeriksaan = 'ya',TIME_FORMAT(nk.jam_pemeriksaan,'%H:%i:%s'),'') AS `Jam Pmrksaan.`, "
+                    + "        pg1.nama AS `Nama Petugas`, jpr.nm_perawatan AS `Nama Pemeriksaan`, IF(nk.cek_pemeriksaan = 'ya',TIME_FORMAT(nk.jam_pemeriksaan,'%H:%i:%s'),'') AS `Jam Pmrksaan. Selesai`, "
                     + "        IF(nk.cek_lapor = 'ya',TIME_FORMAT(nk.jam_lapor,'%H:%i:%s'),'') AS `Jam Lapor`, "
                     + "        IF(nk.cek_lap_diterima = 'ya',TIME_FORMAT(nk.jam_lap_diterima,'%H:%i:%s'),'') AS `Jam Lap. Diterima`, "
                     + "        pg2.nama AS `Petugas Penerima Lap.`, nk.keterangan AS `Keterangan`, nk.waktu_simpan AS waktu_simpan_sort "
@@ -7826,10 +7826,11 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private void jumlahNoRawat() {
         int jmlnorwt = 0;
         for (i = 0; i < tabMode.getRowCount(); i++) {
-            if (!tabMode.getValueAt(i, 0).equals("") && !tabMode.getValueAt(i, 0).equals("Cara Bayar") && !tabMode.getValueAt(i, 0).equals(">>")) {
+            if (!tabMode.getValueAt(i, 0).equals("") && !tabMode.getValueAt(i, 0).equals("Cara Bayar")
+                    && !tabMode.getValueAt(i, 0).equals("Jam Pmrksn. Selesai") && !tabMode.getValueAt(i, 0).equals(">>")) {
                 jmlnorwt++;
             }
-        }        
+        }
         LCount.setText(Valid.SetAngka(jmlnorwt));
     }
 
