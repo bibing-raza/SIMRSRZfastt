@@ -238,6 +238,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnScoreApgarPerinatologiLuar = new widget.ButtonBig();
         BtnAsesmenPasienTerminal = new widget.ButtonBig();
         BtnFormulirSiteMarkingOdon = new widget.ButtonBig();
+        BtnDataPelayananRS = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -288,6 +289,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         ChkInput.setBorder(null);
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
         ChkInput.setText("Pencarian");
         ChkInput.setToolTipText("Alt+C");
@@ -1503,6 +1505,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnFormulirSiteMarkingOdon);
+
+        BtnDataPelayananRS.setForeground(new java.awt.Color(0, 0, 0));
+        BtnDataPelayananRS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/pie_chart.png"))); // NOI18N
+        BtnDataPelayananRS.setText("Data Pelayanan Rumah Sakit");
+        BtnDataPelayananRS.setIconTextGap(0);
+        BtnDataPelayananRS.setName("BtnDataPelayananRS"); // NOI18N
+        BtnDataPelayananRS.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnDataPelayananRS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDataPelayananRSActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnDataPelayananRS);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -3014,6 +3029,18 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnFormulirSiteMarkingOdonActionPerformed
 
+    private void BtnDataPelayananRSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDataPelayananRSActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Valid.panggilUrlhttpsLangsung("sites.google.com/view/statistikrsraza/home?authuser=0");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnDataPelayananRS.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnDataPelayananRSActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -3025,6 +3052,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnCatatanRuangPemulihan;
     private widget.ButtonBig BtnCatatanSedasiAnestesi;
     private widget.ButtonBig BtnDataCancer;
+    private widget.ButtonBig BtnDataPelayananRS;
     private widget.ButtonBig BtnEvaluasiPraAnestesi;
     private widget.ButtonBig BtnFormulirSiteMarking;
     private widget.ButtonBig BtnFormulirSiteMarkingOdon;
@@ -3578,6 +3606,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             FormMenu.add(BtnAsesmenPasienTerminal);
             jmlmenu++;
         }
+        
+        if (akses.getcppt() && BtnDataPelayananRS.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnDataPelayananRS);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -3612,6 +3645,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         jmlmenu = 0;
         FormMenu.add(btnNotepad);
         jmlmenu++;
+        
+        if (akses.getcppt() == true) {
+            FormMenu.add(BtnDataPelayananRS);
+            jmlmenu++;
+        }
         
         if (akses.getpenyakit() == true) {
             FormMenu.add(BtnDataCancer);

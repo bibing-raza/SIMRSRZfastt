@@ -406,6 +406,8 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         btnDokterPj = new widget.Button();
         jLabel17 = new widget.Label();
         Tbb = new widget.TextBox();
+        jLabel13 = new widget.Label();
+        TunitPengirim = new widget.TextBox();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         panelisi5 = new widget.panelisi();
@@ -535,7 +537,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
 
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setOpaque(false);
-        FormInput.setPreferredSize(new java.awt.Dimension(560, 186));
+        FormInput.setPreferredSize(new java.awt.Dimension(560, 214));
         FormInput.setLayout(new java.awt.BorderLayout(1, 1));
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
@@ -637,7 +639,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         NmPtg.setBounds(248, 96, 375, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-11-2025" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2026" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -762,6 +764,18 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         Tbb.setName("Tbb"); // NOI18N
         PanelInput.add(Tbb);
         Tbb.setBounds(538, 124, 85, 23);
+
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Unit Pengirim :");
+        jLabel13.setName("jLabel13"); // NOI18N
+        PanelInput.add(jLabel13);
+        jLabel13.setBounds(0, 152, 112, 23);
+
+        TunitPengirim.setEditable(false);
+        TunitPengirim.setForeground(new java.awt.Color(0, 0, 0));
+        TunitPengirim.setName("TunitPengirim"); // NOI18N
+        PanelInput.add(TunitPengirim);
+        TunitPengirim.setBounds(115, 152, 510, 23);
 
         FormInput.add(PanelInput, java.awt.BorderLayout.CENTER);
 
@@ -1518,6 +1532,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private widget.TextBox TPasien;
     private widget.Tanggal Tanggal;
     private widget.TextBox Tbb;
+    private widget.TextBox TunitPengirim;
     private widget.Button btnCariBhp;
     private widget.Button btnCariPeriksa;
     private widget.Button btnDokter;
@@ -1527,6 +1542,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel10;
     private widget.Label jLabel12;
+    private widget.Label jLabel13;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
@@ -1783,6 +1799,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     }
 
     private void isRawat() {
+        String kodeRujukan = "";
         kdPoli = "";
         Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat=? ", TNoRM, TNoRw.getText());
         Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=? ", kdPenjab, TNoRw.getText());
@@ -1792,6 +1809,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             kelas = Sequel.cariIsi("select kamar.kelas from kamar inner join kamar_inap "
                     + "on kamar.kd_kamar=kamar_inap.kd_kamar where no_rawat=? "
                     + "and stts_pulang='-' order by STR_TO_DATE(concat(kamar_inap.tgl_masuk,' ',jam_masuk),'%Y-%m-%d %H:%i:%s') desc limit 1", TNoRw.getText());
+            TunitPengirim.setText(Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
+                    + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
 
             KodePerujuk.setText(Sequel.cariIsi("select ifnull(kd_dokter,'') from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"));
             if (KodePerujuk.getText().equals("")) {
@@ -1808,6 +1828,14 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             } else {
                 KodePerujuk.setText(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
                 NmPerujuk.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + KodePerujuk.getText() + "'"));
+            }
+            
+            kodeRujukan = Sequel.cariIsi("select kd_rujukan from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'");            
+            if (kodeRujukan.equals("-") || kodeRujukan.equals("")
+                    || Sequel.cariInteger("select count(-1) from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                TunitPengirim.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdPoli + "'"));
+            } else {
+                TunitPengirim.setText(Sequel.cariIsi("select perujuk from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'"));
             }
         }
     }
@@ -1874,6 +1902,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         tglperiksa = tglPerik;
         jamperiksa = jamPerik;
         this.status = posisi;
+        
         try {
             pssetpj = koneksi.prepareStatement("select * from set_pjlab");
             try {
@@ -1924,7 +1953,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private void isForm() {
         if (ChkInput.isSelected() == true) {
             ChkInput.setVisible(false);
-            FormInput.setPreferredSize(new Dimension(WIDTH, 186));
+            FormInput.setPreferredSize(new Dimension(WIDTH, 214));
             PanelInput.setVisible(true);
             ChkInput.setVisible(true);
         } else if (ChkInput.isSelected() == false) {
@@ -2013,12 +2042,12 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 
                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 25, new String[]{
+                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 26, new String[]{
                             TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), tglperiksa, jamperiksa, KodePerujuk.getText(),
                             tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
                             tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
                             tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
-                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "", "", "", "", "", "00:00:00"
+                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "", "", "", "", "", "00:00:00", TunitPengirim.getText()
                         }) == true) {
                             ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
                             ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
@@ -2097,12 +2126,12 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 
                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 25, new String[]{
+                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 26, new String[]{
                             TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), tglperiksa, jamperiksa, KodePerujuk.getText(),
                             tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
                             tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
                             tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
-                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "", "", "", "", "", "00:00:00"
+                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "", "", "", "", "", "00:00:00", TunitPengirim.getText()
                         }) == true) {
                             ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
                             ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());

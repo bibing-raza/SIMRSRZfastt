@@ -622,9 +622,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         try {
             host = Sequel.decXML(prop.getProperty("HOSTraza"), prop.getProperty("KEY"));
             if (akses.getpegawai_admin() == true) {
-                Valid.panggilUrlRAZA("/rzid/");
+                Valid.panggilUrlhttpsLangsung("sites.google.com/view/statistikrsraza/home?authuser=0");
+//                Valid.panggilUrlRAZA("/rzid/");
             } else if (akses.getpegawai_user() == true) {
-                Valid.panggilUrlRAZA("/rzid/");
+                Valid.panggilUrlhttpsLangsung("sites.google.com/view/statistikrsraza/home?authuser=0");
+//                Valid.panggilUrlRAZA("/rzid/");
             }
         } catch (Exception ex) {
             System.out.println("Notifikasi : " + ex);

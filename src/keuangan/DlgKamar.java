@@ -41,13 +41,13 @@ import simrskhanza.DlgCariBangsal;
  */
 public final class DlgKamar extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode1;
-    private Connection koneksi=koneksiDB.condb();
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
+    private Connection koneksi = koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
-    private int i=0;
-    private String asalform="", cekaktif="";
+    private int i = 0;
+    private String asalform = "", cekaktif = "";
 
     /** Creates new form DlgKamar
      * @param parent
@@ -1487,6 +1487,7 @@ private void CmbCrIsiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST
      public void isCek(){
          BtnSimpan.setEnabled(akses.getkamar());
          BtnHapus.setEnabled(akses.getkamar());
+         BtnEdit.setEnabled(akses.getkamar());
          BtnPrint.setEnabled(akses.getkamar());
          TKd.setEditable(akses.getkamar());
          TTarif.setEditable(akses.getkamar());
