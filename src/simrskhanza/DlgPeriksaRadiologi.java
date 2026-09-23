@@ -1833,7 +1833,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             kodeRujukan = Sequel.cariIsi("select kd_rujukan from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'");            
             if (kodeRujukan.equals("-") || kodeRujukan.equals("")
                     || Sequel.cariInteger("select count(-1) from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'") == 0) {
-                TunitPengirim.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdPoli + "'"));
+                TunitPengirim.setText(Sequel.cariIsi("select concat('Poliklinik ',nm_poli) from poliklinik where kd_poli='" + kdPoli + "'"));
             } else {
                 TunitPengirim.setText(Sequel.cariIsi("select perujuk from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'"));
             }
