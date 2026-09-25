@@ -1822,7 +1822,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         } else if (status.equals("Ralan")) {
             kelas = "Rawat Jalan";
             kdPoli = Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "'");
-            TunitPengirim.setText(Sequel.cariIsi("select concat('Poliklinik ',nm_poli) from poliklinik where kd_poli='" + kdPoli + "'"));
+            TunitPengirim.setText(Sequel.cariIsi("select if(kd_poli in ('-','igdk','rad','laa','lab','iob','kjh','pkbrs','pon','tum'),nm_poli,concat('Poliklinik ',nm_poli)) "
+                    + "from poliklinik where kd_poli='" + kdPoli + "'"));
             
             if (kdPoli.equals("RAD")) {
                 KodePerujuk.setText("");

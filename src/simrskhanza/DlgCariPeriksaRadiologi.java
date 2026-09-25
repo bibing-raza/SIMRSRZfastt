@@ -55,7 +55,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     private ResultSet rs, rs2, rs3, rs5, rs6, rs7, rs8, rs9, rs10, rs11, rsrekening, rsItem;
     private String kamar, namakamar, pemeriksaan = "", pilihan = "", status = "", tglperiksa = "", jam = "", sttsRawat = "",
             tglhasil = "", jamhasil = "", lihatHasil = "", kodeRujukan = "", tgldaftar = "", tglnoRW = "", alamatFaskes = "",
-            kdItem = "", cekDiagnos = "", kd_kamar = "", pilihMenu = "";
+            kdItem = "", cekDiagnos = "", kd_kamar = "", pilihMenu = "", kodepoliUnit = "";
     private double ttl = 0, item = 0, cekRad;
     private double ttljmdokter = 0, ttljmpetugas = 0, ttlkso = 0, ttlpendapatan = 0, ttlbhp = 0;
     private String Suspen_Piutang_Radiologi_Ranap = "", Radiologi_Ranap = "", Beban_Jasa_Medik_Dokter_Radiologi_Ranap = "",
@@ -2075,7 +2075,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel51.setBounds(0, 25, 130, 23);
 
         tanggalPeriksa.setEditable(false);
-        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2026" }));
+        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2026" }));
         tanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         tanggalPeriksa.setName("tanggalPeriksa"); // NOI18N
         tanggalPeriksa.setOpaque(false);
@@ -3112,7 +3112,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel54.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel54);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3126,7 +3126,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel55.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel55);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3875,7 +3875,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         panelisi1.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2026" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -8192,7 +8192,16 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                                 kdpoli.requestFocus();
                             }
                         } else if (dipilih == 2) {
-                            TunitPengirimGanti.setText("Poliklinik " + poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
+                            if (poli.getTable().getSelectedRow() != -1) {
+                                kodepoliUnit = poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 0).toString();
+                                if (kodepoliUnit.equals("-") || kodepoliUnit.equals("igdk") || kodepoliUnit.equals("rad") || kodepoliUnit.equals("laa")
+                                        || kodepoliUnit.equals("lab") || kodepoliUnit.equals("iob") || kodepoliUnit.equals("kjh") || kodepoliUnit.equals("pkbrs")
+                                        || kodepoliUnit.equals("pon") || kodepoliUnit.equals("tum")) {
+                                    TunitPengirimGanti.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
+                                } else {
+                                    TunitPengirimGanti.setText("Poliklinik " + poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
+                                }
+                            }
                         }
                     }
                 }
