@@ -1799,7 +1799,6 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     }
 
     private void isRawat() {
-        String kodeRujukan = "";
         kdPoli = "";
         Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat=? ", TNoRM, TNoRw.getText());
         Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=? ", kdPenjab, TNoRw.getText());
@@ -1809,6 +1808,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             kelas = Sequel.cariIsi("select kamar.kelas from kamar inner join kamar_inap "
                     + "on kamar.kd_kamar=kamar_inap.kd_kamar where no_rawat=? "
                     + "and stts_pulang='-' order by STR_TO_DATE(concat(kamar_inap.tgl_masuk,' ',jam_masuk),'%Y-%m-%d %H:%i:%s') desc limit 1", TNoRw.getText());
+            
             TunitPengirim.setText(Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
                     + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
@@ -1822,20 +1822,14 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         } else if (status.equals("Ralan")) {
             kelas = "Rawat Jalan";
             kdPoli = Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "'");
+            TunitPengirim.setText(Sequel.cariIsi("select concat('Poliklinik ',nm_poli) from poliklinik where kd_poli='" + kdPoli + "'"));
+            
             if (kdPoli.equals("RAD")) {
                 KodePerujuk.setText("");
                 NmPerujuk.setText("");
             } else {
                 KodePerujuk.setText(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
                 NmPerujuk.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + KodePerujuk.getText() + "'"));
-            }
-            
-            kodeRujukan = Sequel.cariIsi("select kd_rujukan from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'");            
-            if (kodeRujukan.equals("-") || kodeRujukan.equals("")
-                    || Sequel.cariInteger("select count(-1) from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'") == 0) {
-                TunitPengirim.setText(Sequel.cariIsi("select concat('Poliklinik ',nm_poli) from poliklinik where kd_poli='" + kdPoli + "'"));
-            } else {
-                TunitPengirim.setText(Sequel.cariIsi("select perujuk from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'"));
             }
         }
     }

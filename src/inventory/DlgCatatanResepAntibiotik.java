@@ -475,6 +475,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         MnDiCopy = new javax.swing.JMenuItem();
         MnGantiIniResep = new javax.swing.JMenuItem();
         MnGantiDokter = new javax.swing.JMenuItem();
+        MnHapusResep = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnRiwayatData = new javax.swing.JMenuItem();
         jPopupMenu3 = new javax.swing.JPopupMenu();
@@ -676,6 +677,21 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnGantiDokter);
 
+        MnHapusResep.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusResep.setText("Hapus Resep Pengecualian");
+        MnHapusResep.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusResep.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusResep.setIconTextGap(5);
+        MnHapusResep.setName("MnHapusResep"); // NOI18N
+        MnHapusResep.setPreferredSize(new java.awt.Dimension(185, 26));
+        MnHapusResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusResepActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusResep);
+
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
         MnRiwayatData.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -738,7 +754,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -752,7 +768,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1178,7 +1194,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel54.setBounds(0, 66, 105, 23);
 
         DTPCariA.setEditable(false);
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2026" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -1195,7 +1211,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel55.setBounds(200, 66, 23, 23);
 
         DTPCariB.setEditable(false);
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2026" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2026" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -2088,7 +2104,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                             JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep " + tbResepObat.getValueAt(i, 4).toString() + " sudah diverifikasi apotek,     \n"
                                     + "data tdk. bisa dihapus, Silakan input lagi sbg. resep baru/lanjutan...!!!!");
                         } else if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
-                            simpanHistoriResepRalan();
+                            simpanHistoriResepRalan("dokter");
                         }
                     }
 
@@ -2117,7 +2133,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                             JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep " + tbResepObat.getValueAt(i, 4).toString() + " sudah diverifikasi apotek,     \n"
                                     + "data tdk. bisa dihapus, Silakan input lagi sbg. resep baru/lanjutan...!!!!");
                         } else if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
-                            simpanHistoriResepRanap();
+                            simpanHistoriResepRanap("dokter");
                         }
                     }
 
@@ -2984,6 +3000,51 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         cmbObat.setSelectedIndex(0);
     }//GEN-LAST:event_BtnCariObat2ActionPerformed
 
+    private void MnHapusResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusResepActionPerformed
+        //cek conteng
+        x = 0;
+        for (i = 0; i < tbResepObat.getRowCount(); i++) {
+            if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                x++;
+            }
+        }
+
+        if (x == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan conteng dulu item resep obatnya...");
+            tbResepObat.requestFocus();
+        } else {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                riwayatData = "";
+                riwayatData = "hapus";
+                if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
+                    for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                        if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                            simpanHistoriResepRalan("admin");
+                        }
+                    }
+
+                } else if (status.equals("ranap") || status.equals("vk bersalin")) {
+                    for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                        if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                            simpanHistoriResepRanap("admin");
+                        }
+                    }
+                }
+                
+                TResepObat.setText("");
+                cmbHari.setSelectedIndex(0);
+                Tket.setText("");
+                tampilResepObat();
+            } else {
+                TResepObat.setText("");
+                cmbHari.setSelectedIndex(0);
+                Tket.setText("");
+                tampilResepObat();
+            }
+        }
+    }//GEN-LAST:event_MnHapusResepActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3036,6 +3097,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnDibatalkan;
     private javax.swing.JMenuItem MnGantiDokter;
     private javax.swing.JMenuItem MnGantiIniResep;
+    private javax.swing.JMenuItem MnHapusResep;
     private javax.swing.JMenuItem MnRiwayatData;
     private javax.swing.JMenuItem MnSemuanya;
     private javax.swing.JPanel PanelInput1;
@@ -3212,6 +3274,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         BtnEdit.setEnabled(akses.getresep_dokter());
         BtnCopyResepTerakhir.setEnabled(akses.getresep_dokter());
         MnRiwayatData.setEnabled(akses.getadmin());
+        MnHapusResep.setEnabled(akses.getadmin());
     }
 
     private void tampilResepObat() {
@@ -3686,7 +3749,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         }
     }
     
-    private void simpanHistoriResepRalan() {
+    private void simpanHistoriResepRalan(String penghapus) {
         user = "";        
         if (akses.getadmin() == true) {
             user = "-";
@@ -3696,31 +3759,60 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
 
         try {
             for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
-                    if (Sequel.menyimpantfIgnore("catatan_resep_antibiotik_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?", "Data", 13, new String[]{
-                        tbResepObat.getValueAt(i, 7).toString(),
-                        tbResepObat.getValueAt(i, 1).toString(),
-                        tbResepObat.getValueAt(i, 2).toString(),
-                        tbResepObat.getValueAt(i, 3).toString(),
-                        tbResepObat.getValueAt(i, 4).toString(),
-                        tbResepObat.getValueAt(i, 5).toString(),
-                        tbResepObat.getValueAt(i, 8).toString(),
-                        tbResepObat.getValueAt(i, 11).toString(),
-                        tbResepObat.getValueAt(i, 12).toString(),
-                        riwayatData,
-                        user,
-                        Sequel.cariIsi("select now()"),
-                        Sequel.cariIsi("SELECT DATE_FORMAT(NOW(6),'%Y%m%d%H%i%s%f')")
-                    }) == true) {
-                        System.out.println("data berhasil tersimpan.");
+                if (penghapus.equals("admin")) {
+                    if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                        if (Sequel.menyimpantfIgnore("catatan_resep_antibiotik_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?", "Data", 13, new String[]{
+                            tbResepObat.getValueAt(i, 7).toString(),
+                            tbResepObat.getValueAt(i, 1).toString(),
+                            tbResepObat.getValueAt(i, 2).toString(),
+                            tbResepObat.getValueAt(i, 3).toString(),
+                            tbResepObat.getValueAt(i, 4).toString(),
+                            tbResepObat.getValueAt(i, 5).toString(),
+                            tbResepObat.getValueAt(i, 8).toString(),
+                            tbResepObat.getValueAt(i, 11).toString(),
+                            tbResepObat.getValueAt(i, 12).toString(),
+                            riwayatData,
+                            user,
+                            Sequel.cariIsi("select now()"),
+                            Sequel.cariIsi("SELECT DATE_FORMAT(NOW(6),'%Y%m%d%H%i%s%f')")
+                        }) == true) {
+                            System.out.println("data berhasil tersimpan.");
+                        }
+
+                        //jeda
+                        Thread.sleep(10);
+                        Sequel.queryu("delete from catatan_resep_antibiotik where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
+                                + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
+                                + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
+                                + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
                     }
-                    
-                    //jeda
-                    Thread.sleep(10);
-                    Sequel.queryu("delete from catatan_resep_antibiotik where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
-                            + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
-                            + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
-                            + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
+                } else {
+                    if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
+                        if (Sequel.menyimpantfIgnore("catatan_resep_antibiotik_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?", "Data", 13, new String[]{
+                            tbResepObat.getValueAt(i, 7).toString(),
+                            tbResepObat.getValueAt(i, 1).toString(),
+                            tbResepObat.getValueAt(i, 2).toString(),
+                            tbResepObat.getValueAt(i, 3).toString(),
+                            tbResepObat.getValueAt(i, 4).toString(),
+                            tbResepObat.getValueAt(i, 5).toString(),
+                            tbResepObat.getValueAt(i, 8).toString(),
+                            tbResepObat.getValueAt(i, 11).toString(),
+                            tbResepObat.getValueAt(i, 12).toString(),
+                            riwayatData,
+                            user,
+                            Sequel.cariIsi("select now()"),
+                            Sequel.cariIsi("SELECT DATE_FORMAT(NOW(6),'%Y%m%d%H%i%s%f')")
+                        }) == true) {
+                            System.out.println("data berhasil tersimpan.");
+                        }
+
+                        //jeda
+                        Thread.sleep(10);
+                        Sequel.queryu("delete from catatan_resep_antibiotik where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
+                                + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
+                                + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
+                                + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
+                    }
                 }
             }
         } catch (Exception e) {
@@ -3728,7 +3820,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         }
     }
     
-    private void simpanHistoriResepRanap() {
+    private void simpanHistoriResepRanap(String penghapus) {
         user = "";        
         if (akses.getadmin() == true) {
             user = "-";
@@ -3738,33 +3830,64 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
 
         try {
             for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
-                    if (Sequel.menyimpantfIgnore("catatan_resep_ranap_antibiotik_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Data", 15, new String[]{
-                        tbResepObat.getValueAt(i, 7).toString(),
-                        tbResepObat.getValueAt(i, 1).toString(),
-                        tbResepObat.getValueAt(i, 2).toString(),
-                        tbResepObat.getValueAt(i, 3).toString(),
-                        tbResepObat.getValueAt(i, 4).toString(),
-                        tbResepObat.getValueAt(i, 5).toString(),
-                        tbResepObat.getValueAt(i, 8).toString(),
-                        tbResepObat.getValueAt(i, 11).toString(),
-                        tbResepObat.getValueAt(i, 12).toString(),
-                        riwayatData,
-                        user,
-                        Sequel.cariIsi("select now()"),
-                        tbResepObat.getValueAt(i, 9).toString(),
-                        tbResepObat.getValueAt(i, 10).toString(),
-                        Sequel.cariIsi("SELECT DATE_FORMAT(NOW(6),'%Y%m%d%H%i%s%f')")
-                    }) == true) {
-                        System.out.println("data berhasil tersimpan.");
-                    }
+                if (penghapus.equals("admin")) {
+                    if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                        if (Sequel.menyimpantfIgnore("catatan_resep_ranap_antibiotik_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Data", 15, new String[]{
+                            tbResepObat.getValueAt(i, 7).toString(),
+                            tbResepObat.getValueAt(i, 1).toString(),
+                            tbResepObat.getValueAt(i, 2).toString(),
+                            tbResepObat.getValueAt(i, 3).toString(),
+                            tbResepObat.getValueAt(i, 4).toString(),
+                            tbResepObat.getValueAt(i, 5).toString(),
+                            tbResepObat.getValueAt(i, 8).toString(),
+                            tbResepObat.getValueAt(i, 11).toString(),
+                            tbResepObat.getValueAt(i, 12).toString(),
+                            riwayatData,
+                            user,
+                            Sequel.cariIsi("select now()"),
+                            tbResepObat.getValueAt(i, 9).toString(),
+                            tbResepObat.getValueAt(i, 10).toString(),
+                            Sequel.cariIsi("SELECT DATE_FORMAT(NOW(6),'%Y%m%d%H%i%s%f')")
+                        }) == true) {
+                            System.out.println("data berhasil tersimpan.");
+                        }
 
-                    //jeda
-                    Thread.sleep(10);
-                    Sequel.queryu("delete from catatan_resep_ranap_antibiotik where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
-                            + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
-                            + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
-                            + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
+                        //jeda
+                        Thread.sleep(10);
+                        Sequel.queryu("delete from catatan_resep_ranap_antibiotik where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
+                                + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
+                                + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
+                                + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
+                    }
+                } else {
+                    if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
+                        if (Sequel.menyimpantfIgnore("catatan_resep_ranap_antibiotik_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Data", 15, new String[]{
+                            tbResepObat.getValueAt(i, 7).toString(),
+                            tbResepObat.getValueAt(i, 1).toString(),
+                            tbResepObat.getValueAt(i, 2).toString(),
+                            tbResepObat.getValueAt(i, 3).toString(),
+                            tbResepObat.getValueAt(i, 4).toString(),
+                            tbResepObat.getValueAt(i, 5).toString(),
+                            tbResepObat.getValueAt(i, 8).toString(),
+                            tbResepObat.getValueAt(i, 11).toString(),
+                            tbResepObat.getValueAt(i, 12).toString(),
+                            riwayatData,
+                            user,
+                            Sequel.cariIsi("select now()"),
+                            tbResepObat.getValueAt(i, 9).toString(),
+                            tbResepObat.getValueAt(i, 10).toString(),
+                            Sequel.cariIsi("SELECT DATE_FORMAT(NOW(6),'%Y%m%d%H%i%s%f')")
+                        }) == true) {
+                            System.out.println("data berhasil tersimpan.");
+                        }
+
+                        //jeda
+                        Thread.sleep(10);
+                        Sequel.queryu("delete from catatan_resep_ranap_antibiotik where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
+                                + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
+                                + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
+                                + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
+                    }
                 }
             }
         } catch (Exception e) {
