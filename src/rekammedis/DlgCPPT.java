@@ -120,7 +120,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Tgl. CPPT", "Jam CPPT", "Jenis PPA", "Nama PPA", "Hasil Pemeriksaan",
             "Instruksi Nakes", "Verifikasi", "Nama DPJP", "Status", "tanggal", "nip_dpjp", "wkt_simpan", "cekjam", "jam_cppt", "Jenis Bagian",
             "nipppa", "serah_terima_cppt", "nmkonsulen", "nipkonsulen", "petugas_serah", "petugas_terima", "nip_petugas_serah",
-            "nip_petugas_terima", "Shift", "jam_serah_terima", "pilihan_soap", "subjektif", "objektif", "asesmen", "planing", "bagian"               
+            "nip_petugas_terima", "Shift", "jam_serah_terima", "pilihan_soap", "subjektif", "objektif", "asesmen", "planing", "bagian"
         };
         tabMode = new DefaultTableModel(null, row) {
             @Override
@@ -7465,7 +7465,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
+        cmbRawat.setSelectedIndex(2);
+        cmbSiftCppt.setSelectedIndex(4);
         tampil();
+        verifikasiCpptAuto();
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
@@ -7910,7 +7913,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 
     private void TabCPPTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabCPPTMouseClicked
         if (TabCPPT.getSelectedIndex() == 1) {
+            cmbRawat.setSelectedIndex(2);
+            cmbSiftCppt.setSelectedIndex(4);
             tampil();
+            verifikasiCpptAuto();
         } else if (TabCPPT.getSelectedIndex() == 0) {
             TabPetugas.setSelectedIndex(0);
         } else if (TabCPPT.getSelectedIndex() == 2) {
@@ -8603,7 +8609,10 @@ public class DlgCPPT extends javax.swing.JDialog {
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
         emptTeks();
+        cmbRawat.setSelectedIndex(2);
+        cmbSiftCppt.setSelectedIndex(4);
         tampil();
+        verifikasiCpptAuto();
     }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnHapusSampahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusSampahActionPerformed
@@ -12134,20 +12143,20 @@ public class DlgCPPT extends javax.swing.JDialog {
         TNoRw.setText(norw);
         TNoRm.setText(norm);
         TPasien.setText(nmpasien);
-        TCari.setText(norw); 
+        TCari.setText(norw);
         status = sttsrawat;
         ruangRawat = rgrawat;
         kdKamarSaatIni = kdkmr;
-        
+
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norw + "'"));
         DTPCari2.setDate(new Date());
         ChkJam.setSelected(true);
         cmbJam.setEnabled(true);
         cmbMnt.setEnabled(true);
-        cmbDtk.setEnabled(true);        
+        cmbDtk.setEnabled(true);
         isJam();
         isRawat();
-        
+
         if (sttsrawat.equals("IGD (Ralan)") || sttsrawat.equals("IGD (Ranap)") || sttsrawat.equals("ralan")) {
             isIGD_Ralan();
         } else if (sttsrawat.equals("vk bersalin")) {
@@ -12170,7 +12179,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             cmbSift.setEnabled(true);
             cmbSiftCppt.setEnabled(false);
         }
-        
+
         cekPilihanRehab = 0;
         cekPilihanRehab = Sequel.cariInteger("select count(-1) from data_rehab_medik where no_rawat='" + norw + "'");
         if (cekPilihanRehab == 0) {
@@ -14171,10 +14180,12 @@ public class DlgCPPT extends javax.swing.JDialog {
     }
     
     private void kembalikanHistory(String wg) {
+        String wktSimpan = Sequel.cariIsi("select now()");
         try {
             ps5 = koneksi.prepareStatement("select * from cppt_history where waktu_ganti='" + wg + "'");
             try {
                 rs5 = ps5.executeQuery();
+                x = 1;
                 while (rs5.next()) {
                     Sequel.menyimpan("cppt",
                             "'" + rs5.getString("no_rawat") + "',"
@@ -14185,7 +14196,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "'" + rs5.getString("verifikasi") + "',"
                             + "'" + rs5.getString("nip_dpjp") + "',"
                             + "'" + rs5.getString("status") + "',"
-                            + "'" + Sequel.cariIsi("select now()") + "',"
+                            + "DATE_ADD('" + wktSimpan + "', INTERVAL " + x + " SECOND),"
                             + "'" + rs5.getString("cek_jam") + "',"
                             + "'" + rs5.getString("jam_cppt") + "',"
                             + "'" + rs5.getString("jenis_ppa") + "',"
@@ -14204,9 +14215,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "'" + Valid.mysql_real_escape_stringERM(rs5.getString("objektif")) + "',"
                             + "'" + Valid.mysql_real_escape_stringERM(rs5.getString("asesmen")) + "',"
                             + "'" + Valid.mysql_real_escape_stringERM(rs5.getString("planing")) + "'", "CPPT Pasien");
-                    
-                    //jeda 1 detik
-                    Thread.sleep(1000);
+                    x++;
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -14376,7 +14385,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }
     
     private void isRanap(String namagedung) {
-        cmbRawat.setSelectedIndex(1);
+        cmbRawat.setSelectedIndex(2);
         cmbPPA.setEnabled(true);
         cmbSertim.setSelectedIndex(0);
         cmbSertim.setEnabled(true);
@@ -22518,6 +22527,35 @@ public class DlgCPPT extends javax.swing.JDialog {
             BtnHapus2.setEnabled(false);
             BtnCopy.setEnabled(false);
             BtnUlangiCopyLab.setEnabled(false);
+        }
+    }
+    
+    private void verifikasiCpptAuto() {        
+        if (tbCPPT.getRowCount() != 0) {
+            try {
+                String waktuVerifikasi = Sequel.cariIsi("select now()");
+                
+                for (i = 0; i < tbCPPT.getRowCount(); i++) {
+                    String waktuSimpan = tbCPPT.getValueAt(i, 15).toString();
+                    String nip = tbCPPT.getValueAt(i, 14).toString();
+                    String noRawat = tbCPPT.getValueAt(i, 0).toString();
+
+                    Sequel.queryu("update cppt set verifikasi='Sudah' where waktu_simpan='" + waktuSimpan + "'");
+                    if (!nip.equals("-")) {
+                        Sequel.menyimpanIgnore("verifikasi_cppt",
+                                "'" + noRawat + "',"
+                                + "'" + nip + "',"
+                                + "'" + waktuSimpan + "',"
+                                + "DATE_ADD('" + waktuVerifikasi + "', INTERVAL " + i + " SECOND)", "Verifikasi CPPT");
+
+                        Sequel.queryu("delete from verifikasi_cppt_history where waktu_simpan_cppt='" + waktuSimpan + "'");
+                    }
+                }
+
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Verifikasi CPPT", "Sudah");
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            }
         }
     }
 }

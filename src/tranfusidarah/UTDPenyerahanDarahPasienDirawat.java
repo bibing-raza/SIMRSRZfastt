@@ -5,7 +5,6 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
@@ -15,8 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
@@ -917,6 +914,7 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
                         tampil();
                         tampilStok();
                     } else {
+                        String waktuSimpan = Sequel.cariIsi("select now()");
                         for (i = 0; i < tbDarah.getRowCount(); i++) {
                             if (tbDarah.getValueAt(i, 0).toString().equals("true")) {
                                 Sequel.menyimpanIgnore("utd_penyerahan_darah_pasien_dirawat",
@@ -929,13 +927,10 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
                                         + "'" + TnipCros.getText() + "',"
                                         + "'" + Tket.getText() + "',"
                                         + "'" + TpengambilDrh.getText() + "',"
-                                        + "'" + Sequel.cariIsi("select now()") + "'", "Jenis Darah");
+                                        + "DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Jenis Darah");
 
                                 Sequel.mengedit("utd_stok_darah", "no_kantong='" + tbDarah.getValueAt(i, 1).toString() + "'", "status='Diambil'");
                             }
-
-                            //jeda 1 detik
-                            Thread.sleep(1000);
                         }
                     }
 

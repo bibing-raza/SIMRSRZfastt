@@ -38,7 +38,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps, ps1, ps2, ps3;
     private ResultSet rs, rs1, rs2, rs3, rsPrev;
-    private int i = 0, x = 0, cekKonfirmasi = 0, jmlData = 0;
+    private int i = 0, x = 0, cekKonfirmasi = 0;
     private String status = "", kodekamar = "", dataKonfirmasi = "", konfirmasi_terapi = "";
     private Boolean conteng;
     
@@ -604,7 +604,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Pasien");
             TNoRw.requestFocus();
         } else {
-            jmlData = 0;
             x = 0;
             
             for (i = 0; i < tbCPPT.getRowCount(); i++) {
@@ -612,31 +611,30 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                     x++;
                 }
             }
-            jmlData = x;
             
             if (x == 0) {
                 JOptionPane.showMessageDialog(null, "Silahkan conteng dulu CPPTnya untuk setuju diverifikasi..!!!!");
                 tbCPPT.requestFocus();
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Verifikasi cppt memerlukan waktu " + jmlData + " detik, silahkan tunggu sampai prosesnya selesai ...!");
-                
                 try {
+                    String waktuVerifikasi = Sequel.cariIsi("select now()");
                     for (i = 0; i < tbCPPT.getRowCount(); i++) {
                         if (tbCPPT.getValueAt(i, 0).toString().equals("true")) {
-                            Sequel.queryu("update cppt set verifikasi = 'Sudah' where waktu_simpan='" + tbCPPT.getValueAt(i, 11).toString() + "'");
+                            String waktuSimpan = tbCPPT.getValueAt(i, 11).toString();
+                            String nip = tbCPPT.getValueAt(i, 15).toString();
+                            String noRawat = tbCPPT.getValueAt(i, 12).toString();
+                    
+                            Sequel.queryu("update cppt set verifikasi = 'Sudah' where waktu_simpan='" + waktuSimpan + "'");
                             
-                            if (!tbCPPT.getValueAt(i, 15).toString().equals("-")) {
+                            if (!nip.equals("-")) {
                                 Sequel.menyimpanIgnore("verifikasi_cppt",
-                                        "'" + tbCPPT.getValueAt(i, 12).toString() + "',"
-                                        + "'" + tbCPPT.getValueAt(i, 15).toString() + "',"
-                                        + "'" + tbCPPT.getValueAt(i, 11).toString() + "',"
-                                        + "'" + Sequel.cariIsi("select now()") + "'", "Verifikasi CPPT");
+                                        "'" + noRawat + "',"
+                                        + "'" + nip + "',"
+                                        + "'" + waktuSimpan + "',"
+                                        + "DATE_ADD('" + waktuVerifikasi + "', INTERVAL " + i + " SECOND)", "Verifikasi CPPT");
 
-                                Sequel.queryu("delete from verifikasi_cppt_history where waktu_simpan_cppt='" + tbCPPT.getValueAt(i, 11).toString() + "'");
+                                Sequel.queryu("delete from verifikasi_cppt_history where waktu_simpan_cppt='" + waktuSimpan + "'");
                             }
-                            
-                            //jeda 1 detik
-                            Thread.sleep(1000);
                         }
                     }
                     Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Verifikasi CPPT", "Sudah");

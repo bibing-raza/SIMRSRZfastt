@@ -11,7 +11,6 @@
 
 package inventory;
 
-import rekammedis.*;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -21,7 +20,6 @@ import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.Connection;
@@ -3883,6 +3881,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Silahkan conteng data pemberian obat pasien yang dipilih utk. di copy..!!!!");
                 tbObat.requestFocus();
             } else {
+                String wktSimpan = Sequel.cariIsi("select now()");
                 try {
                     for (i = 0; i < tbObat.getRowCount(); i++) {
                         if (tbObat.getValueAt(i, 0).toString().equals("true")) {
@@ -3894,7 +3893,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                     + "'" + tbObat.getValueAt(i, 52).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 53).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 54).toString() + "',"
-                                    + "'" + Sequel.cariIsi("select now()") + "',"
+                                    + "DATE_ADD('" + wktSimpan + "', INTERVAL " + i + " SECOND),"
                                     + "'" + tbObat.getValueAt(i, 55).toString() + "',"
                                     + "'" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "',"
                                     + "'" + tbObat.getValueAt(i, 56).toString() + "',"
@@ -3927,9 +3926,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                     + "'" + tbObat.getValueAt(i, 75).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 76).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 77).toString() + "'", "Pemberian Obat");
-
-                            //jeda 1 detik
-                            Thread.sleep(1000);
                         }
                     }
                 } catch (Exception e) {
@@ -4245,9 +4241,12 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Silahkan conteng dulu data jadwal pemberian obat pasien yang dipilih utk. di copy..!!!!");
                 tbData.requestFocus();
             } else {
+                String wktSimpan = Sequel.cariIsi("select now()");
                 try {
                     for (i = 0; i < tbData.getRowCount(); i++) {
-                        if (tbData.getValueAt(i, 0).toString().equals("true")) {                            
+                        if (tbData.getValueAt(i, 0).toString().equals("true")) {
+                            String dataWaktu = Sequel.cariIsi("select date_add('" + wktSimpan + "', interval " + i + " second)");
+                            
                             Sequel.menyimpanPesanGagalnyaDiTerminal("pemberian_obat", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Jadwal Pemberian Obat", 40, new String[]{
                                 TNoRW.getText(),
@@ -4257,7 +4256,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                 tbData.getValueAt(i, 14).toString(),
                                 tbData.getValueAt(i, 15).toString(),
                                 tbData.getValueAt(i, 16).toString(),
-                                Sequel.cariIsi("select now()"),                                
+                                dataWaktu,
                                 tbData.getValueAt(i, 18).toString(),
                                 Sequel.cariIsi("select date(now())"),                                
                                 tbData.getValueAt(i, 20).toString(),                                
@@ -4291,9 +4290,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                 tbData.getValueAt(i, 48).toString(),
                                 tbData.getValueAt(i, 49).toString()
                             });
-                            
-                            //jeda 1 detik
-                            Thread.sleep(1000);
                         }
                     }
                 } catch (Exception e) {

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.200000000000041"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="206"/>
+	<property name="ireport.y" value="204"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -13,6 +13,8 @@
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="ruangan" class="java.lang.String"/>
 	<parameter name="nosep" class="java.lang.String"/>
+	<parameter name="dokterPic" class="java.lang.String"/>
+	<parameter name="dokterPeresep" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT c.no_rawat, d.nm_dokter, CONCAT('Martapura, ',DATE_FORMAT(c.tgl_perawatan, '%d/%m/%Y')) tgl_resep, 
 c.nama_obat, r.no_rkm_medis, p.nm_pasien, CONCAT(r.umurdaftar,' ',r.sttsumur) umur, 
@@ -144,7 +146,7 @@ INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab limit 1]]>
 		</band>
 	</detail>
 	<summary>
-		<band height="317" splitType="Stretch">
+		<band height="319" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="5" width="188" height="12"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
@@ -849,13 +851,6 @@ INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab limit 1]]>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="193" y="161" width="160" height="11"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isUnderline="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_dokter}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="193" y="171" width="160" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isUnderline="false"/>
@@ -876,63 +871,77 @@ INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab limit 1]]>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[" : "+$F{noHP}]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="193" y="161" width="160" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterPeresep}]]></textFieldExpression>
+			</textField>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="281" width="1" height="34"/>
+				<reportElement x="0" y="314" width="230" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="4" y="297" width="183" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterPic}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="292" width="230" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="187" y="280" width="1" height="34"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="230" y="280" width="1" height="34"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="4" y="282" width="183" height="11"/>
+				<reportElement x="188" y="281" width="42" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Nama PGA]]></text>
+				<text><![CDATA[Ttd PIC]]></text>
 			</staticText>
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="187" y="281" width="1" height="34"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</line>
 			<staticText>
-				<reportElement x="188" y="282" width="42" height="11"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Paraf]]></text>
-			</staticText>
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="230" y="281" width="1" height="34"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</line>
-			<staticText>
-				<reportElement x="4" y="270" width="60" height="11"/>
+				<reportElement x="4" y="269" width="60" height="11"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Verifikasi PGA :]]></text>
+				<text><![CDATA[Verifikasi PIC :]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="293" width="230" height="1"/>
+				<reportElement x="0" y="280" width="230" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="281" width="230" height="1"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="280" width="1" height="34"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
-			<line>
-				<reportElement x="0" y="315" width="230" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</line>
+			<staticText>
+				<reportElement x="4" y="281" width="183" height="11"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama PIC]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

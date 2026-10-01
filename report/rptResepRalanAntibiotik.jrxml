@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.0000000000000377"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="142"/>
+	<property name="ireport.y" value="129"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -12,6 +12,8 @@
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="nosep" class="java.lang.String"/>
+	<parameter name="dokterPic" class="java.lang.String"/>
+	<parameter name="dokterPeresep" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select c.no_rawat, pl.nm_poli, d.nm_dokter, CONCAT('Martapura, ',DATE_FORMAT(c.tgl_perawatan,'%d/%m/%Y')) tgl_resep, c.nama_obat, 
 r.no_rkm_medis, p.nm_pasien, CONCAT(r.umurdaftar,' ',r.sttsumur) umur, 
@@ -846,13 +848,6 @@ INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='2020/01/06/0001
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="193" y="161" width="160" height="11"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isUnderline="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_dokter}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="193" y="171" width="160" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isUnderline="false"/>
@@ -874,7 +869,7 @@ INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='2020/01/06/0001
 				<textFieldExpression class="java.lang.String"><![CDATA[" : "+$F{noHP}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="314" width="230" height="1"/>
+				<reportElement x="0" y="315" width="230" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -890,21 +885,21 @@ INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='2020/01/06/0001
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Verifikasi PGA :]]></text>
+				<text><![CDATA[Verifikasi PIC :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="4" y="282" width="183" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Nama PGA]]></text>
+				<text><![CDATA[Nama PIC]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="188" y="282" width="42" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Paraf]]></text>
+				<text><![CDATA[Ttd PIC]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="293" width="230" height="1"/>
@@ -930,6 +925,20 @@ INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='2020/01/06/0001
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="193" y="161" width="160" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterPeresep}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="4" y="298" width="183" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterPic}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

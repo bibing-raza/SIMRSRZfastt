@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.0000000000000377"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="142"/>
+	<property name="ireport.y" value="236"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -12,8 +12,11 @@
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="nosep" class="java.lang.String"/>
-	<parameter name="lokasiQr" class="java.io.InputStream"/>
+	<parameter name="lokasiQrDokter" class="java.lang.String"/>
 	<parameter name="kalimatTte" class="java.lang.String"/>
+	<parameter name="dokterPeresep" class="java.lang.String"/>
+	<parameter name="dokterPic" class="java.lang.String"/>
+	<parameter name="lokasiQrPic" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select c.no_rawat, pl.nm_poli, d.nm_dokter, CONCAT('Martapura, ',DATE_FORMAT(c.tgl_perawatan,'%d/%m/%Y')) tgl_resep, c.nama_obat, 
 r.no_rkm_medis, p.nm_pasien, CONCAT(r.umurdaftar,' ',r.sttsumur) umur, 
@@ -160,7 +163,7 @@ INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='2020/01/06/0001
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="328" splitType="Stretch">
+		<band height="351" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="5" width="188" height="12"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
@@ -850,7 +853,7 @@ INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='2020/01/06/0001
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="7" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Paraf / Ttd. Dokter]]></text>
+				<text><![CDATA[Tte Dokter]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement mode="Transparent" x="0" y="203" width="353" height="62"/>
@@ -864,13 +867,6 @@ INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='2020/01/06/0001
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
-			<textField>
-				<reportElement x="193" y="179" width="160" height="11"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isUnderline="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_dokter}]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="193" y="189" width="160" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
@@ -893,13 +889,13 @@ INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='2020/01/06/0001
 				<textFieldExpression class="java.lang.String"><![CDATA[" : "+$F{noHP}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="314" width="230" height="1"/>
+				<reportElement x="0" y="348" width="265" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="281" width="230" height="1"/>
+				<reportElement x="0" y="281" width="265" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -909,49 +905,67 @@ INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='2020/01/06/0001
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Verifikasi PGA :]]></text>
+				<text><![CDATA[Verifikasi PIC :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="4" y="282" width="183" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Nama PGA]]></text>
+				<text><![CDATA[Nama PIC]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="188" y="282" width="42" height="11"/>
+				<reportElement x="188" y="282" width="77" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Paraf]]></text>
+				<text><![CDATA[Tte PIC]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="293" width="230" height="1"/>
+				<reportElement x="0" y="293" width="265" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="281" width="1" height="34"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="281" width="1" height="67"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="187" y="281" width="1" height="34"/>
+				<reportElement positionType="FixRelativeToBottom" x="187" y="281" width="1" height="67"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="230" y="281" width="1" height="34"/>
+				<reportElement positionType="FixRelativeToBottom" x="265" y="281" width="1" height="67"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="243" y="125" width="59" height="54"/>
-				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQr}]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQrDokter}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="193" y="179" width="160" height="11"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterPeresep}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="4" y="298" width="183" height="11"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterPic}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="197" y="294" width="59" height="54"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQrPic}]]></imageExpression>
 			</image>
 		</band>
 	</summary>

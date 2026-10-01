@@ -3699,6 +3699,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Silahkan conteng dulu data evaluasi nyeri sift pagi yang dipilih utk. di copy..!!!!");
                 tbPagi.requestFocus();
             } else {
+                String waktuSimpan = Sequel.cariIsi("select now()");
                 try {
                     for (i = 0; i < tbPagi.getRowCount(); i++) {
                         if (tbPagi.getValueAt(i, 0).toString().equals("true")) {
@@ -3707,7 +3708,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                     + "and sift='" + cmbSift.getSelectedItem().toString() + "' "
                                     + "and evaluasi_nyeri='" + tbPagi.getValueAt(i, 2).toString() + "' "
                                     + "and tanggal='" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "'") > 0) {
-                                
+
                                 System.out.println("Data Sudah Tersimpan : " + tbPagi.getValueAt(i, 2).toString() + " sift "
                                         + tbPagi.getValueAt(i, 6).toString() + " tgl. " + tbPagi.getValueAt(i, 4).toString());
                             } else {
@@ -3718,7 +3719,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "',"
                                             + "'" + tbPagi.getValueAt(i, 2).toString() + "',"
                                             + "'" + tbPagi.getValueAt(i, 3).toString() + "',"
-                                            + "'','','" + Sequel.cariIsi("select now()") + "'", "Evaluasi Nyeri (Pagi)");
+                                            + "'','',DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Evaluasi Nyeri (Pagi)");
                                 } else if (cmbSift.getSelectedIndex() == 1) {
                                     Sequel.menyimpan("evaluasi_catatan_tindakan_keperawatan",
                                             "'" + tbPagi.getValueAt(i, 7).toString() + "',"
@@ -3726,7 +3727,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "',"
                                             + "'" + tbPagi.getValueAt(i, 2).toString() + "','',"
                                             + "'" + tbPagi.getValueAt(i, 3).toString() + "','',"
-                                            + "'" + Sequel.cariIsi("select now()") + "'", "Evaluasi Nyeri (Pagi)");
+                                            + "DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Evaluasi Nyeri (Pagi)");
                                 } else if (cmbSift.getSelectedIndex() == 2) {
                                     Sequel.menyimpan("evaluasi_catatan_tindakan_keperawatan",
                                             "'" + tbPagi.getValueAt(i, 7).toString() + "',"
@@ -3734,11 +3735,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "',"
                                             + "'" + tbPagi.getValueAt(i, 2).toString() + "','','',"
                                             + "'" + tbPagi.getValueAt(i, 3).toString() + "',"
-                                            + "'" + Sequel.cariIsi("select now()") + "'", "Evaluasi Nyeri (Pagi)");
+                                            + "DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Evaluasi Nyeri (Pagi)");
                                 }
-
-                                //jeda 1 detik
-                                Thread.sleep(1000);
                             }
                         }
                     }
@@ -3773,6 +3771,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Silahkan conteng dulu data evaluasi nyeri sift sore yang dipilih utk. di copy..!!!!");
                 tbSore.requestFocus();
             } else {
+                String waktuSimpan = Sequel.cariIsi("select now()");
                 try {
                     for (i = 0; i < tbSore.getRowCount(); i++) {
                         if (tbSore.getValueAt(i, 0).toString().equals("true")) {
@@ -3792,7 +3791,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "',"
                                             + "'" + tbSore.getValueAt(i, 2).toString() + "',"
                                             + "'" + tbSore.getValueAt(i, 3).toString() + "','','',"
-                                            + "'" + Sequel.cariIsi("select now()") + "'", "Evaluasi Nyeri (Sore)");
+                                            + "DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Evaluasi Nyeri (Sore)");
                                 } else if (cmbSift.getSelectedIndex() == 1) {
                                     Sequel.menyimpan("evaluasi_catatan_tindakan_keperawatan",
                                             "'" + tbSore.getValueAt(i, 7).toString() + "',"
@@ -3800,7 +3799,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "',"
                                             + "'" + tbSore.getValueAt(i, 2).toString() + "','',"
                                             + "'" + tbSore.getValueAt(i, 3).toString() + "','',"
-                                            + "'" + Sequel.cariIsi("select now()") + "'", "Evaluasi Nyeri (Sore)");
+                                            + "DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Evaluasi Nyeri (Sore)");
                                 } else if (cmbSift.getSelectedIndex() == 2) {
                                     Sequel.menyimpan("evaluasi_catatan_tindakan_keperawatan",
                                             "'" + tbSore.getValueAt(i, 7).toString() + "',"
@@ -3808,11 +3807,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "',"
                                             + "'" + tbSore.getValueAt(i, 2).toString() + "','','',"
                                             + "'" + tbSore.getValueAt(i, 3).toString() + "',"
-                                            + "'" + Sequel.cariIsi("select now()") + "'", "Evaluasi Nyeri (Sore)");
+                                            + "DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Evaluasi Nyeri (Sore)");
                                 }
-
-                                //jeda 1 detik
-                                Thread.sleep(1000);
                             }
                         }
                     }
@@ -3847,6 +3843,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Silahkan conteng dulu data evaluasi nyeri sift malam yang dipilih utk. di copy..!!!!");
                 tbMalam.requestFocus();
             } else {
+                String waktuSimpan = Sequel.cariIsi("select now()");
                 try {
                     for (i = 0; i < tbMalam.getRowCount(); i++) {
                         if (tbMalam.getValueAt(i, 0).toString().equals("true")) {
@@ -3866,7 +3863,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "',"
                                             + "'" + tbMalam.getValueAt(i, 2).toString() + "',"
                                             + "'" + tbMalam.getValueAt(i, 3).toString() + "','','',"
-                                            + "'" + Sequel.cariIsi("select now()") + "'", "Evaluasi Nyeri (Malam)");
+                                            + "DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Evaluasi Nyeri (Malam)");
                                 } else if (cmbSift.getSelectedIndex() == 1) {
                                     Sequel.menyimpan("evaluasi_catatan_tindakan_keperawatan",
                                             "'" + tbMalam.getValueAt(i, 7).toString() + "',"
@@ -3874,7 +3871,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "',"
                                             + "'" + tbMalam.getValueAt(i, 2).toString() + "','',"
                                             + "'" + tbMalam.getValueAt(i, 3).toString() + "','',"
-                                            + "'" + Sequel.cariIsi("select now()") + "'", "Evaluasi Nyeri (Malam)");
+                                            + "DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Evaluasi Nyeri (Malam)");
                                 } else if (cmbSift.getSelectedIndex() == 2) {
                                     Sequel.menyimpan("evaluasi_catatan_tindakan_keperawatan",
                                             "'" + tbMalam.getValueAt(i, 7).toString() + "',"
@@ -3882,11 +3879,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "',"
                                             + "'" + tbMalam.getValueAt(i, 2).toString() + "','','',"
                                             + "'" + tbMalam.getValueAt(i, 3).toString() + "',"
-                                            + "'" + Sequel.cariIsi("select now()") + "'", "Evaluasi Nyeri (Malam)");
-                                }                                
-
-                                //jeda 1 detik
-                                Thread.sleep(1000);
+                                            + "DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Evaluasi Nyeri (Malam)");
+                                }
                             }
                         }
                     }
@@ -4140,6 +4134,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu nama petugasnya...!!!!");
             BtnPetugasCopy.requestFocus();
         } else {
+            String waktuSimpan = Sequel.cariIsi("select now()");
             try {
                 for (i = 0; i < tbCatatan.getRowCount(); i++) {
                     if (tbCatatan.getValueAt(i, 0).toString().equals("true")) {
@@ -4150,10 +4145,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                 + "'" + tbCatatan.getValueAt(i, 10).toString() + "',"
                                 + "'" + tbCatatan.getValueAt(i, 7).toString() + "',"
                                 + "'" + nipCopy + "',"
-                                + "'" + Sequel.cariIsi("select now()") + "'", "Catatan Tindakan Keperawatan");
-
-                        //jeda 1 detik
-                        Thread.sleep(1000);
+                                + "DATE_ADD('" + waktuSimpan + "', INTERVAL " + i + " SECOND)", "Catatan Tindakan Keperawatan");
                     }
                 }
             } catch (Exception e) {
@@ -4503,8 +4495,11 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Silahkan conteng dulu data catatan tindakan keperawatan yang dipilih utk. di copy..!!!!");
                 tbData.requestFocus();
             } else {
+                String waktuSimpan = Sequel.cariIsi("select now()");
                 try {
                     for (i = 0; i < tbData.getRowCount(); i++) {
+                        String dataWaktu = Sequel.cariIsi("select date_add('" + waktuSimpan + "', interval " + i + " second)");
+                        
                         if (tbData.getValueAt(i, 0).toString().equals("true")) {
                             //catatan_tindakan_keperawatan
                             Sequel.menyimpanPesanGagalnyaDiTerminal("catatan_tindakan_keperawatan", "?,?,?,?,?,?,?", "Catatan Tindakan Keperawatan", 7, new String[]{
@@ -4514,7 +4509,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                 tbData.getValueAt(i, 18).toString(),
                                 tbData.getValueAt(i, 19).toString(),
                                 akses.getkode().replaceAll("Admin Utama", "-"),
-                                Sequel.cariIsi("select now()")
+                                dataWaktu
                             });
 
                             //evaluasi_catatan_tindakan_keperawatan
@@ -4532,7 +4527,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             TNoRW.getText(), tbData.getValueAt(i, 16).toString(), Sequel.cariIsi("select date(now())"),
                                             tbData.getValueAt(i, 8).toString(), tbData.getValueAt(i, 9).toString(),
                                             tbData.getValueAt(i, 10).toString(), tbData.getValueAt(i, 11).toString(),
-                                            Sequel.cariIsi("select now()")
+                                            dataWaktu
                                         });
                                     }
                                 }
@@ -4550,7 +4545,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             TNoRW.getText(), tbData.getValueAt(i, 16).toString(), Sequel.cariIsi("select date(now())"),
                                             tbData.getValueAt(i, 8).toString(), tbData.getValueAt(i, 9).toString(),
                                             tbData.getValueAt(i, 10).toString(), tbData.getValueAt(i, 11).toString(),
-                                            Sequel.cariIsi("select now()")
+                                            dataWaktu
                                         });
                                     }
                                 }
@@ -4568,7 +4563,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                             TNoRW.getText(), tbData.getValueAt(i, 16).toString(), Sequel.cariIsi("select date(now())"),
                                             tbData.getValueAt(i, 8).toString(), tbData.getValueAt(i, 9).toString(),
                                             tbData.getValueAt(i, 10).toString(), tbData.getValueAt(i, 11).toString(),
-                                            Sequel.cariIsi("select now()")
+                                            dataWaktu
                                         });
                                     }
                                 }
@@ -4582,9 +4577,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                     TNoRW.getText(), Sequel.cariIsi("select date(now())"), tbData.getValueAt(i, 12).toString()
                                 });
                             }
-                            
-                            //jeda 1 detik
-                            Thread.sleep(1000);
                         }
                     }                    
                 } catch (Exception e) {

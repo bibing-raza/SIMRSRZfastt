@@ -4199,9 +4199,9 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
                                 Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");                                
                                 Sequel.menyimpanQrTte2("temporary_tte2",
-                                        "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "',"
-                                        + "'" + penerimaPND + "','" + metodeNilai + "','" + profesi + "','" + isiPenKesOK + "','" + tingkatPemahanan + "',"
-                                        + "'" + evaluasi + "','" + rs3.getString("nmPetugas") + "','" + rs3.getString("nm_penerima_edukasi") + "',"
+                                        "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita',"
+                                        + "'" + penerimaPND + "','" + metodeNilai + "','" + profesi + "','" + isiPenKesOK + "\n(Rg. Rawat : " + rs3.getString("ruang_rawat") + ")',"
+                                        + "'" + tingkatPemahanan + "','" + evaluasi + "','" + rs3.getString("nmPetugas") + "','" + rs3.getString("nm_penerima_edukasi") + "',"
                                         + "'" + rs3.getString("wktSimpan") + "','" + rs3.getString("id_file_nm_penerima_edukasi") + "'",
                                         "file QRCode TTE Pemberian Informasi Dan Edukasi", Sequel.cariFolderPrintTte(), "");
                                 
@@ -4230,7 +4230,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                                         + penerimaPND + "','"
                                         + metodeNilai + "','"
                                         + profesi + "','"
-                                        + isiPenKesOK + "','"
+                                        + isiPenKesOK + "\n(Rg. Rawat : " + rs3.getString("ruang_rawat") + ")','"
                                         + tingkatPemahanan + "','"
                                         + evaluasi + "','"
                                         + rs3.getString("nmPetugas") + "','"
