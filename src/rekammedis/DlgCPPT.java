@@ -1509,7 +1509,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
         panelGlass24 = new widget.panelisi();
-        BtnVerif = new widget.Button();
         BtnNotepad = new widget.Button();
         BtnHapus4 = new widget.Button();
         BtnPrint1 = new widget.Button();
@@ -1530,7 +1529,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         Scroll18 = new widget.ScrollPane();
         LoadHTML4 = new widget.editorpane();
         panelGlass25 = new widget.panelisi();
-        BtnVerif1 = new widget.Button();
         BtnNotepad1 = new widget.Button();
         BtnPrint2 = new widget.Button();
         BtnResep2 = new widget.Button();
@@ -1562,7 +1560,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnHapus2 = new widget.Button();
         BtnCopy = new widget.Button();
         BtnUlangiCopyLab = new widget.Button();
-        BtnVerif2 = new widget.Button();
         BtnNotepad3 = new widget.Button();
         BtnResep3 = new widget.Button();
         BtnResume3 = new widget.Button();
@@ -1585,7 +1582,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelGlass14 = new widget.panelisi();
         BtnCopy1 = new widget.Button();
         BtnUlangiCopyRad = new widget.Button();
-        BtnVerif3 = new widget.Button();
         BtnNotepad4 = new widget.Button();
         BtnResep4 = new widget.Button();
         BtnResume4 = new widget.Button();
@@ -1603,7 +1599,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnUpload = new widget.Button();
         BtnHapus3 = new widget.Button();
         BtnCari6 = new widget.Button();
-        BtnVerif4 = new widget.Button();
         BtnNotepad5 = new widget.Button();
         BtnResep5 = new widget.Button();
         BtnResume5 = new widget.Button();
@@ -1637,7 +1632,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel58 = new widget.Label();
         BtnCari8 = new widget.Button();
         panelGlass28 = new widget.panelisi();
-        BtnVerif5 = new widget.Button();
         BtnNotepad6 = new widget.Button();
         BtnResep6 = new widget.Button();
         BtnResume6 = new widget.Button();
@@ -1645,7 +1639,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         label_rehab = new widget.Label();
         internalFrame39 = new widget.InternalFrame();
         panelGlass34 = new widget.panelisi();
-        BtnVerif6 = new widget.Button();
         BtnNotepad7 = new widget.Button();
         BtnResep7 = new widget.Button();
         BtnResume7 = new widget.Button();
@@ -2744,7 +2737,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelisi4.add(jLabel66);
 
         DTPCariA.setEditable(false);
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -2759,7 +2752,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelisi4.add(jLabel67);
 
         DTPCariB.setEditable(false);
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -2878,7 +2871,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbSiftPetugas.setBounds(287, 10, 65, 23);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -2894,7 +2887,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 38, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -3343,7 +3336,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -3541,7 +3534,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3555,7 +3548,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3751,7 +3744,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel43.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass12.add(jLabel43);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -3765,7 +3758,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel44.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass12.add(jLabel44);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -4267,7 +4260,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame7.add(jLabel8);
         jLabel8.setBounds(0, 38, 180, 23);
 
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -5033,7 +5026,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(0, 8, 120, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -5087,7 +5080,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(0, 36, 120, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -5548,7 +5541,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5562,7 +5555,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5670,20 +5663,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelGlass24.setName("panelGlass24"); // NOI18N
         panelGlass24.setPreferredSize(new java.awt.Dimension(44, 47));
         panelGlass24.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
-
-        BtnVerif.setForeground(new java.awt.Color(0, 0, 0));
-        BtnVerif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
-        BtnVerif.setMnemonic('V');
-        BtnVerif.setText("Verifikasi");
-        BtnVerif.setToolTipText("Alt+V");
-        BtnVerif.setName("BtnVerif"); // NOI18N
-        BtnVerif.setPreferredSize(new java.awt.Dimension(110, 30));
-        BtnVerif.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnVerifActionPerformed(evt);
-            }
-        });
-        panelGlass24.add(BtnVerif);
 
         BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -5863,20 +5842,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelGlass25.setName("panelGlass25"); // NOI18N
         panelGlass25.setPreferredSize(new java.awt.Dimension(44, 47));
         panelGlass25.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
-
-        BtnVerif1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnVerif1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
-        BtnVerif1.setMnemonic('V');
-        BtnVerif1.setText("Verifikasi");
-        BtnVerif1.setToolTipText("Alt+V");
-        BtnVerif1.setName("BtnVerif1"); // NOI18N
-        BtnVerif1.setPreferredSize(new java.awt.Dimension(110, 30));
-        BtnVerif1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnVerif1ActionPerformed(evt);
-            }
-        });
-        panelGlass25.add(BtnVerif1);
 
         BtnNotepad1.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -6168,20 +6133,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass16.add(BtnUlangiCopyLab);
 
-        BtnVerif2.setForeground(new java.awt.Color(0, 0, 0));
-        BtnVerif2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
-        BtnVerif2.setMnemonic('V');
-        BtnVerif2.setText("Verifikasi");
-        BtnVerif2.setToolTipText("Alt+V");
-        BtnVerif2.setName("BtnVerif2"); // NOI18N
-        BtnVerif2.setPreferredSize(new java.awt.Dimension(110, 30));
-        BtnVerif2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnVerif2ActionPerformed(evt);
-            }
-        });
-        panelGlass16.add(BtnVerif2);
-
         BtnNotepad3.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         BtnNotepad3.setMnemonic('N');
@@ -6388,20 +6339,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass14.add(BtnUlangiCopyRad);
 
-        BtnVerif3.setForeground(new java.awt.Color(0, 0, 0));
-        BtnVerif3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
-        BtnVerif3.setMnemonic('V');
-        BtnVerif3.setText("Verifikasi");
-        BtnVerif3.setToolTipText("Alt+V");
-        BtnVerif3.setName("BtnVerif3"); // NOI18N
-        BtnVerif3.setPreferredSize(new java.awt.Dimension(110, 30));
-        BtnVerif3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnVerif3ActionPerformed(evt);
-            }
-        });
-        panelGlass14.add(BtnVerif3);
-
         BtnNotepad4.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         BtnNotepad4.setMnemonic('N');
@@ -6576,20 +6513,6 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         panelGlass18.add(BtnCari6);
-
-        BtnVerif4.setForeground(new java.awt.Color(0, 0, 0));
-        BtnVerif4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
-        BtnVerif4.setMnemonic('V');
-        BtnVerif4.setText("Verifikasi");
-        BtnVerif4.setToolTipText("Alt+V");
-        BtnVerif4.setName("BtnVerif4"); // NOI18N
-        BtnVerif4.setPreferredSize(new java.awt.Dimension(110, 30));
-        BtnVerif4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnVerif4ActionPerformed(evt);
-            }
-        });
-        panelGlass18.add(BtnVerif4);
 
         BtnNotepad5.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -6769,7 +6692,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass26.add(ChkTanggal);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -6783,7 +6706,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass26.add(jLabel59);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -6890,20 +6813,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelGlass28.setPreferredSize(new java.awt.Dimension(44, 47));
         panelGlass28.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        BtnVerif5.setForeground(new java.awt.Color(0, 0, 0));
-        BtnVerif5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
-        BtnVerif5.setMnemonic('V');
-        BtnVerif5.setText("Verifikasi");
-        BtnVerif5.setToolTipText("Alt+V");
-        BtnVerif5.setName("BtnVerif5"); // NOI18N
-        BtnVerif5.setPreferredSize(new java.awt.Dimension(110, 30));
-        BtnVerif5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnVerif5ActionPerformed(evt);
-            }
-        });
-        panelGlass28.add(BtnVerif5);
-
         BtnNotepad6.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         BtnNotepad6.setMnemonic('N');
@@ -6982,20 +6891,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelGlass34.setName("panelGlass34"); // NOI18N
         panelGlass34.setPreferredSize(new java.awt.Dimension(55, 47));
         panelGlass34.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
-
-        BtnVerif6.setForeground(new java.awt.Color(0, 0, 0));
-        BtnVerif6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
-        BtnVerif6.setMnemonic('V');
-        BtnVerif6.setText("Verifikasi");
-        BtnVerif6.setToolTipText("Alt+V");
-        BtnVerif6.setName("BtnVerif6"); // NOI18N
-        BtnVerif6.setPreferredSize(new java.awt.Dimension(110, 30));
-        BtnVerif6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnVerif6ActionPerformed(evt);
-            }
-        });
-        panelGlass34.add(BtnVerif6);
 
         BtnNotepad7.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -8823,74 +8718,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnUlangiPActionPerformed
 
-    private void BtnVerifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerifActionPerformed
-        if (akses.getadmin() == true) {
-            if (TNoRw.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
-            } else {
-                DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
-                verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                verif.setLocationRelativeTo(internalFrame1);
-                verif.setData(TNoRw.getText(), status);
-                verif.setVisible(true);
-            }
-        } else {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
-                if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'"))) {
-                    if (TNoRw.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
-                    } else {
-                        DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
-                        verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                        verif.setLocationRelativeTo(internalFrame1);
-                        verif.setData(TNoRw.getText(), status);
-                        verif.setVisible(true);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
-                }
-            } else {
-                DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
-                verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                verif.setLocationRelativeTo(internalFrame1);
-                verif.setData(TNoRw.getText(), status);
-                verif.setVisible(true);
-            }
-            
-//            else if (status.equals("vk bersalin")) {
-//                if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'"))
-//                        || akses.getkode().equals(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"))) {
-//                    if (TNoRw.getText().equals("")) {
-//                        JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
-//                    } else {
-//                        DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
-//                        verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-//                        verif.setLocationRelativeTo(internalFrame1);
-//                        verif.setData(TNoRw.getText(), status);
-//                        verif.setVisible(true);
-//                    }
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
-//                }
-//            } else if (status.equals("ranap")) {
-//                if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"))) {
-//                    if (TNoRw.getText().equals("")) {
-//                        JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
-//                    } else {
-//                        DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
-//                        verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-//                        verif.setLocationRelativeTo(internalFrame1);
-//                        verif.setData(TNoRw.getText(), status);
-//                        verif.setVisible(true);
-//                    }
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
-//                }
-//            }
-            
-        }
-    }//GEN-LAST:event_BtnVerifActionPerformed
-
     private void BtnResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepActionPerformed
         if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
@@ -10253,10 +10080,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnResepActionPerformed(null);
     }//GEN-LAST:event_BtnResep1ActionPerformed
 
-    private void BtnVerif1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerif1ActionPerformed
-        BtnVerifActionPerformed(null);
-    }//GEN-LAST:event_BtnVerif1ActionPerformed
-
     private void BtnNotepad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepad1ActionPerformed
         BtnNotepadActionPerformed(null);
     }//GEN-LAST:event_BtnNotepad1ActionPerformed
@@ -10277,10 +10100,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnNotepadActionPerformed(null);
     }//GEN-LAST:event_BtnNotepad2ActionPerformed
 
-    private void BtnVerif2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerif2ActionPerformed
-        BtnVerifActionPerformed(null);
-    }//GEN-LAST:event_BtnVerif2ActionPerformed
-
     private void BtnNotepad3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepad3ActionPerformed
         BtnNotepadActionPerformed(null);
     }//GEN-LAST:event_BtnNotepad3ActionPerformed
@@ -10292,10 +10111,6 @@ public class DlgCPPT extends javax.swing.JDialog {
     private void BtnKeluar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar5ActionPerformed
         BtnKeluarActionPerformed(null);
     }//GEN-LAST:event_BtnKeluar5ActionPerformed
-
-    private void BtnVerif3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerif3ActionPerformed
-        BtnVerifActionPerformed(null);
-    }//GEN-LAST:event_BtnVerif3ActionPerformed
 
     private void BtnNotepad4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepad4ActionPerformed
         BtnNotepadActionPerformed(null);
@@ -10309,10 +10124,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnKeluarActionPerformed(null);
     }//GEN-LAST:event_BtnKeluar6ActionPerformed
 
-    private void BtnVerif4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerif4ActionPerformed
-        BtnVerifActionPerformed(null);
-    }//GEN-LAST:event_BtnVerif4ActionPerformed
-
     private void BtnNotepad5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepad5ActionPerformed
         BtnNotepadActionPerformed(null);
     }//GEN-LAST:event_BtnNotepad5ActionPerformed
@@ -10324,10 +10135,6 @@ public class DlgCPPT extends javax.swing.JDialog {
     private void BtnKeluar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar7ActionPerformed
         BtnKeluarActionPerformed(null);
     }//GEN-LAST:event_BtnKeluar7ActionPerformed
-
-    private void BtnVerif5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerif5ActionPerformed
-        BtnVerifActionPerformed(null);
-    }//GEN-LAST:event_BtnVerif5ActionPerformed
 
     private void BtnNotepad6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepad6ActionPerformed
         BtnNotepadActionPerformed(null);
@@ -10776,13 +10583,15 @@ public class DlgCPPT extends javax.swing.JDialog {
             Sequel.queryu("UPDATE cppt_history SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '\\\\''', ' ') WHERE no_rawat='" + TNoRw.getText() + "' and hasil_pemeriksaan LIKE '%\\\\''%'");
             Sequel.queryu("UPDATE cppt_history SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '''', ' ') WHERE no_rawat='" + TNoRw.getText() + "' and hasil_pemeriksaan LIKE '%''%'");
             
+            Sequel.queryu("DELETE vc FROM verifikasi_cppt vc "
+                    + "INNER JOIN cppt c ON c.waktu_simpan = vc.waktu_simpan_cppt "
+                    + "INNER JOIN (SELECT waktu_simpan_cppt, MAX(waktu_verif) AS waktu_verif_terakhir FROM verifikasi_cppt "
+                    + "GROUP BY waktu_simpan_cppt HAVING COUNT(*) > 1) terakhir ON terakhir.waktu_simpan_cppt = vc.waktu_simpan_cppt "
+                    + "WHERE vc.waktu_verif < terakhir.waktu_verif_terakhir");
+            
             JOptionPane.showMessageDialog(null, "Proses selesai, affected row bisa dicek dikotak hitam/terminal/console...!");
         }
     }//GEN-LAST:event_MnBersihkanStringSampahActionPerformed
-
-    private void BtnVerif6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerif6ActionPerformed
-        BtnVerifActionPerformed(null);
-    }//GEN-LAST:event_BtnVerif6ActionPerformed
 
     private void BtnNotepad7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepad7ActionPerformed
         BtnNotepadActionPerformed(null);
@@ -10996,13 +10805,6 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Button BtnUlangiInstruksi;
     private widget.Button BtnUnit;
     private widget.Button BtnUpload;
-    private widget.Button BtnVerif;
-    private widget.Button BtnVerif1;
-    private widget.Button BtnVerif2;
-    private widget.Button BtnVerif3;
-    private widget.Button BtnVerif4;
-    private widget.Button BtnVerif5;
-    private widget.Button BtnVerif6;
     public widget.CekBox ChkDapatObat;
     public widget.CekBox ChkDokumen;
     public widget.CekBox ChkDokumen1;
@@ -22530,11 +22332,11 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }
     
-    private void verifikasiCpptAuto() {        
+    private void verifikasiCpptAuto() {
         if (tbCPPT.getRowCount() != 0) {
             try {
                 String waktuVerifikasi = Sequel.cariIsi("select now()");
-                
+
                 for (i = 0; i < tbCPPT.getRowCount(); i++) {
                     String waktuSimpan = tbCPPT.getValueAt(i, 15).toString();
                     String nip = tbCPPT.getValueAt(i, 14).toString();
@@ -22542,15 +22344,23 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                     Sequel.queryu("update cppt set verifikasi='Sudah' where waktu_simpan='" + waktuSimpan + "'");
                     if (!nip.equals("-")) {
-                        Sequel.menyimpanIgnore("verifikasi_cppt",
+                        Sequel.menyimpanIgnore(
+                                "verifikasi_cppt",
                                 "'" + noRawat + "',"
                                 + "'" + nip + "',"
                                 + "'" + waktuSimpan + "',"
-                                + "DATE_ADD('" + waktuVerifikasi + "', INTERVAL " + i + " SECOND)", "Verifikasi CPPT");
+                                + "DATE_ADD('" + waktuVerifikasi
+                                + "', INTERVAL " + i + " SECOND)", "Verifikasi CPPT");
 
                         Sequel.queryu("delete from verifikasi_cppt_history where waktu_simpan_cppt='" + waktuSimpan + "'");
                     }
                 }
+
+                // CUKUP SEKALI setelah seluruh data selesai diproses
+                Sequel.queryu("DELETE vc FROM verifikasi_cppt vc "
+                        + "INNER JOIN (SELECT waktu_simpan_cppt, MAX(waktu_verif) AS waktu_verif_terakhir FROM verifikasi_cppt "
+                        + "GROUP BY waktu_simpan_cppt HAVING COUNT(*) > 1) terakhir ON terakhir.waktu_simpan_cppt = vc.waktu_simpan_cppt "
+                        + "WHERE vc.waktu_verif < terakhir.waktu_verif_terakhir");
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Verifikasi CPPT", "Sudah");
             } catch (Exception e) {

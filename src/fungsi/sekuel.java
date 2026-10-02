@@ -1628,8 +1628,8 @@ public final class sekuel {
         rm60 = cariInteger("select count(-1) from rekonsiliasi_obat where no_rawat='" + norawat + "'");
         rm61 = cariInteger("select count(-1) from rekonsiliasi_obat_igd where no_rawat='" + norawat + "'");
         rm62 = cariInteger("select count(-1) from serah_terima_bayi_pulang_perinatologi where no_rawat='" + norawat + "'");
-        rm63 = cariInteger("select count(-1) from pemberian_informasi_edukasi where no_rawat='" + norawat + "'");
-        rm64 = cariInteger("select count(-1) from penilaian_informasi_edukasi where no_rawat='" + norawat + "'");
+        rm63 = cariInteger("select count(-1) from pemberian_informasi_edukasi where no_rawat='" + norawat + "' and ruang_rawat not in ('IGD','PONEK - VK BERSALIN')");
+        rm64 = cariInteger("select count(-1) from penilaian_informasi_edukasi where no_rawat='" + norawat + "' and ruang_rawat not in ('IGD','PONEK - VK BERSALIN')");
         rm65 = cariInteger("select count(-1) from monitoring_ews_obsgyn where no_rawat='" + norawat + "'");
         rm66 = cariInteger("select count(-1) from general_consent where no_rawat='" + norawat + "'");
         rm67 = cariInteger("select count(-1) from persetujuan_ranap where no_rawat='" + norawat + "'");

@@ -637,6 +637,13 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                             }
                         }
                     }
+                    
+                    // CUKUP SEKALI setelah seluruh data selesai diproses
+                    Sequel.queryu("DELETE vc FROM verifikasi_cppt vc "
+                            + "INNER JOIN (SELECT waktu_simpan_cppt, MAX(waktu_verif) AS waktu_verif_terakhir FROM verifikasi_cppt "
+                            + "GROUP BY waktu_simpan_cppt HAVING COUNT(*) > 1) terakhir ON terakhir.waktu_simpan_cppt = vc.waktu_simpan_cppt "
+                            + "WHERE vc.waktu_verif < terakhir.waktu_verif_terakhir");
+
                     Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Verifikasi CPPT", "Sudah");
                     BtnHapusActionPerformed(null);
                 } catch (Exception e) {

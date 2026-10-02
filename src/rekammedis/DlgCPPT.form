@@ -1785,7 +1785,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="01-10-2026"/>
+                        <StringItem index="0" value="02-10-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -1814,7 +1814,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="01-10-2026"/>
+                        <StringItem index="0" value="02-10-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2052,7 +2052,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="01-10-2026"/>
+                        <StringItem index="0" value="02-10-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2088,7 +2088,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="01-10-2026"/>
+                        <StringItem index="0" value="02-10-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2971,7 +2971,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="01-10-2026"/>
+                            <StringItem index="0" value="02-10-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3410,7 +3410,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="01-10-2026"/>
+                            <StringItem index="0" value="02-10-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3438,7 +3438,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="01-10-2026"/>
+                            <StringItem index="0" value="02-10-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3818,7 +3818,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="01-10-2026"/>
+                        <StringItem index="0" value="02-10-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3846,7 +3846,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="01-10-2026"/>
+                        <StringItem index="0" value="02-10-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -5005,7 +5005,7 @@
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="01-10-2026"/>
+                                    <StringItem index="0" value="02-10-2026"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -6904,7 +6904,7 @@
                                                     <Property name="editable" type="boolean" value="false"/>
                                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                                       <StringArray count="1">
-                                                        <StringItem index="0" value="01-10-2026"/>
+                                                        <StringItem index="0" value="02-10-2026"/>
                                                       </StringArray>
                                                     </Property>
                                                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7157,7 +7157,7 @@
                                                     <Property name="editable" type="boolean" value="false"/>
                                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                                       <StringArray count="1">
-                                                        <StringItem index="0" value="01-10-2026"/>
+                                                        <StringItem index="0" value="02-10-2026"/>
                                                       </StringArray>
                                                     </Property>
                                                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -8078,7 +8078,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="01-10-2026"/>
+                                <StringItem index="0" value="02-10-2026"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -8106,7 +8106,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="01-10-2026"/>
+                                <StringItem index="0" value="02-10-2026"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -8295,26 +8295,6 @@
                         <Property name="verticalGap" type="int" value="9"/>
                       </Layout>
                       <SubComponents>
-                        <Component class="widget.Button" name="BtnVerif">
-                          <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
-                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/picture/checked.png"/>
-                            </Property>
-                            <Property name="mnemonic" type="int" value="86"/>
-                            <Property name="text" type="java.lang.String" value="Verifikasi"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Alt+V"/>
-                            <Property name="name" type="java.lang.String" value="BtnVerif" noResource="true"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[110, 30]"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerifActionPerformed"/>
-                          </Events>
-                        </Component>
                         <Component class="widget.Button" name="BtnNotepad">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -8684,26 +8664,6 @@
                     <Property name="verticalGap" type="int" value="9"/>
                   </Layout>
                   <SubComponents>
-                    <Component class="widget.Button" name="BtnVerif1">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/picture/checked.png"/>
-                        </Property>
-                        <Property name="mnemonic" type="int" value="86"/>
-                        <Property name="text" type="java.lang.String" value="Verifikasi"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Alt+V"/>
-                        <Property name="name" type="java.lang.String" value="BtnVerif1" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[110, 30]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerif1ActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="widget.Button" name="BtnNotepad1">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -9253,26 +9213,6 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnUlangiCopyLabActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="widget.Button" name="BtnVerif2">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/picture/checked.png"/>
-                        </Property>
-                        <Property name="mnemonic" type="int" value="86"/>
-                        <Property name="text" type="java.lang.String" value="Verifikasi"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Alt+V"/>
-                        <Property name="name" type="java.lang.String" value="BtnVerif2" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[110, 30]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerif2ActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="widget.Button" name="BtnNotepad3">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -9662,26 +9602,6 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnUlangiCopyRadActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="widget.Button" name="BtnVerif3">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/picture/checked.png"/>
-                        </Property>
-                        <Property name="mnemonic" type="int" value="86"/>
-                        <Property name="text" type="java.lang.String" value="Verifikasi"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Alt+V"/>
-                        <Property name="name" type="java.lang.String" value="BtnVerif3" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[110, 30]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerif3ActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="widget.Button" name="BtnNotepad4">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -9991,26 +9911,6 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCari6ActionPerformed"/>
                         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="BtnCari6KeyPressed"/>
-                      </Events>
-                    </Component>
-                    <Component class="widget.Button" name="BtnVerif4">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/picture/checked.png"/>
-                        </Property>
-                        <Property name="mnemonic" type="int" value="86"/>
-                        <Property name="text" type="java.lang.String" value="Verifikasi"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Alt+V"/>
-                        <Property name="name" type="java.lang.String" value="BtnVerif4" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[110, 30]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerif4ActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="widget.Button" name="BtnNotepad5">
@@ -10412,7 +10312,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="01-10-2026"/>
+                                <StringItem index="0" value="02-10-2026"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -10440,7 +10340,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="01-10-2026"/>
+                                <StringItem index="0" value="02-10-2026"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -10636,26 +10536,6 @@
                         <Property name="verticalGap" type="int" value="9"/>
                       </Layout>
                       <SubComponents>
-                        <Component class="widget.Button" name="BtnVerif5">
-                          <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
-                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/picture/checked.png"/>
-                            </Property>
-                            <Property name="mnemonic" type="int" value="86"/>
-                            <Property name="text" type="java.lang.String" value="Verifikasi"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Alt+V"/>
-                            <Property name="name" type="java.lang.String" value="BtnVerif5" noResource="true"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[110, 30]"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerif5ActionPerformed"/>
-                          </Events>
-                        </Component>
                         <Component class="widget.Button" name="BtnNotepad6">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -10796,26 +10676,6 @@
                     <Property name="verticalGap" type="int" value="9"/>
                   </Layout>
                   <SubComponents>
-                    <Component class="widget.Button" name="BtnVerif6">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/picture/checked.png"/>
-                        </Property>
-                        <Property name="mnemonic" type="int" value="86"/>
-                        <Property name="text" type="java.lang.String" value="Verifikasi"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Alt+V"/>
-                        <Property name="name" type="java.lang.String" value="BtnVerif6" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[110, 30]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerif6ActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="widget.Button" name="BtnNotepad7">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

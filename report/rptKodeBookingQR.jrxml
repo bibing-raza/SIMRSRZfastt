@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="184" pageHeight="265" columnWidth="178" leftMargin="3" rightMargin="3" topMargin="3" bottomMargin="3">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="184" pageHeight="330" columnWidth="178" leftMargin="3" rightMargin="3" topMargin="3" bottomMargin="3">
 	<property name="ireport.zoom" value="2.4200000000000013"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="316"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -27,24 +27,24 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
-		<band height="259">
+		<band height="324">
 			<rectangle radius="3">
-				<reportElement mode="Transparent" x="0" y="1" width="178" height="258"/>
+				<reportElement mode="Transparent" x="0" y="1" width="178" height="323"/>
 			</rectangle>
 		</band>
 	</background>
 	<title>
-		<band height="259">
+		<band height="324">
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="9" y="7" width="20" height="25"/>
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true" pattern="">
-				<reportElement positionType="Float" mode="Opaque" x="7" y="142" width="170" height="11"/>
+				<reportElement positionType="Float" mode="Opaque" x="7" y="142" width="170" height="60"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single" markup="html">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Tgl. Periksa : <b>"+$F{tgl_periksa}+"</b><br>Poliklinik Tujuan :<br><b>"+$F{nm_poli}+"</b><br>No. Antrean : <b>"+$F{no_reg}+"</b><br>Kode Daftar : <b>"+$F{kd_booking}+"</b><br>"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Tgl. Periksa : <b>"+$F{tgl_periksa}+"</b><br>Poliklinik Tujuan :<br><b>"+$F{nm_poli}+"</b><br>No. Antrean : <b>"+$F{no_reg}+"</b><br>Kode Daftar : <b>"+$F{kd_booking}+"</b>"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="33" y="7" width="134" height="25"/>
@@ -64,7 +64,7 @@
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{lokasi}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="7" y="155" width="170" height="46" forecolor="#FF0033"/>
+				<reportElement positionType="Float" x="7" y="215" width="162" height="49" forecolor="#FF0033"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single" markup="html">
 					<font fontName="Tahoma" size="7" isBold="false"/>
 				</textElement>
@@ -80,6 +80,17 @@
 				</textElement>
 				<text><![CDATA[[ SCAN QRCODE ]]]></text>
 			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="46" y="264" width="123" height="53" forecolor="#0033CC"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font fontName="Tahoma" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Daftar berobat lebih praktis dengan Mobile JKN. Daftar dari mana saja, dapatkan nomor antrean, dan datang sesuai jadwal pelayanan.]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="7" y="264" width="35" height="35"/>
+				<imageExpression class="java.lang.String"><![CDATA["setting/mjkn.jpeg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 </jasperReport>
