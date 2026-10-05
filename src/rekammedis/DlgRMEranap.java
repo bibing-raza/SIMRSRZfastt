@@ -195,10 +195,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         kddpjp = new widget.TextBox();
         nmdpjp = new widget.TextBox();
         btnDPJP = new widget.Button();
-        jLabel5 = new widget.Label();
-        TCari = new widget.TextBox();
-        btnClear = new widget.Button();
-        ChkInput = new widget.CekBox();
         internalFrame1 = new widget.InternalFrame();
         internalFrame4 = new widget.InternalFrame();
         jLabel3 = new widget.Label();
@@ -271,6 +267,10 @@ public class DlgRMEranap extends javax.swing.JDialog {
         Scroll = new widget.ScrollPane();
         tbRMranap = new widget.Table();
         internalFrame3 = new widget.InternalFrame();
+        jLabel5 = new widget.Label();
+        TCari = new widget.TextBox();
+        btnClear = new widget.Button();
+        ChkInput = new widget.CekBox();
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
         internalFrame6 = new widget.InternalFrame();
@@ -334,7 +334,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnCloseIn10.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn10.setMnemonic('U');
         BtnCloseIn10.setText("Tutup");
         BtnCloseIn10.setToolTipText("Alt+U");
         BtnCloseIn10.setName("BtnCloseIn10"); // NOI18N
@@ -348,7 +347,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan6.setMnemonic('S');
         BtnSimpan6.setText("Simpan");
         BtnSimpan6.setToolTipText("Alt+S");
         BtnSimpan6.setName("BtnSimpan6"); // NOI18N
@@ -380,7 +378,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         btnDPJP.setForeground(new java.awt.Color(0, 0, 0));
         btnDPJP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnDPJP.setMnemonic('7');
         btnDPJP.setToolTipText("ALt+7");
         btnDPJP.setName("btnDPJP"); // NOI18N
         btnDPJP.addActionListener(new java.awt.event.ActionListener() {
@@ -392,56 +389,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         btnDPJP.setBounds(565, 32, 28, 23);
 
         WindowDPJPranap.getContentPane().add(internalFrame15, java.awt.BorderLayout.CENTER);
-
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Cari Menu :");
-        jLabel5.setName("jLabel5"); // NOI18N
-        jLabel5.setPreferredSize(new java.awt.Dimension(100, 23));
-
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
-        TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(280, 23));
-        TCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TCariKeyPressed(evt);
-            }
-        });
-
-        btnClear.setForeground(new java.awt.Color(0, 0, 0));
-        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
-        btnClear.setMinimumSize(new java.awt.Dimension(28, 23));
-        btnClear.setName("btnClear"); // NOI18N
-        btnClear.setPreferredSize(new java.awt.Dimension(30, 30));
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
-            }
-        });
-
-        ChkInput.setBorder(null);
-        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
-        ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('C');
-        ChkInput.setSelected(true);
-        ChkInput.setText("Pencarian");
-        ChkInput.setToolTipText("Alt+C");
-        ChkInput.setBorderPainted(true);
-        ChkInput.setBorderPaintedFlat(true);
-        ChkInput.setFocusable(false);
-        ChkInput.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        ChkInput.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ChkInput.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ChkInput.setName("ChkInput"); // NOI18N
-        ChkInput.setOpaque(false);
-        ChkInput.setPreferredSize(new java.awt.Dimension(100, 30));
-        ChkInput.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        ChkInput.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        ChkInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkInputActionPerformed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1257,9 +1204,61 @@ public class DlgRMEranap extends javax.swing.JDialog {
         internalFrame3.setPreferredSize(new java.awt.Dimension(12, 44));
         internalFrame3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 9, 7));
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Cari Menu :");
+        jLabel5.setName("jLabel5"); // NOI18N
+        jLabel5.setPreferredSize(new java.awt.Dimension(100, 23));
+        internalFrame3.add(jLabel5);
+
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
+        TCari.setName("TCari"); // NOI18N
+        TCari.setPreferredSize(new java.awt.Dimension(280, 23));
+        TCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCariKeyPressed(evt);
+            }
+        });
+        internalFrame3.add(TCari);
+
+        btnClear.setForeground(new java.awt.Color(0, 0, 0));
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        btnClear.setMinimumSize(new java.awt.Dimension(28, 23));
+        btnClear.setName("btnClear"); // NOI18N
+        btnClear.setPreferredSize(new java.awt.Dimension(30, 30));
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+        internalFrame3.add(btnClear);
+
+        ChkInput.setBorder(null);
+        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
+        ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setSelected(true);
+        ChkInput.setText("Pencarian");
+        ChkInput.setToolTipText("Alt+C");
+        ChkInput.setBorderPainted(true);
+        ChkInput.setBorderPaintedFlat(true);
+        ChkInput.setFocusable(false);
+        ChkInput.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkInput.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ChkInput.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkInput.setName("ChkInput"); // NOI18N
+        ChkInput.setOpaque(false);
+        ChkInput.setPreferredSize(new java.awt.Dimension(100, 30));
+        ChkInput.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        ChkInput.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        ChkInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkInputActionPerformed(evt);
+            }
+        });
+        internalFrame3.add(ChkInput);
+
         BtnRefres.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnRefres.setMnemonic('R');
         BtnRefres.setText("Refresh Rekam Medis");
         BtnRefres.setToolTipText("Alt+R");
         BtnRefres.setName("BtnRefres"); // NOI18N
@@ -1273,7 +1272,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1436,7 +1434,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         ChkInput1.setBorder(null);
         ChkInput1.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput1.setMnemonic('C');
         ChkInput1.setSelected(true);
         ChkInput1.setText("Pencarian");
         ChkInput1.setToolTipText("Alt+C");
@@ -1461,7 +1458,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnRefres1.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnRefres1.setMnemonic('R');
         BtnRefres1.setText("Refresh Rekam Medis");
         BtnRefres1.setToolTipText("Alt+R");
         BtnRefres1.setName("BtnRefres1"); // NOI18N
@@ -1475,7 +1471,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -1784,7 +1779,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnRefres2.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnRefres2.setMnemonic('R');
         BtnRefres2.setText("Refresh Rekam Medis");
         BtnRefres2.setToolTipText("Alt+R");
         BtnRefres2.setName("BtnRefres2"); // NOI18N
@@ -1798,7 +1792,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar2.setMnemonic('K');
         BtnKeluar2.setText("Keluar");
         BtnKeluar2.setToolTipText("Alt+K");
         BtnKeluar2.setName("BtnKeluar2"); // NOI18N
@@ -1866,7 +1859,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         isCek();
         tampilRMranap();
-        tampilkanMenuMaskep();
+        tampilkanMenuRanap();
+        tampilkanMenuMaskep();        
     }//GEN-LAST:event_formWindowOpened
 
     private void BtnAsesmenMedikDewasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenMedikDewasaActionPerformed
@@ -3747,202 +3741,268 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private void isTampilMenuRanap() {
         jmlmenu = 0;
         String cari = TCari.getText().toLowerCase().trim();
-        
-        if (akses.getasesmen_medik_bedah_ranap() && BtnAsesmenMedikBedah.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnAsesmenMedikBedah);
+
+        if (BtnPersetujuanRanap.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnPersetujuanRanap);
             jmlmenu++;
         }
-        
-        if (akses.getasesmen_medik_dewasa_ranap() && BtnAsesmenMedikDewasa.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnAsesmenMedikDewasa);
+
+        if (BtnGeneralConsent.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnGeneralConsent);
             jmlmenu++;
         }
-        
-        if (akses.getasesmen_medik_anak_ranap() && BtnAsesmenMedikAnak.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnAsesmenMedikAnak);
+
+        if (BtnSuratPernyataanRanapBpjs.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnSuratPernyataanRanapBpjs);
             jmlmenu++;
         }
-        
-        if (akses.getasesmen_medik_anak_ranap() && BtnAsesmenMedikPerinatologi.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnAsesmenMedikPerinatologi);
+
+        if (BtnSuratPernyataanNaikKelas.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnSuratPernyataanNaikKelas);
             jmlmenu++;
         }
-        
-        if (akses.getcppt() && BtnAsesmenKeperawatanDewasa.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnAsesmenKeperawatanDewasa);
+
+        if (BtnSuratPernyataanBukanKLL.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnSuratPernyataanBukanKLL);
             jmlmenu++;
         }
-        
-        if (akses.getcppt() && BtnAsesmenKeperawatanAnak.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnAsesmenKeperawatanAnak);
+
+        if (BtnSuratPernyataanBayarDenda.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnSuratPernyataanBayarDenda);
             jmlmenu++;
         }
-        
-        if (akses.getcppt() && BtnAsesmenKeperawatanPerinatologi.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnAsesmenKeperawatanPerinatologi);
+
+        if (BtnSuratPernyataanRanapNonBpjs.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnSuratPernyataanRanapNonBpjs);
             jmlmenu++;
         }
-        
-        if (akses.getcppt() && BtnScoreApgarPerinatologi.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnScoreApgarPerinatologi);
-            jmlmenu++;
-        }
-        
-        if (akses.getcppt() && BtnPengamatanMenyusui.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnPengamatanMenyusui);
-            jmlmenu++;
-        }
-        
-        if (akses.getcppt() && BtnSerahTerimaBayiPulang.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnSerahTerimaBayiPulang);
-            jmlmenu++;
-        }
-        
+
         if (akses.getcppt() && BtnAsesmenRestrain.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnAsesmenRestrain);
             jmlmenu++;
         }
-        
+
         if (akses.getcppt() && BtnObservasiRestrain.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnObservasiRestrain);
             jmlmenu++;
         }
-        
+
+        if (akses.getasesmen_medik_bedah_ranap() && BtnAsesmenMedikBedah.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenMedikBedah);
+            jmlmenu++;
+        }
+
+        if (akses.getasesmen_medik_dewasa_ranap() && BtnAsesmenMedikDewasa.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenMedikDewasa);
+            jmlmenu++;
+        }
+
+        if (akses.getasesmen_medik_anak_ranap() && BtnAsesmenMedikAnak.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenMedikAnak);
+            jmlmenu++;
+        }
+
+        if (akses.getasesmen_medik_anak_ranap() && BtnAsesmenMedikPerinatologi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenMedikPerinatologi);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnAsesmenKeperawatanDewasa.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenKeperawatanDewasa);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnAsesmenKeperawatanAnak.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenKeperawatanAnak);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnAsesmenKeperawatanPerinatologi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenKeperawatanPerinatologi);
+            jmlmenu++;
+        }
+
         if (akses.getcppt() && BtnCPPT.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnCPPT);
             jmlmenu++;
         }
-        
+
         if (akses.getresep_dokter() && BtnResep.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnResep);
             jmlmenu++;
         }
-        
+
         if (akses.getringkasanpulangranap() && BtnRingkasan.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnRingkasan);
             jmlmenu++;
         }
-        
+
         if (akses.getcppt() && BtnCTK.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnCTK);
             jmlmenu++;
         }
-        
+
         if (akses.getcppt() && BtnAsesmenUlangRJDewasa.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnAsesmenUlangRJDewasa);
             jmlmenu++;
         }
-        
+
         if (akses.getcppt() && BtnAsesmenUlangRJAnak.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnAsesmenUlangRJAnak);
             jmlmenu++;
         }
-        
-        if (akses.getpemberian_obat() && BtnJadwalObat.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnJadwalObat);
+
+        if (akses.getcppt() && BtnAsesmenPasienTerminal.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenPasienTerminal);
             jmlmenu++;
         }
-        
-        if (akses.getpermintaan_lab() && BtnKonsul.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnKonsul);
-            jmlmenu++;
-        }
-        
-        if (akses.getpermintaan_lab() && BtnJawabKonsul.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnJawabKonsul);
-            jmlmenu++;
-        }
-        
-        if (akses.getcppt() && BtnPantauHarianPasien.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnPantauHarianPasien);
-            jmlmenu++;
-        }
-        
-        if (akses.getcppt() && BtnGrafikPantauHarian.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnGrafikPantauHarian);
-            jmlmenu++;
-        }
-        
-        if (akses.getkemoterapi() && BtnProtokolKemoterapi.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnProtokolKemoterapi);
-            jmlmenu++;
-        }
-        
-        if (akses.getcppt() && BtnPengelolaanTranfusiDarah.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnPengelolaanTranfusiDarah);
-            jmlmenu++;
-        }
-        
-        if (akses.getcppt() && BtnMonitoringEWSdewasa.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnMonitoringEWSdewasa);
-            jmlmenu++;
-        }
-        
-        if (akses.getcppt() && BtnMonitoringPEWSanak.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnMonitoringPEWSanak);
-            jmlmenu++;
-        }
-        
-        if (akses.getcppt() && BtnMonitoringEWSobsgyn.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnMonitoringEWSobsgyn);
-            jmlmenu++;
-        }
-        
+
         if (akses.getpemberian_obat() && BtnTransferSerahTerima.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnTransferSerahTerima);
             jmlmenu++;
         }
-        
-        if (akses.getpemberian_obat() && BtnPersetujuanTindakan.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnPersetujuanTindakan);
+
+        if (akses.getcppt() && BtnSuratPernyataanDNR.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnSuratPernyataanDNR);
             jmlmenu++;
         }
-        
-        if (akses.getassesmen_gizi_harian() && BtnSkriningUlangGizi.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnSkriningUlangGizi);
+
+        if (akses.getresep_dokter() && BtnInstruksiDokterDNR.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnInstruksiDokterDNR);
             jmlmenu++;
         }
-        
-        if (akses.getmonev_asuhan_gizi() && BtnMonevAsuhanGizi.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnMonevAsuhanGizi);
-            jmlmenu++;
-        }
-        
-        if (akses.getassesmen_gizi_harian() && BtnAsuhanGizi.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnAsuhanGizi);
-            jmlmenu++;
-        }
-        
-        if (akses.getassesmen_gizi_ulang() && BtnAsesmenUlangGizi.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnAsesmenUlangGizi);
-            jmlmenu++;
-        }
-        
+
         if (akses.getcppt() && BtnLembarObservasi.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnLembarObservasi);
             jmlmenu++;
         }
-        
-        if (akses.getcppt() && BtnTransferTindakan.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnTransferTindakan);
-            jmlmenu++;
-        }
-        
-        if (akses.getcppt() && BtnPerencanaanPulang.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnPerencanaanPulang);
-            jmlmenu++;
-        }
-        
-        if (akses.getberi_obat() && BtnRekonsiliasiObat.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnRekonsiliasiObat);
-            jmlmenu++;
-        }
-        
+
         if (akses.getcppt() && BtnObservasiKala1.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnObservasiKala1);
             jmlmenu++;
         }
-        
+
+        if (akses.getcppt() && BtnPengelolaanTranfusiDarah.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnPengelolaanTranfusiDarah);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnMonitoringEWSdewasa.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnMonitoringEWSdewasa);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnMonitoringPEWSanak.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnMonitoringPEWSanak);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnMonitoringEWSobsgyn.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnMonitoringEWSobsgyn);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnScoreApgarPerinatologi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnScoreApgarPerinatologi);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnScoreApgarPerinatologiLuar.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnScoreApgarPerinatologiLuar);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnPengamatanMenyusui.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnPengamatanMenyusui);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnSerahTerimaBayiPulang.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnSerahTerimaBayiPulang);
+            jmlmenu++;
+        }
+
+        if (akses.getberi_obat() && BtnRekonsiliasiObat.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnRekonsiliasiObat);
+            jmlmenu++;
+        }
+
+        if ((akses.getcppt() || akses.getbpjs_sep() || akses.getadmin())
+                && BtnPemberianInformasiEdukasi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnPemberianInformasiEdukasi);
+            jmlmenu++;
+        }
+
+        if (akses.getpemberian_obat() && BtnJadwalObat.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnJadwalObat);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnTransferTindakan.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnTransferTindakan);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnPerencanaanPulang.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnPerencanaanPulang);
+            jmlmenu++;
+        }
+
+        if (akses.getpermintaan_lab() && BtnKonsul.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnKonsul);
+            jmlmenu++;
+        }
+
+        if (akses.getpermintaan_lab() && BtnJawabKonsul.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnJawabKonsul);
+            jmlmenu++;
+        }
+
+        if (akses.getpemberian_obat() && BtnPersetujuanTindakan.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnPersetujuanTindakan);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnPantauHarianPasien.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnPantauHarianPasien);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() && BtnGrafikPantauHarian.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnGrafikPantauHarian);
+            jmlmenu++;
+        }
+
+        if (akses.getkemoterapi() && BtnProtokolKemoterapi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnProtokolKemoterapi);
+            jmlmenu++;
+        }
+
+        if (BtnDokumenJangMed.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnDokumenJangMed);
+            jmlmenu++;
+        }
+
+        if (akses.getassesmen_gizi_harian() && BtnSkriningUlangGizi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnSkriningUlangGizi);
+            jmlmenu++;
+        }
+
+        if (akses.getassesmen_gizi_harian() && BtnAsuhanGizi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsuhanGizi);
+            jmlmenu++;
+        }
+
+        if (akses.getmonev_asuhan_gizi() && BtnMonevAsuhanGizi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnMonevAsuhanGizi);
+            jmlmenu++;
+        }
+
+        if (akses.getassesmen_gizi_ulang() && BtnAsesmenUlangGizi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenUlangGizi);
+            jmlmenu++;
+        }
+
         if (akses.getadmin() && BtnSamplingPemanfaatanRM.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnSamplingPemanfaatanRM);
             jmlmenu++;
@@ -4056,7 +4116,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else if (jmlmenu <= 16) {
             grid = 4;
         } else {
-            grid = 5;
+            grid = 7;
         }
 
         int tinggiTombol = 120;
@@ -4148,7 +4208,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else if (jmlmenu <= 16) {
             grid = 4;
         } else {
-            grid = 8;
+            grid = 7;
         }
 
         int tinggiTombol = 120;
@@ -4218,6 +4278,25 @@ public class DlgRMEranap extends javax.swing.JDialog {
                         ChkInput1ActionPerformed(null);
 
                         scrolMenuMaskep.getVerticalScrollBar().setValue(0);
+                    });
+
+            timer.setRepeats(false);
+            timer.start();
+        });
+    }
+    
+    public void tampilkanMenuRanap() {
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            ChkInputActionPerformed(null);
+
+            javax.swing.Timer timer
+                    = new javax.swing.Timer(100, e -> {
+
+                        ((javax.swing.Timer) e.getSource()).stop();
+
+                        ChkInputActionPerformed(null);
+
+                        scrolMenuRanap.getVerticalScrollBar().setValue(0);
                     });
 
             timer.setRepeats(false);

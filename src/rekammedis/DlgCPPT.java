@@ -1123,6 +1123,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnGrafikPemantauanDewasa = new javax.swing.JMenuItem();
         MnDataSampah = new javax.swing.JMenuItem();
         MnBersihkanStringSampah = new javax.swing.JMenuItem();
+        MnVerifikasiCppt = new javax.swing.JMenuItem();
         MnRMGawatDarurat = new javax.swing.JMenu();
         MnDataTriaseIGD = new javax.swing.JMenu();
         MnInputDataTriaseIGD = new javax.swing.JMenuItem();
@@ -1221,6 +1222,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         tglB = new widget.Tanggal();
         cmbTanggal = new widget.ComboBox();
         jLabel50 = new widget.Label();
+        jLabel68 = new widget.Label();
+        jLabel70 = new widget.Label();
         internalFrame28 = new widget.InternalFrame();
         jLabel65 = new widget.Label();
         cmbPilihCetak = new widget.ComboBox();
@@ -1383,19 +1386,15 @@ public class DlgCPPT extends javax.swing.JDialog {
         scrollPane8 = new widget.ScrollPane();
         internalFrame4 = new widget.InternalFrame();
         jLabel10 = new widget.Label();
-        jLabel11 = new widget.Label();
         scrollPane2 = new widget.ScrollPane();
         THasil = new widget.TextArea();
         jLabel12 = new widget.Label();
-        jLabel13 = new widget.Label();
         scrollPane3 = new widget.ScrollPane();
         TInstruksi = new widget.TextArea();
         BtnHasil = new widget.Button();
         BtnInstruksi = new widget.Button();
         BtnUlangiHasil = new widget.Button();
         BtnUlangiInstruksi = new widget.Button();
-        jLabel26 = new widget.Label();
-        jLabel27 = new widget.Label();
         BtnPasteHasil = new widget.Button();
         BtnPasteInstruksi = new widget.Button();
         internalFrame6 = new widget.InternalFrame();
@@ -1521,6 +1520,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         TNoRw1 = new widget.TextBox();
         TNoRm1 = new widget.TextBox();
         TPasien1 = new widget.TextBox();
+        chkTampilkanQr = new widget.CekBox();
         TabPreview = new javax.swing.JTabbedPane();
         Scroll10 = new widget.ScrollPane();
         LoadHTML1 = new widget.editorpane();
@@ -1762,6 +1762,21 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnBersihkanStringSampah);
+
+        MnVerifikasiCppt.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnVerifikasiCppt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnVerifikasiCppt.setText("Verifikasi CPPT");
+        MnVerifikasiCppt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnVerifikasiCppt.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnVerifikasiCppt.setIconTextGap(5);
+        MnVerifikasiCppt.setName("MnVerifikasiCppt"); // NOI18N
+        MnVerifikasiCppt.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnVerifikasiCppt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnVerifikasiCpptActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnVerifikasiCppt);
 
         MnRMGawatDarurat.setBackground(new java.awt.Color(255, 255, 254));
         MnRMGawatDarurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -2737,7 +2752,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelisi4.add(jLabel66);
 
         DTPCariA.setEditable(false);
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -2752,7 +2767,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelisi4.add(jLabel67);
 
         DTPCariB.setEditable(false);
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -2871,7 +2886,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbSiftPetugas.setBounds(287, 10, 65, 23);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -2887,7 +2902,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 38, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -2911,6 +2926,19 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel50.setName("jLabel50"); // NOI18N
         internalFrame27.add(jLabel50);
         jLabel50.setBounds(0, 38, 90, 23);
+
+        jLabel68.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel68.setText("Catatan :");
+        jLabel68.setName("jLabel68"); // NOI18N
+        internalFrame27.add(jLabel68);
+        jLabel68.setBounds(0, 66, 90, 23);
+
+        jLabel70.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel70.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel70.setText("<html>Apabila data CPPTnya banyak, pilihan cetak disarankan<br>pilih yang dalam bentuk TTD Basah, meminimalisir<br>komputernya heng.</html>");
+        jLabel70.setName("jLabel70"); // NOI18N
+        internalFrame27.add(jLabel70);
+        jLabel70.setBounds(97, 66, 310, 50);
 
         internalFrame10.add(internalFrame27, java.awt.BorderLayout.CENTER);
 
@@ -3336,7 +3364,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -3534,7 +3562,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3548,7 +3576,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3744,7 +3772,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel43.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass12.add(jLabel43);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -3758,7 +3786,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel44.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass12.add(jLabel44);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -4260,7 +4288,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame7.add(jLabel8);
         jLabel8.setBounds(0, 38, 180, 23);
 
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -4391,16 +4419,10 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame4.setLayout(null);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Hasil Pemeriksaan, Analisa, :");
+        jLabel10.setText("<html><div style=\"text-align: right;\">Hasil Pemeriksaan, Analisa, :<br>Rencana, Penatalaksanaan&nbsp;&nbsp;<br>Pasien&nbsp;&nbsp;</div></html>");
         jLabel10.setName("jLabel10"); // NOI18N
         internalFrame4.add(jLabel10);
-        jLabel10.setBounds(0, 10, 180, 23);
-
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Rencana, Penatalaksanaan ");
-        jLabel11.setName("jLabel11"); // NOI18N
-        internalFrame4.add(jLabel11);
-        jLabel11.setBounds(0, 24, 180, 23);
+        jLabel10.setBounds(0, 10, 180, 50);
 
         scrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane2.setName("scrollPane2"); // NOI18N
@@ -4422,16 +4444,10 @@ public class DlgCPPT extends javax.swing.JDialog {
         scrollPane2.setBounds(185, 10, 630, 280);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Instruksi Tenaga Kesehatan :");
+        jLabel12.setText("<html><div style=\"text-align: right;\">Instruksi Tenaga Kesehatan :<br>Termasuk Pasca Bedah&nbsp;&nbsp;<br>/Prosedur&nbsp;&nbsp;</div></html>");
         jLabel12.setName("jLabel12"); // NOI18N
         internalFrame4.add(jLabel12);
-        jLabel12.setBounds(0, 295, 180, 23);
-
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Termasuk Pasca Bedah  ");
-        jLabel13.setName("jLabel13"); // NOI18N
-        internalFrame4.add(jLabel13);
-        jLabel13.setBounds(0, 309, 180, 23);
+        jLabel12.setBounds(0, 295, 180, 50);
 
         scrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane3.setName("scrollPane3"); // NOI18N
@@ -4511,18 +4527,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         internalFrame4.add(BtnUlangiInstruksi);
         BtnUlangiInstruksi.setBounds(825, 325, 100, 23);
-
-        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel26.setText("Pasien ");
-        jLabel26.setName("jLabel26"); // NOI18N
-        internalFrame4.add(jLabel26);
-        jLabel26.setBounds(0, 38, 180, 23);
-
-        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel27.setText("/Prosedur  ");
-        jLabel27.setName("jLabel27"); // NOI18N
-        internalFrame4.add(jLabel27);
-        jLabel27.setBounds(0, 323, 180, 23);
 
         BtnPasteHasil.setForeground(new java.awt.Color(0, 0, 0));
         BtnPasteHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
@@ -5026,7 +5030,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(0, 8, 120, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -5080,7 +5084,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(0, 36, 120, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -5541,7 +5545,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5555,7 +5559,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5785,6 +5789,19 @@ public class DlgCPPT extends javax.swing.JDialog {
         TPasien1.setName("TPasien1"); // NOI18N
         TPasien1.setPreferredSize(new java.awt.Dimension(407, 24));
         panelGlass13.add(TPasien1);
+
+        chkTampilkanQr.setBackground(new java.awt.Color(255, 255, 250));
+        chkTampilkanQr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkTampilkanQr.setForeground(new java.awt.Color(0, 0, 0));
+        chkTampilkanQr.setText("Verifikasi CPPT Ditampilkan Dengan TTE Qrcode");
+        chkTampilkanQr.setBorderPainted(true);
+        chkTampilkanQr.setBorderPaintedFlat(true);
+        chkTampilkanQr.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkTampilkanQr.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkTampilkanQr.setName("chkTampilkanQr"); // NOI18N
+        chkTampilkanQr.setOpaque(false);
+        chkTampilkanQr.setPreferredSize(new java.awt.Dimension(270, 23));
+        panelGlass13.add(chkTampilkanQr);
 
         internalFrame26.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
 
@@ -6692,7 +6709,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass26.add(ChkTanggal);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -6706,7 +6723,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass26.add(jLabel59);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2026" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2026" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -7101,17 +7118,36 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "O : " + TObjektif.getText() + "\n\n"
                         + "A : " + TAsesmen.getText() + "\n";
                 instruksi_nakes = TPlaning.getText();
-            }         
-
+            }
+            
             try {
+                //verifikasi otomatis
+                String waktuSimpan = Sequel.cariIsi("select now()");
+                
                 if (Sequel.menyimpantf("cppt", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "CPPT Pasien", 27, new String[]{
                     TNoRw.getText(), Valid.SetTgl(tglCppt.getSelectedItem() + ""), kdKamarSaatIni, Valid.mysql_real_escape_stringERM(hasil_pemeriksaan),
-                    Valid.mysql_real_escape_stringERM(instruksi_nakes), "Belum", kddpjp.getText(), statusOK, Sequel.cariIsi("select now()"),
-                    cekjam, jamcpptFix, cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(), cmbSertim.getSelectedItem().toString(), 
-                    nipDPJPlain, nipSerah.getText(), nipTerima.getText(), siftppa, cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), 
-                    "tidak", "-", soap, Valid.mysql_real_escape_stringERM(TSubjektif.getText()), Valid.mysql_real_escape_stringERM(TObjektif.getText()),
+                    Valid.mysql_real_escape_stringERM(instruksi_nakes), "Sudah", kddpjp.getText(), statusOK, waktuSimpan, cekjam, jamcpptFix, cmbPPA.getSelectedItem().toString(),
+                    nipppa, cmbBagian.getSelectedItem().toString(), cmbSertim.getSelectedItem().toString(), nipDPJPlain, nipSerah.getText(), nipTerima.getText(), siftppa,
+                    cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), "tidak", "-", soap,
+                    Valid.mysql_real_escape_stringERM(TSubjektif.getText()), Valid.mysql_real_escape_stringERM(TObjektif.getText()),
                     Valid.mysql_real_escape_stringERM(TAsesmen.getText()), Valid.mysql_real_escape_stringERM(TPlaning.getText())
                 }) == true) {
+                    if (!kddpjp.getText().equals("-")) {
+                        Sequel.menyimpanIgnore("verifikasi_cppt", "'" + TNoRw.getText() + "','" + kddpjp.getText() + "',"
+                                + "'" + waktuSimpan + "',DATE_ADD('" + waktuSimpan + "', INTERVAL 1 SECOND)", "Verifikasi CPPT");
+                        Sequel.queryu("delete from verifikasi_cppt_history where waktu_simpan_cppt='" + waktuSimpan + "'");
+                    }
+                    
+                //verifikasi manual
+//                if (Sequel.menyimpantf("cppt", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "CPPT Pasien", 27, new String[]{
+//                    TNoRw.getText(), Valid.SetTgl(tglCppt.getSelectedItem() + ""), kdKamarSaatIni, Valid.mysql_real_escape_stringERM(hasil_pemeriksaan),
+//                    Valid.mysql_real_escape_stringERM(instruksi_nakes), "Belum", kddpjp.getText(), statusOK, Sequel.cariIsi("select now()"),
+//                    cekjam, jamcpptFix, cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(), cmbSertim.getSelectedItem().toString(), 
+//                    nipDPJPlain, nipSerah.getText(), nipTerima.getText(), siftppa, cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), 
+//                    "tidak", "-", soap, Valid.mysql_real_escape_stringERM(TSubjektif.getText()), Valid.mysql_real_escape_stringERM(TObjektif.getText()),
+//                    Valid.mysql_real_escape_stringERM(TAsesmen.getText()), Valid.mysql_real_escape_stringERM(TPlaning.getText())
+//                }) == true) {
+
                     //menyamakan tgl, jam & sift cppt dengan data konfirmasi terapi
                     if (tbKonfirmasi.getRowCount() != 0) {
                         try {
@@ -7363,7 +7399,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbRawat.setSelectedIndex(2);
         cmbSiftCppt.setSelectedIndex(4);
         tampil();
-        verifikasiCpptAuto();
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
@@ -7445,7 +7480,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             if (cmbRawat.getSelectedIndex() == 0) {
                 cetakCPPTralan();
             } else {
-                WindowCPPT.setSize(543, 139);
+                WindowCPPT.setSize(543, 196);
                 WindowCPPT.setLocationRelativeTo(internalFrame1);
                 WindowCPPT.setAlwaysOnTop(false);
                 WindowCPPT.setVisible(true);
@@ -7811,13 +7846,13 @@ public class DlgCPPT extends javax.swing.JDialog {
             cmbRawat.setSelectedIndex(2);
             cmbSiftCppt.setSelectedIndex(4);
             tampil();
-            verifikasiCpptAuto();
         } else if (TabCPPT.getSelectedIndex() == 0) {
             TabPetugas.setSelectedIndex(0);
         } else if (TabCPPT.getSelectedIndex() == 2) {
             TNoRw1.setText(TNoRw.getText());
             TNoRm1.setText(TNoRm.getText());
             TPasien1.setText(TPasien.getText());
+            chkTampilkanQr.setSelected(false);
             TabPreview.setSelectedIndex(0);            
             tampilPreviewCppt();
         } else if (TabCPPT.getSelectedIndex() == 3) {
@@ -8507,7 +8542,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbRawat.setSelectedIndex(2);
         cmbSiftCppt.setSelectedIndex(4);
         tampil();
-        verifikasiCpptAuto();
     }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnHapusSampahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusSampahActionPerformed
@@ -10282,7 +10316,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
     private void MnInputDataTriasePonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnInputDataTriasePonekActionPerformed
         if (TNoRw.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...");
         } else {
             if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
                     + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
@@ -10675,6 +10709,13 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TabLabMouseClicked
 
+    private void MnVerifikasiCpptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnVerifikasiCpptActionPerformed
+        cmbRawat.setSelectedIndex(2);
+        cmbSiftCppt.setSelectedIndex(4);
+        tampil();
+        verifikasiCpptAuto();
+    }//GEN-LAST:event_MnVerifikasiCpptActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -10906,6 +10947,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnUlangiP;
     private javax.swing.JMenuItem MnUlangiS;
     private javax.swing.JMenuItem MnUrutkanData;
+    private javax.swing.JMenuItem MnVerifikasiCppt;
     private javax.swing.JPanel PanelInput;
     private usu.widget.glass.PanelGlass PanelWallpublic;
     private usu.widget.glass.PanelGlass PanelWallwifi;
@@ -10992,6 +11034,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.CekBox cekKemasan;
     public widget.CekBox cekWaktu;
     private widget.CekBox chkDpjp;
+    public widget.CekBox chkTampilkanQr;
     private widget.ComboBox cmbBagian;
     private widget.ComboBox cmbBulan;
     private widget.ComboBox cmbDtk;
@@ -11065,9 +11108,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame8;
     private widget.InternalFrame internalFrame9;
     private widget.Label jLabel10;
-    private widget.Label jLabel11;
     private widget.Label jLabel12;
-    private widget.Label jLabel13;
     private widget.Label jLabel14;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
@@ -11080,8 +11121,6 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Label jLabel23;
     private widget.Label jLabel24;
     private widget.Label jLabel25;
-    private widget.Label jLabel26;
-    private widget.Label jLabel27;
     private widget.Label jLabel28;
     private widget.Label jLabel29;
     private widget.Label jLabel3;
@@ -11126,8 +11165,10 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Label jLabel65;
     private widget.Label jLabel66;
     private widget.Label jLabel67;
+    private widget.Label jLabel68;
     private widget.Label jLabel69;
     private widget.Label jLabel7;
+    private widget.Label jLabel70;
     private widget.Label jLabel75;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
@@ -11699,6 +11740,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnResume5.setEnabled(akses.getringkasanpulangranap());
         BtnResume6.setEnabled(akses.getringkasanpulangranap());
         MnBersihkanStringSampah.setEnabled(akses.getadmin());
+        BtnAll.setEnabled(akses.getadmin());
     }
     
     private void tampilTemplate() {
@@ -14685,6 +14727,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "<tbody>"
                     );
                     
+                    String folderTte = Sequel.cariFolderTte();
+                    String jenisDokumen = Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'");
+                    
                     rsPrev.beforeFirst();
                     x = 1;
                     while (rsPrev.next()) {
@@ -14700,37 +14745,64 @@ public class DlgCPPT extends javax.swing.JDialog {
                         }
 
                         if (rsPrev.getString("StatusVerif").equals("terverif")) {
-                            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                            "CPPT", rsPrev.getString("nmVerifikator"),
-                                            rsPrev.getString("tglVerif"), rsPrev.getString("jamVerif")) + "') from kalimat_tte where kode='001'");
+                            if (chkTampilkanQr.isSelected() == true) {
+                                isi = Valid.kalimatQRcode(jenisDokumen, "CPPT", rsPrev.getString("nmVerifikator"),
+                                        rsPrev.getString("tglVerif"), rsPrev.getString("jamVerif"));
 
-                            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTteSemuaPpa" + x + ".jpg", "select logo from setting");
+                                Valid.cetakQrTte(isi, folderTte, "QRTteSemuaPpa" + x + ".jpg", "select logo from setting");
+                                String urlQr = new File(folderTte, "QRTteSemuaPpa" + x + ".jpg").toURI().toString();
 
-                            if (rsPrev.getString("bagian_cppt").contains("DPJP")
-                                    || rsPrev.getString("bagian_cppt").contains("DPJP (K)")
-                                    || rsPrev.getString("bagian_cppt").contains("DPJP Raber")) {
-                                htmlContent.append(
-                                        "<tr style='background-color: #d2e9e9' class='isi'>"
-                                        + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
-                                        + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
-                                        + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
-                                        + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
-                                        + "<td width='60%' valign='top' align='center'><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTteSemuaPpa" + x + ".jpg" + "' width='150' alt='TTE Verifikasi CPPT'><br>"
-                                        + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
-                                        + "</tr>"
-                                );
+                                if (rsPrev.getString("bagian_cppt").contains("DPJP")
+                                        || rsPrev.getString("bagian_cppt").contains("DPJP (K)")
+                                        || rsPrev.getString("bagian_cppt").contains("DPJP Raber")) {
+                                    htmlContent.append(
+                                            "<tr style='background-color: #d2e9e9' class='isi'>"
+                                            + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
+                                            + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                            + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                            + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                            + "<td width='60%' valign='top' align='center'><img src='" + urlQr + "' width='150' alt='TTE Verifikasi CPPT'><br>"
+                                            + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                            + "</tr>"
+                                    );
+                                } else {
+                                    htmlContent.append(
+                                            "<tr class='isi'>"
+                                            + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
+                                            + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                            + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                            + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                            + "<td width='60%' valign='top' align='center'><img src='" + urlQr + "' width='150' alt='TTE Verifikasi CPPT'><br>"
+                                            + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                            + "</tr>"
+                                    );
+                                }
                             } else {
-                                htmlContent.append(
-                                        "<tr class='isi'>"
-                                        + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
-                                        + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
-                                        + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
-                                        + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
-                                        + "<td width='60%' valign='top' align='center'><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTteSemuaPpa" + x + ".jpg" + "' width='150' alt='TTE Verifikasi CPPT'><br>"
-                                        + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
-                                        + "</tr>"
-                                );
+                                if (rsPrev.getString("bagian_cppt").contains("DPJP")
+                                        || rsPrev.getString("bagian_cppt").contains("DPJP (K)")
+                                        || rsPrev.getString("bagian_cppt").contains("DPJP Raber")) {
+                                    htmlContent.append(
+                                            "<tr style='background-color: #d2e9e9' class='isi'>"
+                                            + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
+                                            + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                            + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                            + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                            + "<td width='60%' valign='top' align='center'>Sudah Diverifikasi Oleh<br>"
+                                            + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                            + "</tr>"
+                                    );
+                                } else {
+                                    htmlContent.append(
+                                            "<tr class='isi'>"
+                                            + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
+                                            + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                            + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                            + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                            + "<td width='60%' valign='top' align='center'>Sudah Diverifikasi Oleh<br>"
+                                            + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                            + "</tr>"
+                                    );
+                                }
                             }
                         } else {
                             if (rsPrev.getString("bagian_cppt").contains("DPJP")
@@ -14824,6 +14896,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "<tbody>"
                     );
                     
+                    String folderTte = Sequel.cariFolderTte();
+                    String jenisDokumen = Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'");
+                    
                     rsPrev.beforeFirst();
                     x = 1;
                     while (rsPrev.next()) {
@@ -14839,23 +14914,35 @@ public class DlgCPPT extends javax.swing.JDialog {
                         }
                         
                         if (rsPrev.getString("StatusVerif").equals("terverif")) {
-                            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                            "CPPT", rsPrev.getString("nmVerifikator"),
-                                            rsPrev.getString("tglVerif"), rsPrev.getString("jamVerif")) + "') from kalimat_tte where kode='001'");
+                            if (chkTampilkanQr.isSelected() == true) {
+                                isi = Valid.kalimatQRcode(jenisDokumen, "CPPT", rsPrev.getString("nmVerifikator"),
+                                        rsPrev.getString("tglVerif"), rsPrev.getString("jamVerif"));
 
-                            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTtePpaDokter" + x + ".jpg", "select logo from setting");
-                            
-                            htmlContent.append(
-                                    "<tr style='background-color: #d2e9e9' class='isi'>"
-                                    + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
-                                    + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
-                                    + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
-                                    + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
-                                    + "<td width='60%' valign='top' align='center'><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTtePpaDokter" + x + ".jpg" + "' width='150' alt='TTE Verifikasi CPPT'><br>"
-                                    + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
-                                    + "</tr>"
-                            );                            
+                                Valid.cetakQrTte(isi, folderTte, "QRTtePpaDokter" + x + ".jpg", "select logo from setting");
+                                String urlQr = new File(folderTte, "QRTtePpaDokter" + x + ".jpg").toURI().toString();
+
+                                htmlContent.append(
+                                        "<tr style='background-color: #d2e9e9' class='isi'>"
+                                        + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                        + "<td width='60%' valign='top' align='center'><img src='" + urlQr + "' width='150' alt='TTE Verifikasi CPPT'><br>"
+                                        + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                        + "</tr>"
+                                );
+                            } else {
+                                htmlContent.append(
+                                        "<tr style='background-color: #d2e9e9' class='isi'>"
+                                        + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                        + "<td width='60%' valign='top' align='center'>Sudah Diverifikasi Oleh<br>"
+                                        + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                        + "</tr>"
+                                );
+                            }
                         } else {
                             htmlContent.append(
                                     "<tr style='background-color: #d2e9e9' class='isi'>"
@@ -14934,6 +15021,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "<tbody>"
                     );
                     
+                    String folderTte = Sequel.cariFolderTte();
+                    String jenisDokumen = Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'");
+                    
                     rsPrev.beforeFirst();
                     x = 1;
                     while (rsPrev.next()) {
@@ -14949,24 +15039,35 @@ public class DlgCPPT extends javax.swing.JDialog {
                         }
 
                         if (rsPrev.getString("StatusVerif").equals("terverif")) {
-                            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                            "CPPT", rsPrev.getString("nmVerifikator"),
-                                            rsPrev.getString("tglVerif"), rsPrev.getString("jamVerif")) + "') from kalimat_tte where kode='001'");
+                            if (chkTampilkanQr.isSelected() == true) {
+                                isi = Valid.kalimatQRcode(jenisDokumen, "CPPT", rsPrev.getString("nmVerifikator"),
+                                        rsPrev.getString("tglVerif"), rsPrev.getString("jamVerif"));
 
-                            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTtePpaSelain" + x + ".jpg", "select logo from setting");
-                            
-                            htmlContent.append(
-                                    "<tr class='isi'>"
-                                    + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
-                                    + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
-                                    + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
-                                    + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
-                                    + "<td width='60%' valign='top' align='center'><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTtePpaSelain" + x + ".jpg" + "' width='150' alt='TTE Verifikasi CPPT'><br>"
-                                    + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
-                                    + "</tr>"
-                            );
+                                Valid.cetakQrTte(isi, folderTte, "QRTtePpaSelain" + x + ".jpg", "select logo from setting");
+                                String urlQr = new File(folderTte, "QRTtePpaSelain" + x + ".jpg").toURI().toString();
 
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                        + "<td width='60%' valign='top' align='center'><img src='" + urlQr + "' width='150' alt='TTE Verifikasi CPPT'><br>"
+                                        + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                        + "</tr>"
+                                );
+                            } else {
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td width='20%' valign='top' align='center'>" + Sequel.hariINDONESIAnamaHari(rsPrev.getString("hariCppt")) + ",<br>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                        + "<td width='60%' valign='top' align='center'>Sudah Diverifikasi Oleh<br>"
+                                        + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                        + "</tr>"
+                                );
+                            }
                         } else {
                             htmlContent.append(
                                     "<tr class='isi'>"
@@ -15065,6 +15166,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                     + "LEFT JOIN verifikasi_cppt vc on vc.waktu_simpan_cppt=c.waktu_simpan LEFT JOIN pegawai pg5 on pg5.nik=vc.nip_verifikator "
                     + "WHERE " + whereNya + " and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt");
             try {
+                String folderTte = Sequel.cariFolderTte();
+                String jenisDokumen = Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'");
+                
                 rsCetak = psCetak.executeQuery();
                 while (rsCetak.next()) {
                     isi = "";
@@ -15081,12 +15185,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                     }
 
                     if (rsCetak.getString("StatusVerif").equals("terverif")) {
-                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                        "CPPT", rsCetak.getString("nmVerifikator"),
-                                        rsCetak.getString("tglVerif"), rsCetak.getString("jamVerif")) + "') from kalimat_tte where kode='001'");
+                        isi = Valid.kalimatQRcode(jenisDokumen, "CPPT", rsCetak.getString("nmVerifikator"),
+                                rsCetak.getString("tglVerif"), rsCetak.getString("jamVerif"));
 
-                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Valid.cetakQrTte(isi, folderTte, "QRTte.jpg", "select logo from setting");
                         dokterVerif = rsCetak.getString("nmVerifikator");
                         fileGambar = Sequel.cariFolderPrintTte();
                     } else {
@@ -22363,6 +22465,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "WHERE vc.waktu_verif < terakhir.waktu_verif_terakhir");
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Verifikasi CPPT", "Sudah");
+                JOptionPane.showMessageDialog(null, "Data CPPT pasien ini selesai diverifikasi semua ...");
+                tampil();
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }

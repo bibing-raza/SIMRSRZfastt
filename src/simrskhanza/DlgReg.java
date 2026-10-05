@@ -10,7 +10,6 @@
  * and open the template in10:28:56 PM
  */
 package simrskhanza;
-import bridging.ApiSatuSehat;
 import bridging.BPJSApi;
 import bridging.BPJSDataSEP;
 import bridging.BPJSSuratKontrol;
@@ -19,7 +18,6 @@ import bridging.SisruteRujukanKeluar;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fungsi.BackgroundMusic;
-import laporan.DlgDiagnosaPenyakit;
 import laporan.DlgFrekuensiPenyakitRalan;
 import keuangan.DlgBilingRalan;
 import fungsi.WarnaTable;
@@ -37,7 +35,6 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import inventory.DlgPeresepanDokter;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -87,12 +84,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.DlgLhtPiutang;
-import org.apache.poi.ss.formula.functions.Now;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -12056,14 +12051,19 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         pasien.setLocationRelativeTo(internalFrame1);
         pasien.setVisible(true);
     }
-
+    
     private void infoSEP() {
-        if (Sequel.cariInteger("SELECT count(-1) FROM kelengkapan_booking_sep_bpjs k INNER JOIN booking_registrasi b on b.kd_booking=k.kd_booking WHERE status_cetak_sep='gagal'") == 0) {
+        //cek data sep mundur 5 hari dari tanggal sekarang
+        String tanggalPeriksa = Sequel.cariIsi("SELECT b.tanggal_periksa FROM kelengkapan_booking_sep_bpjs k "
+                + "INNER JOIN booking_registrasi b ON b.kd_booking = k.kd_booking WHERE k.status_cetak_sep = 'gagal' "
+                + "AND b.tanggal_periksa >= DATE_SUB(CURDATE(), INTERVAL 5 DAY) AND b.tanggal_periksa < DATE_ADD(CURDATE(), INTERVAL 1 DAY) "
+                + "ORDER BY b.tanggal_periksa LIMIT 1");
+
+        if (tanggalPeriksa == null || tanggalPeriksa.trim().isEmpty()) {
             label_pesan.setText("-");
         } else {
-            label_pesan.setText("Pada tgl. periksa pasien " + Valid.SetTglINDONESIA(Sequel.cariIsi("SELECT b.tanggal_periksa FROM kelengkapan_booking_sep_bpjs k "
-                    + "INNER JOIN booking_registrasi b on b.kd_booking=k.kd_booking WHERE status_cetak_sep='gagal' ORDER BY b.tanggal_periksa limit 1")) + " ditemukan SEP "
-                    + "manual tercetak dari anjungan elektronik pasien, cek lagi dimenu booking registrasi & mohon dibikinkan SEP nya lagi..!!");
+            label_pesan.setText("Pada tgl. periksa pasien " + Valid.SetTglINDONESIA(tanggalPeriksa) + " ditemukan SEP manual tercetak dari anjungan elektronik pasien, "
+                    + "cek lagi dimenu booking registrasi & mohon dibikinkan SEP nya lagi..!!");
         }
     }
 
