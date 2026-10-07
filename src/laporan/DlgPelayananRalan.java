@@ -25,7 +25,6 @@ import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -34,6 +33,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import simrskhanza.DlgCariPoli;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -49,6 +49,7 @@ public final class DlgPelayananRalan extends javax.swing.JDialog {
     private int i = 0, limabelas = 0, tigapuluh = 0, satujam = 0, lebihsatujam = 0;
     private DlgCariPoli poli = new DlgCariPoli(null, false);
     private String kdPoli = "", userBerizin= "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgLhtBiaya
      * @param parent
@@ -195,15 +196,15 @@ public final class DlgPelayananRalan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Durasi Waktu Pelayanan Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Durasi Waktu Pelayanan Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbDurasi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDurasi.setName("tbDurasi"); // NOI18N
+        tbDurasi.getTableHeader().setReorderingAllowed(false);
         tbDurasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDurasiMouseClicked(evt);
@@ -230,7 +231,6 @@ public final class DlgPelayananRalan extends javax.swing.JDialog {
 
         Tgl1.setBackground(new java.awt.Color(245, 250, 240));
         Tgl1.setEditable(false);
-        Tgl1.setForeground(new java.awt.Color(0, 0, 0));
         Tgl1.setDisplayFormat("dd-MM-yyyy");
         Tgl1.setName("Tgl1"); // NOI18N
         Tgl1.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -245,7 +245,6 @@ public final class DlgPelayananRalan extends javax.swing.JDialog {
 
         Tgl2.setBackground(new java.awt.Color(245, 250, 240));
         Tgl2.setEditable(false);
-        Tgl2.setForeground(new java.awt.Color(0, 0, 0));
         Tgl2.setDisplayFormat("dd-MM-yyyy");
         Tgl2.setName("Tgl2"); // NOI18N
         Tgl2.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -466,13 +465,15 @@ public final class DlgPelayananRalan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnKeluar,TKd);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnKeluar, TKd);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void tbDurasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDurasiMouseClicked
@@ -789,5 +790,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             nmPoli.setText(Sequel.cariIsi("SELECT nm_poli FROM poliklinik WHERE kd_poli='" + kdPoli + "' "));
             tampil();
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="undecorated" type="boolean" value="true"/>
+    <Property name="resizable" type="boolean" value="false"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-90,0,0,5,-126"/>
+  </AuxValues>
+
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+  <SubComponents>
+    <Container class="widget.InternalFrame" name="internalFrame1">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="internalFrame1" noResource="true"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[12, 100]"/>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="Center"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+      <SubComponents>
+        <Container class="widget.InternalFrame" name="internalFrame2">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="internalFrame2" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[12, 39]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+              <BorderConstraints direction="First"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
+            <Property name="alignment" type="int" value="0"/>
+            <Property name="verticalGap" type="int" value="7"/>
+          </Layout>
+          <SubComponents>
+            <Component class="widget.Label" name="jLabel3">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cari Menu I :"/>
+                <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[100, 23]"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="widget.TextBox" name="TCari">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="TCari" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[400, 23]"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TCariKeyPressed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="widget.Button" name="btnClear">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/picture/42a.png"/>
+                </Property>
+                <Property name="glassColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[28, 23]"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="btnClear" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[30, 23]"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="widget.CekBox" name="ChkInput">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/picture/143.png"/>
+                </Property>
+                <Property name="mnemonic" type="int" value="67"/>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Pencarian"/>
+                <Property name="toolTipText" type="java.lang.String" value="Alt+C"/>
+                <Property name="borderPainted" type="boolean" value="true"/>
+                <Property name="borderPaintedFlat" type="boolean" value="true"/>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="11" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="horizontalTextPosition" type="int" value="4"/>
+                <Property name="name" type="java.lang.String" value="ChkInput" noResource="true"/>
+                <Property name="opaque" type="boolean" value="false"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[100, 23]"/>
+                </Property>
+                <Property name="rolloverIcon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/picture/143.png"/>
+                </Property>
+                <Property name="rolloverSelectedIcon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/picture/Search-16x16.png"/>
+                </Property>
+                <Property name="selectedIcon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/picture/Search-16x16.png"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChkInputActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="widget.ScrollPane" name="scrollMenu">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="scrollMenu" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[102, 557]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+              <BorderConstraints direction="Center"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="widget.PanelBiasa" name="FormMenu">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="FormMenu" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[2400, 3240]"/>
+                </Property>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
+                <Property name="horizontalGap" type="int" value="8"/>
+                <Property name="verticalGap" type="int" value="25"/>
+              </Layout>
+              <SubComponents>
+                <Component class="widget.ButtonBig" name="btnQuerySql">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/query_sql.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Query SQL&lt;br&gt;(Export Data Ke Ms. Excel)&lt;/div&gt;&lt;/html&gt;"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnQuerySql" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 105]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQuerySqlActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnICD9">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/icd_10.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Master ICD-9-CM"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnICD9" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnICD9ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRekamPsikologisDewasa">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/psikologi.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Rekam Psikologis Umum/Dewasa"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRekamPsikologisDewasa" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRekamPsikologisDewasaActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRekamPsikologisAnak">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/psikologi.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Rekam Psikologis Anak/Remaja"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRekamPsikologisAnak" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRekamPsikologisAnakActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRekamPsikologiPerkawinan">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/psikologi.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Rekam Psikologi Perkawinan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRekamPsikologiPerkawinan" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRekamPsikologiPerkawinanActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnICD">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/icd_10.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Master ICD 10"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnICD" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnICDActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnMasterDTD">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/icd_10.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Daftar Tabulasi Diagnosa (DTD)"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnMasterDTD" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMasterDTDActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnMasterKeluhanPsikologis">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/psikologi.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Master Keluhan Permasalahan Psikologis"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnMasterKeluhanPsikologis" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMasterKeluhanPsikologisActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnMasterRencanaTritmenPsikologis">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/psikologi.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Master Rencana Tritmen Psikologis"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnMasterRencanaTritmenPsikologis" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMasterRencanaTritmenPsikologisActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnPenyakitPD3I">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Penyakit AFP &amp; PD3I"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnPenyakitPD3I" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPenyakitPD3IActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnSurveilansPD3I">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Surveilans AFP &amp; PD3I"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnSurveilansPD3I" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSurveilansPD3IActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnSurveilansRalan">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Surveilans Ralan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnSurveilansRalan" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSurveilansRalanActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnSurveilansRanap">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Surveilans Ranap"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnSurveilansRanap" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSurveilansRanapActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnPnyTakMenularRalan">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Penyakit Tidak&lt;br&gt;Menular Rawat Jalan&lt;/div&gt;&lt;/html&gt;"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnPnyTakMenularRalan" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 105]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPnyTakMenularRalanActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnPnyTakMenularRanap">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Penyakit Tidak&lt;br&gt;Menular Rawat Inap&lt;/div&gt;&lt;/html&gt;"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnPnyTakMenularRanap" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 105]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPnyTakMenularRanapActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnPnyMenularRalan">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Penyakit Menular Ralan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnPnyMenularRalan" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPnyMenularRalanActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnPnyMenularRanap">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Pny Menular Ranap"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnPnyMenularRanap" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPnyMenularRanapActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnObatPenyakit">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/1360484848_applications-science.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Obat Penyakit"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnObatPenyakit" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnObatPenyakitActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnFrekuensiRalan">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Frekuensi Penyakit Ralan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnFrekuensiRalan" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFrekuensiRalanActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnFrekuensiRanap">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/applications-office.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Frekuensi Penyakit Ranap"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnFrekuensiRanap" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFrekuensiRanapActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnKunjunganRalan">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Kunjungan Ralan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnKunjunganRalan" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKunjunganRalanActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnKunjunganRanap">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Kunjungan Ranap"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnKunjunganRanap" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKunjunganRanapActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnSensusHarianPoli">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/custom-reports.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Sensus Harian Poli"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnSensusHarianPoli" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSensusHarianPoliActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRl32">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="RL 3.2 Rawat Darurat"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRl32" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRl32ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRl33">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="RL 3.3 Gigi dan Mulut"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRl33" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRl33ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRl34">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="RL 3.4 Kebidanan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRl34" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRl34ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRl36">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="RL 3.6 Pembedahan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRl36" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRl36ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRl37">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="RL 3.7 Radiologi"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRl37" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRl37ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRl38">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="RL 3.8 Laboratorium"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRl38" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRl38ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRl4a">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/1491582089_Finance_financial_report.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="RL 4A Morbiditas Ranap"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRl4a" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRl4aActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRl4b">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/1491582089_Finance_financial_report.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="RL 4B Morbiditas Ralan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRl4b" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRl4bActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRl4asebab">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/1491582089_Finance_financial_report.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="RL 4A Sebab Morbiditas Ralan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRl4asebab" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRl4asebabActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnRl4bsebab">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/1491582089_Finance_financial_report.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="RL 4B Sebab Morbiditas Ralan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnRl4bsebab" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRl4bsebabActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnLamaPelayananRalan">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Durasi Waktu Pelayanan Ralan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnLamaPelayananRalan" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLamaPelayananRalanActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnLamaPelayananApotek">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/Gnome-X-Office-Address-Book-48.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Lama Pelayanan Apotek"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnLamaPelayananApotek" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLamaPelayananApotekActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnHarianHAIsRS">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/custom-reports.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Harian HAIs Rumah Sakit"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnHarianHAIsRS" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHarianHAIsRSActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnHarianHAIsRanap">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/1485357758_Doctor.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Harian HAIs Rawat Inap"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnHarianHAIsRanap" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHarianHAIsRanapActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnHarianHAIsRalan">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/patient (1).png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Harian HAIs Rawat Jalan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnHarianHAIsRalan" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHarianHAIsRalanActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnBulananHAIsRS">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/if_house_shelf_1378832.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Bulanan HAIs Rumah Sakit"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnBulananHAIsRS" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBulananHAIsRSActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnBulananHAIsRanap">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/kwrite.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Bulanan HAIs Rawat Inap"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnBulananHAIsRanap" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBulananHAIsRanapActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnBulananHAIsRalan">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/stock_task.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Bulanan HAIs Rawat Jalan"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnBulananHAIsRalan" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBulananHAIsRalanActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnJumlahMacamDiet">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/iconfinder_ramen_3377055.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Rekap Bulanan Macam Diet"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnJumlahMacamDiet" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnJumlahMacamDietActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnJumlahPorsiDiet">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/iconfinder_bibimbub_3377053.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Rekap Bulanan Porsi Diet"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnJumlahPorsiDiet" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnJumlahPorsiDietActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="btnDataPersalinan">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/1481002413_surgeon.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Data Persalinan Pasien"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="btnDataPersalinan" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 90]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDataPersalinanActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

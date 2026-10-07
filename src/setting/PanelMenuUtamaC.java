@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import kepegawaian.DlgDepartemen;
 import kepegawaian.DlgPegawai;
 import kepegawaian.DlgPetugas;
+import kepegawaian.DlgRegAbsensi;
 import rekammedis.DlgMasterJabatanKomite;
 import simrskhanza.DlgDokter;
 import simrskhanza.DlgJabatan;
@@ -63,6 +64,7 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         ChkInput = new widget.CekBox();
         scrollMenu = new widget.ScrollPane();
         FormMenu = new widget.PanelBiasa();
+        btnRegAbsensi = new widget.ButtonBig();
         btnMasterNomorDokumen = new widget.ButtonBig();
         btnPegawai = new widget.ButtonBig();
         btnDokter = new widget.ButtonBig();
@@ -120,6 +122,7 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         ChkInput.setBorder(null);
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
         ChkInput.setText("Pencarian");
         ChkInput.setToolTipText("Alt+C");
@@ -152,6 +155,19 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         FormMenu.setName("FormMenu"); // NOI18N
         FormMenu.setPreferredSize(new java.awt.Dimension(2400, 3240));
         FormMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 25));
+
+        btnRegAbsensi.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegAbsensi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/users.png"))); // NOI18N
+        btnRegAbsensi.setText("Registrasi Absensi");
+        btnRegAbsensi.setIconTextGap(0);
+        btnRegAbsensi.setName("btnRegAbsensi"); // NOI18N
+        btnRegAbsensi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnRegAbsensi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegAbsensiActionPerformed(evt);
+            }
+        });
+        FormMenu.add(btnRegAbsensi);
 
         btnMasterNomorDokumen.setForeground(new java.awt.Color(0, 0, 0));
         btnMasterNomorDokumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_book_285636.png"))); // NOI18N
@@ -404,6 +420,19 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnPenggajianActionPerformed
 
+    private void btnRegAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegAbsensiActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgRegAbsensi reg = new DlgRegAbsensi(formUtama, false);            
+            formUtama.tampilkanDialogDiPanelUtama(reg);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnRegAbsensi.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_btnRegAbsensiActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -420,6 +449,7 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
     private widget.ButtonBig btnMasterNomorDokumen;
     private widget.ButtonBig btnPegawai;
     private widget.ButtonBig btnPenggajian;
+    private widget.ButtonBig btnRegAbsensi;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.Label jLabel3;
@@ -430,6 +460,11 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         jmlmenu = 0;
         String cari = TCari.getText().toLowerCase().trim();
 
+        if (akses.getpetugas() && btnRegAbsensi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(btnRegAbsensi);
+            jmlmenu++;
+        }
+        
         if (akses.getadmin() && btnMasterNomorDokumen.getText().toLowerCase().trim().contains(cari)) {
             FormMenu.add(btnMasterNomorDokumen);
             jmlmenu++;
@@ -495,7 +530,12 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
 
     public void terapkanHakAkses() {
         FormMenu.removeAll();
-        jmlmenu = 0;      
+        jmlmenu = 0;
+        
+        if (akses.getpetugas() == true) {
+            FormMenu.add(btnRegAbsensi);
+            jmlmenu++;
+        }
 
         if (akses.getadmin() == true) {
             FormMenu.add(btnMasterNomorDokumen);

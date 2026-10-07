@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="517" leftMargin="39" rightMargin="39" topMargin="39" bottomMargin="35">
 	<property name="ireport.zoom" value="1.6105100000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="264"/>
+	<property name="ireport.y" value="192"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -104,7 +104,7 @@
 			</textField>
 			<staticText>
 				<reportElement x="0" y="102" width="517" height="40"/>
-				<textElement lineSpacing="Single">
+				<textElement textAlignment="Justified" lineSpacing="Single">
 					<font fontName="Tahoma" size="10"/>
 				</textElement>
 				<text><![CDATA[Yang bertanda tangan dibawah ini Dokter Pemerintah pada RSUD Ratu Zalecha Martapura, dalam hal ini menjalankan tugas dengan mengingat sumpah, yang telah diucapkan sewaktu menerima jabatan, menerangkan bahwa telah memeriksa dengan teliti terhadap seorang :]]></text>
@@ -309,23 +309,16 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="43">
-			<staticText>
-				<reportElement x="0" y="0" width="517" height="13"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="9" isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[*) Surat keterangan ini tidak untuk Surat Keterangan Bebas Covid-19]]></text>
-			</staticText>
+		<band height="30">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="14" width="517" height="15"/>
+				<reportElement x="0" y="1" width="517" height="15"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatTte}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="13" width="517" height="1"/>
+				<reportElement x="0" y="0" width="517" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>

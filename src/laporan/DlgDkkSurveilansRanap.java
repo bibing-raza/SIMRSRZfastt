@@ -34,20 +34,23 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
+import simrskhanza.frmUtama;
 
 /**
  *
  * @author perpustakaan
  */
 public final class DlgDkkSurveilansRanap extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode,tabMode2;
-    private Connection koneksi=koneksiDB.condb();
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private PreparedStatement ps,ps2,ps3,ps4;
-    private ResultSet rs,rs2;
-    private int i=0,hr0s7=0,hr8s28=0,kr1th=0,th1s4=0,th5s9=0,th10s14=0,th15s19=0,th20s44=0,th45s54=0,th55s59=0,
-                th60s69=0,th70plus=0,laki=0,per=0,jml=0,ttl=0,jmltotal,meninggal;
+    private final DefaultTableModel tabMode, tabMode2;
+    private Connection koneksi = koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private PreparedStatement ps, ps2, ps3, ps4;
+    private ResultSet rs, rs2;
+    private int i = 0, hr0s7 = 0, hr8s28 = 0, kr1th = 0, th1s4 = 0, th5s9 = 0, th10s14 = 0, th15s19 = 0, th20s44 = 0, th45s54 = 0, th55s59 = 0,
+            th60s69 = 0, th70plus = 0, laki = 0, per = 0, jml = 0, ttl = 0, jmltotal, meninggal;
+    private frmUtama formUtama;
+    
     /** Creates new form DlgLhtBiaya
      * @param parent
      * @param modal */
@@ -56,7 +59,6 @@ public final class DlgDkkSurveilansRanap extends javax.swing.JDialog {
         initComponents();
         this.setLocation(8,1);
         setSize(885,674);
-
         
         tabMode=new DefaultTableModel(null,new String[]{
             "No.","Kode ICD 10","Jenis Penyakit","0-7 Hr","8-28 Hr","< 1","1-4","5-9","10-14","15-19",
@@ -152,9 +154,7 @@ public final class DlgDkkSurveilansRanap extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        ppGrafikHidupMati.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikHidupMati.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppGrafikHidupMati.setForeground(new java.awt.Color(0, 0, 0));
         ppGrafikHidupMati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikHidupMati.setText("Grafik Pie Perbandingan Pasien Hidup & Mati");
         ppGrafikHidupMati.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -169,9 +169,7 @@ public final class DlgDkkSurveilansRanap extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppGrafikHidupMati);
 
-        ppGrafikLakiPerempuan.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikLakiPerempuan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppGrafikLakiPerempuan.setForeground(new java.awt.Color(0, 0, 0));
         ppGrafikLakiPerempuan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikLakiPerempuan.setText("Grafik Pie Perbandingan Pasien Laki-Laki & Perempuan");
         ppGrafikLakiPerempuan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -186,9 +184,7 @@ public final class DlgDkkSurveilansRanap extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppGrafikLakiPerempuan);
 
-        ppGrafikGolonganUmur.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikGolonganUmur.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppGrafikGolonganUmur.setForeground(new java.awt.Color(0, 0, 0));
         ppGrafikGolonganUmur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikGolonganUmur.setText("Grafik Pie Perbandingan Pasien Berdasarkan Umur");
         ppGrafikGolonganUmur.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -212,7 +208,7 @@ public final class DlgDkkSurveilansRanap extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Surveilans Rawat Inap Kasus Baru ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Surveilans Rawat Inap Kasus Baru ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -310,7 +306,6 @@ public final class DlgDkkSurveilansRanap extends javax.swing.JDialog {
 
         TabRawat.setBackground(new java.awt.Color(250, 255, 245));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)));
-        TabRawat.setForeground(new java.awt.Color(0, 0, 0));
         TabRawat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -325,6 +320,7 @@ public final class DlgDkkSurveilansRanap extends javax.swing.JDialog {
         tbBangsal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbBangsal.setComponentPopupMenu(jPopupMenu1);
         tbBangsal.setName("tbBangsal"); // NOI18N
+        tbBangsal.getTableHeader().setReorderingAllowed(false);
         Scroll.setViewportView(tbBangsal);
 
         TabRawat.addTab("Berdasar Tanggal Masuk", Scroll);
@@ -335,6 +331,7 @@ public final class DlgDkkSurveilansRanap extends javax.swing.JDialog {
         tbBangsal2.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbBangsal2.setComponentPopupMenu(jPopupMenu1);
         tbBangsal2.setName("tbBangsal2"); // NOI18N
+        tbBangsal2.getTableHeader().setReorderingAllowed(false);
         Scroll1.setViewportView(tbBangsal2);
 
         TabRawat.addTab("Berdasar Tanggal Keluar", Scroll1);
@@ -448,13 +445,15 @@ public final class DlgDkkSurveilansRanap extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnKeluar,TKd);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnKeluar, TKd);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
 private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari1ActionPerformed
@@ -798,5 +797,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         }
     }
 
-
+    public void awalData() {
+        tampil();
+    }
 }

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="517" leftMargin="39" rightMargin="39" topMargin="39" bottomMargin="35" uuid="f86a6f18-252d-408c-b252-6c7564329c5e">
 	<property name="ireport.zoom" value="1.6105100000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="264"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -108,7 +108,7 @@
 			</textField>
 			<staticText>
 				<reportElement x="0" y="102" width="517" height="40" uuid="78dd9b6f-8003-43d5-8734-027ded6f8239"/>
-				<textElement>
+				<textElement textAlignment="Justified">
 					<font fontName="Tahoma" size="10"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
@@ -340,18 +340,6 @@
 			</staticText>
 		</band>
 	</detail>
-	<pageFooter>
-		<band height="15">
-			<staticText>
-				<reportElement x="0" y="0" width="517" height="13" uuid="9e5288be-d308-4640-a6fd-1f4fcf19e947"/>
-				<textElement textAlignment="Left">
-					<font fontName="Tahoma" size="9" isBold="false" isUnderline="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[*) Surat keterangan ini tidak untuk Surat Keterangan Bebas Covid-19]]></text>
-			</staticText>
-		</band>
-	</pageFooter>
 	<summary>
 		<band height="265">
 			<textField>

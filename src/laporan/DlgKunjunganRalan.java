@@ -32,8 +32,8 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import kepegawaian.DlgCariPetugas;
 import simrskhanza.DlgCariPoli;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -49,6 +49,7 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
     private int i = 0, lama = 0, baru = 0, laki = 0, per = 0, pilihan = 0;
     private DlgCariPoli poli = new DlgCariPoli(null, false);
     private String setbaru = "", setlama = "", umurlk = "", umurpr = "", diagnosa = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgLhtBiaya
      * @param parent
@@ -198,7 +199,6 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnKunSemuaPoli.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnKunSemuaPoli.setForeground(new java.awt.Color(0, 0, 0));
         MnKunSemuaPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnKunSemuaPoli.setText("Lap. Rekap Knjngn. Semua Poli/Unit");
         MnKunSemuaPoli.setName("MnKunSemuaPoli"); // NOI18N
@@ -211,7 +211,6 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
         jPopupMenu1.add(MnKunSemuaPoli);
 
         MnKunPerPoli.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnKunPerPoli.setForeground(new java.awt.Color(0, 0, 0));
         MnKunPerPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnKunPerPoli.setText("Lap. Rekap Knjngn. Per Poli/Unit");
         MnKunPerPoli.setName("MnKunPerPoli"); // NOI18N
@@ -224,7 +223,6 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
         jPopupMenu1.add(MnKunPerPoli);
 
         MnKunCB.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnKunCB.setForeground(new java.awt.Color(0, 0, 0));
         MnKunCB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnKunCB.setText("Lap. Rekap Total Kunjgn. Cara Bayar");
         MnKunCB.setName("MnKunCB"); // NOI18N
@@ -237,7 +235,6 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
         jPopupMenu1.add(MnKunCB);
 
         MnKunPoliPerBulan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnKunPoliPerBulan.setForeground(new java.awt.Color(0, 0, 0));
         MnKunPoliPerBulan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnKunPoliPerBulan.setText("Rekap Kunjgn. Poli Perbulan");
         MnKunPoliPerBulan.setName("MnKunPoliPerBulan"); // NOI18N
@@ -258,7 +255,7 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Kunjungan Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Kunjungan Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -269,6 +266,7 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
         tbBangsal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbBangsal.setComponentPopupMenu(jPopupMenu1);
         tbBangsal.setName("tbBangsal"); // NOI18N
+        tbBangsal.getTableHeader().setReorderingAllowed(false);
         tbBangsal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBangsalMouseClicked(evt);
@@ -342,7 +340,6 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+2");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -361,7 +358,6 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -385,7 +381,6 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -438,7 +433,6 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
 
         BtnUnit.setForeground(new java.awt.Color(0, 0, 0));
         BtnUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnUnit.setMnemonic('4');
         BtnUnit.setToolTipText("ALt+4");
         BtnUnit.setName("BtnUnit"); // NOI18N
         BtnUnit.addActionListener(new java.awt.event.ActionListener() {
@@ -472,13 +466,15 @@ public final class DlgKunjunganRalan extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnKeluar,TKd);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnKeluar, TKd);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void tbBangsalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBangsalMouseClicked
@@ -976,5 +972,17 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 + "AND r.status_lanjut = 'Ralan' AND p.kd_poli = '" + kdpoli.getText() + "' GROUP BY MONTH (r.tgl_registrasi)", param);
         this.setCursor(Cursor.getDefaultCursor());
     }
-
+    
+    public void awalData() {
+        if (akses.getregistrasi() == true || akses.getpenyakit() == true) {
+            BtnUnit.setEnabled(true);
+            BtnCari.setEnabled(true);
+            BtnAll.setEnabled(true);
+            cekSemuaPoli.setSelected(true);
+            cekSemuaPoli.setEnabled(true);
+            kdpoli.setText("");
+            TPoli.setText("");
+            tampil();
+        }
+    }
 }

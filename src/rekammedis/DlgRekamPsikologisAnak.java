@@ -19,8 +19,6 @@ import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -32,16 +30,10 @@ import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableModel;
@@ -49,17 +41,17 @@ import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
-import kepegawaian.DlgCariPetugas;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgCariPenyakit;
+import simrskhanza.frmUtama;
 
 /**
  *
  * @author dosen
  */
 public final class DlgRekamPsikologisAnak extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode1, tabMode2, tabMode3, tabMode4, 
-            tabMode5, tabMode6, tabMode7, tabMode8, tabMode9, tabMode10, 
+    private final DefaultTableModel tabMode1, tabMode2, tabMode3, tabMode4,
+            tabMode5, tabMode6, tabMode7, tabMode8, tabMode9, tabMode10,
             tabMode11, tabMode12, tabMode13, tabMode14, tabMode15, tabMode16, tabMode17, tabMode18, tabMode19;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
@@ -74,6 +66,7 @@ public final class DlgRekamPsikologisAnak extends javax.swing.JDialog {
     private int i = 0, x = 0, cekRPA = 0, pilihan = 0, data = 0;
     private final Properties prop = new Properties();
     private String tglKedatangan = "", wktSimpan = "", jkel = "", dataMasalah = "", nilaiMasalah = "", dataTritmen = "";
+    private frmUtama formUtama;
 
     /* Creates new form DlgPerawatan
      *
@@ -5540,7 +5533,7 @@ public final class DlgRekamPsikologisAnak extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         emptText();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -11536,5 +11529,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+   
+    public void awalData() {
+        TabPsikologis.setSelectedIndex(0);
+        BtnCariActionPerformed(null);
     }
 }

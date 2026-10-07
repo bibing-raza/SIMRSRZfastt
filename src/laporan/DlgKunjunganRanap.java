@@ -32,6 +32,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -48,6 +49,7 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
     private String setbaru = "", setlama = "", umurlk = "", umurpr = "", diagnosa = "";
     private String host = "";
     private final Properties prop = new Properties();
+    private frmUtama formUtama;
     
     /** Creates new form DlgLhtBiaya
      * @param parent
@@ -294,6 +296,7 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
 
         tbBangsal.setComponentPopupMenu(PopupMnTglMasuk);
         tbBangsal.setName("tbBangsal"); // NOI18N
+        tbBangsal.getTableHeader().setReorderingAllowed(false);
         tbBangsal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBangsalMouseClicked(evt);
@@ -319,6 +322,7 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
         Scroll2.setOpaque(true);
 
         tbBangsal2.setName("tbBangsal2"); // NOI18N
+        tbBangsal2.getTableHeader().setReorderingAllowed(false);
         tbBangsal2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBangsal2MouseClicked(evt);
@@ -472,13 +476,15 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnKeluar,TKd);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnKeluar, TKd);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void tbBangsalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBangsalMouseClicked
@@ -1067,5 +1073,13 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         
         BtnCariActionPerformed(null);
         this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    public void awalData() {
+        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung not in ('-','BAGIAN KEUANGAN','BID. PELAYANAN MEDIK',"
+                + "'IGD','INST. LABORATORIUM','INST. PEM. JENAZAH','INST. RADIOLOGI','INST. REHAB MEDIK','INST. REKAM MEDIS','INSTALASI FARMASI',"
+                + "'INSTALASI GIZI','INSTALASI SANITASI','IPSRS','PONEK - VK BERSALIN','SUB. BAG. SDM','UNIT AMBULANCE','UPM') "
+                + "GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
+        tampil();
     }
 }

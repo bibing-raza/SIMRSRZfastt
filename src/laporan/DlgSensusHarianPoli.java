@@ -33,6 +33,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import simrskhanza.DlgCariPoli;
 import simrskhanza.DlgPenanggungJawab;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -52,6 +53,7 @@ public final class DlgSensusHarianPoli extends javax.swing.JDialog {
     private String lama = "", baru = "", rujukandari = "", alamatrujukandari = "",
             dirujukke = "", namapeyakit = "", kodepenyakit = "", jnsrawat = "",
             ppokS = "", ppokK = "", obatL = "", obatB = "", obatD = "", obatP = "", kete = "", diag_resum = "";
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgLhtBiaya
@@ -556,13 +558,15 @@ public final class DlgSensusHarianPoli extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnKeluar,TKd);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnKeluar, TKd);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void kdpoliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdpoliKeyPressed
@@ -2024,5 +2028,9 @@ public final class DlgSensusHarianPoli extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         }
         this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    public void awalData() {
+        BtnCariActionPerformed(null);
     }
 }

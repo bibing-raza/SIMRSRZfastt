@@ -16,7 +16,6 @@ import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +31,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import simrskhanza.DlgPasien;
+import simrskhanza.frmUtama;
 
 public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode2, tabMode3, tabMode4;
@@ -43,6 +43,7 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
     private ResultSet rs, rs2, rs3, rs4, rs5, rs6;
     private String diagnosa = "", dialog_simpan = "";
     private DlgPasien pasien = new DlgPasien(null, false);
+    private frmUtama formUtama;
     
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -988,6 +989,7 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDokter.setComponentPopupMenu(jPopupMenu1);
         tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.getTableHeader().setReorderingAllowed(false);
         scrollPane1.setViewportView(tbDokter);
 
         TabRawat.addTab("Berdasar Tanggal Masuk", scrollPane1);
@@ -1011,6 +1013,7 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         tbDokter2.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDokter2.setComponentPopupMenu(jPopupMenu1);
         tbDokter2.setName("tbDokter2"); // NOI18N
+        tbDokter2.getTableHeader().setReorderingAllowed(false);
         scrollPane2.setViewportView(tbDokter2);
 
         TabRawat.addTab("Berdasar Tanggal Keluar", scrollPane2);
@@ -1034,6 +1037,7 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         tbDiagnosa.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDiagnosa.setComponentPopupMenu(jPopupMenu1);
         tbDiagnosa.setName("tbDiagnosa"); // NOI18N
+        tbDiagnosa.getTableHeader().setReorderingAllowed(false);
         scrollPane3.setViewportView(tbDiagnosa);
 
         TabRawat.addTab("Rincian Diagnosa Berdasar Tgl. Masuk", scrollPane3);
@@ -1057,6 +1061,7 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         tbDiagnosa1.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDiagnosa1.setComponentPopupMenu(jPopupMenu1);
         tbDiagnosa1.setName("tbDiagnosa1"); // NOI18N
+        tbDiagnosa1.getTableHeader().setReorderingAllowed(false);
         scrollPane4.setViewportView(tbDiagnosa1);
 
         TabRawat.addTab("Rincian Diagnosa Berdasar Tgl. Pulang", scrollPane4);
@@ -1125,13 +1130,15 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnPrint,Tgl1);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnPrint, Tgl1);
+        }
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void kdpenyakitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdpenyakitKeyPressed
@@ -5636,5 +5643,9 @@ private void ppGrafikTerkecilPieActionPerformed(java.awt.event.ActionEvent evt) 
                     + "and pj.kd_pj like '%" + kdpnj.getText() + "%' and b.nm_gedung = '" + ruangDicetak.getText() + "' ORDER BY p.no_rkm_medis, rp.tgl_registrasi, dp.prioritas", param);
         }
         this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    public void awalData() {
+        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'igd' and nm_gedung<>'-' and status='1' and nm_gedung<>'as-sami' GROUP BY nm_gedung ORDER BY nm_gedung", NmRuangan);
     }
 }

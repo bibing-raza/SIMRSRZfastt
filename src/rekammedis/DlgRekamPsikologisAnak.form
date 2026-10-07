@@ -530,9 +530,6 @@
                 <LineBorder thickness="0"/>
               </Border>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="tabPlacement" type="int" value="4"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -909,7 +906,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbJK" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -1010,7 +1006,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbUmur" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -1150,7 +1145,6 @@
                                             </LineBorder>
                                           </Border>
                                           <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-                                          <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                                         </TitledBorder>
                                       </Border>
                                     </Property>
@@ -1336,7 +1330,6 @@
                                           </StringArray>
                                         </Property>
                                         <Property name="name" type="java.lang.String" value="cmbPndAyah" noResource="true"/>
-                                        <Property name="opaque" type="boolean" value="false"/>
                                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                           <Dimension value="[55, 28]"/>
                                         </Property>
@@ -1367,7 +1360,6 @@
                                           </StringArray>
                                         </Property>
                                         <Property name="name" type="java.lang.String" value="cmbAgamaAyah" noResource="true"/>
-                                        <Property name="opaque" type="boolean" value="false"/>
                                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                           <Dimension value="[55, 28]"/>
                                         </Property>
@@ -1579,7 +1571,6 @@
                                             </LineBorder>
                                           </Border>
                                           <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-                                          <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                                         </TitledBorder>
                                       </Border>
                                     </Property>
@@ -1707,7 +1698,6 @@
                                           </StringArray>
                                         </Property>
                                         <Property name="name" type="java.lang.String" value="cmbPndIbu" noResource="true"/>
-                                        <Property name="opaque" type="boolean" value="false"/>
                                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                           <Dimension value="[55, 28]"/>
                                         </Property>
@@ -1782,7 +1772,6 @@
                                           </StringArray>
                                         </Property>
                                         <Property name="name" type="java.lang.String" value="cmbAgamaIbu" noResource="true"/>
-                                        <Property name="opaque" type="boolean" value="false"/>
                                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                           <Dimension value="[55, 28]"/>
                                         </Property>
@@ -2092,7 +2081,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title=" Item/Jenis Keluhan Permasalahan ">
                               <Font PropertyName="font" name="Tahoma" size="12" style="0"/>
-                              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                             </TitledBorder>
                           </Border>
                         </Property>
@@ -2296,7 +2284,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title=" Wawancara ">
                               <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
-                              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                             </TitledBorder>
                           </Border>
                         </Property>
@@ -2861,7 +2848,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title=".: Dialami Pada Saat Usia ">
                               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-                              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                             </TitledBorder>
                           </Border>
                         </Property>
@@ -3825,7 +3811,6 @@
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title=".: Masa Kehamilan ">
                           <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-                          <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -3941,7 +3926,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbDinginkan" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -3968,7 +3952,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbDirencanakan" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -3995,7 +3978,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbProses" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -4271,7 +4253,6 @@
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title=".: Tuliskan Usia Dimana Anak Mencapai Tahapan Perkembangan ">
                           <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-                          <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -4715,7 +4696,6 @@
                                         </LineBorder>
                                       </Border>
                                       <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-                                      <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                                     </TitledBorder>
                                   </Border>
                                 </Property>
@@ -4761,7 +4741,6 @@
                                       </StringArray>
                                     </Property>
                                     <Property name="name" type="java.lang.String" value="cmbSekolah" noResource="true"/>
-                                    <Property name="opaque" type="boolean" value="false"/>
                                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                       <Dimension value="[55, 28]"/>
                                     </Property>
@@ -4910,7 +4889,6 @@
                                         </LineBorder>
                                       </Border>
                                       <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-                                      <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                                     </TitledBorder>
                                   </Border>
                                 </Property>
@@ -5056,7 +5034,6 @@
                                       </StringArray>
                                     </Property>
                                     <Property name="name" type="java.lang.String" value="cmbBelajar" noResource="true"/>
-                                    <Property name="opaque" type="boolean" value="false"/>
                                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                       <Dimension value="[55, 28]"/>
                                     </Property>
@@ -5082,7 +5059,6 @@
                                       </StringArray>
                                     </Property>
                                     <Property name="name" type="java.lang.String" value="cmbBersemangat" noResource="true"/>
-                                    <Property name="opaque" type="boolean" value="false"/>
                                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                       <Dimension value="[55, 28]"/>
                                     </Property>
@@ -5108,7 +5084,6 @@
                                       </StringArray>
                                     </Property>
                                     <Property name="name" type="java.lang.String" value="cmbPernah" noResource="true"/>
-                                    <Property name="opaque" type="boolean" value="false"/>
                                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                       <Dimension value="[55, 28]"/>
                                     </Property>
@@ -5289,7 +5264,6 @@
                               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                                 <TitledBorder title="[ Data Riwayat Sekolah ]">
                                   <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
-                                  <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                                 </TitledBorder>
                               </Border>
                             </Property>
@@ -5438,7 +5412,6 @@
                               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                                 <TitledBorder title="[ Data Di Sekolah ]">
                                   <Font PropertyName="font" name="Tahoma" size="13" style="0"/>
-                                  <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                                 </TitledBorder>
                               </Border>
                             </Property>
@@ -5926,7 +5899,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="22-11-2022"/>
+                            <StringItem index="0" value="06-10-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -6560,7 +6533,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title=" Item Rencana Tritmen ">
                               <Font PropertyName="font" name="Tahoma" size="12" style="0"/>
-                              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                             </TitledBorder>
                           </Border>
                         </Property>
@@ -7002,7 +6974,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="22-11-2022"/>
+                        <StringItem index="0" value="06-10-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7031,7 +7003,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="22-11-2022"/>
+                        <StringItem index="0" value="06-10-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7098,7 +7070,6 @@
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbLimit" noResource="true"/>
-                    <Property name="opaque" type="boolean" value="false"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[66, 23]"/>
                     </Property>

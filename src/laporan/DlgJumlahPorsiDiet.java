@@ -32,6 +32,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -39,19 +40,20 @@ import javax.swing.table.TableColumn;
  */
 public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
     private DefaultTableModel tabMode;
-    private Connection koneksi=koneksiDB.condb();
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
+    private Connection koneksi = koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
     private PreparedStatement ps;
     private ResultSet rs;
-    private String dateString,dayOfWeek,hari;
+    private String dateString, dayOfWeek, hari;
     private Date date = null;
-    private int i=0,h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,
-                h17,h18,h19,h20,h21,h22,h23,h24,h25,h26,h27,h28,h29,h30,h31,
-                jmlh1,jmlh2,jmlh3,jmlh4,jmlh5,jmlh6,jmlh7,jmlh8,jmlh9,jmlh10,
-                jmlh11,jmlh12,jmlh13,jmlh14,jmlh15,jmlh16,jmlh17,jmlh18,jmlh19,
-                jmlh20,jmlh21,jmlh22,jmlh23,jmlh24,jmlh25,jmlh26,jmlh27,jmlh28,
-                jmlh29,jmlh30,jmlh31;
+    private int i = 0, h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12, h13, h14, h15, h16,
+            h17, h18, h19, h20, h21, h22, h23, h24, h25, h26, h27, h28, h29, h30, h31,
+            jmlh1, jmlh2, jmlh3, jmlh4, jmlh5, jmlh6, jmlh7, jmlh8, jmlh9, jmlh10,
+            jmlh11, jmlh12, jmlh13, jmlh14, jmlh15, jmlh16, jmlh17, jmlh18, jmlh19,
+            jmlh20, jmlh21, jmlh22, jmlh23, jmlh24, jmlh25, jmlh26, jmlh27, jmlh28,
+            jmlh29, jmlh30, jmlh31;
+    private frmUtama formUtama;
 
     /** Creates new form DlgJadwal
      * @param parent
@@ -94,15 +96,15 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Jumlah Porsi Diet Yang Dilayani Gizi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Jumlah Porsi Diet Yang Dilayani Gizi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbJadwal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbJadwal.setName("tbJadwal"); // NOI18N
+        tbJadwal.getTableHeader().setReorderingAllowed(false);
         Scroll.setViewportView(tbJadwal);
 
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
@@ -224,13 +226,15 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnPrint,BtnCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnPrint, BtnCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
@@ -613,6 +617,10 @@ public class DlgJumlahPorsiDiet extends javax.swing.JDialog {
                 break;
         }
         return hari;
+    }
+    
+    public void awalData() {
+        tampil();
     }
     
 }

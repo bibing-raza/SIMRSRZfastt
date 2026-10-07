@@ -29,13 +29,13 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 /**
  *
  * @author perpustakaan
  */
 public final class DlgRl37 extends javax.swing.JDialog {
-
     private final DefaultTableModel tabMode;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
@@ -44,6 +44,7 @@ public final class DlgRl37 extends javax.swing.JDialog {
     private ResultSet rstindakan;
     private int i = 0, ttl = 0, jlhUmum = 0, jlhBpjs = 0, jlhLain = 0;
     private String dialog_simpan = "";
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgLhtBiaya
@@ -155,6 +156,7 @@ public final class DlgRl37 extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbRadiologi.setName("tbRadiologi"); // NOI18N
+        tbRadiologi.getTableHeader().setReorderingAllowed(false);
         Scroll.setViewportView(tbRadiologi);
 
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
@@ -208,7 +210,6 @@ public final class DlgRl37 extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+2");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -227,7 +228,6 @@ public final class DlgRl37 extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -251,7 +251,6 @@ public final class DlgRl37 extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -270,7 +269,6 @@ public final class DlgRl37 extends javax.swing.JDialog {
 
         BtnPrintExcel.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrintExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
-        BtnPrintExcel.setMnemonic('T');
         BtnPrintExcel.setText("Export Data Ke Ms. Excel");
         BtnPrintExcel.setToolTipText("Alt+T");
         BtnPrintExcel.setName("BtnPrintExcel"); // NOI18N
@@ -284,7 +282,6 @@ public final class DlgRl37 extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -351,12 +348,12 @@ public final class DlgRl37 extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnKeluar, TCari);
         }
@@ -498,6 +495,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 
 }

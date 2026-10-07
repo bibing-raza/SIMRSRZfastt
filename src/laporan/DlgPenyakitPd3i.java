@@ -29,6 +29,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import simrskhanza.DlgCariPenyakit;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -41,6 +42,7 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private PreparedStatement ps;
     private ResultSet rs;
+    private frmUtama formUtama;
 
     /** Creates new form DlgAdmin
      * @param parent
@@ -150,7 +152,7 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Penyakit AFP & PD3I ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Penyakit AFP & PD3I ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(50, 70, 40))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -161,6 +163,7 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
         tbAdmin.setAutoCreateRowSorter(true);
         tbAdmin.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbAdmin.setName("tbAdmin"); // NOI18N
+        tbAdmin.getTableHeader().setReorderingAllowed(false);
         tbAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAdminMouseClicked(evt);
@@ -179,11 +182,13 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
         panelGlass7.setPreferredSize(new java.awt.Dimension(44, 47));
         panelGlass7.setLayout(null);
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Penyakit :");
         jLabel4.setName("jLabel4"); // NOI18N
         panelGlass7.add(jLabel4);
         jLabel4.setBounds(0, 12, 65, 23);
 
+        kdpenyakit.setForeground(new java.awt.Color(0, 0, 0));
         kdpenyakit.setHighlighter(null);
         kdpenyakit.setName("kdpenyakit"); // NOI18N
         kdpenyakit.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -195,6 +200,7 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
         kdpenyakit.setBounds(68, 12, 90, 23);
 
         nmpenyakit.setEditable(false);
+        nmpenyakit.setForeground(new java.awt.Color(0, 0, 0));
         nmpenyakit.setName("nmpenyakit"); // NOI18N
         nmpenyakit.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -204,6 +210,7 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
         panelGlass7.add(nmpenyakit);
         nmpenyakit.setBounds(159, 12, 299, 23);
 
+        btnBangsal.setForeground(new java.awt.Color(0, 0, 0));
         btnBangsal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnBangsal.setMnemonic('1');
         btnBangsal.setToolTipText("Alt+1");
@@ -227,6 +234,7 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
         panelGlass5.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
         BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
@@ -245,6 +253,7 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
         });
         panelGlass5.add(BtnSimpan);
 
+        BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
         BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
@@ -263,6 +272,7 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
         });
         panelGlass5.add(BtnBatal);
 
+        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
@@ -281,6 +291,7 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
         });
         panelGlass5.add(BtnHapus);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -358,18 +369,20 @@ public class DlgPenyakitPd3i extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnHapusKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, data admin tidak boleh kosong ...!!!!");
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data admin tidak boleh kosong ...!!!!");
             kdpenyakit.requestFocus();
-        }else if(! (tabMode.getRowCount()==0)) {
-            dispose();
+        } else if (!(tabMode.getRowCount() == 0)) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         }
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnBatal,BtnKeluar);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnBatal, BtnKeluar);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void tbAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAdminMouseClicked
@@ -482,5 +495,9 @@ private void btnBangsalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         kdpenyakit.setText("");
         nmpenyakit.setText("");
         kdpenyakit.requestFocus();
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

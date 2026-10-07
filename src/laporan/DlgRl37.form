@@ -72,6 +72,9 @@
             <Component class="widget.Table" name="tbRadiologi">
               <Properties>
                 <Property name="name" type="java.lang.String" value="tbRadiologi" noResource="true"/>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
