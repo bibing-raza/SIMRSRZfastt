@@ -372,7 +372,7 @@ public class PanelMenuUtamaI extends javax.swing.JDialog {
 
         btnSurveilansRalan.setForeground(new java.awt.Color(0, 0, 0));
         btnSurveilansRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/Gnome-X-Office-Address-Book-48.png"))); // NOI18N
-        btnSurveilansRalan.setText("Surveilans Ralan");
+        btnSurveilansRalan.setText("Surveilans Rawat Jalan");
         btnSurveilansRalan.setIconTextGap(0);
         btnSurveilansRalan.setName("btnSurveilansRalan"); // NOI18N
         btnSurveilansRalan.setPreferredSize(new java.awt.Dimension(200, 90));
@@ -385,7 +385,7 @@ public class PanelMenuUtamaI extends javax.swing.JDialog {
 
         btnSurveilansRanap.setForeground(new java.awt.Color(0, 0, 0));
         btnSurveilansRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/Gnome-X-Office-Address-Book-48.png"))); // NOI18N
-        btnSurveilansRanap.setText("Surveilans Ranap");
+        btnSurveilansRanap.setText("Surveilans Rawat Inap");
         btnSurveilansRanap.setIconTextGap(0);
         btnSurveilansRanap.setName("btnSurveilansRanap"); // NOI18N
         btnSurveilansRanap.setPreferredSize(new java.awt.Dimension(200, 90));

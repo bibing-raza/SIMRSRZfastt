@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="438"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="jmltotal" class="java.lang.String"/>
 	<parameter name="tanggal" class="java.util.Date"/>
@@ -119,7 +119,7 @@
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="13" isBold="false"/>
 				</textElement>
-				<text><![CDATA[(RAWAT JALAN - KASUS BARU)]]></text>
+				<text><![CDATA[(RAWAT JALAN - DIAGNOSA UTAMA KASUS BARU & LAMA)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Transparent" x="3" y="46" width="121" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -202,7 +202,7 @@
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$P{tanggal}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tanggal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MM" isBlankWhenNull="true">
 				<reportElement key="textField" x="648" y="46" width="116" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -215,7 +215,7 @@
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$P{tanggal}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tanggal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MM" isBlankWhenNull="true">
 				<reportElement key="textField" x="648" y="56" width="116" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -700,7 +700,7 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp2}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="95" y="1" width="153" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
@@ -940,7 +940,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="1" y="11" width="800" height="1"/>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="11" width="800" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
@@ -977,7 +977,7 @@
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$P{tanggal}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tanggal}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Transparent" x="560" y="56" width="226" height="11" forecolor="#000000" backcolor="#FFFFFF"/>
