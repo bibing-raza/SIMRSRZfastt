@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import kepegawaian.DlgAbsensi;
 import kepegawaian.DlgDepartemen;
 import kepegawaian.DlgPegawai;
 import kepegawaian.DlgPetugas;
@@ -64,6 +65,7 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         ChkInput = new widget.CekBox();
         scrollMenu = new widget.ScrollPane();
         FormMenu = new widget.PanelBiasa();
+        btnDataAbsensi = new widget.ButtonBig();
         btnRegAbsensi = new widget.ButtonBig();
         btnMasterNomorDokumen = new widget.ButtonBig();
         btnPegawai = new widget.ButtonBig();
@@ -155,6 +157,19 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         FormMenu.setName("FormMenu"); // NOI18N
         FormMenu.setPreferredSize(new java.awt.Dimension(2400, 3240));
         FormMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 25));
+
+        btnDataAbsensi.setForeground(new java.awt.Color(0, 0, 0));
+        btnDataAbsensi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/Time.png"))); // NOI18N
+        btnDataAbsensi.setText("Data Absensi Harian");
+        btnDataAbsensi.setIconTextGap(0);
+        btnDataAbsensi.setName("btnDataAbsensi"); // NOI18N
+        btnDataAbsensi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnDataAbsensi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDataAbsensiActionPerformed(evt);
+            }
+        });
+        FormMenu.add(btnDataAbsensi);
 
         btnRegAbsensi.setForeground(new java.awt.Color(0, 0, 0));
         btnRegAbsensi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/users.png"))); // NOI18N
@@ -433,6 +448,21 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnRegAbsensiActionPerformed
 
+    private void btnDataAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataAbsensiActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgAbsensi absen = new DlgAbsensi(formUtama, false);
+            absen.isCek();
+            absen.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(absen);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnDataAbsensi.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_btnDataAbsensiActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -442,6 +472,7 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
     private widget.PanelBiasa FormMenu;
     public widget.TextBox TCari;
     private widget.Button btnClear;
+    private widget.ButtonBig btnDataAbsensi;
     private widget.ButtonBig btnDataJabatan;
     private widget.ButtonBig btnDepartemen;
     private widget.ButtonBig btnDokter;
@@ -460,6 +491,11 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         jmlmenu = 0;
         String cari = TCari.getText().toLowerCase().trim();
 
+        if (akses.getpetugas() && btnDataAbsensi.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(btnDataAbsensi);
+            jmlmenu++;
+        }
+        
         if (akses.getpetugas() && btnRegAbsensi.getText().toLowerCase().trim().contains(cari)) {
             FormMenu.add(btnRegAbsensi);
             jmlmenu++;
@@ -531,6 +567,11 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
     public void terapkanHakAkses() {
         FormMenu.removeAll();
         jmlmenu = 0;
+        
+        if (akses.getpetugas() == true) {
+            FormMenu.add(btnDataAbsensi);
+            jmlmenu++;
+        }
         
         if (akses.getpetugas() == true) {
             FormMenu.add(btnRegAbsensi);

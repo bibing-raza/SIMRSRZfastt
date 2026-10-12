@@ -11,7 +11,7 @@
  Target Server Version : 100131 (10.1.31-MariaDB)
  File Encoding         : 65001
 
- Date: 01/10/2026 11:47:47
+ Date: 12/10/2026 07:54:33
 */
 
 SET NAMES utf8mb4;
@@ -23,6 +23,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `absensi`;
 CREATE TABLE `absensi`  (
   `nip` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `hari` enum('-','Senin s.d Kamis','Senin s.d Jumat','Senin s.d Sabtu','Senin s.d Minggu','Jumat','Sabtu','Subuh','Sore','Sift 1 (Pagi)','Sift 2 (Siang)','Sift 3 (Malam)') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `tgl_datang_absen` date NULL DEFAULT NULL,
   `jam_datang_absen` time NULL DEFAULT NULL,
   `wkt_keterlambatan_datang` time NULL DEFAULT NULL,
@@ -31,7 +32,8 @@ CREATE TABLE `absensi`  (
   `jam_pulang_absen` time NULL DEFAULT NULL,
   `wkt_keterlambatan_pulang` time NULL DEFAULT NULL,
   `hitungan_keterlambatan_pulang` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `ket_absensi` enum('-','Datang Terlambat','Pulang Terlambat','Datang Lebih Awal','Pulang Lebih Awal','Datang Tepat Waktu','Pulang Tepat Waktu') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ket_absensi_datang` enum('-','Datang Terlambat','Datang Lebih Awal','Datang Tepat Waktu') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ket_absensi_pulang` enum('-','Pulang Terlambat','Pulang Lebih Awal','Pulang Tepat Waktu') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `ip_addres` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `embedding_json_datang` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `absen_lengkap` enum('belum','sudah') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -456485,7 +456487,7 @@ CREATE TABLE `surat_tindakan_kedokteran`  (
   INDEX `nip_dokter_pelaksana`(`nip_dokter_pelaksana` ASC) USING BTREE,
   INDEX `nip_pemberi_info`(`nip_pemberi_info` ASC) USING BTREE,
   INDEX `no_rawat`(`no_rawat` ASC) USING BTREE,
-  CONSTRAINT `surat_tindakan_kedokteran_ibfk_1` FOREIGN KEY (`nip_dokter_pelaksana`) REFERENCES `dokter` (`kd_dokter`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `surat_tindakan_kedokteran_ibfk_1` FOREIGN KEY (`nip_dokter_pelaksana`) REFERENCES `pegawai` (`nik`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `surat_tindakan_kedokteran_ibfk_2` FOREIGN KEY (`nip_pemberi_info`) REFERENCES `pegawai` (`nik`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `surat_tindakan_kedokteran_ibfk_3` FOREIGN KEY (`no_rawat`) REFERENCES `reg_periksa` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="521" leftMargin="56" rightMargin="18" topMargin="18" bottomMargin="18">
 	<property name="ireport.zoom" value="1.8181818181818528"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="374"/>
+	<property name="ireport.y" value="267"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="lokasiQrDpjp" class="java.lang.String"/>
 	<parameter name="lokasiQrPerawat" class="java.lang.String"/>
@@ -393,7 +393,7 @@ pa.no_rawat='2023/07/01/000001']]>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[TINDAKAN KEPERAWATAN MANDIRI]]></text>
+				<text><![CDATA[TINDAKAN KEPERAWATAN]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="13" width="520" height="1"/>

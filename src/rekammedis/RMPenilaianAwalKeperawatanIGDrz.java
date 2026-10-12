@@ -916,7 +916,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2026 10:31:55" }));
+        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2026 20:31:19" }));
         tgl_asesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_asesmen.setName("tgl_asesmen"); // NOI18N
         tgl_asesmen.setOpaque(false);
@@ -2217,7 +2217,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         scrollPane4.setBounds(186, 1976, 670, 90);
 
         jLabel89.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel89.setText("Tindakan Keperawatan Mandiri :");
+        jLabel89.setText("Tindakan Keperawatan :");
         jLabel89.setName("jLabel89"); // NOI18N
         FormInput.add(jLabel89);
         jLabel89.setBounds(0, 1976, 180, 23);
@@ -2417,7 +2417,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel98);
         jLabel98.setBounds(408, 2354, 80, 20);
 
-        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2026 10:31:56" }));
+        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2026 20:31:20" }));
         TglVerif.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglVerif.setName("TglVerif"); // NOI18N
         TglVerif.setOpaque(false);
@@ -3263,7 +3263,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                             + "pa.no_rawat='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'", param);
                     
                     Valid.MyReport("rptCetakPenilaianAwalKeperawatanIGDQr.jasper", "report", "::[ Laporan Penilaian Awal Keperawatan IGD hal. 1 ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, concat('Tanggal : ', date_format(pa.tanggal,'%d-%m-%Y'),', Pukul : ',time_format(pa.tanggal,'%H:%i-%S')) tgl, "
+                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, concat('Tanggal : ', date_format(pa.tanggal,'%d-%m-%Y'),', Pukul : ',time_format(pa.tanggal,'%H:%i:%s')) tgl, "
                             + "pa.keluhan_utama, pa.td tensi, pa.nadi, pa.nafas, pa.suhu, pa.bb, pa.tb, pa.asesmen_psikologis psikologis, if(pa.masalah_perilaku='Ada',concat(pa.masalah_perilaku,', Sebutkan : ',pa.sebutkan_perilaku),pa.masalah_perilaku) perilaku, "
                             + "p.stts_nikah, pa.hubungan_pasien hubungan, if(pa.tempat_tinggal='Lainnya',concat(pa.tempat_tinggal,', ',pa.lainya_tempt_tgl),pa.tempat_tinggal) tmpttgl, p.pekerjaan, "
                             + "pa.alat_bantu, if(pa.cacat_tubuh='Ada',concat(pa.cacat_tubuh,', ',pa.ada_cacat_tubuh),pa.cacat_tubuh) cacat, "
@@ -3293,7 +3293,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                         + "pa.no_rawat='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'", param);
 
                 Valid.MyReport("rptCetakPenilaianAwalKeperawatanIGD.jasper", "report", "::[ Laporan Penilaian Awal Keperawatan IGD hal. 1 ]::",
-                        "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, concat('Tanggal : ', date_format(pa.tanggal,'%d-%m-%Y'),', Pukul : ',time_format(pa.tanggal,'%H:%i-%S')) tgl, "
+                        "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, concat('Tanggal : ', date_format(pa.tanggal,'%d-%m-%Y'),', Pukul : ',time_format(pa.tanggal,'%H:%i:%s')) tgl, "
                         + "pa.keluhan_utama, pa.td tensi, pa.nadi, pa.nafas, pa.suhu, pa.bb, pa.tb, pa.asesmen_psikologis psikologis, if(pa.masalah_perilaku='Ada',concat(pa.masalah_perilaku,', Sebutkan : ',pa.sebutkan_perilaku),pa.masalah_perilaku) perilaku, "
                         + "p.stts_nikah, pa.hubungan_pasien hubungan, if(pa.tempat_tinggal='Lainnya',concat(pa.tempat_tinggal,', ',pa.lainya_tempt_tgl),pa.tempat_tinggal) tmpttgl, p.pekerjaan, "
                         + "pa.alat_bantu, if(pa.cacat_tubuh='Ada',concat(pa.cacat_tubuh,', ',pa.ada_cacat_tubuh),pa.cacat_tubuh) cacat, "
