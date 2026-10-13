@@ -58,9 +58,9 @@ public final class DlgAbsensi extends javax.swing.JDialog {
         this.setLocation(10,2);
         setSize(656,250);
 
-        String[] row = {"NIP/NR", "Nama Pegawai/Karyawan", "Kelompok Kerja", "Hari/Sift Kerja", "Momen Kerja", "Rg. Rawat/Poliklinik/Inst./Unit",
+        String[] row = {"NIP/NR", "Nama Pegawai/Karyawan", "Kelompok Kerja", "Hari/Sift Kerja", "Momen Kerja", "Lokasi/Tempat Bertugas",
             "Tgl. Absen Dtg.", "Jam Absen Dtg.", "Ket. Absen Datang", "Ket. Terlambat Dtg.", "Tgl. Absen Plg.", "Jam Absen Plg.", "Ket. Absen Pulang",
-            "Ket. Terlambat Plg.", "Kualitas Absen", "Jml. Jam Kerja", "Tot. Jam Kerja Periode", "waktu_simpan"};
+            "Ket. Terlambat Plg.", "Kualitas Absen", "Jml. Jam Kerja", "Tot. Jam Kerja Periode", "Jenis Absensi", "waktu_simpan"};
         
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -70,7 +70,7 @@ public final class DlgAbsensi extends javax.swing.JDialog {
         tbAbsensi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbAbsensi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < 19; i++) {
             TableColumn column = tbAbsensi.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -107,6 +107,8 @@ public final class DlgAbsensi extends javax.swing.JDialog {
             } else if (i == 16) {
                 column.setPreferredWidth(140);
             } else if (i == 17) {
+                column.setPreferredWidth(100);
+            } else if (i == 18) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -438,15 +440,17 @@ public final class DlgAbsensi extends javax.swing.JDialog {
                         + "'" + tbAbsensi.getValueAt(i, 13).toString() + "',"
                         + "'" + tbAbsensi.getValueAt(i, 14).toString() + "',"
                         + "'" + tbAbsensi.getValueAt(i, 15).toString() + "',"
-                        + "'" + tbAbsensi.getValueAt(i, 16).toString() + "','','','','','','','','','','','','','','','','','','','',''", "Data Absensi");                
+                        + "'" + tbAbsensi.getValueAt(i, 16).toString() + "',"
+                        + "'" + tbAbsensi.getValueAt(i, 17).toString() + "','','','','','','','','','','','','','','','','','','',''", "Data Absensi");
             }
             Sequel.AutoComitTrue();
             
             dialog_simpan = Valid.openDialog();
             if (Valid.MyReportToExcelBoolean("select temp1 as 'NIP/NR', temp2 as 'Nama Pegawai/Karyawan', temp3 as 'Kelompok Kerja', temp4 as 'Hari/Sift Kerja', "
-                    + "temp5 as 'Momen Kerja', temp6 as 'Rg. Rawat/Poliklinik/Inst./Unit', temp7 as 'Tgl. Absen Dtg.', temp8 as 'Jam Absen Dtg.', "
+                    + "temp5 as 'Momen Kerja', temp6 as 'Lokasi/Tempat Bertugas', temp7 as 'Tgl. Absen Dtg.', temp8 as 'Jam Absen Dtg.', "
                     + "temp9 as 'Ket. Absen Datang', temp10 as 'Ket. Terlambat Dtg.', temp11 as 'Tgl. Absen Plg.', temp12 as 'Jam Absen Plg.', temp13 as 'Ket. Absen Pulang', "
-                    + "temp14 as 'Ket. Terlambat Plg.', temp15 as 'Kualitas Absen', temp16 as 'Jml. Jam Kerja', temp17 as 'Tot. Jam Kerja Periode' from temporary1", dialog_simpan) == true) {
+                    + "temp14 as 'Ket. Terlambat Plg.', temp15 as 'Kualitas Absen', temp16 as 'Jml. Jam Kerja', temp17 as 'Tot. Jam Kerja Periode', "
+                    + "temp18 as 'Jenis Absensi' from temporary1", dialog_simpan) == true) {
                 JOptionPane.showMessageDialog(null, "Data berhasil didownload menjadi file excel,..!!!");
             } else {
                 JOptionPane.showMessageDialog(null, "Data gagal didownload menjadi file excel,..!!!");
@@ -551,7 +555,7 @@ public final class DlgAbsensi extends javax.swing.JDialog {
                     + "        MOD(TIMESTAMPDIFF(MINUTE,TIMESTAMP(a.tgl_datang_absen,a.jam_datang_absen),TIMESTAMP(a.tgl_pulang_absen,a.jam_pulang_absen)),60),' Menit') ELSE '-' END AS jmlJamKerja, "
                     + "    CASE WHEN NOT EXISTS (SELECT 1 FROM absensi a2 WHERE a2.nip = a.nip AND a2.tgl_datang_absen BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
                     + "          AND (a2.tgl_datang_absen < a.tgl_datang_absen OR (a2.tgl_datang_absen = a.tgl_datang_absen AND a2.jam_datang_absen < a.jam_datang_absen))) "
-                    + "    THEN CONCAT(FLOOR(IFNULL(total.total_menit,0) / 60),' Jam ',MOD(IFNULL(total.total_menit,0),60),' Menit') ELSE '-' END AS totJamKerjaPeriode, a.waktu_simpan "
+                    + "    THEN CONCAT(FLOOR(IFNULL(total.total_menit,0) / 60),' Jam ',MOD(IFNULL(total.total_menit,0),60),' Menit') ELSE '-' END AS totJamKerjaPeriode, a.jenis_absensi ,a.waktu_simpan "
                     + "FROM absensi a INNER JOIN pegawai pg ON pg.nik=a.nip INNER JOIN reg_absensi ra ON ra.nip=a.nip AND ra.hari=a.hari "
                     + "INNER JOIN pengaturan_jam_kerja pjk ON pjk.kelompok_kerja=ra.kelompok_kerja AND pjk.hari=ra.hari "
                     + "LEFT JOIN (SELECT nip, SUM(CASE WHEN absen_lengkap <> 'belum' AND tgl_pulang_absen IS NOT NULL AND jam_pulang_absen IS NOT NULL AND "
@@ -564,7 +568,8 @@ public final class DlgAbsensi extends javax.swing.JDialog {
                     + "a.tgl_datang_absen BETWEEN ? AND ? and ra.nm_gedung like ? or "
                     + "a.tgl_datang_absen BETWEEN ? AND ? and a.ket_absensi_datang like ? or "
                     + "a.tgl_datang_absen BETWEEN ? AND ? and a.ket_absensi_pulang like ? or "
-                    + "a.tgl_datang_absen BETWEEN ? AND ? and IF(a.absen_lengkap='belum','Sedang Bekerja','Lengkap') like ? "
+                    + "a.tgl_datang_absen BETWEEN ? AND ? and IF(a.absen_lengkap='belum','Sedang Bekerja','Lengkap') like ? or "
+                    + "a.tgl_datang_absen BETWEEN ? AND ? and a.jenis_absensi like ? "
                     + "ORDER BY pg.nik, a.tgl_datang_absen, a.jam_datang_absen");
             try {
                 ps.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
@@ -588,6 +593,9 @@ public final class DlgAbsensi extends javax.swing.JDialog {
                 ps.setString(19, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
                 ps.setString(20, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
                 ps.setString(21, "%" + TCari.getText().trim() + "%");
+                ps.setString(22, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(23, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(24, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
@@ -608,6 +616,7 @@ public final class DlgAbsensi extends javax.swing.JDialog {
                         rs.getString("kualitasAbsen"),
                         rs.getString("jmlJamKerja"),
                         rs.getString("totJamKerjaPeriode"),
+                        rs.getString("jenis_absensi"),
                         rs.getString("waktu_simpan")
                     });
                 }

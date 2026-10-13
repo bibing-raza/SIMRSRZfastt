@@ -5132,7 +5132,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode1);
         try {
             ps1 = koneksi.prepareStatement("SELECT nm_tindakan, kode FROM master_catatan_tindakan_keperawatan where "
-                    + "nm_tindakan like '%" + TCari1.getText() + "%' group by nm_tindakan order by nm_tindakan");
+                    + "nm_tindakan like '%" + TCari1.getText() + "%' group by nm_tindakan order by nm_tindakan limit 100");
             try {
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {

@@ -11,7 +11,7 @@
  Target Server Version : 100131 (10.1.31-MariaDB)
  File Encoding         : 65001
 
- Date: 12/10/2026 07:54:33
+ Date: 13/10/2026 13:14:10
 */
 
 SET NAMES utf8mb4;
@@ -40,6 +40,7 @@ CREATE TABLE `absensi`  (
   `embedding_json_pulang` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `skor_wajah_datang` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `skor_wajah_pulang` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `jenis_absensi` enum('Apel','Harian','Terjadwal') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `waktu_simpan` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`nip`, `waktu_simpan`) USING BTREE,
   INDEX `nip`(`nip` ASC) USING BTREE,
@@ -50,6 +51,30 @@ CREATE TABLE `absensi`  (
 
 -- ----------------------------
 -- Records of absensi
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for absensi_sift_terjadwal
+-- ----------------------------
+DROP TABLE IF EXISTS `absensi_sift_terjadwal`;
+CREATE TABLE `absensi_sift_terjadwal`  (
+  `nip` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `kelompok_kerja` enum('-','Manajemen','Instalasi Rawat Jalan (Poliklinik)','Loket Pendaftaran (TPPRJ)','Instalasi Sanitasi','Instalasi Rawat Inap (Keperawatan)','Instalasi Gawat Darurat (IGD)','Dokter Jaga','Kasir','Sentral Opname (TPPRI)','Tenaga Teknis Kefarmasian (TTK)','IPSRS','Instalasi Radiologi','Instalasi Pemulasaran Jenazah','Instalasi Laboratorium','Instalasi Pengelolaan Air Limbah (IPAL)','Kepala Ruangan Rawat Inap','Kepala Instalasi','Administrasi','Gudang Farmasi','Apoteker','Unit Hemodialisa','Instalasi Gizi','Pengolah dan Penyaji Makanan/Layanan Konsumsi','Laundry','CSSD','Informasi dan SIPO','Dokter Spesialis') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `hari` enum('-','Senin s.d Kamis','Senin s.d Jumat','Senin s.d Sabtu','Senin s.d Minggu','Jumat','Sabtu','Subuh','Sore','Sift 1 (Pagi)','Sift 2 (Siang)','Sift 3 (Malam)') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `aktivasi_momen` enum('-','Hari Kerja Normal','Hari Kerja Ramadhan') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nm_gedung` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `untuk_tgl` date NULL DEFAULT NULL,
+  `status_jadwal` enum('Aktif','Non Aktif') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `waktu_simpan` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`nip`, `kelompok_kerja`, `hari`) USING BTREE,
+  INDEX `kelompok_kerja`(`kelompok_kerja` ASC) USING BTREE,
+  INDEX `hari`(`hari` ASC) USING BTREE,
+  INDEX `nip`(`nip` ASC) USING BTREE,
+  CONSTRAINT `absensi_sift_terjadwal_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `pegawai` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of absensi_sift_terjadwal
 -- ----------------------------
 
 -- ----------------------------
@@ -5312,6 +5337,9 @@ CREATE TABLE `catatan_tindakan_keperawatan`  (
   PRIMARY KEY (`waktu_simpan`, `no_rawat`) USING BTREE,
   INDEX `no_rawat`(`no_rawat` ASC) USING BTREE,
   INDEX `nip_petugas`(`nip_petugas` ASC) USING BTREE,
+  INDEX `nm_tindakan`(`nm_tindakan` ASC) USING BTREE,
+  INDEX `tanggal`(`tanggal` ASC) USING BTREE,
+  INDEX `jam_tindakan`(`jam_tindakan` ASC) USING BTREE,
   CONSTRAINT `catatan_tindakan_keperawatan_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `reg_periksa` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `catatan_tindakan_keperawatan_ibfk_2` FOREIGN KEY (`nip_petugas`) REFERENCES `petugas` (`nip`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
@@ -223940,7 +223968,9 @@ DROP TABLE IF EXISTS `master_catatan_tindakan_keperawatan`;
 CREATE TABLE `master_catatan_tindakan_keperawatan`  (
   `kode` int NOT NULL AUTO_INCREMENT,
   `nm_tindakan` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`kode`) USING BTREE
+  PRIMARY KEY (`kode`) USING BTREE,
+  INDEX `kode`(`kode` ASC) USING BTREE,
+  INDEX `nm_tindakan`(`nm_tindakan` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
@@ -298470,7 +298500,7 @@ CREATE TABLE `reg_absensi`  (
   `kelompok_kerja` enum('-','Manajemen','Instalasi Rawat Jalan (Poliklinik)','Loket Pendaftaran (TPPRJ)','Instalasi Sanitasi','Instalasi Rawat Inap (Keperawatan)','Instalasi Gawat Darurat (IGD)','Dokter Jaga','Kasir','Sentral Opname (TPPRI)','Tenaga Teknis Kefarmasian (TTK)','IPSRS','Instalasi Radiologi','Instalasi Pemulasaran Jenazah','Instalasi Laboratorium','Instalasi Pengelolaan Air Limbah (IPAL)','Kepala Ruangan Rawat Inap','Kepala Instalasi','Administrasi','Gudang Farmasi','Apoteker','Unit Hemodialisa','Instalasi Gizi','Pengolah dan Penyaji Makanan/Layanan Konsumsi','Laundry','CSSD','Informasi dan SIPO','Dokter Spesialis') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `hari` enum('-','Senin s.d Kamis','Senin s.d Jumat','Senin s.d Sabtu','Senin s.d Minggu','Jumat','Sabtu','Subuh','Sore','Sift 1 (Pagi)','Sift 2 (Siang)','Sift 3 (Malam)') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `aktivasi_momen` enum('-','Hari Kerja Normal','Hari Kerja Ramadhan') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `nm_gedung` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `nm_gedung` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `waktu_simpan` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`nip`, `kelompok_kerja`, `hari`) USING BTREE,
   INDEX `kelompok_kerja`(`kelompok_kerja` ASC) USING BTREE,
@@ -298481,6 +298511,31 @@ CREATE TABLE `reg_absensi`  (
 
 -- ----------------------------
 -- Records of reg_absensi
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for reg_absensi_khusus
+-- ----------------------------
+DROP TABLE IF EXISTS `reg_absensi_khusus`;
+CREATE TABLE `reg_absensi_khusus`  (
+  `nip` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `kelompok_kerja` enum('-','Manajemen','Instalasi Rawat Jalan (Poliklinik)','Loket Pendaftaran (TPPRJ)','Instalasi Sanitasi','Instalasi Rawat Inap (Keperawatan)','Instalasi Gawat Darurat (IGD)','Dokter Jaga','Kasir','Sentral Opname (TPPRI)','Tenaga Teknis Kefarmasian (TTK)','IPSRS','Instalasi Radiologi','Instalasi Pemulasaran Jenazah','Instalasi Laboratorium','Instalasi Pengelolaan Air Limbah (IPAL)','Kepala Ruangan Rawat Inap','Kepala Instalasi','Administrasi','Gudang Farmasi','Apoteker','Unit Hemodialisa','Instalasi Gizi','Pengolah dan Penyaji Makanan/Layanan Konsumsi','Laundry','CSSD','Informasi dan SIPO','Dokter Spesialis') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `hari` enum('-','Senin s.d Kamis','Senin s.d Jumat','Senin s.d Sabtu','Senin s.d Minggu','Jumat','Sabtu','Subuh','Sore','Sift 1 (Pagi)','Sift 2 (Siang)','Sift 3 (Malam)') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `aktivasi_momen` enum('-','Hari Kerja Normal','Hari Kerja Ramadhan') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nm_gedung` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tgl_mulai` date NULL DEFAULT NULL,
+  `tgl_berakhir` date NULL DEFAULT NULL,
+  `status_jadwal` enum('Aktif','Non Aktif') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `waktu_simpan` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`waktu_simpan`) USING BTREE,
+  INDEX `kelompok_kerja`(`kelompok_kerja` ASC) USING BTREE,
+  INDEX `hari`(`hari` ASC) USING BTREE,
+  INDEX `nip`(`nip` ASC) USING BTREE,
+  CONSTRAINT `reg_absensi_khusus_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `pegawai` (`nik`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of reg_absensi_khusus
 -- ----------------------------
 
 -- ----------------------------

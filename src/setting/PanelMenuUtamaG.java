@@ -20,6 +20,7 @@ import permintaan.DlgSuratKeteranganNapza;
 import permintaan.DlgSuratKeteranganRohani;
 import permintaan.DlgSuratKeteranganSakit;
 import permintaan.DlgSuratKonsulUnit;
+import simrskhanza.DlgMasterNomorDokumen;
 import simrskhanza.DlgSuratKonsulRalan;
 import simrskhanza.frmUtama;
 
@@ -74,6 +75,7 @@ public class PanelMenuUtamaG extends javax.swing.JDialog {
         btnSuratKeteranganNAPZA = new widget.ButtonBig();
         btnSuratIstirahatSakit = new widget.ButtonBig();
         btnSuratKeteranganSakit = new widget.ButtonBig();
+        btnMasterNomorDokumen = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -212,10 +214,10 @@ public class PanelMenuUtamaG extends javax.swing.JDialog {
 
         btnSuratKeteranganDisabilitas.setForeground(new java.awt.Color(0, 0, 0));
         btnSuratKeteranganDisabilitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481002123_wheelchair.png"))); // NOI18N
-        btnSuratKeteranganDisabilitas.setText("Surat Keterangan Dokter (Disabilitas)");
+        btnSuratKeteranganDisabilitas.setText("<html><div style=\"text-align: center;\">Surat Keterangan Dokter<br>(Disabilitas)</div></html>");
         btnSuratKeteranganDisabilitas.setIconTextGap(0);
         btnSuratKeteranganDisabilitas.setName("btnSuratKeteranganDisabilitas"); // NOI18N
-        btnSuratKeteranganDisabilitas.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratKeteranganDisabilitas.setPreferredSize(new java.awt.Dimension(200, 105));
         btnSuratKeteranganDisabilitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuratKeteranganDisabilitasActionPerformed(evt);
@@ -225,10 +227,10 @@ public class PanelMenuUtamaG extends javax.swing.JDialog {
 
         btnSuratKeteranganRohani.setForeground(new java.awt.Color(0, 0, 0));
         btnSuratKeteranganRohani.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_todo_list_add_17451.png"))); // NOI18N
-        btnSuratKeteranganRohani.setText("Surat Keterangan Kes. Rohani");
+        btnSuratKeteranganRohani.setText("<html><div style=\"text-align: center;\">Surat Keterangan<br>Kesehatan Rohani</div></html>");
         btnSuratKeteranganRohani.setIconTextGap(0);
         btnSuratKeteranganRohani.setName("btnSuratKeteranganRohani"); // NOI18N
-        btnSuratKeteranganRohani.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratKeteranganRohani.setPreferredSize(new java.awt.Dimension(200, 105));
         btnSuratKeteranganRohani.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuratKeteranganRohaniActionPerformed(evt);
@@ -274,6 +276,19 @@ public class PanelMenuUtamaG extends javax.swing.JDialog {
             }
         });
         FormMenu.add(btnSuratKeteranganSakit);
+
+        btnMasterNomorDokumen.setForeground(new java.awt.Color(0, 0, 0));
+        btnMasterNomorDokumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_book_285636.png"))); // NOI18N
+        btnMasterNomorDokumen.setText("Master Nomor Dokumen");
+        btnMasterNomorDokumen.setIconTextGap(0);
+        btnMasterNomorDokumen.setName("btnMasterNomorDokumen"); // NOI18N
+        btnMasterNomorDokumen.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterNomorDokumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasterNomorDokumenActionPerformed(evt);
+            }
+        });
+        FormMenu.add(btnMasterNomorDokumen);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -464,6 +479,24 @@ public class PanelMenuUtamaG extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSuratKeteranganSakitActionPerformed
 
+    private void btnMasterNomorDokumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterNomorDokumenActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgMasterNomorDokumen aplikasi = new DlgMasterNomorDokumen(formUtama, false);
+            aplikasi.emptTeks();
+            aplikasi.isCek();
+            aplikasi.ChkInput.setSelected(true);
+            aplikasi.isForm();
+            aplikasi.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(aplikasi);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnMasterNomorDokumen.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_btnMasterNomorDokumenActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -473,6 +506,7 @@ public class PanelMenuUtamaG extends javax.swing.JDialog {
     private widget.PanelBiasa FormMenu;
     public widget.TextBox TCari;
     private widget.Button btnClear;
+    private widget.ButtonBig btnMasterNomorDokumen;
     private widget.ButtonBig btnSuratIstirahatSakit;
     private widget.ButtonBig btnSuratJawabanKonsulRanap;
     private widget.ButtonBig btnSuratKeteranganDisabilitas;
@@ -536,6 +570,11 @@ public class PanelMenuUtamaG extends javax.swing.JDialog {
             FormMenu.add(btnSuratKeteranganSakit);
             jmlmenu++;
         }
+        
+        if (akses.getadmin() && btnMasterNomorDokumen.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(btnMasterNomorDokumen);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -596,6 +635,11 @@ public class PanelMenuUtamaG extends javax.swing.JDialog {
 
         if (akses.getsurat_keterangan_kir_mcu() == true) {
             FormMenu.add(btnSuratKeteranganRohani);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            FormMenu.add(btnMasterNomorDokumen);
             jmlmenu++;
         }
 

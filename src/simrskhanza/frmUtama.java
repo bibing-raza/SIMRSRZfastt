@@ -661,6 +661,8 @@ public class frmUtama extends javax.swing.JFrame {
         Scroll21 = new widget.ScrollPane();
         ket_update = new widget.TextArea();
         jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         FlayMenu = new usu.widget.glass.PanelGlass();
         MenuBar = new widget.MenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -3589,7 +3591,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/10/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07/10/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -4121,6 +4123,25 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         panelJudul.add(jLabel13);
         jLabel13.setBounds(25, 140, 100, 100);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/qrcode-absensi-rsud-raza_kecil.png"))); // NOI18N
+        jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel14.setName("jLabel14"); // NOI18N
+        panelJudul.add(jLabel14);
+        jLabel14.setBounds(1230, 10, 200, 200);
+
+        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("<html>[ SCAN ABSENSI ]<br>\nAbsenlah selalu setiap hari, pastikan<br>\nsmartphone sudah terhubung dengan<br>\nwifi diruangan ini sebelumnya.</html>");
+        jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel15.setName("jLabel15"); // NOI18N
+        jLabel15.setOpaque(true);
+        jLabel15.setPreferredSize(new java.awt.Dimension(430, 30));
+        panelJudul.add(jLabel15);
+        jLabel15.setBounds(1425, 10, 360, 100);
 
         PanelWall.add(panelJudul, java.awt.BorderLayout.PAGE_END);
 
@@ -7794,6 +7815,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private javax.swing.JLabel jLabel11;
     private widget.Label jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
