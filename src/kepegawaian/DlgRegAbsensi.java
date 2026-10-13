@@ -71,8 +71,8 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
     
     private void initComponents2() {
         PanelContent.setLayout(new BorderLayout());
-        urlTerakhir = "http://localhost/absensirz/regabsensi/registrasi.php";
-//        urlTerakhir = "https://192.168.0.230:8443/absensi/regabsensi/registrasi.php";
+//        urlTerakhir = "http://localhost:8080/absensirz/regabsensi/registrasi.php";
+        urlTerakhir = "https://192.168.0.230:8443/absensi/regabsensi/registrasi.php";
 
         PanelContent.addHierarchyListener(e -> {
             if ((e.getChangeFlags()
