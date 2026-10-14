@@ -3591,7 +3591,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07/10/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/10/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -4133,9 +4133,9 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel14.setBounds(1230, 10, 200, 200);
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("<html>[ SCAN ABSENSI ]<br>\nAbsenlah selalu setiap hari, pastikan<br>\nsmartphone sudah terhubung dengan<br>\nwifi diruangan ini sebelumnya.</html>");
+        jLabel15.setText("<html>[ SCAN ABSENSI ]<br>\nAbsenlah selalu setiap hari, pastikan<br>\nsmartphone sudah terhubung sebelumnya<br>\ndengan wifi diarea ruangan ini.</html>");
         jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel15.setName("jLabel15"); // NOI18N
         jLabel15.setOpaque(true);

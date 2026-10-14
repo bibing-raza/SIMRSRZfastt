@@ -144,6 +144,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnPetugasPemberianObatIGD = new widget.ButtonBig();
         BtnLembarObservasiIGD = new widget.ButtonBig();
         BtnCPPTIGD = new widget.ButtonBig();
+        BtnCTK = new widget.ButtonBig();
         BtnPersetujuanTindakanIGD = new widget.ButtonBig();
         BtnSuratPernyataanDNR = new widget.ButtonBig();
         BtnInstruksiDokterDNR = new widget.ButtonBig();
@@ -233,7 +234,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnRefres2 = new widget.Button();
         BtnKeluar3 = new widget.Button();
 
-        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-08-2026" }));
+        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2026" }));
         DTPtanggal.setDisplayFormat("dd-MM-yyyy");
         DTPtanggal.setName("DTPtanggal"); // NOI18N
         DTPtanggal.setOpaque(false);
@@ -463,6 +464,19 @@ public class DlgRMEralan extends javax.swing.JDialog {
         });
         FormInput.add(BtnCPPTIGD);
 
+        BtnCTK.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnCTK.setText("<html><div style=\"text-align: center;\">Catatan Tindakan<br>Keperawatan</div></html>");
+        BtnCTK.setIconTextGap(0);
+        BtnCTK.setName("BtnCTK"); // NOI18N
+        BtnCTK.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnCTK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCTKActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnCTK);
+
         BtnPersetujuanTindakanIGD.setForeground(new java.awt.Color(0, 0, 0));
         BtnPersetujuanTindakanIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_todo_list_add_17451.png"))); // NOI18N
         BtnPersetujuanTindakanIGD.setText("<html><div style=\"text-align: center;\">Persetujuan/Penolakan/<br>Penundaan Tindakan</div></html>");
@@ -590,6 +604,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnRefres.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres.setMnemonic('R');
         BtnRefres.setText("Refresh Rekam Medis");
         BtnRefres.setToolTipText("Alt+R");
         BtnRefres.setName("BtnRefres"); // NOI18N
@@ -603,6 +618,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -927,6 +943,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -1089,6 +1106,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         ChkInput.setBorder(null);
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
         ChkInput.setText("Pencarian");
         ChkInput.setToolTipText("Alt+C");
@@ -1113,6 +1131,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnRefres1.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres1.setMnemonic('R');
         BtnRefres1.setText("Refresh Rekam Medis");
         BtnRefres1.setToolTipText("Alt+R");
         BtnRefres1.setName("BtnRefres1"); // NOI18N
@@ -1126,6 +1145,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar2.setMnemonic('K');
         BtnKeluar2.setText("Keluar");
         BtnKeluar2.setToolTipText("Alt+K");
         BtnKeluar2.setName("BtnKeluar2"); // NOI18N
@@ -1447,6 +1467,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnRefres2.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres2.setMnemonic('R');
         BtnRefres2.setText("Refresh Rekam Medis");
         BtnRefres2.setToolTipText("Alt+R");
         BtnRefres2.setName("BtnRefres2"); // NOI18N
@@ -1460,6 +1481,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnKeluar3.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar3.setMnemonic('K');
         BtnKeluar3.setText("Keluar");
         BtnKeluar3.setToolTipText("Alt+K");
         BtnKeluar3.setName("BtnKeluar3"); // NOI18N
@@ -2711,6 +2733,23 @@ public class DlgRMEralan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnFormulirSiteMarkingOdonActionPerformed
 
+    private void BtnCTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCTKActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEralan");
+            DlgCatatanTindakanKeperawatanIGD form = new DlgCatatanTindakanKeperawatanIGD(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnCTKActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2739,6 +2778,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ButtonBig BtnAsesmenPreInduksi;
     private widget.ButtonBig BtnCPPTIGD;
     private widget.ButtonBig BtnCPPTPonek;
+    private widget.ButtonBig BtnCTK;
     private widget.ButtonBig BtnCatatanMaterial;
     private widget.ButtonBig BtnCatatanRuangPemulihan;
     private widget.ButtonBig BtnCatatanSedasiAnestesi;
@@ -2897,6 +2937,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnSuratPernyataanDNRponek.setEnabled(akses.getcppt());
         BtnInstruksiDokterDNR.setEnabled(akses.getresep_dokter());
         BtnInstruksiDokterDNRponek.setEnabled(akses.getresep_dokter());
+        BtnCTK.setEnabled(akses.getcppt());
         BtnMaskepNyeriAkut.setEnabled(akses.getcppt());
         BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
         BtnMaskepResikoHipotermia.setEnabled(akses.getcppt());

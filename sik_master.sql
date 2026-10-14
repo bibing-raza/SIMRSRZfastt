@@ -11,7 +11,7 @@
  Target Server Version : 100131 (10.1.31-MariaDB)
  File Encoding         : 65001
 
- Date: 13/10/2026 13:14:10
+ Date: 14/10/2026 17:22:27
 */
 
 SET NAMES utf8mb4;
@@ -5346,6 +5346,32 @@ CREATE TABLE `catatan_tindakan_keperawatan`  (
 
 -- ----------------------------
 -- Records of catatan_tindakan_keperawatan
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for catatan_tindakan_keperawatan_igd
+-- ----------------------------
+DROP TABLE IF EXISTS `catatan_tindakan_keperawatan_igd`;
+CREATE TABLE `catatan_tindakan_keperawatan_igd`  (
+  `no_rawat` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `sift` enum('-','Pagi','Sore','Malam') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tanggal` date NULL DEFAULT NULL,
+  `jam_tindakan` time NULL DEFAULT NULL,
+  `nm_tindakan` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `nip_petugas` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `waktu_simpan` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`waktu_simpan`, `no_rawat`) USING BTREE,
+  INDEX `no_rawat`(`no_rawat` ASC) USING BTREE,
+  INDEX `nip_petugas`(`nip_petugas` ASC) USING BTREE,
+  INDEX `nm_tindakan`(`nm_tindakan` ASC) USING BTREE,
+  INDEX `tanggal`(`tanggal` ASC) USING BTREE,
+  INDEX `jam_tindakan`(`jam_tindakan` ASC) USING BTREE,
+  CONSTRAINT `catatan_tindakan_keperawatan_igd_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `reg_periksa` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `catatan_tindakan_keperawatan_igd_ibfk_2` FOREIGN KEY (`nip_petugas`) REFERENCES `pegawai` (`nik`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of catatan_tindakan_keperawatan_igd
 -- ----------------------------
 
 -- ----------------------------
@@ -13315,6 +13341,28 @@ CREATE TABLE `evaluasi_catatan_tindakan_keperawatan`  (
 
 -- ----------------------------
 -- Records of evaluasi_catatan_tindakan_keperawatan
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for evaluasi_catatan_tindakan_keperawatan_igd
+-- ----------------------------
+DROP TABLE IF EXISTS `evaluasi_catatan_tindakan_keperawatan_igd`;
+CREATE TABLE `evaluasi_catatan_tindakan_keperawatan_igd`  (
+  `no_rawat` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `sift` enum('Pagi','Sore','Malam') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tanggal` date NULL DEFAULT NULL,
+  `evaluasi_nyeri` enum('1. Skala','2. Lokasi','3. Sifat','4. Tindakan') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ket_pagi` varchar(160) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ket_sore` varchar(160) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ket_malam` varchar(160) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `waktu_simpan` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`waktu_simpan`) USING BTREE,
+  INDEX `no_rawat`(`no_rawat` ASC) USING BTREE,
+  CONSTRAINT `evaluasi_catatan_tindakan_keperawatan_igd_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `reg_periksa` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of evaluasi_catatan_tindakan_keperawatan_igd
 -- ----------------------------
 
 -- ----------------------------
@@ -223196,6 +223244,22 @@ CREATE TABLE `manajemen_catatan_tindakan_keperawatan`  (
 
 -- ----------------------------
 -- Records of manajemen_catatan_tindakan_keperawatan
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for manajemen_catatan_tindakan_keperawatan_igd
+-- ----------------------------
+DROP TABLE IF EXISTS `manajemen_catatan_tindakan_keperawatan_igd`;
+CREATE TABLE `manajemen_catatan_tindakan_keperawatan_igd`  (
+  `no_rawat` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tanggal` date NOT NULL,
+  `manajemen_nyeri` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  PRIMARY KEY (`no_rawat`, `tanggal`) USING BTREE,
+  CONSTRAINT `manajemen_catatan_tindakan_keperawatan_igd_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `reg_periksa` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of manajemen_catatan_tindakan_keperawatan_igd
 -- ----------------------------
 
 -- ----------------------------

@@ -1,16 +1,4 @@
-    /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * DlgSpesialis.java
- *
- * Created on May 23, 2010, 1:25:13 AM
- */
-
 package rekammedis;
-
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -2693,7 +2681,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                     cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TnmTindakan.getText(),
                     nip, Sequel.cariIsi("select now()")
                 }) == true) {
-                    Sequel.simpanReplaceInto("master_catatan_tindakan_keperawatan", "'0','" + TnmTindakan.getText() + "'", "Data Master Catatan");
+//                    Sequel.simpanReplaceInto("master_catatan_tindakan_keperawatan", "'0','" + TnmTindakan.getText() + "'", "Data Master Catatan");
                     Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Catatan Tindakan Keperawatan", "Simpan");
                     tampil();
                     emptTeks();
@@ -2807,7 +2795,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                                 TnmTindakan.getText(), nip,
                                 wktSimpan});
                     
-                    Sequel.simpanReplaceInto("master_catatan_tindakan_keperawatan", "'0','" + TnmTindakan.getText() + "'", "Data Master Catatan");
+//                    Sequel.simpanReplaceInto("master_catatan_tindakan_keperawatan", "'0','" + TnmTindakan.getText() + "'", "Data Master Catatan");
                     Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Catatan Tindakan Keperawatan", "Ganti");                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Maaf, data ini hanya bisa diperbaiki oleh " + TnmPetugas.getText() + " ...!");
