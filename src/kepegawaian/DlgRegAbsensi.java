@@ -71,8 +71,8 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
     
     private void initComponents2() {
         PanelContent.setLayout(new BorderLayout());
-//        urlTerakhir = "http://localhost:8080/absensirz/regabsensi/registrasi.php";
-        urlTerakhir = "https://192.168.0.230:8443/absensi/regabsensi/registrasi.php";
+        urlTerakhir = "http://localhost:8080/absensirz/regabsensi/registrasi.php";
+//        urlTerakhir = "https://192.168.0.230:8443/absensi/regabsensi/registrasi.php";
 
         PanelContent.addHierarchyListener(e -> {
             if ((e.getChangeFlags()
@@ -99,7 +99,6 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
         internalFrame1 = new widget.InternalFrame();
         panelGlass6 = new widget.panelisi();
         jLabel17 = new widget.Label();
-        BtnKhusus = new widget.Button();
         BtnKeluar = new widget.Button();
         PanelContent = new widget.panelisi();
 
@@ -121,18 +120,6 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
         jLabel17.setName("jLabel17"); // NOI18N
         jLabel17.setPreferredSize(new java.awt.Dimension(15, 23));
         panelGlass6.add(jLabel17);
-
-        BtnKhusus.setForeground(new java.awt.Color(0, 0, 0));
-        BtnKhusus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/barralan.png"))); // NOI18N
-        BtnKhusus.setText("Reg. Absensi Terjadwal");
-        BtnKhusus.setName("BtnKhusus"); // NOI18N
-        BtnKhusus.setPreferredSize(new java.awt.Dimension(200, 30));
-        BtnKhusus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKhususActionPerformed(evt);
-            }
-        });
-        panelGlass6.add(BtnKhusus);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -164,16 +151,6 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnKhususActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKhususActionPerformed
-        akses.setform("DlgRegAbsensi");
-        DlgRegAbsensiKhusus form = new DlgRegAbsensiKhusus(null, false);
-        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-        form.setLocationRelativeTo(internalFrame1);
-        form.setVisible(true);
-        form.toFront();
-        form.requestFocus();        
-    }//GEN-LAST:event_BtnKhususActionPerformed
-
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         CloseScane();
         frmUtama.getInstance().tutupDialogDiPanelUtama(this);
@@ -204,7 +181,6 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnKeluar;
-    private widget.Button BtnKhusus;
     private widget.panelisi PanelContent;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel17;
@@ -224,7 +200,7 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
 
             boolean lokal = "http".equalsIgnoreCase(alamat.getScheme())
                     && "localhost".equalsIgnoreCase(alamat.getHost())
-                    && (alamat.getPort() == -1 || alamat.getPort() == 80)
+                    && (alamat.getPort() == -1 || alamat.getPort() == 80 || alamat.getPort() == 8080)
                     && path != null
                     && path.startsWith("/absensirz/regabsensi/");
 

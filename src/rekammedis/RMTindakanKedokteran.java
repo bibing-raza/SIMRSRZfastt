@@ -19,22 +19,16 @@ import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -42,7 +36,6 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +43,6 @@ import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableModel;
@@ -722,7 +714,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -741,7 +732,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -755,7 +745,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -808,7 +797,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTampilkanQr.setForeground(new java.awt.Color(0, 0, 0));
         BtnTampilkanQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clear24.png"))); // NOI18N
-        BtnTampilkanQr.setMnemonic('S');
         BtnTampilkanQr.setText("Tampilkan Qr Code TTD");
         BtnTampilkanQr.setToolTipText("Alt+S");
         BtnTampilkanQr.setName("BtnTampilkanQr"); // NOI18N
@@ -822,7 +810,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn2.setMnemonic('U');
         BtnCloseIn2.setText("Tutup");
         BtnCloseIn2.setToolTipText("Alt+U");
         BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
@@ -858,7 +845,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -872,7 +858,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -891,7 +876,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -905,7 +889,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -936,7 +919,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -955,7 +937,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -974,7 +955,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1128,7 +1108,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKelurahan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKelurahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKelurahan.setMnemonic('2');
         BtnKelurahan.setToolTipText("ALt+2");
         BtnKelurahan.setName("BtnKelurahan"); // NOI18N
         BtnKelurahan.addActionListener(new java.awt.event.ActionListener() {
@@ -1154,7 +1133,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKecamatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKecamatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKecamatan.setMnemonic('3');
         BtnKecamatan.setToolTipText("ALt+3");
         BtnKecamatan.setName("BtnKecamatan"); // NOI18N
         BtnKecamatan.addActionListener(new java.awt.event.ActionListener() {
@@ -1180,7 +1158,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKabupaten.setForeground(new java.awt.Color(0, 0, 0));
         BtnKabupaten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKabupaten.setMnemonic('4');
         BtnKabupaten.setToolTipText("ALt+4");
         BtnKabupaten.setName("BtnKabupaten"); // NOI18N
         BtnKabupaten.addActionListener(new java.awt.event.ActionListener() {
@@ -1329,7 +1306,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPelaksana.setForeground(new java.awt.Color(0, 0, 0));
         BtnPelaksana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnPelaksana.setMnemonic('4');
         BtnPelaksana.setToolTipText("ALt+4");
         BtnPelaksana.setName("BtnPelaksana"); // NOI18N
         BtnPelaksana.addActionListener(new java.awt.event.ActionListener() {
@@ -1360,7 +1336,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPemberi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPemberi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnPemberi.setMnemonic('4');
         BtnPemberi.setToolTipText("ALt+4");
         BtnPemberi.setName("BtnPemberi"); // NOI18N
         BtnPemberi.addActionListener(new java.awt.event.ActionListener() {
@@ -1770,7 +1745,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnDiagKerja.setForeground(new java.awt.Color(0, 0, 0));
         BtnDiagKerja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDiagKerja.setMnemonic('2');
         BtnDiagKerja.setText("Template");
         BtnDiagKerja.setToolTipText("Alt+2");
         BtnDiagKerja.setName("BtnDiagKerja"); // NOI18N
@@ -1785,7 +1759,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnDasarDiag.setForeground(new java.awt.Color(0, 0, 0));
         BtnDasarDiag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDasarDiag.setMnemonic('2');
         BtnDasarDiag.setText("Template");
         BtnDasarDiag.setToolTipText("Alt+2");
         BtnDasarDiag.setName("BtnDasarDiag"); // NOI18N
@@ -1800,7 +1773,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTindakan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTindakan.setMnemonic('2');
         BtnTindakan.setText("Template");
         BtnTindakan.setToolTipText("Alt+2");
         BtnTindakan.setName("BtnTindakan"); // NOI18N
@@ -1815,7 +1787,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnIndikasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnIndikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnIndikasi.setMnemonic('2');
         BtnIndikasi.setText("Template");
         BtnIndikasi.setToolTipText("Alt+2");
         BtnIndikasi.setName("BtnIndikasi"); // NOI18N
@@ -1830,7 +1801,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTata.setForeground(new java.awt.Color(0, 0, 0));
         BtnTata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTata.setMnemonic('2');
         BtnTata.setText("Template");
         BtnTata.setToolTipText("Alt+2");
         BtnTata.setName("BtnTata"); // NOI18N
@@ -1845,7 +1815,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTujuan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTujuan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTujuan.setMnemonic('2');
         BtnTujuan.setText("Template");
         BtnTujuan.setToolTipText("Alt+2");
         BtnTujuan.setName("BtnTujuan"); // NOI18N
@@ -1860,7 +1829,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnResiko.setForeground(new java.awt.Color(0, 0, 0));
         BtnResiko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnResiko.setMnemonic('2');
         BtnResiko.setText("Template");
         BtnResiko.setToolTipText("Alt+2");
         BtnResiko.setName("BtnResiko"); // NOI18N
@@ -1875,7 +1843,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKomplikasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnKomplikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKomplikasi.setMnemonic('2');
         BtnKomplikasi.setText("Template");
         BtnKomplikasi.setToolTipText("Alt+2");
         BtnKomplikasi.setName("BtnKomplikasi"); // NOI18N
@@ -1890,7 +1857,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPrognosis.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrognosis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPrognosis.setMnemonic('2');
         BtnPrognosis.setText("Template");
         BtnPrognosis.setToolTipText("Alt+2");
         BtnPrognosis.setName("BtnPrognosis"); // NOI18N
@@ -1905,7 +1871,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnAlternatif.setForeground(new java.awt.Color(0, 0, 0));
         BtnAlternatif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnAlternatif.setMnemonic('2');
         BtnAlternatif.setText("Template");
         BtnAlternatif.setToolTipText("Alt+2");
         BtnAlternatif.setName("BtnAlternatif"); // NOI18N
@@ -1920,7 +1885,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnLain.setForeground(new java.awt.Color(0, 0, 0));
         BtnLain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnLain.setMnemonic('2');
         BtnLain.setText("Template");
         BtnLain.setToolTipText("Alt+2");
         BtnLain.setName("BtnLain"); // NOI18N
@@ -1940,7 +1904,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel78.setBounds(505, 188, 70, 23);
 
         cmbKategori.setForeground(new java.awt.Color(0, 0, 0));
-        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Transfusi Darah", "Trombopharesis", "Restrain", "Leukopharesis", "BMP", "NGT", "DC", "Transfusi Zat Besi", "Biopsi", "Pengobatan Kemoterapi", "Punksi Cairan Pleura", "Punksi Ascites", "Pemasangan WSD", "SC (Sectio Caesarea)", "Induksi", "SHK", "Curetase", "Manual Plasenta", "Pertolongan Sungsang", "Fototerapi", "CPAP/Neopuff", "ETT Ventilator" }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Transfusi Darah", "Trombopharesis", "Restrain", "Leukopharesis", "BMP", "NGT", "DC", "Transfusi Zat Besi", "Biopsi", "Pengobatan Kemoterapi", "Punksi Cairan Pleura", "Punksi Ascites", "Pemasangan WSD", "SC (Sectio Caesarea)", "Induksi", "SHK", "Curetase", "Manual Plasenta", "Pertolongan Sungsang", "Fototerapi", "CPAP/Neopuff", "ETT Ventilator", "FOB/Bronkoskopi" }));
         cmbKategori.setName("cmbKategori"); // NOI18N
         cmbKategori.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbKategori.addActionListener(new java.awt.event.ActionListener() {
@@ -2061,7 +2025,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPihakRS.setForeground(new java.awt.Color(0, 0, 0));
         BtnPihakRS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnPihakRS.setMnemonic('4');
         BtnPihakRS.setToolTipText("ALt+4");
         BtnPihakRS.setName("BtnPihakRS"); // NOI18N
         BtnPihakRS.addActionListener(new java.awt.event.ActionListener() {
@@ -2244,7 +2207,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('3');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+3");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -3608,7 +3570,21 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             Tprognosis.setText("Dubia et malam");
             Talternatif.setText("Rujuk ke sarana lebih lengkap");
             Tlain.setText("-");
-        }         
+         
+            //FOB/Bronkoskopi
+        } else if (cmbKategori.getSelectedIndex() == 23) {
+            TDiagKerja.setText("Tumor, dd Primer / Sekunder (metastasis)");
+            TDasarDiag.setText("Pemeriksaan Fisik, lab dan sitologi");
+            Ttindakan.setText("Biopsi / aspirasi / sitologi");
+            Tindikasi.setText("Diagnosis / terapi");
+            Ttatacara.setText("Percutaneous core biopsi / aspirasi / sitologi");
+            Ttujuan.setText("Mengetahui jenis tumor");
+            Tresiko.setText("Nyeri dan perdarahan");
+            Tkomplikasi.setText("");
+            Tprognosis.setText("Dubia");
+            Talternatif.setText("-");
+            Tlain.setText("-");
+        }
     }//GEN-LAST:event_cmbKategoriActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

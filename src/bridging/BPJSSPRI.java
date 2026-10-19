@@ -44,6 +44,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
+import rekammedis.DlgCatatanDiagnosa;
 
 /**
  *
@@ -305,6 +306,7 @@ public class BPJSSPRI extends javax.swing.JDialog {
         BtnCari = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
+        BtnCatatan = new widget.Button();
         panelCari = new widget.panelisi();
         R1 = new widget.RadioButton();
         DTPTanggalSurat1 = new widget.Tanggal();
@@ -351,7 +353,6 @@ public class BPJSSPRI extends javax.swing.JDialog {
 
         MnSurat.setBackground(new java.awt.Color(255, 255, 254));
         MnSurat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnSurat.setForeground(new java.awt.Color(0, 0, 0));
         MnSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSurat.setText("Cetak SPRI VClaim");
         MnSurat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -369,7 +370,6 @@ public class BPJSSPRI extends javax.swing.JDialog {
 
         MnAmbilSPRIVCLAIM.setBackground(new java.awt.Color(255, 255, 254));
         MnAmbilSPRIVCLAIM.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnAmbilSPRIVCLAIM.setForeground(new java.awt.Color(0, 0, 0));
         MnAmbilSPRIVCLAIM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnAmbilSPRIVCLAIM.setText("Ambil SPRI dari VClaim");
         MnAmbilSPRIVCLAIM.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -387,7 +387,7 @@ public class BPJSSPRI extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Surat Perintah Rawat Inap (SPRI) VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Surat Perintah Rawat Inap (SPRI) VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -608,6 +608,20 @@ public class BPJSSPRI extends javax.swing.JDialog {
         LCount.setPreferredSize(new java.awt.Dimension(50, 23));
         panelGlass10.add(LCount);
 
+        BtnCatatan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnCatatan.setMnemonic('D');
+        BtnCatatan.setText("Catatan Diagnosa");
+        BtnCatatan.setToolTipText("Alt+D");
+        BtnCatatan.setName("BtnCatatan"); // NOI18N
+        BtnCatatan.setPreferredSize(new java.awt.Dimension(150, 23));
+        BtnCatatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCatatanActionPerformed(evt);
+            }
+        });
+        panelGlass10.add(BtnCatatan);
+
         jPanel3.add(panelGlass10, java.awt.BorderLayout.CENTER);
 
         panelCari.setName("panelCari"); // NOI18N
@@ -626,7 +640,7 @@ public class BPJSSPRI extends javax.swing.JDialog {
         panelCari.add(R1);
 
         DTPTanggalSurat1.setEditable(false);
-        DTPTanggalSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2022" }));
+        DTPTanggalSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-10-2025" }));
         DTPTanggalSurat1.setDisplayFormat("dd-MM-yyyy");
         DTPTanggalSurat1.setName("DTPTanggalSurat1"); // NOI18N
         DTPTanggalSurat1.setOpaque(false);
@@ -651,7 +665,7 @@ public class BPJSSPRI extends javax.swing.JDialog {
         panelCari.add(jLabel22);
 
         DTPTanggalSurat2.setEditable(false);
-        DTPTanggalSurat2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2022" }));
+        DTPTanggalSurat2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-10-2025" }));
         DTPTanggalSurat2.setDisplayFormat("dd-MM-yyyy");
         DTPTanggalSurat2.setName("DTPTanggalSurat2"); // NOI18N
         DTPTanggalSurat2.setOpaque(false);
@@ -680,7 +694,7 @@ public class BPJSSPRI extends javax.swing.JDialog {
         panelCari.add(R2);
 
         tglRencana1.setEditable(false);
-        tglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2022" }));
+        tglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-10-2025" }));
         tglRencana1.setDisplayFormat("dd-MM-yyyy");
         tglRencana1.setName("tglRencana1"); // NOI18N
         tglRencana1.setOpaque(false);
@@ -705,7 +719,7 @@ public class BPJSSPRI extends javax.swing.JDialog {
         panelCari.add(jLabel25);
 
         tglRencana2.setEditable(false);
-        tglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2022" }));
+        tglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-10-2025" }));
         tglRencana2.setDisplayFormat("dd-MM-yyyy");
         tglRencana2.setName("tglRencana2"); // NOI18N
         tglRencana2.setOpaque(false);
@@ -854,7 +868,7 @@ public class BPJSSPRI extends javax.swing.JDialog {
         jLabel14.setBounds(268, 70, 100, 23);
 
         TglRencanaInap.setEditable(false);
-        TglRencanaInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2022" }));
+        TglRencanaInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-10-2025" }));
         TglRencanaInap.setDisplayFormat("dd-MM-yyyy");
         TglRencanaInap.setName("TglRencanaInap"); // NOI18N
         TglRencanaInap.setOpaque(false);
@@ -1451,6 +1465,18 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_MnAmbilSPRIVCLAIMActionPerformed
 
+    private void BtnCatatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCatatanActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("BPJSSPRI");
+        DlgCatatanDiagnosa form = new DlgCatatanDiagnosa(null, false);
+        form.setSize(842, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.emptTeks();
+        form.isCek();
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnCatatanActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1471,6 +1497,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
+    private widget.Button BtnCatatan;
     private widget.Button BtnDokter;
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
@@ -1728,8 +1755,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         BtnSimpan.setEnabled(akses.getSPRIJKN());
         BtnPrint.setEnabled(akses.getSPRIJKN());
         BtnEdit.setEnabled(akses.getSPRIJKN());
+        BtnCatatan.setEnabled(akses.getbpjs_sep());
         
-        if (akses.getkode().equals("Admin Utama") || akses.getHapusSEP() == true) {
+        if (akses.getadmin() == true || akses.getHapusSEP() == true) {
             BtnHapus.setEnabled(true);
         } else {
             BtnHapus.setEnabled(false);

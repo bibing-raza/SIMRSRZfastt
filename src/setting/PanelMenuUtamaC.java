@@ -15,9 +15,9 @@ import javax.swing.JPanel;
 import kepegawaian.DlgAbsensi;
 import kepegawaian.DlgDepartemen;
 import kepegawaian.DlgPegawai;
+import kepegawaian.DlgPengaturanJamKerja;
 import kepegawaian.DlgPetugas;
 import kepegawaian.DlgRegAbsensi;
-import kepegawaian.DlgRegAbsensiKhusus;
 import rekammedis.DlgMasterJabatanKomite;
 import simrskhanza.DlgDokter;
 import simrskhanza.DlgJabatan;
@@ -67,13 +67,13 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         FormMenu = new widget.PanelBiasa();
         btnDataAbsensi = new widget.ButtonBig();
         btnRegAbsensi = new widget.ButtonBig();
-        btnRegAbsensiKhusus = new widget.ButtonBig();
-        btnPegawai = new widget.ButtonBig();
+        btnPetugas = new widget.ButtonBig();
         btnDokter = new widget.ButtonBig();
         btnDataJabatan = new widget.ButtonBig();
         btnMasterJabatanKomite = new widget.ButtonBig();
         btnDepartemen = new widget.ButtonBig();
         btnPenggajian = new widget.ButtonBig();
+        btnPengaturanJamKerja = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -159,7 +159,7 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
 
         btnDataAbsensi.setForeground(new java.awt.Color(0, 0, 0));
         btnDataAbsensi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/Time.png"))); // NOI18N
-        btnDataAbsensi.setText("Data Absensi Harian");
+        btnDataAbsensi.setText("Data Absensi");
         btnDataAbsensi.setIconTextGap(0);
         btnDataAbsensi.setName("btnDataAbsensi"); // NOI18N
         btnDataAbsensi.setPreferredSize(new java.awt.Dimension(200, 90));
@@ -183,31 +183,18 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         });
         FormMenu.add(btnRegAbsensi);
 
-        btnRegAbsensiKhusus.setForeground(new java.awt.Color(0, 0, 0));
-        btnRegAbsensiKhusus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_Male-User-Warning_49595.png"))); // NOI18N
-        btnRegAbsensiKhusus.setText("<html><div style=\"text-align: center;\">Registrasi Absensi<br>Terjadwal</div></html>");
-        btnRegAbsensiKhusus.setIconTextGap(0);
-        btnRegAbsensiKhusus.setName("btnRegAbsensiKhusus"); // NOI18N
-        btnRegAbsensiKhusus.setPreferredSize(new java.awt.Dimension(200, 105));
-        btnRegAbsensiKhusus.addActionListener(new java.awt.event.ActionListener() {
+        btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
+        btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/receptionist.png"))); // NOI18N
+        btnPetugas.setText("Petugas");
+        btnPetugas.setIconTextGap(0);
+        btnPetugas.setName("btnPetugas"); // NOI18N
+        btnPetugas.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPetugas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegAbsensiKhususActionPerformed(evt);
+                btnPetugasActionPerformed(evt);
             }
         });
-        FormMenu.add(btnRegAbsensiKhusus);
-
-        btnPegawai.setForeground(new java.awt.Color(0, 0, 0));
-        btnPegawai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/receptionist.png"))); // NOI18N
-        btnPegawai.setText("Petugas");
-        btnPegawai.setIconTextGap(0);
-        btnPegawai.setName("btnPegawai"); // NOI18N
-        btnPegawai.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnPegawai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPegawaiActionPerformed(evt);
-            }
-        });
-        FormMenu.add(btnPegawai);
+        FormMenu.add(btnPetugas);
 
         btnDokter.setForeground(new java.awt.Color(0, 0, 0));
         btnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/doctor2.png"))); // NOI18N
@@ -274,6 +261,19 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         });
         FormMenu.add(btnPenggajian);
 
+        btnPengaturanJamKerja.setForeground(new java.awt.Color(0, 0, 0));
+        btnPengaturanJamKerja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360485865_schedule.png"))); // NOI18N
+        btnPengaturanJamKerja.setText("Pengaturan Jam Kerja");
+        btnPengaturanJamKerja.setIconTextGap(0);
+        btnPengaturanJamKerja.setName("btnPengaturanJamKerja"); // NOI18N
+        btnPengaturanJamKerja.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPengaturanJamKerja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPengaturanJamKerjaActionPerformed(evt);
+            }
+        });
+        FormMenu.add(btnPengaturanJamKerja);
+
         scrollMenu.setViewportView(FormMenu);
 
         internalFrame1.add(scrollMenu, java.awt.BorderLayout.CENTER);
@@ -317,7 +317,7 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TCariKeyPressed
 
-    private void btnPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPegawaiActionPerformed
+    private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugasActionPerformed
         try {
             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             DlgPetugas petugas = new DlgPetugas(formUtama, false);
@@ -326,11 +326,11 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
             formUtama.tampilkanDialogDiPanelUtama(petugas);
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnPegawai.getText() + ".\n" + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnPetugas.getText() + ".\n" + e.getMessage());
         } finally {
             setCursor(Cursor.getDefaultCursor());
         }
-    }//GEN-LAST:event_btnPegawaiActionPerformed
+    }//GEN-LAST:event_btnPetugasActionPerformed
 
     private void btnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterActionPerformed
         try {
@@ -444,19 +444,21 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnDataAbsensiActionPerformed
 
-    private void btnRegAbsensiKhususActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegAbsensiKhususActionPerformed
+    private void btnPengaturanJamKerjaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengaturanJamKerjaActionPerformed
         try {
             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            DlgRegAbsensiKhusus reg = new DlgRegAbsensiKhusus(formUtama, false);
-            reg.awalData();
-            formUtama.tampilkanDialogDiPanelUtama(reg);
+            DlgPengaturanJamKerja aplikasi = new DlgPengaturanJamKerja(formUtama, false);
+            aplikasi.emptTeks();
+            aplikasi.isCek();
+            aplikasi.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(aplikasi);
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnRegAbsensiKhusus.getText() + ".\n" + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnPengaturanJamKerja.getText() + ".\n" + e.getMessage());
         } finally {
             setCursor(Cursor.getDefaultCursor());
         }
-    }//GEN-LAST:event_btnRegAbsensiKhususActionPerformed
+    }//GEN-LAST:event_btnPengaturanJamKerjaActionPerformed
 
     /**
     * @param args the command line arguments
@@ -472,10 +474,10 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
     private widget.ButtonBig btnDepartemen;
     private widget.ButtonBig btnDokter;
     private widget.ButtonBig btnMasterJabatanKomite;
-    private widget.ButtonBig btnPegawai;
+    private widget.ButtonBig btnPengaturanJamKerja;
     private widget.ButtonBig btnPenggajian;
+    private widget.ButtonBig btnPetugas;
     private widget.ButtonBig btnRegAbsensi;
-    private widget.ButtonBig btnRegAbsensiKhusus;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.Label jLabel3;
@@ -496,13 +498,13 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
             jmlmenu++;
         }
         
-        if (akses.getpetugas() && btnRegAbsensiKhusus.getText().toLowerCase().trim().contains(cari)) {
-            FormMenu.add(btnRegAbsensiKhusus);
+        if (akses.getpetugas() && btnPetugas.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(btnPetugas);
             jmlmenu++;
         }
         
-        if (akses.getpetugas() && btnPegawai.getText().toLowerCase().trim().contains(cari)) {
-            FormMenu.add(btnPegawai);
+        if (akses.getpetugas() && btnPengaturanJamKerja.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(btnPengaturanJamKerja);
             jmlmenu++;
         }
         
@@ -574,12 +576,12 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         }
         
         if (akses.getpetugas() == true) {
-            FormMenu.add(btnRegAbsensiKhusus);
+            FormMenu.add(btnPetugas);
             jmlmenu++;
         }
-
+        
         if (akses.getpetugas() == true) {
-            FormMenu.add(btnPegawai);
+            FormMenu.add(btnPengaturanJamKerja);
             jmlmenu++;
         }
 

@@ -16,6 +16,7 @@ import laporan.DlgICDOncologyMorphology;
 import laporan.DlgICDOncologyTopography;
 import rekammedis.DlgAssesmenGiziUlang;
 import rekammedis.DlgCPPT;
+import rekammedis.DlgCatatanDiagnosa;
 import rekammedis.DlgCatatanTindakanKeperawatan;
 import rekammedis.DlgHistoriIPAddressPetugasERM;
 import rekammedis.DlgMasterMaterialOperasi;
@@ -239,6 +240,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnAsesmenPasienTerminal = new widget.ButtonBig();
         BtnFormulirSiteMarkingOdon = new widget.ButtonBig();
         BtnDataPelayananRS = new widget.ButtonBig();
+        BtnCatatanDiagnosa = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1518,6 +1520,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnDataPelayananRS);
+
+        BtnCatatanDiagnosa.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCatatanDiagnosa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_Address Book_32590.png"))); // NOI18N
+        BtnCatatanDiagnosa.setText("Catatan Diagnosa");
+        BtnCatatanDiagnosa.setIconTextGap(0);
+        BtnCatatanDiagnosa.setName("BtnCatatanDiagnosa"); // NOI18N
+        BtnCatatanDiagnosa.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnCatatanDiagnosa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCatatanDiagnosaActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnCatatanDiagnosa);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -3041,6 +3056,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnDataPelayananRSActionPerformed
 
+    private void BtnCatatanDiagnosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCatatanDiagnosaActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgCatatanDiagnosa form = new DlgCatatanDiagnosa(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnCatatanDiagnosa.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnCatatanDiagnosaActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -3049,6 +3080,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnAsesmenMedikKebidanan;
     private widget.ButtonBig BtnAsesmenPasienTerminal;
     private widget.ButtonBig BtnAsesmenPraSedasiKonsepIAR;
+    private widget.ButtonBig BtnCatatanDiagnosa;
     private widget.ButtonBig BtnCatatanRuangPemulihan;
     private widget.ButtonBig BtnCatatanSedasiAnestesi;
     private widget.ButtonBig BtnDataCancer;
@@ -3611,6 +3643,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             FormMenu.add(BtnDataPelayananRS);
             jmlmenu++;
         }
+        
+        if (akses.getbpjs_sep() && BtnCatatanDiagnosa.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnCatatanDiagnosa);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -4098,6 +4135,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         
         if (akses.getresep_dokter()== true) {
             FormMenu.add(BtnInstruksiDokterDNR);
+            jmlmenu++;
+        }
+        
+        if (akses.getbpjs_sep()== true) {
+            FormMenu.add(BtnCatatanDiagnosa);
             jmlmenu++;
         }
 

@@ -2577,19 +2577,13 @@ public class DlgCatatanTindakanKeperawatanIGD extends javax.swing.JDialog {
                 //jika tidak diconteng
                 if (x == 0) {
                     if (tbCatatan.getSelectedRow() > -1) {
-                        if (nip.equals(akses.getkode()) || akses.getadmin() == true) {
-                            if (Sequel.queryu2tf("delete from catatan_tindakan_keperawatan_igd where waktu_simpan=?", 1, new String[]{
-                                tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 12).toString()
-                            }) == true) {
-                                tampil();
-                                emptTeks();
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
-                            }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Maaf, data ini hanya bisa dihapus oleh " + TnmPetugas.getText() + " ...!");
+                        if (Sequel.queryu2tf("delete from catatan_tindakan_keperawatan_igd where waktu_simpan=?", 1, new String[]{
+                            tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 12).toString()
+                        }) == true) {
                             tampil();
                             emptTeks();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu atau conteng dulu utk. menghapus data..!!");
@@ -2599,13 +2593,7 @@ public class DlgCatatanTindakanKeperawatanIGD extends javax.swing.JDialog {
                     try {
                         for (i = 0; i < tbCatatan.getRowCount(); i++) {
                             if (tbCatatan.getValueAt(i, 0).toString().equals("true")) {
-                                if (tbCatatan.getValueAt(i, 11).toString().equals(akses.getkode()) || akses.getadmin() == true) {
-                                    Sequel.meghapus("catatan_tindakan_keperawatan_igd", "waktu_simpan",
-                                            tbCatatan.getValueAt(i, 12).toString());
-                                } else {
-                                    tampil();
-                                    emptTeks();
-                                }
+                                Sequel.meghapus("catatan_tindakan_keperawatan_igd", "waktu_simpan", tbCatatan.getValueAt(i, 12).toString());
                             }
                         }
                         tampil();
@@ -2614,6 +2602,9 @@ public class DlgCatatanTindakanKeperawatanIGD extends javax.swing.JDialog {
                         System.out.println("Notifikasi : " + e);
                     }
                 }
+            } else {
+                tampil();
+                emptTeks();
             }
         }
 }//GEN-LAST:event_BtnHapusActionPerformed
@@ -2627,33 +2618,22 @@ public class DlgCatatanTindakanKeperawatanIGD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnHapusKeyPressed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
-        if (TNoRW.getText().trim().equals("")) {
-            Valid.textKosong(TNoRW, "Pasien");
-        } else if (wktSimpan.equals("")) {
+        if (tbCatatan.getSelectedRow() > -1) {
+            Sequel.mengedit("catatan_tindakan_keperawatan_igd", "waktu_simpan=?", "sift=?, tanggal=?, jam_tindakan=?, "
+                    + "nm_tindakan=?, nip_petugas=?", 6, new String[]{
+                        cmbSift.getSelectedItem().toString(), Valid.SetTgl(Ttgl.getSelectedItem() + ""),
+                        cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                        TnmTindakan.getText(), nip,
+                        wktSimpan});
+
+//            Sequel.simpanReplaceInto("master_catatan_tindakan_keperawatan", "'0','" + TnmTindakan.getText() + "'", "Data Master Catatan");
+            Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Catatan Tindakan Keperawatan IGD", "Ganti");
+            tampil();
+            emptTeks();
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!!");
             tbCatatan.requestFocus();
-        } else {
-            if (tbCatatan.getSelectedRow() > -1) {
-                if (nip.equals(akses.getkode()) || akses.getadmin() == true) {
-                    Sequel.mengedit("catatan_tindakan_keperawatan_igd", "waktu_simpan=?", "sift=?, tanggal=?, jam_tindakan=?, "
-                            + "nm_tindakan=?, nip_petugas=?", 6, new String[]{
-                                cmbSift.getSelectedItem().toString(), Valid.SetTgl(Ttgl.getSelectedItem() + ""),
-                                cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                                TnmTindakan.getText(), nip,
-                                wktSimpan});
-                    
-//                    Sequel.simpanReplaceInto("master_catatan_tindakan_keperawatan", "'0','" + TnmTindakan.getText() + "'", "Data Master Catatan");
-                    Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Catatan Tindakan Keperawatan IGD", "Ganti");                    
-                } else {
-                    JOptionPane.showMessageDialog(null, "Maaf, data ini hanya bisa diperbaiki oleh " + TnmPetugas.getText() + " ...!");
-                    tampil();
-                    emptTeks();
-                }
-                
-                tampil();
-                emptTeks();
-            }
-        }
+        }     
 }//GEN-LAST:event_BtnEditActionPerformed
 
     private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEditKeyPressed

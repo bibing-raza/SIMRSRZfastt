@@ -1431,16 +1431,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }
     
-    public void isCek(){
+    public void isCek() {
         BtnSimpan.setEnabled(akses.getpetugas());
         BtnHapus.setEnabled(akses.getpetugas());
         BtnEdit.setEnabled(akses.getpetugas());
         BtnPrint.setEnabled(akses.getpetugas());
-        if(akses.getkode().equals("Admin Utama")){
+        if (akses.getadmin() == true) {
             MnRestore.setEnabled(true);
-        }else{
+        } else {
             MnRestore.setEnabled(false);
-        } 
+        }
     }
     
     public void awalData() {
