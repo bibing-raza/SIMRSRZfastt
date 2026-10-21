@@ -11,7 +11,7 @@
  Target Server Version : 100131 (10.1.31-MariaDB)
  File Encoding         : 65001
 
- Date: 19/10/2026 15:13:37
+ Date: 21/10/2026 17:54:10
 */
 
 SET NAMES utf8mb4;
@@ -300899,9 +300899,21 @@ CREATE TABLE `ranap_aps`  (
   `no_rawat` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `kd_aps` int NOT NULL,
   `keterangan` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `nm_berttd` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `alamat` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `selaku` enum('-','diri sendiri','istri','suami','ayah','ibu','anak','saudara kandung') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tgl_surat` date NULL DEFAULT NULL,
+  `nm_saksi` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `nip_petugas` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `id_file_nm_berttd` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `id_file_nm_saksi` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`no_rawat`) USING BTREE,
   INDEX `kd_aps`(`kd_aps` ASC) USING BTREE,
-  CONSTRAINT `ranap_aps_ibfk_1` FOREIGN KEY (`kd_aps`) REFERENCES `master_aps` (`kd_aps`) ON DELETE RESTRICT ON UPDATE CASCADE
+  INDEX `no_rawat`(`no_rawat` ASC) USING BTREE,
+  INDEX `nip_petugas`(`nip_petugas` ASC) USING BTREE,
+  CONSTRAINT `ranap_aps_ibfk_1` FOREIGN KEY (`kd_aps`) REFERENCES `master_aps` (`kd_aps`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `ranap_aps_ibfk_2` FOREIGN KEY (`no_rawat`) REFERENCES `reg_periksa` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ranap_aps_ibfk_3` FOREIGN KEY (`nip_petugas`) REFERENCES `pegawai` (`nik`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------

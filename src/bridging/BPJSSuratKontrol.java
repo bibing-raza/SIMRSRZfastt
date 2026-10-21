@@ -39,7 +39,6 @@ import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -1143,6 +1142,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
         ChkInput.setSelected(true);
         isForm(); 
 }//GEN-LAST:event_BtnBatalActionPerformed
@@ -1885,12 +1885,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         BtnSimpan.setEnabled(akses.getRencanaKontrolJKN());
         BtnPrint.setEnabled(akses.getRencanaKontrolJKN());
         BtnEdit.setEnabled(akses.getRencanaKontrolJKN());
-        
-        if (akses.getkode().equals("Admin Utama") || akses.getHapusSEP() == true) {
-            BtnHapus.setEnabled(true);
-        } else {
-            BtnHapus.setEnabled(false);
-        }
+        BtnHapus.setEnabled(akses.getadmin());
     }
 
     public JTable getTable(){

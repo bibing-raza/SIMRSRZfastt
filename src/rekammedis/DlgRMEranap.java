@@ -28,6 +28,7 @@ import javax.swing.table.TableColumn;
 import permintaan.DlgSuratJawabanKonsul;
 import permintaan.DlgSuratKonsulUnit;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.DlgRanapPulangAPS;
 import simrskhanza.DlgRingkasanPulangRanap;
 
 /**
@@ -253,6 +254,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPerencanaanPulang = new widget.ButtonBig();
         BtnKonsul = new widget.ButtonBig();
         BtnJawabKonsul = new widget.ButtonBig();
+        btnRanapAps = new widget.ButtonBig();
         BtnPersetujuanTindakan = new widget.ButtonBig();
         BtnPantauHarianPasien = new widget.ButtonBig();
         BtnGrafikPantauHarian = new widget.ButtonBig();
@@ -334,6 +336,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnCloseIn10.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn10.setMnemonic('U');
         BtnCloseIn10.setText("Tutup");
         BtnCloseIn10.setToolTipText("Alt+U");
         BtnCloseIn10.setName("BtnCloseIn10"); // NOI18N
@@ -347,6 +350,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan6.setMnemonic('S');
         BtnSimpan6.setText("Simpan");
         BtnSimpan6.setToolTipText("Alt+S");
         BtnSimpan6.setName("BtnSimpan6"); // NOI18N
@@ -378,6 +382,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         btnDPJP.setForeground(new java.awt.Color(0, 0, 0));
         btnDPJP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnDPJP.setMnemonic('7');
         btnDPJP.setToolTipText("ALt+7");
         btnDPJP.setName("btnDPJP"); // NOI18N
         btnDPJP.addActionListener(new java.awt.event.ActionListener() {
@@ -1049,6 +1054,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         FormMenuRanap.add(BtnJawabKonsul);
 
+        btnRanapAps.setForeground(new java.awt.Color(0, 0, 0));
+        btnRanapAps.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/logout.png"))); // NOI18N
+        btnRanapAps.setText("<html><div style=\"text-align: center;\">Pasien Pulang<br>Dengan Status APS</div></html>");
+        btnRanapAps.setIconTextGap(0);
+        btnRanapAps.setName("btnRanapAps"); // NOI18N
+        btnRanapAps.setPreferredSize(new java.awt.Dimension(200, 105));
+        btnRanapAps.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRanapApsActionPerformed(evt);
+            }
+        });
+        FormMenuRanap.add(btnRanapAps);
+
         BtnPersetujuanTindakan.setForeground(new java.awt.Color(0, 0, 0));
         BtnPersetujuanTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_todo_list_add_17451.png"))); // NOI18N
         BtnPersetujuanTindakan.setText("<html><div style=\"text-align: center;\">Persetujuan/Penolakan/<br>Penundaan Tindakan</div></html>");
@@ -1235,6 +1253,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         ChkInput.setBorder(null);
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
         ChkInput.setText("Pencarian");
         ChkInput.setToolTipText("Alt+C");
@@ -1259,6 +1278,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnRefres.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres.setMnemonic('R');
         BtnRefres.setText("Refresh Rekam Medis");
         BtnRefres.setToolTipText("Alt+R");
         BtnRefres.setName("BtnRefres"); // NOI18N
@@ -1272,6 +1292,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1434,6 +1455,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         ChkInput1.setBorder(null);
         ChkInput1.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput1.setMnemonic('C');
         ChkInput1.setSelected(true);
         ChkInput1.setText("Pencarian");
         ChkInput1.setToolTipText("Alt+C");
@@ -1458,6 +1480,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnRefres1.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres1.setMnemonic('R');
         BtnRefres1.setText("Refresh Rekam Medis");
         BtnRefres1.setToolTipText("Alt+R");
         BtnRefres1.setName("BtnRefres1"); // NOI18N
@@ -1471,6 +1494,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -1779,6 +1803,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnRefres2.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres2.setMnemonic('R');
         BtnRefres2.setText("Refresh Rekam Medis");
         BtnRefres2.setToolTipText("Alt+R");
         BtnRefres2.setName("BtnRefres2"); // NOI18N
@@ -1792,6 +1817,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar2.setMnemonic('K');
         BtnKeluar2.setText("Keluar");
         BtnKeluar2.setToolTipText("Alt+K");
         BtnKeluar2.setName("BtnKeluar2"); // NOI18N
@@ -3279,6 +3305,22 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnFormulirSiteMarkingOdonActionPerformed
 
+    private void btnRanapApsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRanapApsActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            DlgRanapPulangAPS form = new DlgRanapPulangAPS(null, false);
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_btnRanapApsActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3401,6 +3443,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.Button btnClear;
     private widget.Button btnClear1;
     private widget.Button btnDPJP;
+    private widget.ButtonBig btnRanapAps;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame10;
     private widget.InternalFrame internalFrame11;
@@ -3495,6 +3538,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnTransferTindakanIBS.setEnabled(akses.getcppt());
         BtnSuratPernyataanDNR.setEnabled(akses.getcppt());
         BtnInstruksiDokterDNR.setEnabled(akses.getresep_dokter());
+        btnRanapAps.setEnabled(akses.getkamar_inap());        
         BtnMaskepNyeriAkut.setEnabled(akses.getcppt());
         BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
         BtnMaskepResikoHipotermia.setEnabled(akses.getcppt());
@@ -3955,6 +3999,11 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         if (akses.getpermintaan_lab() && BtnJawabKonsul.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnJawabKonsul);
+            jmlmenu++;
+        }
+        
+        if (akses.getkamar_inap() && btnRanapAps.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(btnRanapAps);
             jmlmenu++;
         }
 

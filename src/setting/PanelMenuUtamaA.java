@@ -31,6 +31,7 @@ import simrskhanza.DlgKamarInap;
 import simrskhanza.DlgKasirRalan;
 import simrskhanza.DlgPemberianDiet;
 import simrskhanza.DlgPerubahanDpjp;
+import simrskhanza.DlgRanapPulangAPS;
 import simrskhanza.DlgRawatInap;
 import simrskhanza.DlgRawatJalan;
 import simrskhanza.DlgReg;
@@ -105,6 +106,7 @@ public class PanelMenuUtamaA extends javax.swing.JDialog {
         btnPeriksaRadiologi = new widget.ButtonBig();
         btnKasir = new widget.ButtonBig();
         btnDeposit = new widget.ButtonBig();
+        btnRanapAps = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -155,6 +157,7 @@ public class PanelMenuUtamaA extends javax.swing.JDialog {
         ChkInput.setBorder(null);
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
         ChkInput.setText("Pencarian");
         ChkInput.setToolTipText("Alt+C");
@@ -499,6 +502,19 @@ public class PanelMenuUtamaA extends javax.swing.JDialog {
             }
         });
         FormMenu.add(btnDeposit);
+
+        btnRanapAps.setForeground(new java.awt.Color(0, 0, 0));
+        btnRanapAps.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/logout.png"))); // NOI18N
+        btnRanapAps.setText("<html><div style=\"text-align: center;\">Pasien Rawat Inap Pulang<br>Dengan Status APS</div></html>");
+        btnRanapAps.setIconTextGap(0);
+        btnRanapAps.setName("btnRanapAps"); // NOI18N
+        btnRanapAps.setPreferredSize(new java.awt.Dimension(200, 105));
+        btnRanapAps.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRanapApsActionPerformed(evt);
+            }
+        });
+        FormMenu.add(btnRanapAps);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -938,6 +954,22 @@ public class PanelMenuUtamaA extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TCariKeyPressed
 
+    private void btnRanapApsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRanapApsActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgRanapPulangAPS form = new DlgRanapPulangAPS(formUtama, false);
+            form.isCek();
+            form.awalData();
+            form.emptTeks();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnRanapAps.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_btnRanapApsActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -965,6 +997,7 @@ public class PanelMenuUtamaA extends javax.swing.JDialog {
     private widget.ButtonBig btnPermintaanRadiologi;
     private widget.ButtonBig btnRalan;
     private widget.ButtonBig btnRanap;
+    private widget.ButtonBig btnRanapAps;
     private widget.ButtonBig btnRegistrasi;
     private widget.ButtonBig btnResepObat;
     private widget.ButtonBig btnResepPulang;
@@ -1124,6 +1157,12 @@ public class PanelMenuUtamaA extends javax.swing.JDialog {
             FormMenu.add(btnPeriksaRadiologi);
             jmlmenu++;
         }
+        
+        if (akses.getkamar_inap()
+                && btnRanapAps.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(btnRanapAps);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -1248,6 +1287,10 @@ public class PanelMenuUtamaA extends javax.swing.JDialog {
 
         if (akses.getdeposit_pasien()) {
             FormMenu.add(btnDeposit);
+        }
+        
+        if (akses.getkamar_inap()) {
+            FormMenu.add(btnRanapAps);
         }
 
         aturLayoutMenu();

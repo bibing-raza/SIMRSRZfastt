@@ -184,8 +184,9 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         tabModekasir = new DefaultTableModel(null, new String[]{
             "No.Rawat", "Kd.Dokter", "Dokter Dituju", "Nomer RM", "Nama Pasien", "Status", "Poliklinik/Inst. (Warna Triase)", "Jenis Bayar", "Jns. Kunjungan",
-            "Reg. Online", "Tanggal", "Jam", "No. Reg.", "Status Klaim (RM IGD)", "No. Telpon/HP", "Alamat Pasien", "cek_asesmen_medik_igd", 
-            "cek_penanganan_dokter_poli", "cekantrian", "tglreg", "kdpoli", "triase_igd", "Level Triase", "triase_ponek", "warna pediatrik", "warna_konsul"
+            "Reg. Online", "Tanggal", "Jam", "No. Reg.", "Status Klaim (RM IGD)", "No. Telpon/HP", "Tgl. Renc. Kontrol", "cek_asesmen_medik_igd", 
+            "cek_penanganan_dokter_poli", "cekantrian", "tglreg", "kdpoli", "triase_igd", "Level Triase", "triase_ponek", "warna pediatrik", "warna_konsul",
+            "Alamat Pasien"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -197,7 +198,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         tbKasirRalan.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbKasirRalan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 26; i++) {
+        for (i = 0; i < 27; i++) {
             TableColumn column = tbKasirRalan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -232,7 +233,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             } else if (i == 14) {
                 column.setPreferredWidth(90);
             } else if (i == 15) {
-                column.setPreferredWidth(350);
+                column.setPreferredWidth(105);
             } else if (i == 16) {                
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -262,6 +263,8 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             } else if (i == 25) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 26) {
+                column.setPreferredWidth(350);
             }
         }
 //        tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTable());
@@ -496,7 +499,23 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             });
         }
 
+        //kolom ke 12 no. reg tebal/bold
         tbKasirRalan.getColumnModel().getColumn(12).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                    boolean isSelected, boolean hasFocus, int row, int column) {
+
+                JLabel lbl = (JLabel) super.getTableCellRendererComponent(
+                        table, value, isSelected, hasFocus, row, column);
+
+                lbl.setFont(lbl.getFont().deriveFont(Font.BOLD));
+                lbl.setHorizontalAlignment(SwingConstants.CENTER);
+                return lbl;
+            }
+        });
+        
+        //kolom ke 15 tgl. rencana kontrol tebal/bold
+        tbKasirRalan.getColumnModel().getColumn(15).setCellRenderer(new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
                     boolean isSelected, boolean hasFocus, int row, int column) {
@@ -11899,7 +11918,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("ifnull(pam.no_rawat,'') cekAwalMedisIGD, ifnull(pr.no_rawat,'') cekPemeriksaanRalan, if(ap.no_rawat is not null,'1','0') cekAntrianPrio, ");
             sb.append("CASE WHEN tp.no_rawat IS NOT NULL THEN CASE WHEN tp.kesimpulan_level1='ya' or tp.kesimpulan_level2='ya' THEN 'Merah' ");
             sb.append("WHEN tp.kesimpulan_level3='ya' or tp.kesimpulan_level4='ya' THEN 'Kuning' WHEN tp.kesimpulan_level5='ya' THEN 'Hijau' ELSE '-' END ELSE '-' END warnaPediatrik, ");
-            sb.append("if(c.no_rawat is not null,'ok','-') cekCpptRalan, if(amk.no_rawat is not null,'ok','-') cekAMkebidanan, if(rk.no_rawat is not null,'Biru','-') regKonsul FROM reg_periksa rp ");
+            sb.append("if(c.no_rawat is not null,'ok','-') cekCpptRalan, if(amk.no_rawat is not null,'ok','-') cekAMkebidanan, if(rk.no_rawat is not null,'Biru','-') regKonsul, ");
+            sb.append("if(bsk.no_rawat is not null,date_format(bsk.tgl_rencana,'%d-%m-%Y'),'-') tglSurkon FROM reg_periksa rp ");
             sb.append("JOIN dokter d ON rp.kd_dokter = d.kd_dokter ");
             sb.append("JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis ");
             sb.append("JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli ");
@@ -11920,6 +11940,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("left join pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat ");
             sb.append("left join cppt c on c.no_rawat=rp.no_rawat and c.status='Ralan' ");            
             sb.append("left join asesmen_medik_kebidanan amk on amk.no_rawat=rp.no_rawat ");
+            sb.append("left join bridging_surat_kontrol_bpjs bsk on bsk.no_rawat=rp.no_rawat ");
             sb.append("left join reg_konsul_internal rk on rk.no_rawat=rp.no_rawat and rk.jalur_registrasi='tpprj' where ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
@@ -12055,7 +12076,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("no_reg"),
                         rskasir.getString("stts_klaim") + " " + rskasir.getString("aksesRM") + " " + cpptSip + " " + asmedKeb,
                         rskasir.getString("no_tlp"),
-                        rskasir.getString("almt_pasien"),
+                        rskasir.getString("tglSurkon"),                        
                         rskasir.getString("cekAwalMedisIGD"),
                         rskasir.getString("cekPemeriksaanRalan"),
                         rskasir.getString("cekAntrianPrio"),
@@ -12065,7 +12086,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("levelTriasePediatrik"),
                         rskasir.getString("triasePonek"),
                         rskasir.getString("warnaPediatrik"),
-                        rskasir.getString("regKonsul")
+                        rskasir.getString("regKonsul"),
+                        rskasir.getString("almt_pasien")
                     });
                 }
             } catch (Exception e) {
