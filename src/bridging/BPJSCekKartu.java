@@ -23,7 +23,6 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -33,18 +32,14 @@ import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import keuangan.DlgKamar;
+import javax.swing.table.DefaultTableCellRenderer;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.web.client.RestTemplate;
 import simrskhanza.DlgPasien;
 
 /**
@@ -57,7 +52,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Connection koneksi = koneksiDB.condb();
-    private DlgPasien pasien = new DlgPasien(null, false);
+    private DlgPasien pasien;
     private BPJSCekNoKartu cekViaBPJSKartu = new BPJSCekNoKartu();
     private BPJSApi api = new BPJSApi();
     private String utc = "", URL = "", user = "";
@@ -71,6 +66,9 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
     public BPJSCekKartu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         this.setLocation(10,2);
         setSize(628,674);
@@ -95,9 +93,9 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         tbPeserta.setDefaultRenderer(Object.class, new WarnaTable());
         
         //tabel riwayat rujukan faskes 1 banyak
-        tabMode1=new DefaultTableModel(null,new String[]{"No.","No. Rujukan","Tgl. Rujukan",
-                "kode_ppk","Nama PPK Rujukan","Poli Rujukan","kode_icd","Diagnosa","Keluhan","kode_poli",
-                "kode_ply","Jns. Pelayn."}) {
+        tabMode1 = new DefaultTableModel(null, new String[]{"No.", "No. Rujukan", "Tgl. Rujukan", "Tgl. Habis Rujukan",
+            "kode_ppk", "Nama PPK Rujukan", "Poli Rujukan", "kode_icd", "Diagnosa", "Keluhan", "kode_poli",
+            "kode_ply", "Jns. Pelayn."}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -108,7 +106,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         tbFaskes3.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbFaskes3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 13; i++) {
             TableColumn column = tbFaskes3.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(35);
@@ -116,40 +114,43 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                 column.setPreferredWidth(125);
             } else if (i == 2) {
                 column.setPreferredWidth(90);
-            } else if (i == 3) {//sembunyi
-                //column.setPreferredWidth(200);
+            } else if (i == 3) {
+                column.setPreferredWidth(110);
+            } else if (i == 4) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 4) {
-                column.setPreferredWidth(200);
             } else if (i == 5) {
                 column.setPreferredWidth(200);
-            } else if (i == 6) {//sembunyi
-                //column.setPreferredWidth(200);
+            } else if (i == 6) {
+                column.setPreferredWidth(200);
+            } else if (i == 7) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 7) {
-                column.setPreferredWidth(200);
             } else if (i == 8) {
                 column.setPreferredWidth(200);
-            } else if (i == 9) {//sembunyi
-                //column.setPreferredWidth(200);
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 10) {//sembunyi
-                //column.setPreferredWidth(200);
+            } else if (i == 9) {
+                column.setPreferredWidth(200);
+            } else if (i == 10) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 11) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 12) {
                 column.setPreferredWidth(150);
             }
         }
         tbFaskes3.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbFaskes3.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbFaskes3.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbFaskes3.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbFaskes3.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         
         //tabel riwayat rujukan faskes 2 banyak
-        tabMode2=new DefaultTableModel(null,new String[]{"No.","No. Rujukan","Tgl. Rujukan",
-                "kode_ppk","Nama PPK Rujukan","Poli Rujukan","kode_icd","Diagnosa","Keluhan","kode_poli",
-                "kode_ply","Jns. Pelayn."}) {
+        tabMode2 = new DefaultTableModel(null, new String[]{"No.", "No. Rujukan", "Tgl. Rujukan", "Tgl. Habis Rujukan",
+            "kode_ppk", "Nama PPK Rujukan", "Poli Rujukan", "kode_icd", "Diagnosa", "Keluhan", "kode_poli",
+            "kode_ply", "Jns. Pelayn."}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -160,7 +161,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         tbFaskes4.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbFaskes4.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 13; i++) {
             TableColumn column = tbFaskes4.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(35);
@@ -168,74 +169,33 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                 column.setPreferredWidth(125);
             } else if (i == 2) {
                 column.setPreferredWidth(90);
-            } else if (i == 3) {//sembunyi
-                //column.setPreferredWidth(200);
+            } else if (i == 3) {
+                column.setPreferredWidth(110);
+            } else if (i == 4) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 4) {
-                column.setPreferredWidth(200);
             } else if (i == 5) {
                 column.setPreferredWidth(200);
-            } else if (i == 6) {//sembunyi
-                //column.setPreferredWidth(200);
+            } else if (i == 6) {
+                column.setPreferredWidth(200);
+            } else if (i == 7) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 7) {
-                column.setPreferredWidth(200);
             } else if (i == 8) {
                 column.setPreferredWidth(200);
-            } else if (i == 9) {//sembunyi
-                //column.setPreferredWidth(200);
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 10) {//sembunyi
-                //column.setPreferredWidth(200);
+            } else if (i == 9) {
+                column.setPreferredWidth(200);
+            } else if (i == 10) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 11) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 12) {
                 column.setPreferredWidth(150);
             }
         }
         tbFaskes4.setDefaultRenderer(Object.class, new WarnaTable());        
-        
-        pasien.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (pasien.getTable().getSelectedRow() != -1) {
-                    if (pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 21).toString().equals("")) {
-                        JOptionPane.showMessageDialog(rootPane, "Maaf pasien tidak punya Nomor Kartu...!");
-                    } else {
-                        NoKartu.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 21).toString());
-                        tampil(NoKartu.getText());
-                    }
-                }
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
-        
-        pasien.getTable().addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode()==KeyEvent.VK_SPACE){
-                    pasien.dispose();
-                }
-            }
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
         
         NoKartu.setDocument(new batasInput((int)80).getKata(NoKartu));
         
@@ -251,8 +211,6 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
             System.out.println("E : "+e);
         }
     }
-    
-    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -290,7 +248,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pencarian Peserta BPJS Berdasarkan Nomor Kepesertaan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pencarian Peserta BPJS Berdasarkan Nomor Kepesertaan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -384,7 +342,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(816, 102));
         jPanel1.setLayout(new java.awt.GridLayout(1, 2));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Data Peserta BPJS Berdasarkan Nomor Kartu ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Data Peserta BPJS Berdasarkan Nomor Kartu ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel4.setName("jPanel4"); // NOI18N
         jPanel4.setOpaque(false);
         jPanel4.setPreferredSize(new java.awt.Dimension(250, 102));
@@ -393,16 +351,15 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbPeserta.setAutoCreateRowSorter(true);
-        tbPeserta.setToolTipText("");
         tbPeserta.setName("tbPeserta"); // NOI18N
+        tbPeserta.getTableHeader().setReorderingAllowed(false);
         Scroll.setViewportView(tbPeserta);
 
         jPanel4.add(Scroll, java.awt.BorderLayout.CENTER);
 
         jPanel1.add(jPanel4);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Riwayat Rujukan Faskes ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Riwayat Rujukan Faskes ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(350, 102));
@@ -412,12 +369,13 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         panelGlass7.setPreferredSize(new java.awt.Dimension(44, 250));
         panelGlass7.setLayout(new java.awt.BorderLayout());
 
-        scrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Rujukan Faskes 1 Banyak ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        scrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Rujukan Faskes 1 Banyak ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         scrollPane3.setName("scrollPane3"); // NOI18N
         scrollPane3.setOpaque(true);
 
         tbFaskes3.setToolTipText("Klik data di tabel");
         tbFaskes3.setName("tbFaskes3"); // NOI18N
+        tbFaskes3.getTableHeader().setReorderingAllowed(false);
         scrollPane3.setViewportView(tbFaskes3);
 
         panelGlass7.add(scrollPane3, java.awt.BorderLayout.CENTER);
@@ -428,12 +386,13 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         panelGlass8.setPreferredSize(new java.awt.Dimension(44, 500));
         panelGlass8.setLayout(new java.awt.BorderLayout());
 
-        scrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Rujukan Faskes 2 Banyak ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        scrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Rujukan Faskes 2 Banyak ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         scrollPane4.setName("scrollPane4"); // NOI18N
         scrollPane4.setOpaque(true);
 
         tbFaskes4.setToolTipText("Klik data di tabel");
         tbFaskes4.setName("tbFaskes4"); // NOI18N
+        tbFaskes4.getTableHeader().setReorderingAllowed(false);
         scrollPane4.setViewportView(tbFaskes4);
 
         panelGlass8.add(scrollPane4, java.awt.BorderLayout.CENTER);
@@ -468,6 +427,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
     }//GEN-LAST:event_NoKartuKeyPressed
 
     private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasienActionPerformed
+        initPasien();
         pasien.emptTeks();
         pasien.isCek();
         pasien.TutupJendela();
@@ -485,7 +445,7 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
             Valid.tabelKosong(tabMode1);
             Valid.tabelKosong(tabMode2);
         } else {
-            tampil(NoKartu.getText());            
+            tampil(NoKartu.getText());
         }
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCariActionPerformed
@@ -660,9 +620,11 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
         }
     }  
     
-    public void SetNoKartu(String NoPeserta){
+    public void SetNoKartu(String NoPeserta) {
         NoKartu.setText(NoPeserta);
-        tampil(NoPeserta);
+        Valid.tabelKosong(tabMode);
+        Valid.tabelKosong(tabMode1);
+        Valid.tabelKosong(tabMode2);
     }
     
     public void tampilFaskes1BYK() {
@@ -692,10 +654,15 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                 if (response.path("rujukan").isArray()) {
                     i = 1;
                     for (JsonNode list : response.path("rujukan")) {
+                        //hitung tanggal ditambah 89 hari kedepan
+                        LocalDate tglRujukan = LocalDate.parse(list.path("tglKunjungan").asText());
+                        LocalDate habisBerlaku = tglRujukan.plusDays(89);
+
                         tabMode1.addRow(new Object[]{
                             i + ".",
                             list.path("noKunjungan").asText(),
-                            list.path("tglKunjungan").asText(),
+                            Sequel.cariIsi("select date_format('" + list.path("tglKunjungan").asText() + "','%d-%m-%Y')"),
+                            Sequel.cariIsi("select date_format('" + habisBerlaku.toString() + "','%d-%m-%Y')"),
                             list.path("provPerujuk").path("kode").asText(),
                             list.path("provPerujuk").path("nama").asText(),
                             list.path("poliRujukan").path("nama").asText(),
@@ -748,10 +715,15 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
                 if(response.path("rujukan").isArray()){
                     i=1;
                     for(JsonNode list:response.path("rujukan")){
+                        //hitung tanggal ditambah 89 hari kedepan
+                        LocalDate tglRujukan = LocalDate.parse(list.path("tglKunjungan").asText());
+                        LocalDate habisBerlaku = tglRujukan.plusDays(89);
+                        
                         tabMode2.addRow(new Object[]{
                             i+".",
                             list.path("noKunjungan").asText(),
-                            list.path("tglKunjungan").asText(),
+                            Sequel.cariIsi("select date_format('" + list.path("tglKunjungan").asText() + "','%d-%m-%Y')"),
+                            Sequel.cariIsi("select date_format('" + habisBerlaku.toString() + "','%d-%m-%Y')"),
                             list.path("provPerujuk").path("kode").asText(),
                             list.path("provPerujuk").path("nama").asText(),
                             list.path("poliRujukan").path("nama").asText(),
@@ -774,6 +746,67 @@ public final class BPJSCekKartu extends javax.swing.JDialog {
             if(ex.toString().contains("UnknownHostException")){
                 JOptionPane.showMessageDialog(rootPane,"Koneksi ke server BPJS terputus...!");
             }
+        }
+    }
+
+    private void initPasien() {
+        if (pasien == null) {
+            pasien = new DlgPasien(null, false);
+
+            pasien.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (pasien.getTable().getSelectedRow() != -1) {
+                        if (pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 21).toString().equals("")) {
+                            JOptionPane.showMessageDialog(rootPane, "Maaf pasien tidak punya Nomor Kartu...!");
+                        } else {
+                            NoKartu.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 21).toString());
+                            tampil(NoKartu.getText());
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+           
+            pasien.getTable().addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        pasien.dispose();
+                    }
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                }
+            });
         }
     }
 }

@@ -1122,6 +1122,9 @@ public class DlgRanapPulangAPS extends javax.swing.JDialog {
         if (akses.getadmin() == true) {
             usernya = "admin";
             pwdnya = "satu";
+        } else if (akses.getnamauser().contains("PETUGAS RUANG")) {
+            usernya = "admin_ranap";
+            pwdnya = "ranap";
         } else {
             if (Sequel.cariIsi("select user_id from petugas where nip='" + akses.getkode() + "'").equals(akses.getkode())) {
                 usernya = akses.getkode();
@@ -1760,6 +1763,9 @@ public class DlgRanapPulangAPS extends javax.swing.JDialog {
         if (akses.getadmin() == true) {
             usernya = "admin";
             pwdnya = "satu";
+        } else if (akses.getnamauser().contains("PETUGAS RUANG")) {
+            usernya = "admin_ranap";
+            pwdnya = "ranap";
         } else {
             if (Sequel.cariIsi("select user_id from petugas where nip='" + akses.getkode() + "'").equals(akses.getkode())) {
                 usernya = akses.getkode();

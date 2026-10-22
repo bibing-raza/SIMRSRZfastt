@@ -11,7 +11,7 @@
  Target Server Version : 100131 (10.1.31-MariaDB)
  File Encoding         : 65001
 
- Date: 21/10/2026 17:54:10
+ Date: 22/10/2026 15:48:55
 */
 
 SET NAMES utf8mb4;
@@ -4787,6 +4787,8 @@ CREATE TABLE `bridging_surat_kontrol_bpjs`  (
   PRIMARY KEY (`no_surat`) USING BTREE,
   INDEX `no_sep`(`no_sep` ASC) USING BTREE,
   INDEX `bridging_surat_kontrol_bpjs_ibfk_1`(`no_rawat` ASC) USING BTREE,
+  INDEX `tgl_surat`(`tgl_surat` ASC) USING BTREE,
+  INDEX `tgl_rencana`(`tgl_rencana` ASC) USING BTREE,
   CONSTRAINT `bridging_surat_kontrol_bpjs_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `bridging_sep` (`no_rawat`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
@@ -7983,6 +7985,23 @@ CREATE TABLE `catatan_sedasi_anestesi`  (
 
 -- ----------------------------
 -- Records of catatan_sedasi_anestesi
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for catatan_surat_kontrol
+-- ----------------------------
+DROP TABLE IF EXISTS `catatan_surat_kontrol`;
+CREATE TABLE `catatan_surat_kontrol`  (
+  `no_rawat` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `kalimat` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `waktu_simpan` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`waktu_simpan`) USING BTREE,
+  INDEX `no_rawat`(`no_rawat` ASC) USING BTREE,
+  CONSTRAINT `catatan_surat_kontrol_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `reg_periksa` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of catatan_surat_kontrol
 -- ----------------------------
 
 -- ----------------------------

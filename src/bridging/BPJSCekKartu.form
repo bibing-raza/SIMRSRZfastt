@@ -42,7 +42,6 @@
                 </LineBorder>
               </Border>
               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -228,7 +227,6 @@
                         </LineBorder>
                       </Border>
                       <Font PropertyName="font" name="Tahoma" size="12" style="0"/>
-                      <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -259,9 +257,10 @@
                   <SubComponents>
                     <Component class="widget.Table" name="tbPeserta">
                       <Properties>
-                        <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                        <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="name" type="java.lang.String" value="tbPeserta" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -279,7 +278,6 @@
                         </LineBorder>
                       </Border>
                       <Font PropertyName="font" name="Tahoma" size="12" style="0"/>
-                      <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -313,7 +311,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title=".: Rujukan Faskes 1 Banyak ">
                               <Font PropertyName="font" name="Tahoma" size="12" style="0"/>
-                              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                             </TitledBorder>
                           </Border>
                         </Property>
@@ -332,6 +329,9 @@
                           <Properties>
                             <Property name="toolTipText" type="java.lang.String" value="Klik data di tabel"/>
                             <Property name="name" type="java.lang.String" value="tbFaskes3" noResource="true"/>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                            </Property>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -359,7 +359,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title=".: Rujukan Faskes 2 Banyak ">
                               <Font PropertyName="font" name="Tahoma" size="12" style="0"/>
-                              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                             </TitledBorder>
                           </Border>
                         </Property>
@@ -378,6 +377,9 @@
                           <Properties>
                             <Property name="toolTipText" type="java.lang.String" value="Klik data di tabel"/>
                             <Property name="name" type="java.lang.String" value="tbFaskes4" noResource="true"/>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                            </Property>
                           </Properties>
                         </Component>
                       </SubComponents>
