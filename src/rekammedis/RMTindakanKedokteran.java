@@ -4121,13 +4121,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                     + "st.nip_pemberi_info, replace(st.penerima_info,' (Penerima Informasi)','') nmpenerima, st.isi_info_diagnosis_kerja, st.isi_info_dasar_diagnosis, "
                     + "st.isi_info_tindakan, st.isi_info_indikasi, st.isi_info_tatacara, st.isi_info_tujuan, st.isi_info_resiko, st.isi_info_komplikasi, "
                     + "st.isi_info_prognosis, st.isi_info_alternatif, st.isi_info_lainlain, st.waktu_simpan, st.tgl_persetujuan, "
-                    + "st.jam_persetujuan, st.tgl_penolakan, st.jam_penolakan, kl.nm_kel, kc.nm_kec, kb.nm_kab, d.nm_dokter, pg.nama petugas, "
+                    + "st.jam_persetujuan, st.tgl_penolakan, st.jam_penolakan, kl.nm_kel, kc.nm_kec, kb.nm_kab, pg1.nama petugas1, pg2.nama petugas2, "
                     + "if(st.jk_penjab='L','Laki-laki','Perempuan') jenkel, replace(st.nm_pihak_klg,' (Pihak Keluarga)','') nmphkklg, replace(st.nm_pihak_rs,' (Pihak RS)','') nmphkrs, "
                     + "st.id_file_nm_penjab, st.id_file_penerima_info, st.id_file_nm_pihak_klg, st.id_file_nm_pihak_rs, st.tgl_penundaan, st.jam_penundaan, "
                     + "st.alasan_penundaan from surat_tindakan_kedokteran st inner join reg_periksa rp on rp.no_rawat=st.no_rawat "
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=st.kd_kel "
                     + "inner join kecamatan kc on kc.kd_kec=st.kd_kec inner join kabupaten kb on kb.kd_kab=st.kd_kab "
-                    + "inner join dokter d on d.kd_dokter=st.nip_dokter_pelaksana inner join pegawai pg on pg.nik=st.nip_pemberi_info where "
+                    + "inner join pegawai pg1 on pg1.nik=st.nip_dokter_pelaksana inner join pegawai pg2 on pg2.nik=st.nip_pemberi_info where "
                     + "rp.tgl_registrasi between ? and ? and st.no_rawat like ? or "
                     + "rp.tgl_registrasi between ? and ? and p.no_rkm_medis like ? or "
                     + "rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or "
@@ -4137,8 +4137,8 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                     + "rp.tgl_registrasi between ? and ? and st.jns_surat like ? or "
                     + "rp.tgl_registrasi between ? and ? and st.kasus_tindakan like ? or "
                     + "rp.tgl_registrasi between ? and ? and st.nm_tindakan_kedokteran like ? or "
-                    + "rp.tgl_registrasi between ? and ? and d.nm_dokter like ? or "
-                    + "rp.tgl_registrasi between ? and ? and pg.nama like ? order by st.no_rawat desc, rp.tgl_registrasi desc");
+                    + "rp.tgl_registrasi between ? and ? and pg1.nama like ? or "
+                    + "rp.tgl_registrasi between ? and ? and pg2.nama like ? order by st.no_rawat desc, rp.tgl_registrasi desc");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -4224,8 +4224,8 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         rs.getString("nm_kel"),
                         rs.getString("nm_kec"),                        
                         rs.getString("nm_kab"),
-                        rs.getString("nm_dokter"),
-                        rs.getString("petugas"),
+                        rs.getString("petugas1"),
+                        rs.getString("petugas2"),
                         rs.getString("jenkel"),                        
                         rs.getString("nmphkklg"),
                         rs.getString("nmphkrs"),
