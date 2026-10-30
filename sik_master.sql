@@ -11,7 +11,7 @@
  Target Server Version : 100131 (10.1.31-MariaDB)
  File Encoding         : 65001
 
- Date: 22/10/2026 15:48:55
+ Date: 30/10/2026 09:21:05
 */
 
 SET NAMES utf8mb4;
@@ -4332,7 +4332,7 @@ CREATE TABLE `booking_registrasi`  (
   `kd_dokter` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `kd_poli` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `no_reg` varchar(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `kd_booking` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `kd_booking` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `status_booking` enum('Terdaftar','Batal','Menunggu') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `kd_pj` char(3) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `data_dari` enum('Website RAZA','WhatsApp Messenger','Telegram','Mobile JKN') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -165230,7 +165230,7 @@ CREATE TABLE `kelengkapan_booking_sep_bpjs`  (
   `kddpjp` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `nmdpdjp` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `kode_inacbg` varchar(14) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `kd_booking` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `kd_booking` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `status_cetak_sep` enum('SUDAH','BELUM','GAGAL') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `rujukan_masuknya` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `no_rawat` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,

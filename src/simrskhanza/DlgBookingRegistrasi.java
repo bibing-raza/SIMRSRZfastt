@@ -176,7 +176,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         for (i = 0; i < 20; i++) {
             TableColumn column = tbBoking.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(120);
             } else if (i == 1) {
                 column.setPreferredWidth(75);
             } else if (i == 2) {
@@ -5262,9 +5262,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void autoNomorBooking() {
         TanggalBooking.setDate(new Date());
 
-        Valid.autoNomer7("select ifnull(MAX(CONVERT(LEFT(kd_booking,4),signed)),0) from booking_registrasi where "
+        Valid.autoNomer7("select ifnull(MAX(CONVERT(LEFT(kd_booking,6),signed)),0) from booking_registrasi where "
                 + "tanggal_booking like '%" + Valid.SetTgl(TanggalBooking.getSelectedItem() + "").substring(0, 7) + "%' ", "/BK/" + Valid.SetTgl(TanggalBooking.getSelectedItem() + "").substring(5, 7)
-                + "/" + Valid.SetTgl(TanggalBooking.getSelectedItem() + "").substring(0, 4), 4, kdboking);
+                + "/" + Valid.SetTgl(TanggalBooking.getSelectedItem() + "").substring(0, 4), 6, kdboking);
     }
 
     public void tampilFaskes1() {

@@ -395,6 +395,8 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             ralan_paramedisserv = 0, tambahanserv = 0, potonganserv = 0,
             kamarserv = 0, registrasiserv = 0, harianserv = 0, retur_Obatserv = 0, resep_Pulangserv = 0, ttlService = 0,
             persenbayi = Sequel.cariInteger("select bayi from set_jam_minimal");
+    private String htmlResumeTerakhir = null;
+    private String noRawatResumeTerakhir = null;
 
     /**
      * Creates new form DlgPemberianObat
@@ -1076,14 +1078,13 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         
         StyleSheet styleSheet = kit.getStyleSheet();
         styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");
-        Document doc = kit.createDefaultDocument();
-        LoadHTML1.setDocument(doc);
-        LoadHTML2.setDocument(doc);
-        LoadHTML3.setDocument(doc);
-        LoadHTML4.setDocument(doc);
-        LoadHTML5.setDocument(doc);
-        LoadHTML6.setDocument(doc);
-        LoadHTML7.setDocument(doc);
+        LoadHTML1.setDocument(kit.createDefaultDocument());
+        LoadHTML2.setDocument(kit.createDefaultDocument());
+        LoadHTML3.setDocument(kit.createDefaultDocument());
+        LoadHTML4.setDocument(kit.createDefaultDocument());
+        LoadHTML5.setDocument(kit.createDefaultDocument());
+        LoadHTML6.setDocument(kit.createDefaultDocument());
+        LoadHTML7.setDocument(kit.createDefaultDocument());
         
         LoadHTML1.setEditable(false);
         LoadHTML2.setEditable(false);
@@ -8772,18 +8773,31 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     
                     htmlContent.append("<tr><td><br></td></tr>");
                 }
-                LoadHTML7.setText(
-                        "<html>"
-                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                
+                String htmlBaru = "<html>"
+                        + "<table width='100%' border='0' align='center' "
+                        + "cellpadding='3px' cellspacing='0' class='tbl_form'>"
                         + htmlContent.toString()
                         + "</table>"
-                        + "</html>");
+                        + "</html>";
+
+                boolean rawatSama = java.util.Objects.equals(norwt, noRawatResumeTerakhir);
+                boolean isiSama = java.util.Objects.equals(htmlBaru, htmlResumeTerakhir);
                 
-                SwingUtilities.invokeLater(() -> {
+                if (!rawatSama || !isiSama) {
+                    LoadHTML7.setText(htmlBaru);
+
+                    htmlResumeTerakhir = htmlBaru;
+                    noRawatResumeTerakhir = norwt;
+
                     LoadHTML7.setCaretPosition(0);
-                    Scroll23.getVerticalScrollBar().setValue(0);
-                    Scroll23.getHorizontalScrollBar().setValue(0);
-                });
+
+                    SwingUtilities.invokeLater(() -> {
+                        Scroll23.getViewport().setViewPosition(
+                                new java.awt.Point(0, 0));
+                    });
+                }
+                
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
