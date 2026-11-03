@@ -1530,7 +1530,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         LoadHTML10.setEditorKit(kit);
 
         StyleSheet styleSheet = kit.getStyleSheet();
-        styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");        
+        styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");   
+//        Document doc = kit.createDefaultDocument();
         LoadHTML.setDocument(kit.createDefaultDocument());
         LoadHTML1.setDocument(kit.createDefaultDocument());
         LoadHTML2.setDocument(kit.createDefaultDocument());
@@ -8766,11 +8767,11 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             kdpoli.setText("");
             TPoli.setText("");
             TCari.setText(TNoRM.getText());
+            tampilRiwayatResum();
             
             if (tbResume.getSelectedRow() != -1) {
                 tampilRingkasanPulangRanap(tbResume.getValueAt(tbResume.getSelectedRow(), 8).toString());
             } else {
-                tampilRiwayatResum();
                 tampilRingkasanPulangRanap(Sequel.cariIsi("select r.no_rawat from ringkasan_pulang_ranap r inner join reg_periksa rp on rp.no_rawat=r.no_rawat "
                         + "where rp.no_rkm_medis='" + TNoRM.getText() + "' order by r.no_rawat desc limit 1"));
             }
@@ -9112,12 +9113,12 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             kdpoli.setText("");
             TPoli.setText("");
             TCari.setText(TNoRM.getText());
+            tampilRiwayatResum();
             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             
             if (tbResume.getSelectedRow() != -1) {
                 tampilRingkasanPulangRanap(tbResume.getValueAt(tbResume.getSelectedRow(), 8).toString());
             } else {
-                tampilRiwayatResum();
                 tampilRingkasanPulangRanap(Sequel.cariIsi("select r.no_rawat from ringkasan_pulang_ranap r inner join reg_periksa rp on rp.no_rawat=r.no_rawat "
                         + "where rp.no_rkm_medis='" + TNoRM.getText() + "' order by r.no_rawat desc limit 1"));
             }
@@ -11737,11 +11738,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             kdpoli.setText("");
             TPoli.setText("");
             TCari.setText(TNoRM.getText());
+            tampilRiwayatResum();
             
             if (tbResume.getSelectedRow() != -1) {
                 tampilRingkasanPulangRanap(tbResume.getValueAt(tbResume.getSelectedRow(), 8).toString());
-            } else {
-                tampilRiwayatResum();
+            } else {                
                 tampilRingkasanPulangRanap(Sequel.cariIsi("select r.no_rawat from ringkasan_pulang_ranap r inner join reg_periksa rp on rp.no_rawat=r.no_rawat "
                         + "where rp.no_rkm_medis='" + TNoRM.getText() + "' order by r.no_rawat desc limit 1"));
             }
@@ -21140,7 +21141,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     
                     htmlContent.append("<tr><td><br></td></tr>");
                 }
-                LoadHTML.setText(
+                LoadHTML2.setText(
                         "<html>"
                         + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
                         + htmlContent.toString()
@@ -21148,7 +21149,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         + "</html>");
                 
                 SwingUtilities.invokeLater(() -> {
-                    LoadHTML.setCaretPosition(0);
+                    LoadHTML2.setCaretPosition(0);
                     Scroll27.getVerticalScrollBar().setValue(0);
                     Scroll27.getHorizontalScrollBar().setValue(0);
                 });

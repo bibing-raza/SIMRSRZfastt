@@ -1320,10 +1320,11 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 tampilRanap();
                 break;
             case 5:
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                tampilRiwayatResum();
                 if (tbResume.getSelectedRow() != -1) {
                     tampilRingkasanPulangRanap(tbResume.getValueAt(tbResume.getSelectedRow(), 8).toString());
-                } else {
-                    tampilRiwayatResum();
+                } else {                    
                     tampilRingkasanPulangRanap(Sequel.cariIsi("select r.no_rawat from ringkasan_pulang_ranap r inner join reg_periksa rp on rp.no_rawat=r.no_rawat "
                             + "where rp.no_rkm_medis='" + NoRM.getText() + "' order by r.no_rawat desc limit 1"));
                 }
