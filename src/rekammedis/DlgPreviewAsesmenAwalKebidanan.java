@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
@@ -33,6 +34,7 @@ public class DlgPreviewAsesmenAwalKebidanan extends javax.swing.JDialog {
     private PreparedStatement psPrev, ps3, ps4, psLaprm;
     private ResultSet rsPrev, rs3, rs4, rsLaprm;
     private String norawat = "";
+    private String htmlPreview = null;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -73,7 +75,7 @@ public class DlgPreviewAsesmenAwalKebidanan extends javax.swing.JDialog {
 
         internalFrame1 = new widget.InternalFrame();
         internalFrame2 = new widget.InternalFrame();
-        Scroll19 = new widget.ScrollPane();
+        Scroll1 = new widget.ScrollPane();
         LoadHTML1 = new widget.editorpane();
         panelGlass10 = new widget.panelisi();
         BtnCari = new widget.Button();
@@ -94,15 +96,15 @@ public class DlgPreviewAsesmenAwalKebidanan extends javax.swing.JDialog {
         internalFrame2.setName("internalFrame2"); // NOI18N
         internalFrame2.setLayout(new java.awt.BorderLayout(1, 1));
 
-        Scroll19.setName("Scroll19"); // NOI18N
-        Scroll19.setOpaque(true);
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
 
         LoadHTML1.setBorder(null);
         LoadHTML1.setForeground(new java.awt.Color(0, 0, 0));
         LoadHTML1.setName("LoadHTML1"); // NOI18N
-        Scroll19.setViewportView(LoadHTML1);
+        Scroll1.setViewportView(LoadHTML1);
 
-        internalFrame2.add(Scroll19, java.awt.BorderLayout.CENTER);
+        internalFrame2.add(Scroll1, java.awt.BorderLayout.CENTER);
 
         internalFrame1.add(internalFrame2, java.awt.BorderLayout.CENTER);
 
@@ -2085,7 +2087,7 @@ public class DlgPreviewAsesmenAwalKebidanan extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.editorpane LoadHTML1;
-    private widget.ScrollPane Scroll19;
+    private widget.ScrollPane Scroll1;
     private widget.ComboBox cmbPilihCetak;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
@@ -4475,12 +4477,24 @@ public class DlgPreviewAsesmenAwalKebidanan extends javax.swing.JDialog {
                             + "</tr>");
                 }
                 
-                LoadHTML1.setText(
-                        "<html>"
-                        + "<table width='100%' border='0' align='center' colspan='8' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                String htmlBaru = "<html>"
+                        + "<table width='100%' border='0' align='center' "
+                        + "cellpadding='3px' cellspacing='0' class='tbl_form'>"
                         + htmlContent.toString()
                         + "</table>"
-                        + "</html>");
+                        + "</html>";
+
+                boolean isiSama = java.util.Objects.equals(htmlBaru, htmlPreview);
+
+                if (!isiSama) {
+                    LoadHTML1.setText(htmlBaru);
+                    htmlPreview = htmlBaru;
+                    LoadHTML1.setCaretPosition(0);
+                    SwingUtilities.invokeLater(() -> {
+                        Scroll1.getViewport().setViewPosition(
+                                new java.awt.Point(0, 0));
+                    });
+                }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {

@@ -1885,7 +1885,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         BtnSimpan.setEnabled(akses.getRencanaKontrolJKN());
         BtnPrint.setEnabled(akses.getRencanaKontrolJKN());
         BtnEdit.setEnabled(akses.getRencanaKontrolJKN());
-        BtnHapus.setEnabled(akses.getadmin());
+        BtnHapus.setEnabled(akses.getinacbg_klaim_raza());
     }
 
     public JTable getTable(){

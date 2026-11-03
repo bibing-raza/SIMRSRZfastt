@@ -10,17 +10,12 @@
  */
 package bridging;
 
-import bridging.BPJSApi;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import static com.sun.org.glassfish.external.amx.AMXUtil.prop;
-import fungsi.WarnaTable;
-import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -30,10 +25,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.event.DocumentEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -44,7 +35,6 @@ import org.springframework.http.MediaType;
  * @author dosen
  */
 public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
-
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();

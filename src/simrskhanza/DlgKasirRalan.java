@@ -106,6 +106,7 @@ import rekammedis.RMPenilaianAwalMedisRalanTHT;
 import rekammedis.RMPenilaianTambahanGeriatri;
 import rekammedis.RMProtokolKemoterapi;
 import rekammedis.RMSkorApgarDowneCapPerinatologi;
+import rekammedis.RMStatusHemodialisis;
 import rekammedis.RMStatusKakiDiabetes;
 import rekammedis.RMTindakanKedokteran;
 import rekammedis.RMTransferSerahTerimaIGD;
@@ -478,7 +479,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         CrPoli.setDocument(new batasInput((byte) 100).getKata(CrPoli));
         CrPtg.setDocument(new batasInput((byte) 100).getKata(CrPtg));
-        kdboking.setDocument(new batasInput((byte) 15).getKata(kdboking));
+        kdboking.setDocument(new batasInput((byte) 17).getKata(kdboking));
         Tkalimat.setDocument(new batasInput((int) 200).getKata(Tkalimat));
         
         if (koneksiDB.cariCepat().equals("aktif")) {
@@ -732,6 +733,13 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnTTDcpptVk = new javax.swing.JMenuItem();
         MnTTEcpptVk = new javax.swing.JMenuItem();
         MnVerifCPPTvk = new javax.swing.JMenuItem();
+        MnHemodialisa = new javax.swing.JMenu();
+        MnStatusHemodialisis = new javax.swing.JMenuItem();
+        MnPersetujuanTindakan = new javax.swing.JMenuItem();
+        MnAsesmenAwalMedis = new javax.swing.JMenuItem();
+        MnAsesmenAwalKeperawatan = new javax.swing.JMenuItem();
+        MnAsesmenUlang = new javax.swing.JMenuItem();
+        MnLainlain = new javax.swing.JMenuItem();
         ppDokumenJangMed = new javax.swing.JMenuItem();
         MnStatusKakiDiabetes = new javax.swing.JMenuItem();
         ppPersetujuanTindakan = new javax.swing.JMenuItem();
@@ -3542,6 +3550,125 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         MnRekamMedis.add(MnCPPTvkBersalin);
 
+        MnHemodialisa.setBackground(new java.awt.Color(255, 255, 254));
+        MnHemodialisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHemodialisa.setText("Unit Dialisis / Hemodialisa");
+        MnHemodialisa.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHemodialisa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHemodialisa.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHemodialisa.setIconTextGap(5);
+        MnHemodialisa.setName("MnHemodialisa"); // NOI18N
+        MnHemodialisa.setOpaque(true);
+        MnHemodialisa.setPreferredSize(new java.awt.Dimension(230, 26));
+
+        MnStatusHemodialisis.setBackground(new java.awt.Color(255, 255, 254));
+        MnStatusHemodialisis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnStatusHemodialisis.setForeground(new java.awt.Color(50, 50, 50));
+        MnStatusHemodialisis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnStatusHemodialisis.setText("Status Hemodialisis");
+        MnStatusHemodialisis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnStatusHemodialisis.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnStatusHemodialisis.setIconTextGap(5);
+        MnStatusHemodialisis.setName("MnStatusHemodialisis"); // NOI18N
+        MnStatusHemodialisis.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnStatusHemodialisis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnStatusHemodialisisActionPerformed(evt);
+            }
+        });
+        MnHemodialisa.add(MnStatusHemodialisis);
+
+        MnPersetujuanTindakan.setBackground(new java.awt.Color(255, 255, 254));
+        MnPersetujuanTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPersetujuanTindakan.setForeground(new java.awt.Color(50, 50, 50));
+        MnPersetujuanTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPersetujuanTindakan.setText("Persetujuan Tindakan Kedokteran");
+        MnPersetujuanTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPersetujuanTindakan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPersetujuanTindakan.setIconTextGap(5);
+        MnPersetujuanTindakan.setName("MnPersetujuanTindakan"); // NOI18N
+        MnPersetujuanTindakan.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnPersetujuanTindakan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPersetujuanTindakanActionPerformed(evt);
+            }
+        });
+        MnHemodialisa.add(MnPersetujuanTindakan);
+
+        MnAsesmenAwalMedis.setBackground(new java.awt.Color(255, 255, 254));
+        MnAsesmenAwalMedis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnAsesmenAwalMedis.setForeground(new java.awt.Color(50, 50, 50));
+        MnAsesmenAwalMedis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnAsesmenAwalMedis.setText("Asesmen Awal Medis");
+        MnAsesmenAwalMedis.setToolTipText("");
+        MnAsesmenAwalMedis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnAsesmenAwalMedis.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnAsesmenAwalMedis.setIconTextGap(5);
+        MnAsesmenAwalMedis.setName("MnAsesmenAwalMedis"); // NOI18N
+        MnAsesmenAwalMedis.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnAsesmenAwalMedis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnAsesmenAwalMedisActionPerformed(evt);
+            }
+        });
+        MnHemodialisa.add(MnAsesmenAwalMedis);
+
+        MnAsesmenAwalKeperawatan.setBackground(new java.awt.Color(255, 255, 254));
+        MnAsesmenAwalKeperawatan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnAsesmenAwalKeperawatan.setForeground(new java.awt.Color(50, 50, 50));
+        MnAsesmenAwalKeperawatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnAsesmenAwalKeperawatan.setText("Asesmen Awal Keperawatan");
+        MnAsesmenAwalKeperawatan.setToolTipText("");
+        MnAsesmenAwalKeperawatan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnAsesmenAwalKeperawatan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnAsesmenAwalKeperawatan.setIconTextGap(5);
+        MnAsesmenAwalKeperawatan.setName("MnAsesmenAwalKeperawatan"); // NOI18N
+        MnAsesmenAwalKeperawatan.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnAsesmenAwalKeperawatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnAsesmenAwalKeperawatanActionPerformed(evt);
+            }
+        });
+        MnHemodialisa.add(MnAsesmenAwalKeperawatan);
+
+        MnAsesmenUlang.setBackground(new java.awt.Color(255, 255, 254));
+        MnAsesmenUlang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnAsesmenUlang.setForeground(new java.awt.Color(50, 50, 50));
+        MnAsesmenUlang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnAsesmenUlang.setText("Asesmen Ulang Pasien");
+        MnAsesmenUlang.setToolTipText("");
+        MnAsesmenUlang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnAsesmenUlang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnAsesmenUlang.setIconTextGap(5);
+        MnAsesmenUlang.setName("MnAsesmenUlang"); // NOI18N
+        MnAsesmenUlang.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnAsesmenUlang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnAsesmenUlangActionPerformed(evt);
+            }
+        });
+        MnHemodialisa.add(MnAsesmenUlang);
+
+        MnLainlain.setBackground(new java.awt.Color(255, 255, 254));
+        MnLainlain.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLainlain.setForeground(new java.awt.Color(50, 50, 50));
+        MnLainlain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLainlain.setText("Lain - Lain");
+        MnLainlain.setToolTipText("");
+        MnLainlain.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLainlain.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLainlain.setIconTextGap(5);
+        MnLainlain.setName("MnLainlain"); // NOI18N
+        MnLainlain.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnLainlain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLainlainActionPerformed(evt);
+            }
+        });
+        MnHemodialisa.add(MnLainlain);
+
+        MnRekamMedis.add(MnHemodialisa);
+
         ppDokumenJangMed.setBackground(new java.awt.Color(255, 255, 254));
         ppDokumenJangMed.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppDokumenJangMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -4586,7 +4713,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
         internalFrame7.add(kdboking);
-        kdboking.setBounds(132, 20, 145, 23);
+        kdboking.setBounds(132, 20, 150, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Data Pasien : ");
@@ -4679,7 +4806,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2026" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -5624,7 +5751,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2026" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -5648,7 +5775,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2026" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5873,7 +6000,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5892,7 +6019,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -11662,6 +11789,53 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_BtnHapusActionPerformed
 
+    private void MnStatusHemodialisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnStatusHemodialisisActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                if (kdpoli.getText().equals("HDL")) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    akses.setform("DlgKasirRalan");
+                    RMStatusHemodialisis form = new RMStatusHemodialisis(null, false);;
+                    form.emptTeks();
+                    form.isCek();
+                    form.setData(TNoRw.getText());
+                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    form.setLocationRelativeTo(internalFrame1);
+                    form.setVisible(true);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Maaf, hanya untuk pasien yang terdaftar di " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='HDL'") + ".");
+                    tampilkasir();
+                }
+            }
+        }
+    }//GEN-LAST:event_MnStatusHemodialisisActionPerformed
+
+    private void MnPersetujuanTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPersetujuanTindakanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MnPersetujuanTindakanActionPerformed
+
+    private void MnAsesmenAwalMedisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnAsesmenAwalMedisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MnAsesmenAwalMedisActionPerformed
+
+    private void MnAsesmenAwalKeperawatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnAsesmenAwalKeperawatanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MnAsesmenAwalKeperawatanActionPerformed
+
+    private void MnAsesmenUlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnAsesmenUlangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MnAsesmenUlangActionPerformed
+
+    private void MnLainlainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLainlainActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MnLainlainActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11725,9 +11899,12 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private widget.Label LCount;
     private javax.swing.JMenu MnAksesRM;
     private javax.swing.JMenu MnAsesmenAwalKebidanan;
+    private javax.swing.JMenuItem MnAsesmenAwalKeperawatan;
+    private javax.swing.JMenuItem MnAsesmenAwalMedis;
     private javax.swing.JMenu MnAsesmenKeperawatanPeri;
     private javax.swing.JMenu MnAsesmenMedikKebidanan;
     private javax.swing.JMenu MnAsesmenMedikObstetri;
+    private javax.swing.JMenuItem MnAsesmenUlang;
     private javax.swing.JMenu MnAssesmenKeperawatanIGD;
     private javax.swing.JMenu MnAssesmenMedikIGD;
     private javax.swing.JMenuItem MnBatal;
@@ -11770,6 +11947,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnHapusData;
     private javax.swing.JMenuItem MnHapusData1;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
+    private javax.swing.JMenu MnHemodialisa;
     private javax.swing.JMenuItem MnIkhtisarPerawatanHIV;
     private javax.swing.JMenu MnInputData;
     private javax.swing.JMenuItem MnInputDataAMK;
@@ -11797,6 +11975,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenu MnLabel;
     private javax.swing.JMenuItem MnLabelPxRanap1;
     private javax.swing.JMenuItem MnLabelPxRanap2;
+    private javax.swing.JMenuItem MnLainlain;
     private javax.swing.JMenuItem MnLembarIdentitas;
     private javax.swing.JMenuItem MnLembarObservasi;
     private javax.swing.JMenuItem MnLembarStatusPasien;
@@ -11850,6 +12029,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenu MnPermintaan;
     private javax.swing.JMenuItem MnPermintaanLab;
     private javax.swing.JMenuItem MnPermintaanRadiologi;
+    private javax.swing.JMenuItem MnPersetujuanTindakan;
     private javax.swing.JMenuItem MnPetugasPemberianObatIGD;
     private javax.swing.JMenuItem MnPetugasPemberianObatPonek;
     private javax.swing.JMenuItem MnPiutangPasien;
@@ -11888,6 +12068,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnSensusParu;
     private javax.swing.JMenuItem MnSpirometri;
     private javax.swing.JMenu MnStatus;
+    private javax.swing.JMenuItem MnStatusHemodialisis;
     private javax.swing.JMenuItem MnStatusKakiDiabetes;
     private javax.swing.JMenuItem MnStatusPasienAllKunjungan;
     private javax.swing.JMenuItem MnSudahDiperiksaPetugas;
@@ -12641,6 +12822,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnObservasiKala1.setEnabled(akses.getcppt());
         MnAsesmenMedikKebidanan.setEnabled(akses.getresep_dokter());
         MnInputDataAMK.setEnabled(akses.getresep_dokter());
+        MnHemodialisa.setEnabled(akses.gethemodialisa());
         
         //sementara non aktif cuma akses admin utama dulu
         MnAsesmenMedikObstetri.setEnabled(akses.getadmin());

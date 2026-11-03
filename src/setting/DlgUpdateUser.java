@@ -1160,6 +1160,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                         tabMode.addRow(new Object[]{false, "[H]Tambahan Biaya", rs.getBoolean("tambahan_biaya")});
                     }
                     
+                    if ("[I]Hemodialisa".toLowerCase().contains(TCari.getText().toLowerCase())) {
+                        tabMode.addRow(new Object[]{false, "[I]Hemodialisa", rs.getBoolean("hemodialisa")});
+                    }
+                    
                     if ("[I]Analisis RM".toLowerCase().contains(TCari.getText().toLowerCase())) {
                         tabMode.addRow(new Object[]{false, "[I]Analisis RM", rs.getBoolean("analisis_rekam_medis")});
                     }
@@ -2729,6 +2733,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
             if("[H]Tambahan Biaya".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","tambahan_biaya='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[I]Hemodialisa".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","hemodialisa='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
             if("[I]Analisis RM".equals(tbUser.getValueAt(i,1).toString())){

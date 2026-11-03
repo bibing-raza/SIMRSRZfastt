@@ -1,7 +1,6 @@
 package laporan;
 
 import bridging.INACBGDaftarKlaim;
-import laporan.DlgPenyakit;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -22,9 +21,7 @@ import javax.swing.table.TableColumn;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.net.InetAddress;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,10 +32,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
-import laporan.DlgICD9;
 import simrskhanza.DlgPasien;
 
 /**
@@ -397,6 +392,10 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             persenbayi = Sequel.cariInteger("select bayi from set_jam_minimal");
     private String htmlResumeTerakhir = null;
     private String noRawatResumeTerakhir = null;
+    private String htmlCpptTerakhirSemuaPPA = null;
+    private String htmlCpptTerakhirPPAdokter = null;
+    private String htmlCpptTerakhirPPAselainDokter = null;
+    private String htmlPemeriksaanLab = null;
 
     /**
      * Creates new form DlgPemberianObat
@@ -5069,6 +5068,25 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     );
                     htmlContent.append("<tr class='isi'><td colspan='3' bgcolor='#7eccb9'>&nbsp;</td></tr>");
                 }
+                
+                String htmlBaru = "<html>"
+                        + "<table width='100%' border='0' align='center' "
+                        + "cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                        + htmlContent.toString()
+                        + "</table>"
+                        + "</html>";
+
+                boolean isiSama = java.util.Objects.equals(htmlBaru, htmlPemeriksaanLab);
+
+                if (!isiSama) {
+                    LoadHTML2.setText(htmlBaru);
+                    htmlPemeriksaanLab = htmlBaru;
+                    LoadHTML2.setCaretPosition(0);
+                    SwingUtilities.invokeLater(() -> {
+                        Scroll44.getViewport().setViewPosition(
+                                new java.awt.Point(0, 0));
+                    });
+                }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -5076,12 +5094,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     rs.close();
                 }
             }
-            LoadHTML2.setText(
-                    "<html>"
-                    + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
-                    + htmlContent.toString()
-                    + "</table>"
-                    + "</html>");
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
@@ -7941,12 +7953,25 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + "</table>"
                     );
                 }
-                LoadHTML3.setText(
-                        "<html>"
-                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"                        
+
+                String htmlBaru = "<html>"
+                        + "<table width='100%' border='0' align='center' "
+                        + "cellpadding='3px' cellspacing='0' class='tbl_form'>"
                         + htmlContent.toString()
                         + "</table>"
-                        + "</html>");
+                        + "</html>";
+
+                boolean isiSama = java.util.Objects.equals(htmlBaru, htmlCpptTerakhirSemuaPPA);
+
+                if (!isiSama) {
+                    LoadHTML3.setText(htmlBaru);
+                    htmlCpptTerakhirSemuaPPA = htmlBaru;
+                    LoadHTML3.setCaretPosition(0);
+                    SwingUtilities.invokeLater(() -> {
+                        Scroll15.getViewport().setViewPosition(
+                                new java.awt.Point(0, 0));
+                    });
+                }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -8088,12 +8113,25 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + "</table>"
                     );
                 }
-                LoadHTML4.setText(
-                        "<html>"
-                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"                        
+                
+                String htmlBaru = "<html>"
+                        + "<table width='100%' border='0' align='center' "
+                        + "cellpadding='3px' cellspacing='0' class='tbl_form'>"
                         + htmlContent.toString()
                         + "</table>"
-                        + "</html>");
+                        + "</html>";
+
+                boolean isiSama = java.util.Objects.equals(htmlBaru, htmlCpptTerakhirPPAdokter);
+
+                if (!isiSama) {
+                    LoadHTML4.setText(htmlBaru);
+                    htmlCpptTerakhirPPAdokter = htmlBaru;
+                    LoadHTML4.setCaretPosition(0);
+                    SwingUtilities.invokeLater(() -> {
+                        Scroll17.getViewport().setViewPosition(
+                                new java.awt.Point(0, 0));
+                    });
+                }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -8194,12 +8232,25 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + "</table>"
                     );
                 }
-                LoadHTML5.setText(
-                        "<html>"
-                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"                        
+                
+                String htmlBaru = "<html>"
+                        + "<table width='100%' border='0' align='center' "
+                        + "cellpadding='3px' cellspacing='0' class='tbl_form'>"
                         + htmlContent.toString()
                         + "</table>"
-                        + "</html>");
+                        + "</html>";
+
+                boolean isiSama = java.util.Objects.equals(htmlBaru, htmlCpptTerakhirPPAselainDokter);
+
+                if (!isiSama) {
+                    LoadHTML5.setText(htmlBaru);
+                    htmlCpptTerakhirPPAselainDokter = htmlBaru;
+                    LoadHTML5.setCaretPosition(0);
+                    SwingUtilities.invokeLater(() -> {
+                        Scroll18.getViewport().setViewPosition(
+                                new java.awt.Point(0, 0));
+                    });
+                }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {

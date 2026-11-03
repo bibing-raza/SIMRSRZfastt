@@ -41,6 +41,7 @@ import java.util.Map;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -105,6 +106,10 @@ public class DlgCPPT extends javax.swing.JDialog {
             kdKamarSaatIni = "", isi = "", jamcpptFix = "";
     private String noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "",
             hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "";
+    private String htmlCpptTerakhirSemuaPPA = null;
+    private String htmlCpptTerakhirPPAdokter = null;
+    private String htmlCpptTerakhirPPAselainDokter = null;
+    private String htmlPemeriksaanLabPA = null;
     private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
@@ -972,11 +977,10 @@ public class DlgCPPT extends javax.swing.JDialog {
         HTMLEditorKit kit = new HTMLEditorKit();
         StyleSheet styleSheet = kit.getStyleSheet();
         styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");
-        Document doc = kit.createDefaultDocument();
         
         LoadHTML1.setEditable(true);        
         LoadHTML1.setEditorKit(kit);        
-        LoadHTML1.setDocument(doc);
+        LoadHTML1.setDocument(kit.createDefaultDocument());
         LoadHTML1.setEditable(false);        
         LoadHTML1.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
@@ -991,7 +995,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         
         LoadHTML2.setEditable(true);
         LoadHTML2.setEditorKit(kit);        
-        LoadHTML2.setDocument(doc);
+        LoadHTML2.setDocument(kit.createDefaultDocument());
         LoadHTML2.setEditable(false);        
         LoadHTML2.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
@@ -1006,7 +1010,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         
         LoadHTML3.setEditable(true);
         LoadHTML3.setEditorKit(kit);
-        LoadHTML3.setDocument(doc);
+        LoadHTML3.setDocument(kit.createDefaultDocument());
         LoadHTML3.setEditable(false);        
         LoadHTML3.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
@@ -1021,7 +1025,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         
         LoadHTML4.setEditable(true);
         LoadHTML4.setEditorKit(kit);
-        LoadHTML4.setDocument(doc);
+        LoadHTML4.setDocument(kit.createDefaultDocument());
         LoadHTML4.setEditable(false);        
         LoadHTML4.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
@@ -1036,7 +1040,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         
         LoadHTML5.setEditable(true);        
         LoadHTML5.setEditorKit(kit);        
-        LoadHTML5.setDocument(doc);
+        LoadHTML5.setDocument(kit.createDefaultDocument());
         LoadHTML5.setEditable(false);        
         LoadHTML5.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
@@ -1051,7 +1055,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         
         LoadHTML6.setEditable(true);        
         LoadHTML6.setEditorKit(kit);        
-        LoadHTML6.setDocument(doc);
+        LoadHTML6.setDocument(kit.createDefaultDocument());
         LoadHTML6.setEditable(false);        
         LoadHTML6.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
@@ -1066,7 +1070,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         
         LoadHTML7.setEditable(true);        
         LoadHTML7.setEditorKit(kit);        
-        LoadHTML7.setDocument(doc);
+        LoadHTML7.setDocument(kit.createDefaultDocument());
         LoadHTML7.setEditable(false);        
         LoadHTML7.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
@@ -14836,12 +14840,25 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "</table>"
                     );
                 }
-                LoadHTML1.setText(
-                        "<html>"
-                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"                        
+                
+                String htmlBaru = "<html>"
+                        + "<table width='100%' border='0' align='center' "
+                        + "cellpadding='3px' cellspacing='0' class='tbl_form'>"
                         + htmlContent.toString()
                         + "</table>"
-                        + "</html>");
+                        + "</html>";
+
+                boolean isiSama = java.util.Objects.equals(htmlBaru, htmlCpptTerakhirSemuaPPA);
+
+                if (!isiSama) {
+                    LoadHTML1.setText(htmlBaru);
+                    htmlCpptTerakhirSemuaPPA = htmlBaru;
+                    LoadHTML1.setCaretPosition(0);
+                    SwingUtilities.invokeLater(() -> {
+                        Scroll10.getViewport().setViewPosition(
+                                new java.awt.Point(0, 0));
+                    });
+                }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -14961,12 +14978,25 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "</table>"
                     );
                 }
-                LoadHTML3.setText(
-                        "<html>"
-                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"                        
+                
+                String htmlBaru = "<html>"
+                        + "<table width='100%' border='0' align='center' "
+                        + "cellpadding='3px' cellspacing='0' class='tbl_form'>"
                         + htmlContent.toString()
                         + "</table>"
-                        + "</html>");
+                        + "</html>";
+
+                boolean isiSama = java.util.Objects.equals(htmlBaru, htmlCpptTerakhirPPAdokter);
+
+                if (!isiSama) {
+                    LoadHTML3.setText(htmlBaru);
+                    htmlCpptTerakhirPPAdokter = htmlBaru;
+                    LoadHTML3.setCaretPosition(0);
+                    SwingUtilities.invokeLater(() -> {
+                        Scroll17.getViewport().setViewPosition(
+                                new java.awt.Point(0, 0));
+                    });
+                }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -15086,12 +15116,25 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "</table>"
                     );
                 }
-                LoadHTML4.setText(
-                        "<html>"
-                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"                        
+                
+                String htmlBaru = "<html>"
+                        + "<table width='100%' border='0' align='center' "
+                        + "cellpadding='3px' cellspacing='0' class='tbl_form'>"
                         + htmlContent.toString()
                         + "</table>"
-                        + "</html>");
+                        + "</html>";
+
+                boolean isiSama = java.util.Objects.equals(htmlBaru, htmlCpptTerakhirPPAselainDokter);
+
+                if (!isiSama) {
+                    LoadHTML4.setText(htmlBaru);
+                    htmlCpptTerakhirPPAselainDokter = htmlBaru;
+                    LoadHTML4.setCaretPosition(0);
+                    SwingUtilities.invokeLater(() -> {
+                        Scroll18.getViewport().setViewPosition(
+                                new java.awt.Point(0, 0));
+                    });
+                }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -21975,12 +22018,24 @@ public class DlgCPPT extends javax.swing.JDialog {
                     htmlContent.append("<tr><td><br></td></tr>");
                 }
 
-                LoadHTML6.setText(
-                        "<html>"
-                        + "<table width='100%' border='0' align='center' colspan='8' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                String htmlBaru = "<html>"
+                        + "<table width='100%' border='0' align='center' "
+                        + "cellpadding='3px' cellspacing='0' class='tbl_form'>"
                         + htmlContent.toString()
                         + "</table>"
-                        + "</html>");
+                        + "</html>";
+
+                boolean isiSama = java.util.Objects.equals(htmlBaru, htmlPemeriksaanLabPA);
+
+                if (!isiSama) {
+                    LoadHTML6.setText(htmlBaru);
+                    htmlPemeriksaanLabPA = htmlBaru;
+                    LoadHTML6.setCaretPosition(0);
+                    SwingUtilities.invokeLater(() -> {
+                        Scroll22.getViewport().setViewPosition(
+                                new java.awt.Point(0, 0));
+                    });
+                }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {

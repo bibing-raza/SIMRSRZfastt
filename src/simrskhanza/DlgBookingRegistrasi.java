@@ -4260,6 +4260,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } else if (cekKDboking.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Kode booking tidak ditemukan didatabase...!!!");
             tbBoking.requestFocus();
+            //cek kondisi konsul internal TIDAK, pasien BPJS, data kelengkapan sep TIDAK ADA
+        } else if (tbBoking.getValueAt(tbBoking.getSelectedRow(), 19).toString().equals("TIDAK")
+                && tbBoking.getValueAt(tbBoking.getSelectedRow(), 14).toString().equals("B01")
+                && Sequel.cariInteger("select count(-1) from kelengkapan_booking_sep_bpjs where kd_booking='" + tbBoking.getValueAt(tbBoking.getSelectedRow(), 0).toString() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data kelengkapan sep BPJS harus diisi terlebih dulu.");
+            tampil();
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
@@ -4308,6 +4314,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } else if (cekKDboking.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Kode booking tidak ditemukan didatabase...!!!");
             tbBoking.requestFocus();
+            //cek kondisi konsul internal TIDAK, pasien BPJS, data kelengkapan sep TIDAK ADA
+        } else if (tbBoking.getValueAt(tbBoking.getSelectedRow(), 19).toString().equals("TIDAK")
+                && tbBoking.getValueAt(tbBoking.getSelectedRow(), 14).toString().equals("B01")
+                && Sequel.cariInteger("select count(-1) from kelengkapan_booking_sep_bpjs where kd_booking='" + tbBoking.getValueAt(tbBoking.getSelectedRow(), 0).toString() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data kelengkapan sep BPJS harus diisi terlebih dulu.");
+            tampil();
         } else {
 
             Valid.cetakQr(kdboking.getText(), Sequel.cariFolder(), "QR.jpg");

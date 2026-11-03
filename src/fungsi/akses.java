@@ -82,7 +82,7 @@ public final class akses {
             ikhtisar_perawatan_hiv = false, survey_kepuasan = false, kemenkes_kanker = false, aktivasi_bridging = false, operator_antrian = false, penilaian_awal_medis_ralan_tht = false,
             rekam_psikologis = false, penilaian_pasien_geriatri = false, penilaian_awal_medis_ralan_mata = false, surat_sakit = false, surat_keterangan_kir_mcu = false, asesmen_medik_dewasa_ranap = false,
             pemberian_obat = false, cppt = false, bridging_satu_sehat = false, kemoterapi = false, cek_piutang = false, asesmen_medik_anak_ranap = false, kegiatan_operasi = false,
-            asesmen_medik_bedah_ranap = false, pic_keuangan = false, pic_kmkp = false, pic_igd = false;
+            asesmen_medik_bedah_ranap = false, pic_keuangan = false, pic_kmkp = false, pic_igd = false, hemodialisa = false;
     public static Timer tRefreshAntrian, tRefreshPoli, tRefreshAntri, tRefreshNotifApotek, tRefreshNotifLab, tRefreshNotifRad;
 
     public static void setData(String user, String pass) {
@@ -489,6 +489,7 @@ public final class akses {
                     akses.pic_keuangan = true;
                     akses.pic_kmkp = true;
                     akses.pic_igd = true;
+                    akses.hemodialisa = true;
                 } else if (rs.getRow() >= 1) {
                     akses.kode = "Admin Utama";
                     akses.penyakit = true;
@@ -871,6 +872,7 @@ public final class akses {
                     akses.pic_keuangan = true;
                     akses.pic_kmkp = true;
                     akses.pic_igd = true;
+                    akses.hemodialisa = true;
                 } else if (rs2.getRow() >= 1) {
                     rs2.beforeFirst();
                     rs2.next();
@@ -1257,6 +1259,7 @@ public final class akses {
                     akses.pic_keuangan = rs2.getBoolean("pic_keuangan");
                     akses.pic_kmkp = rs2.getBoolean("pic_kmkp");
                     akses.pic_igd = rs2.getBoolean("pic_igd");
+                    akses.hemodialisa = rs2.getBoolean("hemodialisa");
                 } else if ((rs.getRow() == 0) && (rs2.getRow() == 0)) {
                     akses.kode = "";
                     akses.penyakit = false;
@@ -1640,6 +1643,7 @@ public final class akses {
                     akses.pic_keuangan = false;
                     akses.pic_kmkp = false;
                     akses.pic_igd = false;
+                    akses.hemodialisa = false;
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -3400,5 +3404,9 @@ public final class akses {
     
     public static boolean getpic_igd() {
         return akses.pic_igd;
+    }
+    
+    public static boolean gethemodialisa() {
+        return akses.hemodialisa;
     }
 }

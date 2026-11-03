@@ -70,9 +70,9 @@
             <Property name="verticalGap" type="int" value="1"/>
           </Layout>
           <SubComponents>
-            <Container class="widget.ScrollPane" name="Scroll19">
+            <Container class="widget.ScrollPane" name="Scroll1">
               <Properties>
-                <Property name="name" type="java.lang.String" value="Scroll19" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="Scroll1" noResource="true"/>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Constraints>
