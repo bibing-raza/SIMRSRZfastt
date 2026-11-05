@@ -14029,12 +14029,16 @@ public class DlgCPPT extends javax.swing.JDialog {
     
     private void kembalikanHistory(String wg) {
         String wktSimpan = Sequel.cariIsi("select now()");
+        int intervalDetik = 2; // Ubah menjadi 3 jika ingin selisih 3 detik
         try {
-            ps5 = koneksi.prepareStatement("select * from cppt_history where waktu_ganti='" + wg + "'");
+            ps5 = koneksi.prepareStatement("select * from cppt_history where waktu_ganti='" + wg + "' order by waktu_simpan");
             try {
                 rs5 = ps5.executeQuery();
-                x = 1;
+                x = 0;
                 while (rs5.next()) {
+                    String waktuCalon = Sequel.cariIsi("SELECT DATE_ADD('" + wktSimpan + "', INTERVAL " + (x * intervalDetik) + " SECOND)");
+                    String waktuBaru = cariWaktuSimpanKosong(waktuCalon);
+                    
                     Sequel.menyimpan("cppt",
                             "'" + rs5.getString("no_rawat") + "',"
                             + "'" + rs5.getString("tgl_cppt") + "',"
@@ -14044,7 +14048,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "'" + rs5.getString("verifikasi") + "',"
                             + "'" + rs5.getString("nip_dpjp") + "',"
                             + "'" + rs5.getString("status") + "',"
-                            + "DATE_ADD('" + wktSimpan + "', INTERVAL " + x + " SECOND),"
+                            + "'" + waktuBaru + "',"
                             + "'" + rs5.getString("cek_jam") + "',"
                             + "'" + rs5.getString("jam_cppt") + "',"
                             + "'" + rs5.getString("jenis_ppa") + "',"
@@ -22524,6 +22528,39 @@ public class DlgCPPT extends javax.swing.JDialog {
                 tampil();
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
+            }
+        }
+    }
+    
+    private String cariWaktuSimpanKosong(String waktuAwal) throws SQLException {
+        String sql = "SELECT DATE_FORMAT(DATE_ADD(?, INTERVAL ? SECOND),'%Y-%m-%d %H:%i:%s') AS waktu_baru";
+        String sqlCek = "SELECT COUNT(*) FROM cppt WHERE waktu_simpan=?";
+        try (
+                PreparedStatement psWaktu = koneksi.prepareStatement(sql);
+                PreparedStatement psCek = koneksi.prepareStatement(sqlCek)) {
+
+            int tambahanDetik = 0;
+            while (true) {
+                String waktuBaru;
+                psWaktu.setString(1, waktuAwal);
+                psWaktu.setInt(2, tambahanDetik);
+
+                try (ResultSet rsWaktu = psWaktu.executeQuery()) {
+                    if (!rsWaktu.next()) {
+                        throw new SQLException("Gagal menghitung waktu simpan");
+                    }
+                    waktuBaru = rsWaktu.getString("waktu_baru");
+                }
+
+                psCek.setString(1, waktuBaru);
+
+                try (ResultSet rsCek = psCek.executeQuery()) {
+                    if (rsCek.next() && rsCek.getInt(1) == 0) {
+                        return waktuBaru;
+                    }
+                }
+
+                tambahanDetik += 2;
             }
         }
     }

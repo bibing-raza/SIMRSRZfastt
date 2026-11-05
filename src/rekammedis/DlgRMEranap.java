@@ -264,7 +264,9 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsuhanGizi = new widget.ButtonBig();
         BtnMonevAsuhanGizi = new widget.ButtonBig();
         BtnAsesmenUlangGizi = new widget.ButtonBig();
+        BtnStatusHemodialisis = new widget.ButtonBig();
         BtnSamplingPemanfaatanRM = new widget.ButtonBig();
+        BtnPersetujuanTindakanHD = new widget.ButtonBig();
         internalFrame10 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbRMranap = new widget.Table();
@@ -1184,6 +1186,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         FormMenuRanap.add(BtnAsesmenUlangGizi);
 
+        BtnStatusHemodialisis.setForeground(new java.awt.Color(0, 0, 0));
+        BtnStatusHemodialisis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_Address Book_32590.png"))); // NOI18N
+        BtnStatusHemodialisis.setText("Status Hemodialisis");
+        BtnStatusHemodialisis.setIconTextGap(0);
+        BtnStatusHemodialisis.setName("BtnStatusHemodialisis"); // NOI18N
+        BtnStatusHemodialisis.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnStatusHemodialisis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnStatusHemodialisisActionPerformed(evt);
+            }
+        });
+        FormMenuRanap.add(BtnStatusHemodialisis);
+
         BtnSamplingPemanfaatanRM.setForeground(new java.awt.Color(0, 0, 0));
         BtnSamplingPemanfaatanRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1491582089_Finance_financial_report.png"))); // NOI18N
         BtnSamplingPemanfaatanRM.setText("Sampling Pemanfaatan RM");
@@ -1196,6 +1211,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormMenuRanap.add(BtnSamplingPemanfaatanRM);
+
+        BtnPersetujuanTindakanHD.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPersetujuanTindakanHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/kwrite.png"))); // NOI18N
+        BtnPersetujuanTindakanHD.setText("<html><div style=\"text-align: center;\">Persetujuan Tindakan<br>Kedokteran Hemodialisis</div></html>");
+        BtnPersetujuanTindakanHD.setIconTextGap(0);
+        BtnPersetujuanTindakanHD.setName("BtnPersetujuanTindakanHD"); // NOI18N
+        BtnPersetujuanTindakanHD.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnPersetujuanTindakanHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPersetujuanTindakanHDActionPerformed(evt);
+            }
+        });
+        FormMenuRanap.add(BtnPersetujuanTindakanHD);
 
         scrolMenuRanap.setViewportView(FormMenuRanap);
 
@@ -3321,6 +3349,40 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnRanapApsActionPerformed
 
+    private void BtnStatusHemodialisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnStatusHemodialisisActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMStatusHemodialisis form = new RMStatusHemodialisis(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), "ranap", nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnStatusHemodialisisActionPerformed
+
+    private void BtnPersetujuanTindakanHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPersetujuanTindakanHDActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMPersetujuanTindakanHemodialisis form = new RMPersetujuanTindakanHemodialisis(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), "ranap", nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnPersetujuanTindakanHDActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3400,6 +3462,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnPerencanaanPulang;
     private widget.ButtonBig BtnPersetujuanRanap;
     private widget.ButtonBig BtnPersetujuanTindakan;
+    private widget.ButtonBig BtnPersetujuanTindakanHD;
     private widget.ButtonBig BtnPersetujuanTindakanIBS;
     private widget.ButtonBig BtnProtokolKemoterapi;
     private widget.Button BtnRefres;
@@ -3415,6 +3478,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnSerahTerimaPasca;
     private widget.Button BtnSimpan6;
     private widget.ButtonBig BtnSkriningUlangGizi;
+    private widget.ButtonBig BtnStatusHemodialisis;
     private widget.ButtonBig BtnSuratPernyataanBayarDenda;
     private widget.ButtonBig BtnSuratPernyataanBukanKLL;
     private widget.ButtonBig BtnSuratPernyataanDNR;
@@ -3538,7 +3602,9 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnTransferTindakanIBS.setEnabled(akses.getcppt());
         BtnSuratPernyataanDNR.setEnabled(akses.getcppt());
         BtnInstruksiDokterDNR.setEnabled(akses.getresep_dokter());
-        btnRanapAps.setEnabled(akses.getkamar_inap());        
+        btnRanapAps.setEnabled(akses.getkamar_inap());
+        BtnStatusHemodialisis.setEnabled(akses.gethemodialisa());
+        BtnPersetujuanTindakanHD.setEnabled(akses.gethemodialisa());
         BtnMaskepNyeriAkut.setEnabled(akses.getcppt());
         BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
         BtnMaskepResikoHipotermia.setEnabled(akses.getcppt());
@@ -4051,6 +4117,16 @@ public class DlgRMEranap extends javax.swing.JDialog {
             FormMenuRanap.add(BtnAsesmenUlangGizi);
             jmlmenu++;
         }
+        
+        if (akses.gethemodialisa() && BtnStatusHemodialisis.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnStatusHemodialisis);
+            jmlmenu++;
+        }
+        
+        if (akses.gethemodialisa() && BtnPersetujuanTindakanHD.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnPersetujuanTindakanHD);
+            jmlmenu++;
+        }
 
         if (akses.getadmin() && BtnSamplingPemanfaatanRM.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnSamplingPemanfaatanRM);
@@ -4414,7 +4490,9 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 + "    UNION ALL SELECT 44, 'assesmen_gizi_ulang', 'Asesmen Gizi Ulang' "
                 + "    UNION ALL SELECT 45, 'surat_pernyataan_dnr', 'Surat Pernyataan DNR (Do Not Resucitate)' "
                 + "    UNION ALL SELECT 46, 'instruksi_dokter_untuk_dnr', 'Instruksi Dokter Untuk DNR (Do Not Resucitate)' "
-                + "    UNION ALL SELECT 47, 'asesmen_pasien_terminal', 'Assesmen Pasien Terminal Dan Keluarganya') AS t";
+                + "    UNION ALL SELECT 47, 'asesmen_pasien_terminal', 'Assesmen Pasien Terminal Dan Keluarganya' "
+                + "    UNION ALL SELECT 48, 'status_hemodialisis', 'Status Hemodialisis' "
+                + "    UNION ALL SELECT 49, 'persetujuan_tindakan_hemodialisis', 'Persetujuan Tindakan (Hemodialisis)') AS t";
 
         if (TNoRW.getText().isEmpty()) {
             return;

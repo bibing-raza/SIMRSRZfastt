@@ -81,6 +81,7 @@ import rekammedis.RMPenilaianAwalMedisRalanTHT;
 import rekammedis.RMPenilaianTambahanGeriatri;
 import rekammedis.RMPerencanaanPulang;
 import rekammedis.RMPersetujuanRawatInap;
+import rekammedis.RMPersetujuanTindakanHemodialisis;
 import rekammedis.RMProtokolKemoterapi;
 import rekammedis.RMRegisterCancer;
 import rekammedis.RMSerahTerimaBayiPulang;
@@ -243,6 +244,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnDataPelayananRS = new widget.ButtonBig();
         BtnCatatanDiagnosa = new widget.ButtonBig();
         BtnStatusHemodialisis = new widget.ButtonBig();
+        BtnPersetujuanTindakanHD = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1548,6 +1550,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnStatusHemodialisis);
+
+        BtnPersetujuanTindakanHD.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPersetujuanTindakanHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/kwrite.png"))); // NOI18N
+        BtnPersetujuanTindakanHD.setText("<html><div style=\"text-align: center;\">Persetujuan Tindakan<br>Kedokteran Hemodialisis</div></html>");
+        BtnPersetujuanTindakanHD.setIconTextGap(0);
+        BtnPersetujuanTindakanHD.setName("BtnPersetujuanTindakanHD"); // NOI18N
+        BtnPersetujuanTindakanHD.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnPersetujuanTindakanHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPersetujuanTindakanHDActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnPersetujuanTindakanHD);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -3103,6 +3118,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnStatusHemodialisisActionPerformed
 
+    private void BtnPersetujuanTindakanHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPersetujuanTindakanHDActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMPersetujuanTindakanHemodialisis form = new RMPersetujuanTindakanHemodialisis(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnPersetujuanTindakanHD.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnPersetujuanTindakanHDActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -3131,6 +3162,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnMasterICDOmorphology;
     private widget.ButtonBig BtnMasterICDOtopography;
     private widget.ButtonBig BtnPartograf;
+    private widget.ButtonBig BtnPersetujuanTindakanHD;
     private widget.ButtonBig BtnRegisterCancer;
     private widget.ButtonBig BtnScoreApgarPerinatologiLuar;
     private widget.ButtonBig BtnSerahTerimaPascaOperasi;
@@ -3685,6 +3717,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             FormMenu.add(BtnStatusHemodialisis);
             jmlmenu++;
         }
+        
+        if (akses.gethemodialisa() && BtnPersetujuanTindakanHD.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnPersetujuanTindakanHD);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -4182,6 +4219,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         
         if (akses.gethemodialisa()== true) {
             FormMenu.add(BtnStatusHemodialisis);
+            jmlmenu++;
+        }
+        
+        if (akses.gethemodialisa()== true) {
+            FormMenu.add(BtnPersetujuanTindakanHD);
             jmlmenu++;
         }
 

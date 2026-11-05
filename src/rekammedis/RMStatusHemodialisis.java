@@ -36,8 +36,9 @@ public class RMStatusHemodialisis extends javax.swing.JDialog {
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private int i = 0, x = 0;
-    private String cekEmer = "", cekTeren = "", cekTglOps = "", cekTglDibuat = "", cekTglInser = "", cekTglOffShort = "", cekTglOffLong = "", cekTglMulaiFemo = "",
-            tglOps = "", tglDibuat = "", tglInsersi = "", tglOffShort = "", tglOffLong = "", tglMulaiFemo = "", tglReg = "", tglSekarang = "";
+    private String cekEmer = "", cekTeren = "", cekTglOps = "", cekTglDibuat = "", cekTglInser = "", cekTglOffShort = "", cekTglOffLong = "",
+            cekTglMulaiFemo = "", tglOps = "", tglDibuat = "", tglInsersi = "", tglOffShort = "", tglOffLong = "", tglMulaiFemo = "", tglReg = "",
+            tglSekarang = "", sttsrwt = "", rgrawat = "";
     private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
@@ -1492,7 +1493,7 @@ public class RMStatusHemodialisis extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
             cekData();
-            if (Sequel.menyimpantf("status_hemodialisis", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 47, new String[]{
+            if (Sequel.menyimpantf("status_hemodialisis", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 49, new String[]{
                 TNoRw.getText(), TnoStatus.getText(), TdiagEtiologi.getText(), Valid.SetTgl(TtglMulaiHD.getSelectedItem() + ""), cekEmer, cekTeren, Tlokasi1.getText(),
                 Tlokasi2.getText(), Tlokasi3.getText(), Tlokasi4.getText(), cekTglOps, tglOps, cekTglDibuat, tglDibuat, cekTglInser, tglInsersi, TlokasiShort.getText(),
                 Valid.SetTgl(TtglInsersiShort.getSelectedItem() + ""), cekTglOffShort, tglOffShort, TlokasiLong.getText(), Valid.SetTgl(TtglBerhenti.getSelectedItem() + ""),
@@ -1500,7 +1501,7 @@ public class RMStatusHemodialisis extends javax.swing.JDialog {
                 Valid.SetTgl(TtglDiag1.getSelectedItem() + ""), Valid.SetTgl(TtglDiag2.getSelectedItem() + ""), Valid.SetTgl(TtglDiag3.getSelectedItem() + ""),
                 Valid.SetTgl(TtglDiag4.getSelectedItem() + ""), Valid.SetTgl(TtglDiag5.getSelectedItem() + ""), Tkomplikasi1.getText(), Tkomplikasi2.getText(),
                 Tkomplikasi3.getText(), Tkomplikasi4.getText(), Tkomplikasi5.getText(), Valid.SetTgl(TtglKom1.getSelectedItem() + ""), Valid.SetTgl(TtglKom2.getSelectedItem() + ""),
-                Valid.SetTgl(TtglKom3.getSelectedItem() + ""), Valid.SetTgl(TtglKom4.getSelectedItem() + ""), Valid.SetTgl(TtglKom5.getSelectedItem() + ""),
+                Valid.SetTgl(TtglKom3.getSelectedItem() + ""), Valid.SetTgl(TtglKom4.getSelectedItem() + ""), Valid.SetTgl(TtglKom5.getSelectedItem() + ""), sttsrwt, rgrawat,
                 Sequel.cariIsi("select now()")
             }) == true) {
 
@@ -1535,7 +1536,7 @@ public class RMStatusHemodialisis extends javax.swing.JDialog {
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
         if (tbStatus.getSelectedRow() > -1) {
             cekData();
-            if (Sequel.mengedittf("status_hemodialisis", "no_rawat=?", "no_status=?, diagnosa_etiologi=?, tgl_mulai_hd=?, emergensi=?, terencana=?, cimino_lokasi1=?, "
+            if (Sequel.mengedittf("status_hemodialisis", "waktu_simpan=?", "no_status=?, diagnosa_etiologi=?, tgl_mulai_hd=?, emergensi=?, terencana=?, cimino_lokasi1=?, "
                     + "cimino_lokasi2=?, cimino_lokasi3=?, cimino_lokasi4=?, cek_tgl_operasi=?, tgl_operasi=?, cek_tgl_av_graft=?, tgl_av_graft=?, cek_tgl_insersi_catheter=?, "
                     + "tgl_insersi_catheter=?, short_lokasi=?, short_tgl_insersi=?, cek_short_tgl_off=?, short_tgl_off=?, long_lokasi=?, long_tgl_berhenti=?, cek_long_tgl_off=?, "
                     + "long_tgl_off=?, cek_tgl_mulai_femoral=?, tgl_femoral=?, diagnosa1=?, diagnosa2=?, diagnosa3=?, diagnosa4=?, diagnosa5=?, tgl_diag1=?, tgl_diag2=?, "
@@ -1549,7 +1550,7 @@ public class RMStatusHemodialisis extends javax.swing.JDialog {
                         Valid.SetTgl(TtglDiag4.getSelectedItem() + ""), Valid.SetTgl(TtglDiag5.getSelectedItem() + ""), Tkomplikasi1.getText(), Tkomplikasi2.getText(),
                         Tkomplikasi3.getText(), Tkomplikasi4.getText(), Tkomplikasi5.getText(), Valid.SetTgl(TtglKom1.getSelectedItem() + ""), Valid.SetTgl(TtglKom2.getSelectedItem() + ""),
                         Valid.SetTgl(TtglKom3.getSelectedItem() + ""), Valid.SetTgl(TtglKom4.getSelectedItem() + ""), Valid.SetTgl(TtglKom5.getSelectedItem() + ""),
-                        tbStatus.getValueAt(tbStatus.getSelectedRow(), 0).toString()
+                        tbStatus.getValueAt(tbStatus.getSelectedRow(), 52).toString()
                     }) == true) {
 
                 Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "no_tlp='" + Tnotelp.getText() + "'");
@@ -1826,8 +1827,8 @@ public class RMStatusHemodialisis extends javax.swing.JDialog {
         if (tbStatus.getSelectedRow() > -1) {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
-                if (Sequel.queryu2tf("delete from status_hemodialisis where no_rawat=?", 1, new String[]{
-                    tbStatus.getValueAt(tbStatus.getSelectedRow(), 0).toString()
+                if (Sequel.queryu2tf("delete from status_hemodialisis where waktu_simpan=?", 1, new String[]{
+                    tbStatus.getValueAt(tbStatus.getSelectedRow(), 52).toString()
                 }) == true) {
                     tampil();
                     emptTeks();
@@ -1984,11 +1985,11 @@ public class RMStatusHemodialisis extends javax.swing.JDialog {
                 param.put("komplikasi5", Tkomplikasi5.getText() + ", Tgl. " + TtglKom5.getSelectedItem().toString());
             }
             
-//            Valid.MyReport("rptStatusHemodialisis2.jasper", "report", "::[ Status Hemodialisis (Data Status) ]::",
-//                    "SELECT date(now()) tgl", param);
-//            
-//            Valid.MyReport("rptStatusHemodialisis1.jasper", "report", "::[ Status Hemodialisis (Sampul/Cover) ]::",
-//                    "SELECT date(now()) tgl", param);
+            Valid.MyReport("rptStatusHemodialisis2.jasper", "report", "::[ Status Hemodialisis (Data Status) ]::",
+                    "SELECT date(now()) tgl", param);
+            
+            Valid.MyReport("rptStatusHemodialisis1.jasper", "report", "::[ Status Hemodialisis (Sampul/Cover) ]::",
+                    "SELECT date(now()) tgl", param);
             
             emptTeks();
             tampil();
@@ -2448,8 +2449,10 @@ public class RMStatusHemodialisis extends javax.swing.JDialog {
         }
     }
     
-    public void setData(String norw) {
+    public void setData(String norw, String sttsRawat, String unit) {
         TNoRw.setText(norw);
+        sttsrwt = sttsRawat;
+        rgrawat = unit;
         isPasien();
         Valid.SetTgl(DTPCari1, tglReg);
         Valid.SetTgl(TtglMulaiHD, tglReg);
