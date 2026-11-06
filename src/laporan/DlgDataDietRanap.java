@@ -48,9 +48,9 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
     private ResultSet rs;
     private validasi Valid = new validasi();
     private sekuel Sequel = new sekuel();
-    private int i = 0, cekData = 0;
+    private int i = 0, cekData = 0, cekDiet = 0;
     private String mencari = "", cari1 = "", cari2 = "", cari3 = "", cari4 = "", gedungGZ = "",
-            inisialWkt = "", wktpro = "", wktkada = "", statusPlg = "";
+            inisialWkt = "", wktpro = "", wktkada = "";
         
     /** Creates new form DlgKamar
      * @param parent
@@ -267,7 +267,6 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
 
         inisial.setEditable(false);
         inisial.setForeground(new java.awt.Color(0, 0, 0));
-        inisial.setHighlighter(null);
         inisial.setName("inisial"); // NOI18N
         inisial.setPreferredSize(new java.awt.Dimension(50, 24));
         panelGlass9.add(inisial);
@@ -301,7 +300,6 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
 
         kelas.setEditable(false);
         kelas.setForeground(new java.awt.Color(0, 0, 0));
-        kelas.setHighlighter(null);
         kelas.setName("kelas"); // NOI18N
         kelas.setPreferredSize(new java.awt.Dimension(110, 24));
         panelGlass9.add(kelas);
@@ -313,7 +311,7 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel99);
 
         tglDiet.setEditable(false);
-        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2025" }));
+        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2026" }));
         tglDiet.setDisplayFormat("dd-MM-yyyy");
         tglDiet.setName("tglDiet"); // NOI18N
         tglDiet.setOpaque(false);
@@ -357,7 +355,6 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
         panelGlass10.add(jLabel102);
 
         TCari.setForeground(new java.awt.Color(0, 0, 0));
-        TCari.setHighlighter(null);
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(250, 24));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -414,25 +411,22 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
             cmbPrin.requestFocus();
         } else if (cmbPrin.getSelectedIndex() == 1 || cmbPrin.getSelectedIndex() == 2 || cmbPrin.getSelectedIndex() == 3) {
             cekData = 0;
-            statusPlg = "";
-
-            if (cmbStatus.getSelectedIndex() == 0) {
-                statusPlg = "ki.stts_pulang = '-'";
-            } else {
-                statusPlg = "ki.stts_pulang not in ('-','Pindah Kamar')";
-            }
+            cekDiet = 0;
+            cekDiet = Sequel.cariInteger("SELECT count(*) from detail_beri_diet where tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "'");
 
             if (inisial.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Inisial ruangan harus terisi..!!!");
             } else {
-                if (cmbPrin.getSelectedIndex() == 1) {                    
-                    cekData = Sequel.cariInteger("SELECT COUNT(-1) FROM detail_beri_diet db INNER JOIN reg_periksa rp ON rp.no_rawat = db.no_rawat "
-                            + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                            + "INNER join kamar_inap ki on ki.no_rawat=db.no_rawat and db.waktu='Siang' and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
-                            + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                            + "INNER join diet d on d.kd_diet=db.kd_diet WHERE " + statusPlg + " AND b.nm_gedung = '" + gedungGZ + "'");
+                if (cmbPrin.getSelectedIndex() == 1) {
+                    cekData = Sequel.cariInteger("SELECT count(-1) FROM kamar_inap ki INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat "
+                            + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar "
+                            + "INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                            + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.waktu = 'Siang' AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                            + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet "
+                            + "WHERE b.nm_gedung = '" + gedungGZ + "' AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                            + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00')");
                     
-                    if (cekData == 0) {
+                    if (cekData == 0 || cekDiet == 0) {
                         JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!");
                     } else {
                         PrinBonDietPerRuangan();
@@ -440,12 +434,13 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
                     }
 
                 } else if (cmbPrin.getSelectedIndex() == 2) {
-                    cekData = Sequel.cariInteger("SELECT count(-1) FROM detail_beri_diet db "
-                            + "inner join kamar_inap ki on ki.no_rawat=db.no_rawat and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' and db.waktu IN ('Pagi','Siang','Sore') "
-                            + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                            + "WHERE " + statusPlg + " AND b.nm_gedung = 'ANAK'");
+                    cekData = Sequel.cariInteger("SELECT count(-1) FROM kamar_inap ki INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat "
+                            + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                            + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' AND db.waktu IN ('Pagi','Siang','Sore') "
+                            + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet WHERE b.nm_gedung = '" + gedungGZ + "' AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                            + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00')");
 
-                    if (cekData == 0) {
+                    if (cekData == 0 || cekDiet == 0) {
                         JOptionPane.showMessageDialog(null, "Data tidak ditemukan, periksa lagi pilihan status rawatnya..!!!");
                     } else {
                         PrinKetepatanDiet();
@@ -462,12 +457,14 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
                 PrinLabelDietRuanganInap();
             }
         } else if (cmbPrin.getSelectedIndex() == 5) {
-            cekData = Sequel.cariInteger("SELECT count(-1) FROM detail_beri_diet db "
-                    + "INNER join kamar_inap ki on ki.no_rawat=db.no_rawat and db.waktu='Siang' and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
-                    + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                    + "INNER join diet d on d.kd_diet=db.kd_diet WHERE " + statusPlg + " and b.nm_gedung not in ('PERINATOLOGI','BAYI SEHAT')");
+            cekData = Sequel.cariInteger("SELECT count(-1) FROM kamar_inap ki INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar "
+                    + "INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                    + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.waktu = 'Siang' AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet WHERE b.nm_gedung not in ('PERINATOLOGI','BAYI SEHAT') AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00')");
 
-            if (cekData == 0) {
+            if (cekData == 0 || cekDiet == 0) {
                 JOptionPane.showMessageDialog(null, "Data tidak ditemukan, periksa lagi pilihan status rawatnya..!!!");
             } else {
                 PrinBonDietSemuaRuangan();
@@ -818,13 +815,16 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
         if (cmbPilihCetak.getSelectedIndex() == 0) {
             if (akses.getadmin() == true) {
                 Valid.MyReport("rptbondietRanap.jasper", "report", "::[ Bon Diet Makanan Pasien PerRuangan Inap ]::",
-                        "SELECT DISTINCT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
-                        + "b.nm_bangsal, lower(IFNULL(ki.diagnosa_awal, '-')) diag_awal, d.nama_diet nm_diet, "
-                        + "if(db.disajikan='biasa','',ifnull(db.disajikan,'-')) kemasan FROM detail_beri_diet db "
-                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = db.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                        + "inner join kamar_inap ki on ki.no_rawat=db.no_rawat and db.waktu='Siang' and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        "SELECT DISTINCT CONCAT(p.no_rkm_medis, ' - ', p.nm_pasien) AS pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') AS tgl_lhr, b.nm_bangsal, "
+                        + "LOWER(IFNULL(ki.diagnosa_awal, '-')) AS diag_awal, IFNULL(d.nama_diet, '') AS nm_diet, "
+                        + "CASE WHEN db.disajikan = 'biasa' THEN '' ELSE IFNULL(db.disajikan, '') END AS kemasan FROM kamar_inap ki "
+                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                        + "INNER join diet d on d.kd_diet=db.kd_diet WHERE " + statusPlg + " AND b.nm_gedung = '" + gedungGZ + "' ORDER BY b.nm_bangsal, k.kelas, pasien", param);
+                        + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.waktu = 'Siang' AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet "
+                        + "WHERE b.nm_gedung = '" + gedungGZ + "' AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00') "
+                        + "ORDER BY b.nm_bangsal, k.kelas, pasien", param);
             } else {
                 String isi = "", user = "";
                 user = Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'");
@@ -842,25 +842,31 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
                 param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='008'"));
 
                 Valid.MyReport("rptbondietRanapQr.jasper", "report", "::[ Bon Diet Makanan Pasien PerRuangan Inap ]::",
-                        "SELECT DISTINCT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
-                        + "b.nm_bangsal, lower(IFNULL(ki.diagnosa_awal, '-')) diag_awal, d.nama_diet nm_diet, "
-                        + "if(db.disajikan='biasa','',ifnull(db.disajikan,'-')) kemasan FROM detail_beri_diet db "
-                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = db.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                        + "inner join kamar_inap ki on ki.no_rawat=db.no_rawat and db.waktu='Siang' and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        "SELECT DISTINCT CONCAT(p.no_rkm_medis, ' - ', p.nm_pasien) AS pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') AS tgl_lhr, b.nm_bangsal, "
+                        + "LOWER(IFNULL(ki.diagnosa_awal, '-')) AS diag_awal, IFNULL(d.nama_diet, '') AS nm_diet, "
+                        + "CASE WHEN db.disajikan = 'biasa' THEN '' ELSE IFNULL(db.disajikan, '') END AS kemasan FROM kamar_inap ki "
+                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                        + "INNER join diet d on d.kd_diet=db.kd_diet WHERE " + statusPlg + " AND b.nm_gedung = '" + gedungGZ + "' ORDER BY b.nm_bangsal, k.kelas, pasien", param);
+                        + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.waktu = 'Siang' AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet "
+                        + "WHERE b.nm_gedung = '" + gedungGZ + "' AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00') "
+                        + "ORDER BY b.nm_bangsal, k.kelas, pasien", param);
 
                 Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             }
         } else {
             Valid.MyReport("rptbondietRanap.jasper", "report", "::[ Bon Diet Makanan Pasien PerRuangan Inap ]::",
-                    "SELECT DISTINCT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
-                    + "b.nm_bangsal, lower(IFNULL(ki.diagnosa_awal, '-')) diag_awal, d.nama_diet nm_diet, "
-                    + "if(db.disajikan='biasa','',ifnull(db.disajikan,'-')) kemasan FROM detail_beri_diet db "
-                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = db.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                    + "inner join kamar_inap ki on ki.no_rawat=db.no_rawat and db.waktu='Siang' and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    "SELECT DISTINCT CONCAT(p.no_rkm_medis, ' - ', p.nm_pasien) AS pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') AS tgl_lhr, b.nm_bangsal, "
+                    + "LOWER(IFNULL(ki.diagnosa_awal, '-')) AS diag_awal, IFNULL(d.nama_diet, '') AS nm_diet, "
+                    + "CASE WHEN db.disajikan = 'biasa' THEN '' ELSE IFNULL(db.disajikan, '') END AS kemasan FROM kamar_inap ki "
+                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                    + "INNER join diet d on d.kd_diet=db.kd_diet WHERE " + statusPlg + " AND b.nm_gedung = '" + gedungGZ + "' ORDER BY b.nm_bangsal, k.kelas, pasien", param);
+                    + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.waktu = 'Siang' AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet "
+                    + "WHERE b.nm_gedung = '" + gedungGZ + "' AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00') "
+                    + "ORDER BY b.nm_bangsal, k.kelas, pasien", param);
         }
         this.setCursor(Cursor.getDefaultCursor());
         tampil();
@@ -890,14 +896,14 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
             if (akses.getadmin() == true) {
                 Valid.MyReport("rptbondietRanapAll.jasper", "report", "::[ Bon Diet Makanan Pasien Semua Ruangan Inap ]::",
                         "SELECT DISTINCT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
-                        + "b.nm_bangsal, LOWER(IFNULL(ki.diagnosa_awal, '-')) diag_awal, d.nama_diet nm_diet, b.nm_gedung, "
-                        + "if(db.disajikan='biasa','',ifnull(db.disajikan,'-')) kemasan FROM detail_beri_diet db "
-                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = db.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                        + "inner join kamar_inap ki on ki.no_rawat=db.no_rawat and db.waktu='Siang' and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "b.nm_bangsal, LOWER(IFNULL(ki.diagnosa_awal, '-')) diag_awal, ifnull(d.nama_diet,'') nm_diet, b.nm_gedung, "
+                        + "if(db.disajikan='biasa','',ifnull(db.disajikan,'-')) kemasan FROM kamar_inap ki "
+                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                        + "INNER join diet d on d.kd_diet=db.kd_diet WHERE " + statusPlg + " and b.nm_gedung not in ('PERINATOLOGI','BAYI SEHAT') "
+                        + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.waktu = 'Siang' AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet WHERE b.nm_gedung not in ('PERINATOLOGI','BAYI SEHAT') AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00') "
                         + "ORDER BY b.nm_gedung, k.kelas, pasien", param);
-                
             } else {
                 String isi = "", user = "";
                 user = Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'");
@@ -916,24 +922,26 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
 
                 Valid.MyReport("rptbondietRanapAllQr.jasper", "report", "::[ Bon Diet Makanan Pasien Semua Ruangan Inap ]::",
                         "SELECT DISTINCT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
-                        + "b.nm_bangsal, LOWER(IFNULL(ki.diagnosa_awal, '-')) diag_awal, d.nama_diet nm_diet, b.nm_gedung, "
-                        + "if(db.disajikan='biasa','',ifnull(db.disajikan,'-')) kemasan FROM detail_beri_diet db "
-                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = db.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                        + "inner join kamar_inap ki on ki.no_rawat=db.no_rawat and db.waktu='Siang' and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "b.nm_bangsal, LOWER(IFNULL(ki.diagnosa_awal, '-')) diag_awal, ifnull(d.nama_diet,'') nm_diet, b.nm_gedung, "
+                        + "if(db.disajikan='biasa','',ifnull(db.disajikan,'-')) kemasan FROM kamar_inap ki "
+                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                        + "INNER join diet d on d.kd_diet=db.kd_diet WHERE " + statusPlg + " and b.nm_gedung not in ('PERINATOLOGI','BAYI SEHAT') "
+                        + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.waktu = 'Siang' AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet WHERE b.nm_gedung not in ('PERINATOLOGI','BAYI SEHAT') AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00') "
                         + "ORDER BY b.nm_gedung, k.kelas, pasien", param);
                 Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             }
         } else {
             Valid.MyReport("rptbondietRanapAll.jasper", "report", "::[ Bon Diet Makanan Pasien Semua Ruangan Inap ]::",
                     "SELECT DISTINCT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
-                    + "b.nm_bangsal, LOWER(IFNULL(ki.diagnosa_awal, '-')) diag_awal, d.nama_diet nm_diet, b.nm_gedung, "
-                    + "if(db.disajikan='biasa','',ifnull(db.disajikan,'-')) kemasan FROM detail_beri_diet db "
-                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = db.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                    + "inner join kamar_inap ki on ki.no_rawat=db.no_rawat and db.waktu='Siang' and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "b.nm_bangsal, LOWER(IFNULL(ki.diagnosa_awal, '-')) diag_awal, ifnull(d.nama_diet,'') nm_diet, b.nm_gedung, "
+                    + "if(db.disajikan='biasa','',ifnull(db.disajikan,'-')) kemasan FROM kamar_inap ki "
+                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                    + "INNER join diet d on d.kd_diet=db.kd_diet WHERE " + statusPlg + " and b.nm_gedung not in ('PERINATOLOGI','BAYI SEHAT') "
+                    + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.waktu = 'Siang' AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet WHERE b.nm_gedung not in ('PERINATOLOGI','BAYI SEHAT') AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00') "
                     + "ORDER BY b.nm_gedung, k.kelas, pasien", param);
         }
         this.setCursor(Cursor.getDefaultCursor());
@@ -961,12 +969,12 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
                         + "IFNULL(GROUP_CONCAT(DISTINCT CASE WHEN db.waktu = 'Pagi' THEN d.nama_diet END ORDER BY d.nama_diet SEPARATOR ', '), '') AS diet_pagi,'Pagi' AS waktu_pagi, "
                         + "IFNULL(GROUP_CONCAT(DISTINCT CASE WHEN db.waktu = 'Siang' THEN d.nama_diet END ORDER BY d.nama_diet SEPARATOR ', '), '') AS diet_siang,'Siang' AS waktu_siang, "
                         + "IFNULL(GROUP_CONCAT(DISTINCT CASE WHEN db.waktu = 'Sore' THEN d.nama_diet END ORDER BY d.nama_diet SEPARATOR ', '), '') AS diet_sore,'Sore' AS waktu_sore, k.kelas "
-                        + "FROM detail_beri_diet db INNER JOIN reg_periksa rp ON rp.no_rawat = db.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                        + "inner join kamar_inap ki on ki.no_rawat=db.no_rawat and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' and db.waktu IN ('Pagi','Siang','Sore') "
-                        + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal INNER join diet d on d.kd_diet=db.kd_diet "
-                        + "WHERE " + statusPlg + " AND b.nm_gedung = '" + gedungGZ + "' "
-                        + "GROUP BY ki.no_rawat, p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, b.nm_bangsal, k.kelas "
-                        + "ORDER BY b.nm_bangsal, k.kelas, pasien", param);
+                        + "FROM kamar_inap ki INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                        + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' AND db.waktu IN ('Pagi','Siang','Sore') "
+                        + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet WHERE b.nm_gedung = '" + gedungGZ + "' AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00') "
+                        + "GROUP BY ki.no_rawat, p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, b.nm_bangsal, k.kelas ORDER BY b.nm_bangsal, k.kelas, pasien", param);
             } else {
                 String isi = "", user = "";
                 user = Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'");
@@ -988,12 +996,12 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
                         + "IFNULL(GROUP_CONCAT(DISTINCT CASE WHEN db.waktu = 'Pagi' THEN d.nama_diet END ORDER BY d.nama_diet SEPARATOR ', '), '') AS diet_pagi,'Pagi' AS waktu_pagi, "
                         + "IFNULL(GROUP_CONCAT(DISTINCT CASE WHEN db.waktu = 'Siang' THEN d.nama_diet END ORDER BY d.nama_diet SEPARATOR ', '), '') AS diet_siang,'Siang' AS waktu_siang, "
                         + "IFNULL(GROUP_CONCAT(DISTINCT CASE WHEN db.waktu = 'Sore' THEN d.nama_diet END ORDER BY d.nama_diet SEPARATOR ', '), '') AS diet_sore,'Sore' AS waktu_sore, k.kelas "
-                        + "FROM detail_beri_diet db INNER JOIN reg_periksa rp ON rp.no_rawat = db.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                        + "inner join kamar_inap ki on ki.no_rawat=db.no_rawat and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' and db.waktu IN ('Pagi','Siang','Sore') "
-                        + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal INNER join diet d on d.kd_diet=db.kd_diet "
-                        + "WHERE " + statusPlg + " AND b.nm_gedung = '" + gedungGZ + "' "
-                        + "GROUP BY ki.no_rawat, p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, b.nm_bangsal, k.kelas "
-                        + "ORDER BY b.nm_bangsal, k.kelas, pasien", param);
+                        + "FROM kamar_inap ki INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                        + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' AND db.waktu IN ('Pagi','Siang','Sore') "
+                        + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet WHERE b.nm_gedung = '" + gedungGZ + "' AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00') "
+                        + "GROUP BY ki.no_rawat, p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, b.nm_bangsal, k.kelas ORDER BY b.nm_bangsal, k.kelas, pasien", param);
                 Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             }
         } else {
@@ -1002,12 +1010,12 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
                     + "IFNULL(GROUP_CONCAT(DISTINCT CASE WHEN db.waktu = 'Pagi' THEN d.nama_diet END ORDER BY d.nama_diet SEPARATOR ', '), '') AS diet_pagi,'Pagi' AS waktu_pagi, "
                     + "IFNULL(GROUP_CONCAT(DISTINCT CASE WHEN db.waktu = 'Siang' THEN d.nama_diet END ORDER BY d.nama_diet SEPARATOR ', '), '') AS diet_siang,'Siang' AS waktu_siang, "
                     + "IFNULL(GROUP_CONCAT(DISTINCT CASE WHEN db.waktu = 'Sore' THEN d.nama_diet END ORDER BY d.nama_diet SEPARATOR ', '), '') AS diet_sore,'Sore' AS waktu_sore, k.kelas "
-                    + "FROM detail_beri_diet db INNER JOIN reg_periksa rp ON rp.no_rawat = db.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                    + "inner join kamar_inap ki on ki.no_rawat=db.no_rawat and db.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' and db.waktu IN ('Pagi','Siang','Sore') "
-                    + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal INNER join diet d on d.kd_diet=db.kd_diet "
-                    + "WHERE " + statusPlg + " AND b.nm_gedung = '" + gedungGZ + "' "
-                    + "GROUP BY ki.no_rawat, p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, b.nm_bangsal, k.kelas "
-                    + "ORDER BY b.nm_bangsal, k.kelas, pasien", param);
+                    + "FROM kamar_inap ki INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                    + "LEFT JOIN detail_beri_diet db ON db.no_rawat = ki.no_rawat AND db.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' AND db.waktu IN ('Pagi','Siang','Sore') "
+                    + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet WHERE b.nm_gedung = '" + gedungGZ + "' AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00') "
+                    + "GROUP BY ki.no_rawat, p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, b.nm_bangsal, k.kelas ORDER BY b.nm_bangsal, k.kelas, pasien", param);
         }
         this.setCursor(Cursor.getDefaultCursor());
         tampil();

@@ -6,10 +6,20 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import java.awt.Canvas;
+import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,11 +28,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.frmUtama;
@@ -42,7 +57,8 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     private int i = 0, x = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private String sttsrwt = "", nipSaksi = "", nipDokter = "", idFileSaksiKlg = "", idFileBerttd = "", tglReg = "", alamatPasien = "";
+    private String sttsrwt = "", nipSaksi = "", nipDokter = "", idFileSaksiKlg = "", idFileBerttd = "", tglReg = "", alamatPasien = "",
+            pembuatPernyataan = "", saksiKeluarga = "", idParameterTtd = "", URL = "", usernya = "", pwdnya = "";
     private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
@@ -250,6 +266,41 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
             public void windowDeactivated(WindowEvent e) {
             }
         });
+        
+        HTMLEditorKit kit = new HTMLEditorKit();
+        StyleSheet styleSheet = kit.getStyleSheet();
+        styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");
+        Document doc = kit.createDefaultDocument();
+        
+        LoadHTML1.setEditable(true);
+        LoadHTML1.setEditorKit(kit);
+        LoadHTML1.setDocument(doc);
+        LoadHTML1.setEditable(false);
+        LoadHTML1.addHyperlinkListener(e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        if (akses.getadmin() == true) {
+            usernya = "admin";
+            pwdnya = "satu";
+        } else {
+            usernya = akses.getkode();
+            pwdnya = Sequel.cariIsi("select AES_DECRYPT(u.password,'windi') from user u "
+                    + "inner join petugas pt on pt.nip=AES_DECRYPT(u.id_user,'nur') where AES_DECRYPT(u.id_user,'nur')='" + akses.getkode() + "'");
+        }
     }
  
     /** This method is called from within the constructor to
@@ -261,6 +312,18 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnHapusTtdPembuat = new javax.swing.JMenuItem();
+        MnHapusTtdSaksi = new javax.swing.JMenuItem();
+        MnBikinQrCode = new javax.swing.JMenuItem();
+        WindowNomorDokumenRM = new javax.swing.JDialog();
+        internalFrame3 = new widget.InternalFrame();
+        panelisi3 = new widget.panelisi();
+        jLabel99 = new widget.Label();
+        cmbRM = new widget.ComboBox();
+        panelisi5 = new widget.panelisi();
+        BtnTampilkanQr = new widget.Button();
+        BtnCloseIn2 = new widget.Button();
         internalFrame1 = new widget.InternalFrame();
         panelGlass11 = new widget.panelisi();
         Scroll1 = new widget.ScrollPane();
@@ -316,7 +379,14 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         BtnPerawat = new widget.Button();
         BtnDokter = new widget.Button();
         chkSama = new widget.CekBox();
+        panelGlass14 = new widget.panelisi();
+        scrollPane14 = new widget.ScrollPane();
+        gambarQR = new Painter();
+        jLabel82 = new widget.Label();
         panelGlass12 = new widget.panelisi();
+        panelGlass13 = new widget.panelisi();
+        Scroll2 = new widget.ScrollPane();
+        LoadHTML1 = new widget.editorpane();
         Scroll = new widget.ScrollPane();
         tbPersetujuan = new widget.Table();
         panelGlass10 = new widget.panelisi();
@@ -338,6 +408,121 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
 
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+        jPopupMenu1.setPreferredSize(new java.awt.Dimension(230, 90));
+
+        MnHapusTtdPembuat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdPembuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdPembuat.setText("Hapus TTD Pembuat Pernyataan");
+        MnHapusTtdPembuat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdPembuat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdPembuat.setIconTextGap(5);
+        MnHapusTtdPembuat.setName("MnHapusTtdPembuat"); // NOI18N
+        MnHapusTtdPembuat.setPreferredSize(new java.awt.Dimension(240, 30));
+        MnHapusTtdPembuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdPembuatActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusTtdPembuat);
+
+        MnHapusTtdSaksi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdSaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdSaksi.setText("Hapus TTD Saksi Keluarga");
+        MnHapusTtdSaksi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdSaksi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdSaksi.setIconTextGap(5);
+        MnHapusTtdSaksi.setName("MnHapusTtdSaksi"); // NOI18N
+        MnHapusTtdSaksi.setPreferredSize(new java.awt.Dimension(240, 30));
+        MnHapusTtdSaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdSaksiActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusTtdSaksi);
+
+        MnBikinQrCode.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnBikinQrCode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        MnBikinQrCode.setText("Bikin QR Code Ttd");
+        MnBikinQrCode.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnBikinQrCode.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnBikinQrCode.setIconTextGap(5);
+        MnBikinQrCode.setName("MnBikinQrCode"); // NOI18N
+        MnBikinQrCode.setPreferredSize(new java.awt.Dimension(240, 30));
+        MnBikinQrCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnBikinQrCodeActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnBikinQrCode);
+
+        WindowNomorDokumenRM.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowNomorDokumenRM.setName("WindowNomorDokumenRM"); // NOI18N
+        WindowNomorDokumenRM.setUndecorated(true);
+        WindowNomorDokumenRM.setResizable(false);
+
+        internalFrame3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Dokumen Rekam Medis Aktif ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame3.setName("internalFrame3"); // NOI18N
+        internalFrame3.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame3.setLayout(new java.awt.BorderLayout());
+
+        panelisi3.setBackground(new java.awt.Color(255, 150, 255));
+        panelisi3.setName("panelisi3"); // NOI18N
+        panelisi3.setPreferredSize(new java.awt.Dimension(100, 70));
+        panelisi3.setLayout(null);
+
+        jLabel99.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel99.setText("Pilih Rekam Medis :");
+        jLabel99.setName("jLabel99"); // NOI18N
+        panelisi3.add(jLabel99);
+        jLabel99.setBounds(0, 10, 120, 23);
+
+        cmbRM.setBackground(new java.awt.Color(245, 253, 240));
+        cmbRM.setForeground(new java.awt.Color(0, 0, 0));
+        cmbRM.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        cmbRM.setLightWeightPopupEnabled(false);
+        cmbRM.setName("cmbRM"); // NOI18N
+        panelisi3.add(cmbRM);
+        cmbRM.setBounds(127, 10, 550, 23);
+
+        internalFrame3.add(panelisi3, java.awt.BorderLayout.CENTER);
+
+        panelisi5.setName("panelisi5"); // NOI18N
+        panelisi5.setPreferredSize(new java.awt.Dimension(100, 48));
+        panelisi5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 9, 9));
+
+        BtnTampilkanQr.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTampilkanQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clear24.png"))); // NOI18N
+        BtnTampilkanQr.setMnemonic('S');
+        BtnTampilkanQr.setText("Tampilkan Qr Code TTD");
+        BtnTampilkanQr.setToolTipText("Alt+S");
+        BtnTampilkanQr.setName("BtnTampilkanQr"); // NOI18N
+        BtnTampilkanQr.setPreferredSize(new java.awt.Dimension(180, 30));
+        BtnTampilkanQr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTampilkanQrActionPerformed(evt);
+            }
+        });
+        panelisi5.add(BtnTampilkanQr);
+
+        BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn2.setMnemonic('U');
+        BtnCloseIn2.setText("Tutup");
+        BtnCloseIn2.setToolTipText("Alt+U");
+        BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
+        BtnCloseIn2.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCloseIn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn2ActionPerformed(evt);
+            }
+        });
+        panelisi5.add(BtnCloseIn2);
+
+        internalFrame3.add(panelisi5, java.awt.BorderLayout.PAGE_END);
+
+        WindowNomorDokumenRM.getContentPane().add(internalFrame3, java.awt.BorderLayout.CENTER);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -353,7 +538,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
 
         panelGlass11.setName("panelGlass11"); // NOI18N
         panelGlass11.setPreferredSize(new java.awt.Dimension(44, 44));
-        panelGlass11.setLayout(new java.awt.GridLayout(1, 2));
+        panelGlass11.setLayout(new java.awt.BorderLayout());
 
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
@@ -728,7 +913,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel27.setBounds(345, 605, 110, 23);
 
         TtglPersetujuan.setEditable(false);
-        TtglPersetujuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-11-2026" }));
+        TtglPersetujuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2026" }));
         TtglPersetujuan.setDisplayFormat("dd-MM-yyyy");
         TtglPersetujuan.setName("TtglPersetujuan"); // NOI18N
         TtglPersetujuan.setOpaque(false);
@@ -781,19 +966,62 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         FormInput.add(chkSama);
         chkSama.setBounds(727, 94, 140, 23);
 
+        panelGlass14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Scan QR Untuk TTD ]", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelGlass14.setName("panelGlass14"); // NOI18N
+        panelGlass14.setPreferredSize(new java.awt.Dimension(44, 44));
+
+        scrollPane14.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        scrollPane14.setName("scrollPane14"); // NOI18N
+        scrollPane14.setPreferredSize(new java.awt.Dimension(210, 220));
+
+        gambarQR.setBackground(new java.awt.Color(245, 255, 235));
+        gambarQR.setForeground(new java.awt.Color(235, 255, 235));
+        gambarQR.setName("gambarQR"); // NOI18N
+        scrollPane14.setViewportView(gambarQR);
+
+        panelGlass14.add(scrollPane14);
+
+        FormInput.add(panelGlass14);
+        panelGlass14.setBounds(750, 122, 230, 245);
+
+        jLabel82.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel82.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel82.setText("<html><b>Catatan :</b><br>Perangkat (smartphone / tab) harus terhubung dengan wifi rumah sakit diruangan ini terlebih dulu.</html>");
+        jLabel82.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel82.setName("jLabel82"); // NOI18N
+        jLabel82.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        FormInput.add(jLabel82);
+        jLabel82.setBounds(760, 375, 210, 60);
+
         Scroll1.setViewportView(FormInput);
 
-        panelGlass11.add(Scroll1);
+        panelGlass11.add(Scroll1, java.awt.BorderLayout.CENTER);
 
         panelGlass12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Data Persetujuan Tindakan ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         panelGlass12.setName("panelGlass12"); // NOI18N
-        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass12.setPreferredSize(new java.awt.Dimension(750, 44));
         panelGlass12.setLayout(new java.awt.BorderLayout());
+
+        panelGlass13.setName("panelGlass13"); // NOI18N
+        panelGlass13.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass13.setLayout(new java.awt.BorderLayout());
+
+        Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Tanda Tangan Pembuat Pernyataan & Saksi Dari Keluarga Pasien ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll2.setName("Scroll2"); // NOI18N
+        Scroll2.setOpaque(true);
+
+        LoadHTML1.setBorder(null);
+        LoadHTML1.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML1.setName("LoadHTML1"); // NOI18N
+        Scroll2.setViewportView(LoadHTML1);
+
+        panelGlass13.add(Scroll2, java.awt.BorderLayout.CENTER);
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
         tbPersetujuan.setToolTipText("Silahkan klik untuk memilih data yang mau diperbaiki/dihapus");
+        tbPersetujuan.setComponentPopupMenu(jPopupMenu1);
         tbPersetujuan.setName("tbPersetujuan"); // NOI18N
         tbPersetujuan.getTableHeader().setReorderingAllowed(false);
         tbPersetujuan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -808,7 +1036,9 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbPersetujuan);
 
-        panelGlass12.add(Scroll, java.awt.BorderLayout.CENTER);
+        panelGlass13.add(Scroll, java.awt.BorderLayout.PAGE_END);
+
+        panelGlass12.add(panelGlass13, java.awt.BorderLayout.CENTER);
 
         panelGlass10.setName("panelGlass10"); // NOI18N
         panelGlass10.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -820,7 +1050,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel49.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass10.add(jLabel49);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-11-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -834,7 +1064,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel50.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel50);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-11-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -890,7 +1120,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
 
         panelGlass12.add(panelGlass10, java.awt.BorderLayout.PAGE_END);
 
-        panelGlass11.add(panelGlass12);
+        panelGlass11.add(panelGlass12, java.awt.BorderLayout.EAST);
 
         internalFrame1.add(panelGlass11, java.awt.BorderLayout.CENTER);
 
@@ -1038,11 +1268,23 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
+            if (TnmBerttd.getText().equals("")) {
+                pembuatPernyataan = "";
+            } else {
+                pembuatPernyataan = TnmBerttd.getText() + " (Pembuat Pernyataan)";
+            }
+            
+            if (TnmSaksiKlg.getText().equals("")) {
+                saksiKeluarga = "";
+            } else {
+                saksiKeluarga = TnmSaksiKlg.getText() + " (Saksi Keluarga)";
+            }
+            
             if (Sequel.menyimpantf("persetujuan_tindakan_hemodialisis", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 26, new String[]{
-                TNoRw.getText(), sttsrwt, TrgRawat.getText(), TnmBerttd.getText(), Tumur.getText(), cmbJenkel.getSelectedItem().toString(),
+                TNoRw.getText(), sttsrwt, TrgRawat.getText(), pembuatPernyataan, Tumur.getText(), cmbJenkel.getSelectedItem().toString(),
                 Talamat.getText(), TnoBukti.getText(), Tdiagnosis.getText(), Ttujuan.getText(), Talternatif.getText(), Tresiko.getText(), Tprognosis.getText(),
                 Tperkiraan.getText(), TketIndonesia.getText(), TketEnglish.getText(), cmbTerhadapInd.getSelectedItem().toString(), cmbTerhadapEng.getSelectedItem().toString(),
-                Tlainya.getText(), Valid.SetTgl(TtglPersetujuan.getSelectedItem() + ""), nipDokter, nipSaksi, TnmSaksiKlg.getText(), "", "",
+                Tlainya.getText(), Valid.SetTgl(TtglPersetujuan.getSelectedItem() + ""), nipDokter, nipSaksi, saksiKeluarga, "", "",
                 Sequel.cariIsi("select now()")
             }) == true) {
 
@@ -1061,6 +1303,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
+        ((RMPersetujuanTindakanHemodialisis.Painter) gambarQR).setImage("");
         emptTeks();
         tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
@@ -1075,13 +1318,25 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
 
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
         if (tbPersetujuan.getSelectedRow() > -1) {
+            if (TnmBerttd.getText().equals("")) {
+                pembuatPernyataan = "";
+            } else {
+                pembuatPernyataan = TnmBerttd.getText() + " (Pembuat Pernyataan)";
+            }
+            
+            if (TnmSaksiKlg.getText().equals("")) {
+                saksiKeluarga = "";
+            } else {
+                saksiKeluarga = TnmSaksiKlg.getText() + " (Saksi Keluarga)";
+            }
+            
             if (Sequel.mengedittf("persetujuan_tindakan_hemodialisis", "waktu_simpan=?", "nm_betttd=?, umur=?, jenkel=?, alamat=?, no_bukti_diri=?, "
                     + "diagnosis=?, tujuan_tindakan=?, alternatif_tindakan=?, resiko=?, prognosis=?, perkiraan_biaya=?, ket_hemodialisis_indonesia=?, ket_hemodialisis_english=?, "
                     + "terhadap_ind=?, terhadap_eng=?, ket_lainya=?, tgl_persetujuan=?, nip_dokter=?, nip_saksi_rs=?, nm_saksi_klg=?", 21, new String[]{
-                        TnmBerttd.getText(), Tumur.getText(), cmbJenkel.getSelectedItem().toString(),
+                        pembuatPernyataan, Tumur.getText(), cmbJenkel.getSelectedItem().toString(),
                         Talamat.getText(), TnoBukti.getText(), Tdiagnosis.getText(), Ttujuan.getText(), Talternatif.getText(), Tresiko.getText(), Tprognosis.getText(),
                         Tperkiraan.getText(), TketIndonesia.getText(), TketEnglish.getText(), cmbTerhadapInd.getSelectedItem().toString(), cmbTerhadapEng.getSelectedItem().toString(),
-                        Tlainya.getText(), Valid.SetTgl(TtglPersetujuan.getSelectedItem() + ""), nipDokter, nipSaksi, TnmSaksiKlg.getText(),
+                        Tlainya.getText(), Valid.SetTgl(TtglPersetujuan.getSelectedItem() + ""), nipDokter, nipSaksi, saksiKeluarga,
                         tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString()
                     }) == true) {
 
@@ -1107,11 +1362,13 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        WindowNomorDokumenRM.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+            WindowNomorDokumenRM.dispose();
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -1128,6 +1385,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
 }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
+        ((RMPersetujuanTindakanHemodialisis.Painter) gambarQR).setImage("");
         tampil();
 }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -1179,6 +1437,14 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
                 if (Sequel.queryu2tf("delete from persetujuan_tindakan_hemodialisis where waktu_simpan=?", 1, new String[]{
                     tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString()
                 }) == true) {
+                    if (!idFileBerttd.equals("")) {
+                        Sequel.hapusSemuaTtd(idFileBerttd);
+                    }
+
+                    if (!idFileSaksiKlg.equals("")) {
+                        Sequel.hapusSemuaTtd(idFileSaksiKlg);
+                    }
+                    
                     tampil();
                     emptTeks();
                 } else {
@@ -1196,6 +1462,10 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ((RMPersetujuanTindakanHemodialisis.Painter) gambarQR).setImage("");
+        Sequel.queryu("DELETE FROM parameter_ttd_rme WHERE DATE(waktu_kirim) < CURDATE()");
+        Sequel.cariIsiComboDB("select nm_dokumen from master_nomor_dokumen_erm where "
+                + "status='aktif' and unit_pengguna='Ruang Perawatan, Poliklinik & Instalasi' and ttd_keluarga_pasien='Ya' order by kode_erm", cmbRM);
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
@@ -1365,6 +1635,141 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_chkSamaActionPerformed
 
+    private void MnHapusTtdPembuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdPembuatActionPerformed
+        if (tbPersetujuan.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan pembuat pernyataan pasien mau dihapus..?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileBerttd.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Pembuat pernyataan pasien ini belum melakukan tanda tangan...!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFileBerttd) == true) {
+                                Sequel.mengedit("persetujuan_tindakan_hemodialisis", "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString() + "'", "id_file_nm_berttd=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdPembuatActionPerformed
+
+    private void MnHapusTtdSaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdSaksiActionPerformed
+        if (tbPersetujuan.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan saksi dari keluarga mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileSaksiKlg.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Saksi dari keluarga pasien ini belum melakukan tanda tangan...!!!!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFileSaksiKlg) == true) {
+                                Sequel.mengedit("persetujuan_tindakan_hemodialisis", "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString() + "'", "id_file_nm_saksi_klg=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdSaksiActionPerformed
+
+    private void MnBikinQrCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBikinQrCodeActionPerformed
+        if (tbPersetujuan.getSelectedRow() > -1) {
+            ((RMPersetujuanTindakanHemodialisis.Painter) gambarQR).setImage("");
+            if (Sequel.cariInteger("select count(-1) from master_nomor_dokumen_erm where nm_dokumen like '%PERSETUJUAN TINDAKAN KEDOKTERAN (INFORMED CONSENT)%'") > 0) {
+                bikinQR();
+            } else {
+                WindowNomorDokumenRM.setSize(737, 125);
+                WindowNomorDokumenRM.setLocationRelativeTo(internalFrame1);
+                WindowNomorDokumenRM.setVisible(true);
+
+                cmbRM.setSelectedIndex(0);
+                cmbRM.requestFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnBikinQrCodeActionPerformed
+
+    private void BtnTampilkanQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTampilkanQrActionPerformed
+        idParameterTtd = Sequel.cariIsi("select concat('rmeRZ',replace(date(now()),'-',''),'',replace(time(now()),':',''))");
+
+        try {
+            URL = prop.getProperty("URLTTDKELUARGAPASIEN") + idParameterTtd;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+        if (cmbRM.getSelectedIndex() != 0) {
+            Valid.cetakQrTte(URL, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.menyimpanQrTte("parameter_ttd_rme", "'" + idParameterTtd + "','" + usernya + "','" + pwdnya + "','" + TNoRw.getText() + "','" + TNoRM.getText() + "','"
+                    + Sequel.cariIsi("select kode_erm from master_nomor_dokumen_erm where nm_dokumen='" + cmbRM.getSelectedItem().toString() + "'") + "',"
+                    + "'" + Sequel.cariIsi("select now()") + "'", "file QRCode URL Ttd", Sequel.cariFolderPrintTte());
+
+            try {
+                ((RMPersetujuanTindakanHemodialisis.Painter) gambarQR).setImage("");
+                ResultSet hasil = koneksi.createStatement().executeQuery(
+                        "select qr_code from parameter_ttd_rme where id_parameter = '" + idParameterTtd + "'");
+                for (int I = 0; hasil.next(); I++) {
+                    Blob blob = hasil.getBlob(1);
+                    ((RMPersetujuanTindakanHemodialisis.Painter) gambarQR).setImageIcon(new javax.swing.ImageIcon(
+                            blob.getBytes(1, (int) (blob.length()))));
+                    blob.free();
+                }
+
+                BtnCloseIn2ActionPerformed(null);
+                tampil();
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            } catch (Exception ex) {
+                System.out.println(ex.toString());
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu jenis rekam medis yang dipilih..!!");
+            cmbRM.requestFocus();
+        }
+    }//GEN-LAST:event_BtnTampilkanQrActionPerformed
+
+    private void BtnCloseIn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn2ActionPerformed
+        emptTeks();
+        WindowNomorDokumenRM.dispose();
+    }//GEN-LAST:event_BtnCloseIn2ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1385,6 +1790,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
+    private widget.Button BtnCloseIn2;
     private widget.Button BtnDokter;
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
@@ -1392,12 +1798,18 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     private widget.Button BtnPerawat;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
+    private widget.Button BtnTampilkanQr;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
+    private widget.editorpane LoadHTML1;
+    private javax.swing.JMenuItem MnBikinQrCode;
+    private javax.swing.JMenuItem MnHapusTtdPembuat;
+    private javax.swing.JMenuItem MnHapusTtdSaksi;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll2;
     public widget.TextBox TCari;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
@@ -1420,11 +1832,15 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     private widget.Tanggal TtglPersetujuan;
     private widget.TextBox Ttujuan;
     private widget.TextBox Tumur;
+    private javax.swing.JDialog WindowNomorDokumenRM;
     public widget.CekBox chkSama;
     private widget.ComboBox cmbJenkel;
+    private widget.ComboBox cmbRM;
     private widget.ComboBox cmbTerhadapEng;
     private widget.ComboBox cmbTerhadapInd;
+    private java.awt.Canvas gambarQR;
     private widget.InternalFrame internalFrame1;
+    private widget.InternalFrame internalFrame3;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
     private widget.Label jLabel12;
@@ -1450,29 +1866,39 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
+    private widget.Label jLabel82;
     private widget.Label jLabel9;
+    private widget.Label jLabel99;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass12;
+    private widget.panelisi panelGlass13;
+    private widget.panelisi panelGlass14;
     private widget.panelisi panelGlass8;
+    private widget.panelisi panelisi3;
+    private widget.panelisi panelisi5;
+    private widget.ScrollPane scrollPane14;
     private widget.ScrollPane scrollPane3;
     private widget.ScrollPane scrollPane4;
     private widget.Table tbPersetujuan;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil() {     
+    public void tampil() {
+        LoadHTML1.setText("");
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("select pt.*, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
                     + "concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) almat, date_format(pt.tgl_persetujuan,'%d-%m-%Y') tglSetuju, "
-                    + "pg1.nama nmDokter, pg2.nama nmSaksiRS from persetujuan_tindakan_hemodialisis pt inner join reg_periksa rp on rp.no_rawat=pt.no_rawat "
+                    + "pg1.nama nmDokter, pg2.nama nmSaksiRS, replace(pt.nm_betttd,' (Pembuat Pernyataan)','') pembuatPernyataan, "
+                    + "replace(pt.nm_saksi_klg,' (Saksi Keluarga)','') saksiKlg from persetujuan_tindakan_hemodialisis pt inner join reg_periksa rp on rp.no_rawat=pt.no_rawat "
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
                     + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
                     + "inner join pegawai pg1 on pg1.nik=pt.nip_dokter inner join pegawai pg2 on pg2.nik=pt.nip_saksi_rs where "
                     + "pt.tgl_persetujuan between ? and ? and pt.no_rawat like ? or "
                     + "pt.tgl_persetujuan between ? and ? and p.no_rkm_medis like ? or "
                     + "pt.tgl_persetujuan between ? and ? and p.nm_pasien like ? or "
-                    + "pt.tgl_persetujuan between ? and ? and pt.nm_betttd like ? or "
+                    + "pt.tgl_persetujuan between ? and ? and replace(pt.nm_betttd,' (Pembuat Pernyataan)','') like ? or "
                     + "pt.tgl_persetujuan between ? and ? and concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) like ? order by pt.tgl_persetujuan desc");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -1502,7 +1928,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
                         rs.getString("tglSetuju"),
                         rs.getString("nmDokter"),
                         rs.getString("nmSaksiRS"),
-                        rs.getString("nm_betttd"),
+                        rs.getString("pembuatPernyataan"),
                         rs.getString("ruang_rawat"),
                         rs.getString("nm_betttd"),
                         rs.getString("umur"),
@@ -1523,7 +1949,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
                         rs.getString("tgl_persetujuan"),
                         rs.getString("nip_dokter"),
                         rs.getString("nip_saksi_rs"),
-                        rs.getString("nm_saksi_klg"),
+                        rs.getString("saksiKlg"),
                         rs.getString("id_file_nm_berttd"),
                         rs.getString("id_file_nm_saksi_klg"),
                         rs.getString("waktu_simpan")
@@ -1573,6 +1999,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         TnmSaksiRS.setText("");
         TnmSaksiKlg.setText("");
         chkSama.setSelected(false);
+        LoadHTML1.setText("");
         TnmBerttd.requestFocus();
     }
 
@@ -1583,12 +2010,13 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         idFileSaksiKlg = "";
         idFileBerttd = "";
         tglReg = "";
-        alamatPasien = ""; 
+        alamatPasien = "";
+        ((RMPersetujuanTindakanHemodialisis.Painter) gambarQR).setImage("");
         
         if (tbPersetujuan.getSelectedRow() != -1) {
             TNoRw.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 0).toString());
             isPasien();
-            TnmBerttd.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 11).toString());
+            TnmBerttd.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 9).toString());
             Tumur.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 12).toString());
             cmbJenkel.setSelectedItem(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 13).toString());
             Talamat.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 14).toString());
@@ -1613,6 +2041,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
             TnmSaksiKlg.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 30).toString());
             idFileBerttd = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 31).toString();
             idFileSaksiKlg = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 32).toString();
+            tampilTTD();
 
             if (cmbTerhadapInd.getSelectedIndex() == 7) {
                 Tlainya.setEnabled(true);
@@ -1669,7 +2098,138 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         }
     }
     
+    private void tampilTTD() {
+        try {
+            StringBuilder htmlContent = new StringBuilder();
+            String gambar1 = "", gambar2 = "", ipGambar = "";
+            try {
+                //cek atau ping ip addres
+                ipGambar = "192.168.0.230";
+                InetAddress inet = InetAddress.getByName(ipGambar);
+
+                //ping sukses timeout 100 ms (0.1 detik)
+                if (inet.isReachable(100)) {
+                    if (idFileBerttd.equals("")) {
+                        gambar1 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                    } else {
+                        gambar1 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileBerttd;
+                    }
+
+                    if (idFileSaksiKlg.equals("")) {
+                        gambar2 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                    } else {
+                        gambar2 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileSaksiKlg;
+                    }
+                    //ping gagal
+                } else {
+                    gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    gambar2 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+                gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                gambar2 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+            }
+
+            htmlContent.append(
+                    "<table width='100%' class='isi'>"
+                    + "<thead>"
+                    + "<tr class='isi'>"
+                    + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Pembuat Pernyataan</b></td>"
+                    + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Saksi Dari Keluarga</b></td>"
+                    + "</tr>"
+                    + "</thead>"
+                    + "<tbody>"
+            );
+
+            htmlContent.append(
+                    "<tr class='isi'>"
+                    + "<td valign='middle' align='center'><img src='" + gambar1 + "' width='160' height='160' alt='TTD Pembuat Pernyataan'><br>(" + TnmBerttd.getText() + ")<br></td>"
+                    + "<td valign='middle' align='center'><img src='" + gambar2 + "' width='160' height='160' alt='TTD Saksi Dari Keluarga'><br>(" + TnmSaksiKlg.getText() + ")<br></td>"
+                    + "</tr>"
+            );
+
+            htmlContent.append("</tbody>"
+                    + "</table>");
+
+            LoadHTML1.setText(
+                    "<html>"
+                    + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                    + htmlContent.toString()
+                    + "</table>"
+                    + "</html>");
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    public class Painter extends Canvas {
+        Image image;
+        public void setImage(String file) {
+            URL url = null;
+            try {
+                url = new File(file).toURI().toURL();
+            } catch (MalformedURLException ex) {
+                System.out.println(ex.toString());
+            }
+            image = getToolkit().getImage(url);
+            repaint();
+        }
+        public void setImageIcon(ImageIcon file) {
+            image = file.getImage();
+            repaint();
+        }
+
+        @Override
+        public void paint(Graphics g) {
+            try {
+                double d = image.getHeight(this) / this.getHeight();
+                double w = image.getWidth(this) / d;
+                double x = this.getWidth() / 2 - w / 2;
+                g.drawImage(image, (int) x, 0, (int) (w), this.getHeight(), this);
+            } catch (Exception e) {
+            }            
+        }
+    }
+    
+    private void bikinQR() {        
+        idParameterTtd = Sequel.cariIsi("select concat('rmeRZ',replace(date(now()),'-',''),'',replace(time(now()),':',''))");
+
+        try {
+            URL = prop.getProperty("URLTTDKELUARGAPASIEN") + idParameterTtd;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+        Valid.cetakQrTte(URL, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+        Sequel.menyimpanQrTte("parameter_ttd_rme", "'" + idParameterTtd + "','" + usernya + "','" + pwdnya + "','" + TNoRw.getText() + "','" + TNoRM.getText() + "','"
+                + Sequel.cariIsi("select kode_erm from master_nomor_dokumen_erm where nm_dokumen like '%PERSETUJUAN TINDAKAN KEDOKTERAN (INFORMED CONSENT)%'") + "',"
+                + "'" + Sequel.cariIsi("select now()") + "'", "file QRCode URL Ttd", Sequel.cariFolderPrintTte());
+
+        try {
+            ((RMPersetujuanTindakanHemodialisis.Painter) gambarQR).setImage("");
+            ResultSet hasil = koneksi.createStatement().executeQuery(
+                    "select qr_code from parameter_ttd_rme where id_parameter = '" + idParameterTtd + "'");
+            for (int I = 0; hasil.next(); I++) {
+                Blob blob = hasil.getBlob(1);
+                ((RMPersetujuanTindakanHemodialisis.Painter) gambarQR).setImageIcon(new javax.swing.ImageIcon(
+                        blob.getBytes(1, (int) (blob.length()))));
+                blob.free();
+            }
+
+            emptTeks();
+            tampil();
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }
+    
     public void awalData() {
+        ((RMPersetujuanTindakanHemodialisis.Painter) gambarQR).setImage("");
+        Sequel.queryu("DELETE FROM parameter_ttd_rme WHERE DATE(waktu_kirim) < CURDATE()");
+        Sequel.cariIsiComboDB("select nm_dokumen from master_nomor_dokumen_erm where "
+                + "status='aktif' and unit_pengguna='Ruang Perawatan, Poliklinik & Instalasi' and ttd_keluarga_pasien='Ya' order by kode_erm", cmbRM);
         tampil();
     }
 }
