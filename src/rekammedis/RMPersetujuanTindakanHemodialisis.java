@@ -404,6 +404,8 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel79 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -913,7 +915,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel27.setBounds(345, 605, 110, 23);
 
         TtglPersetujuan.setEditable(false);
-        TtglPersetujuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2026" }));
+        TtglPersetujuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2026" }));
         TtglPersetujuan.setDisplayFormat("dd-MM-yyyy");
         TtglPersetujuan.setName("TtglPersetujuan"); // NOI18N
         TtglPersetujuan.setOpaque(false);
@@ -1050,7 +1052,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel49.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass10.add(jLabel49);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1064,7 +1066,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel50.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel50);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1199,12 +1201,23 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel79.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel79.setText("Cetak Dalam Bentuk :");
+        jLabel79.setName("jLabel79"); // NOI18N
+        jLabel79.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel79);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
-        BtnPrint.setEnabled(false);
         BtnPrint.setName("BtnPrint"); // NOI18N
         BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -1484,16 +1497,167 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
             param.put("logo", Sequel.cariGambar("select logo from setting"));
             param.put("norm", TNoRM.getText());
             param.put("nmpasien", TPasien.getText());
-            param.put("alamat", Talamat.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            param.put("nmBerttd", TnmBerttd.getText());
+            param.put("umurBerttd", Tumur.getText() + " tahun / " + cmbJenkel.getSelectedItem().toString());
+            param.put("almtBerttd", Talamat.getText());
+            param.put("buktiDiri", TnoBukti.getText());
             
-            Valid.MyReport("rptStatusHemodialisis2.jasper", "report", "::[ Status Hemodialisis (Data Status) ]::",
-                    "SELECT date(now()) tgl", param);
+            if (Tdiagnosis.getText().equals("")) {
+                param.put("diagnosis", "-");
+            } else {
+                param.put("diagnosis", Tdiagnosis.getText());
+            }
             
-            Valid.MyReport("rptStatusHemodialisis1.jasper", "report", "::[ Status Hemodialisis (Sampul/Cover) ]::",
-                    "SELECT date(now()) tgl", param);
+            if (Ttujuan.getText().equals("")) {
+                param.put("tujuan", "-");
+            } else {
+                param.put("tujuan", Ttujuan.getText());
+            }
             
-            emptTeks();
-            tampil();
+            if (Talternatif.getText().equals("")) {
+                param.put("alternatif", "-");
+            } else {
+                param.put("alternatif", Talternatif.getText());
+            }
+            
+            if (Tresiko.getText().equals("")) {
+                param.put("resiko", "-");
+            } else {
+                param.put("resiko", Tresiko.getText());
+            }
+            
+            if (Tprognosis.getText().equals("")) {
+                param.put("prognosis", "-");
+            } else {
+                param.put("prognosis", Tprognosis.getText());
+            }
+            
+            if (Tperkiraan.getText().equals("")) {
+                param.put("perkiraan", "-");
+            } else {
+                param.put("perkiraan", Tperkiraan.getText());
+            }
+            
+            if (TketIndonesia.getText().equals("")) {
+                param.put("ketInd", ".........................");
+            } else {
+                param.put("ketInd", TketIndonesia.getText());
+            }
+            
+            if (TketEnglish.getText().equals("")) {
+                param.put("ketEng", ".........................");
+            } else {
+                param.put("ketEng", TketEnglish.getText());
+            }
+            
+            if (Tlainya.getText().equals("")) {
+                param.put("terhadapInd", cmbTerhadapInd.getSelectedItem().toString());
+                param.put("terhadapEng", cmbTerhadapEng.getSelectedItem().toString());
+            } else {
+                param.put("terhadapInd", Tlainya.getText());
+            }
+            
+            param.put("umurPasien", Sequel.cariIsi("select concat(rp.umurdaftar,' ',rp.sttsumur,'. / ',if(p.jk='L','Laki-laki','Perempuan')) from reg_periksa rp "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + TNoRw.getText() + "'"));
+            param.put("ruangrwt", TrgRawat.getText());
+            param.put("tglPersetujuan", "Martapura, " + Valid.SetTglINDONESIA(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 27).toString()));
+            param.put("nmDokter", TnmDokter.getText());
+            param.put("nmSaksiRS", TnmSaksiRS.getText());
+            
+            if (TnmSaksiKlg.getText().equals("")) {
+                param.put("nmSaksiKlg", "......................");
+            } else {
+                param.put("nmSaksiKlg", TnmSaksiKlg.getText());
+            }
+            
+            try {
+                StringBuilder htmlContent = new StringBuilder();
+                String gambar1 = "", gambar2 = "", ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileBerttd.equals("")) {
+                            gambar1 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                        } else {
+                            gambar1 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileBerttd;
+                        }
+
+                        if (idFileSaksiKlg.equals("")) {
+                            gambar2 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                        } else {
+                            gambar2 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileSaksiKlg;
+                        }
+                        //ping gagal
+                    } else {
+                        gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                        gambar2 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                    gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    gambar2 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                }
+
+                param.put("gambarTtd1", gambar1);
+                param.put("gambarTtd2", gambar2);
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            }
+            
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isiDokter = "", isiSaksiRS = "", tglSimpan = "", jamSimpan = "";
+                tglSimpan = Sequel.cariIsi("select date_format(tgl_persetujuan,'%d/%m/%Y') from persetujuan_tindakan_hemodialisis where "
+                        + "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString() + "'");
+                jamSimpan = Sequel.cariIsi("select time(waktu_simpan) from persetujuan_tindakan_hemodialisis where "
+                        + "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString() + "'");                
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                
+                //dokter
+                if (nipDokter.equals("") || nipDokter.equals("-") || nipDokter.equals("--")) {
+                    param.put("lokasiQrDokter", "");
+                } else {
+                    isiDokter = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Persetujuan Tindakan Kedokteran (Informed Consent)", TnmDokter.getText() + " (Dokter)",
+                                    tglSimpan, jamSimpan) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiDokter, Sequel.cariFolderTte(), "QRTteDokter.jpg", "select logo from setting");
+                    param.put("lokasiQrDokter", Sequel.cariFolderTte() + File.separator + "QRTteDokter.jpg");
+                }
+                
+                //saksi RS
+                if (nipSaksi.equals("") || nipSaksi.equals("-") || nipSaksi.equals("--")) {
+                    param.put("lokasiQrSaksi", "");
+                } else {
+                    isiSaksiRS = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Persetujuan Tindakan Kedokteran (Informed Consent)", TnmSaksiRS.getText() + " (Saksi Dari Rumah Sakit)",
+                                    tglSimpan, jamSimpan) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiSaksiRS, Sequel.cariFolderTte(), "QRTteSaksi.jpg", "select logo from setting");
+                    param.put("lokasiQrSaksi", Sequel.cariFolderTte() + File.separator + "QRTteSaksi.jpg");
+                }
+                
+                Valid.MyReport("rptPersetujuanTindakanHD2Qr.jasper", "report", "::[ Persetujuan Tindakan Kedokteran (Informed Consent) hal.2 ]::",
+                        "SELECT date(now()) tgl", param);
+
+                Valid.MyReport("rptPersetujuanTindakanHD1Qr.jasper", "report", "::[ Persetujuan Tindakan Kedokteran (Informed Consent) hal.1 ]::",
+                        "SELECT date(now()) tgl", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                BtnBatalActionPerformed(null);
+            } else {
+                Valid.MyReport("rptPersetujuanTindakanHD2.jasper", "report", "::[ Persetujuan Tindakan Kedokteran (Informed Consent) hal.2 ]::",
+                        "SELECT date(now()) tgl", param);
+
+                Valid.MyReport("rptPersetujuanTindakanHD1.jasper", "report", "::[ Persetujuan Tindakan Kedokteran (Informed Consent) hal.1 ]::",
+                        "SELECT date(now()) tgl", param);
+                BtnBatalActionPerformed(null);
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel....");
             tampil();
@@ -1835,6 +1999,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     private javax.swing.JDialog WindowNomorDokumenRM;
     public widget.CekBox chkSama;
     private widget.ComboBox cmbJenkel;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbRM;
     private widget.ComboBox cmbTerhadapEng;
     private widget.ComboBox cmbTerhadapInd;
@@ -1865,6 +2030,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     private widget.Label jLabel50;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.Label jLabel79;
     private widget.Label jLabel8;
     private widget.Label jLabel82;
     private widget.Label jLabel9;
