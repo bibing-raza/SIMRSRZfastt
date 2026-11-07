@@ -89,6 +89,7 @@ import rekammedis.RMAsesmenAwalKebidanan1;
 import rekammedis.RMAsesmenKeperawatanPerinatologi;
 import rekammedis.RMAsesmenMedikKebidanan;
 import rekammedis.RMDokumenPenunjangMedis;
+import rekammedis.RMLainHemodialisis;
 import rekammedis.RMLembarObservasi;
 import rekammedis.RMObservasiKala1;
 import rekammedis.RMPasienUntukTindakan;
@@ -11871,7 +11872,30 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     }//GEN-LAST:event_MnAsesmenUlangActionPerformed
 
     private void MnLainlainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLainlainActionPerformed
-        // TODO add your handling code here:
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                if (kdpoli.getText().equals("HDL")) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    akses.setform("DlgKasirRalan");
+                    RMLainHemodialisis form = new RMLainHemodialisis(null, false);;
+                    form.emptTeks();
+                    form.isCek();
+                    form.setData(TNoRw.getText(), "ralan", Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
+                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    form.setLocationRelativeTo(internalFrame1);
+                    form.setVisible(true);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Maaf, hanya untuk pasien yang terdaftar di " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='HDL'") + ".");
+                    tampilkasir();
+                }
+            }
+        }
     }//GEN-LAST:event_MnLainlainActionPerformed
 
     private void MnLembarObservasiHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLembarObservasiHDActionPerformed

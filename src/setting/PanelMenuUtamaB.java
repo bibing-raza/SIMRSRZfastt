@@ -51,6 +51,7 @@ import rekammedis.RMFormulirSiteMarkingOperasi;
 import rekammedis.RMGeneralConsent;
 import rekammedis.RMInformasiTindakanPembiusan;
 import rekammedis.RMInstruksiDokterDNR;
+import rekammedis.RMLainHemodialisis;
 import rekammedis.RMLaporanOperasi;
 import rekammedis.RMLembarObservasi;
 import rekammedis.RMMasalahKeperawatanBersihanJlnNafas;
@@ -245,6 +246,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnCatatanDiagnosa = new widget.ButtonBig();
         BtnStatusHemodialisis = new widget.ButtonBig();
         BtnPersetujuanTindakanHD = new widget.ButtonBig();
+        BtnLainHemodialisis = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1553,7 +1555,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         BtnPersetujuanTindakanHD.setForeground(new java.awt.Color(0, 0, 0));
         BtnPersetujuanTindakanHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/kwrite.png"))); // NOI18N
-        BtnPersetujuanTindakanHD.setText("<html><div style=\"text-align: center;\">Persetujuan Tindakan<br>Kedokteran Hemodialisis</div></html>");
+        BtnPersetujuanTindakanHD.setText("<html><div style=\"text-align: center;\">Persetujuan Tindakan<br>Kedokteran (Hemodialisis)</div></html>");
         BtnPersetujuanTindakanHD.setIconTextGap(0);
         BtnPersetujuanTindakanHD.setName("BtnPersetujuanTindakanHD"); // NOI18N
         BtnPersetujuanTindakanHD.setPreferredSize(new java.awt.Dimension(200, 105));
@@ -1563,6 +1565,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnPersetujuanTindakanHD);
+
+        BtnLainHemodialisis.setForeground(new java.awt.Color(0, 0, 0));
+        BtnLainHemodialisis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_Address Book_32590.png"))); // NOI18N
+        BtnLainHemodialisis.setText("Lain - Lain (Hemodialisis)");
+        BtnLainHemodialisis.setIconTextGap(0);
+        BtnLainHemodialisis.setName("BtnLainHemodialisis"); // NOI18N
+        BtnLainHemodialisis.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnLainHemodialisis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLainHemodialisisActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnLainHemodialisis);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -3134,6 +3149,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPersetujuanTindakanHDActionPerformed
 
+    private void BtnLainHemodialisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLainHemodialisisActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMLainHemodialisis form = new RMLainHemodialisis(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnLainHemodialisis.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnLainHemodialisisActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -3152,6 +3183,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnFormulirSiteMarkingOdon;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
     private widget.ButtonBig BtnInstruksiDokterDNR;
+    private widget.ButtonBig BtnLainHemodialisis;
     private widget.ButtonBig BtnLaporanOperasi;
     private widget.ButtonBig BtnMasalahKeperawatanNyeriAkut;
     private widget.ButtonBig BtnMasalahKeperawatanPerfusiPeriferTdkEfektif;
@@ -3722,6 +3754,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             FormMenu.add(BtnPersetujuanTindakanHD);
             jmlmenu++;
         }
+        
+        if (akses.gethemodialisa() && BtnLainHemodialisis.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnLainHemodialisis);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -4224,6 +4261,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         
         if (akses.gethemodialisa()== true) {
             FormMenu.add(BtnPersetujuanTindakanHD);
+            jmlmenu++;
+        }
+        
+        if (akses.gethemodialisa()== true) {
+            FormMenu.add(BtnLainHemodialisis);
             jmlmenu++;
         }
 

@@ -48,7 +48,7 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
     private ResultSet rs;
     private validasi Valid = new validasi();
     private sekuel Sequel = new sekuel();
-    private int i = 0, cekData = 0, cekDiet = 0;
+    private int i = 0, cekData = 0;
     private String mencari = "", cari1 = "", cari2 = "", cari3 = "", cari4 = "", gedungGZ = "",
             inisialWkt = "", wktpro = "", wktkada = "";
         
@@ -411,8 +411,6 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
             cmbPrin.requestFocus();
         } else if (cmbPrin.getSelectedIndex() == 1 || cmbPrin.getSelectedIndex() == 2 || cmbPrin.getSelectedIndex() == 3) {
             cekData = 0;
-            cekDiet = 0;
-            cekDiet = Sequel.cariInteger("SELECT count(*) from detail_beri_diet where tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "'");
 
             if (inisial.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Inisial ruangan harus terisi..!!!");
@@ -426,7 +424,7 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
                             + "WHERE b.nm_gedung = '" + gedungGZ + "' AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
                             + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00')");
                     
-                    if (cekData == 0 || cekDiet == 0) {
+                    if (cekData == 0) {
                         JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!");
                     } else {
                         PrinBonDietPerRuangan();
@@ -440,7 +438,7 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
                             + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet WHERE b.nm_gedung = '" + gedungGZ + "' AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
                             + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00')");
 
-                    if (cekData == 0 || cekDiet == 0) {
+                    if (cekData == 0) {
                         JOptionPane.showMessageDialog(null, "Data tidak ditemukan, periksa lagi pilihan status rawatnya..!!!");
                     } else {
                         PrinKetepatanDiet();
@@ -464,7 +462,7 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
                     + "LEFT JOIN diet d ON d.kd_diet = db.kd_diet WHERE b.nm_gedung not in ('PERINATOLOGI','BAYI SEHAT') AND ki.tgl_masuk <= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
                     + "AND (ki.tgl_keluar >= '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' OR ki.tgl_keluar IS NULL OR ki.tgl_keluar = '0000-00-00')");
 
-            if (cekData == 0 || cekDiet == 0) {
+            if (cekData == 0) {
                 JOptionPane.showMessageDialog(null, "Data tidak ditemukan, periksa lagi pilihan status rawatnya..!!!");
             } else {
                 PrinBonDietSemuaRuangan();

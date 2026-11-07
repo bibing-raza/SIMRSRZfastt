@@ -138,7 +138,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="05-11-2026"/>
+                        <StringItem index="0" value="07-11-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -166,7 +166,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="05-11-2026"/>
+                        <StringItem index="0" value="07-11-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -585,7 +585,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="101">
+                      <StringArray count="102">
                         <StringItem index="0" value=" "/>
                         <StringItem index="1" value="FARMASI"/>
                         <StringItem index="2" value="RADIOLOGI"/>
@@ -687,6 +687,7 @@
                         <StringItem index="98" value="FORMULIR SITE MARKING ODONTOGRAM"/>
                         <StringItem index="99" value="STATUS HEMODIALISIS"/>
                         <StringItem index="100" value="PERSETUJUAN TINDAKAN KEDOKTERAN (HEMODIALISIS)"/>
+                        <StringItem index="101" value="LAIN-LAIN (HEMODIALISIS)"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbJnsTran" noResource="true"/>

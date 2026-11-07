@@ -11,7 +11,7 @@
  Target Server Version : 100131 (10.1.31-MariaDB)
  File Encoding         : 65001
 
- Date: 06/11/2026 15:49:21
+ Date: 07/11/2026 22:19:49
 */
 
 SET NAMES utf8mb4;
@@ -225665,6 +225665,55 @@ CREATE TABLE `koperasi`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for lainlain_hemodialisis
+-- ----------------------------
+DROP TABLE IF EXISTS `lainlain_hemodialisis`;
+CREATE TABLE `lainlain_hemodialisis`  (
+  `no_rawat` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `status_rawat` enum('ralan','ranap') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ruang_rawat` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `cek_tgl_meninggal` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tgl_meninggal` date NULL DEFAULT NULL,
+  `tempat_meninggal` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `penyebab_meninggal` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `cek_tgl_pindah_hd` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tgl_pindah_hd` date NULL DEFAULT NULL,
+  `pindah_ke_hd` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `alasan_pindah_hd` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `cek_tgl_pindah_capd` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tgl_pindah_capd` date NULL DEFAULT NULL,
+  `alasan_pindah_capd` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `cek_tgl_trans_a` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tgl_transplantasi_a` date NULL DEFAULT NULL,
+  `tempat_transplantasi` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `donor` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `hubungan` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `cek_tgl_trans_b` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tgl_transplantasi_b` date NULL DEFAULT NULL,
+  `ke` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `cek_tgl_travel1` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tgl_travel1` date NULL DEFAULT NULL,
+  `tempat_travel1` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `alasan_travel1` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `cek_tgl_travel2` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tgl_travel2` date NULL DEFAULT NULL,
+  `tempat_travel2` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `alasan_travel2` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `cek_tgl_travel3` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tgl_travel3` date NULL DEFAULT NULL,
+  `tempat_travel3` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `alasan_travel3` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `waktu_simpan` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`no_rawat`) USING BTREE,
+  INDEX `no_rawat`(`no_rawat` ASC) USING BTREE,
+  CONSTRAINT `lainlain_hemodialisis_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `reg_periksa` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of lainlain_hemodialisis
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for laporan_operasi
 -- ----------------------------
 DROP TABLE IF EXISTS `laporan_operasi`;
@@ -299500,7 +299549,8 @@ CREATE TABLE `persetujuan_tindakan_hemodialisis`  (
   `ket_hemodialisis_english` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `terhadap_ind` enum('-','Saya*','Anak*','Istri*','Suami*','Ayah*','Ibu*','Lainnya') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `terhadap_eng` enum('-','I*','Child*','Wife*','Husband*','Father*','Mother*','Other') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `ket_lainya` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ket_lainya_ind` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ket_lainya_eng` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `tgl_persetujuan` date NULL DEFAULT NULL,
   `nip_dokter` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `nip_saksi_rs` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,

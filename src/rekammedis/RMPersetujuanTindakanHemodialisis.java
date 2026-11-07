@@ -71,8 +71,8 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         tabMode = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Alamat", "Ruang Rawat", "Tgl. Persetujuan", "Nama Dokter", "Nama Saksi Dari RS", "Pembuat Pernyataan",
             "ruang_rawat", "nm_betttd", "umur", "jenkel", "alamat", "no_bukti_diri", "diagnosis", "tujuan_tindakan", "alternatif_tindakan", "resiko", "prognosis",
-            "perkiraan_biaya", "ket_hemodialisis_indonesia", "ket_hemodialisis_english", "terhadap_ind", "terhadap_eng", "ket_lainya", "tgl_persetujuan", "nip_dokter",
-            "nip_saksi_rs", "nm_saksi_klg", "id_file_nm_berttd", "id_file_nm_saksi_klg", "waktu_simpan"
+            "perkiraan_biaya", "ket_hemodialisis_indonesia", "ket_hemodialisis_english", "terhadap_ind", "terhadap_eng", "ket_lainya_ind", "ket_lainya_eng",
+            "tgl_persetujuan", "nip_dokter", "nip_saksi_rs", "nm_saksi_klg", "id_file_nm_berttd", "id_file_nm_saksi_klg", "waktu_simpan"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -84,7 +84,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         tbPersetujuan.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPersetujuan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 34; i++) {
+        for (i = 0; i < 35; i++) {
             TableColumn column = tbPersetujuan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -178,6 +178,9 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
             } else if (i == 33) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 34) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbPersetujuan.setDefaultRenderer(Object.class, new WarnaTable());
@@ -192,7 +195,8 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         Tresiko.setDocument(new batasInput((int) 255).getKata(Tresiko));
         Tprognosis.setDocument(new batasInput((int) 255).getKata(Tprognosis));
         Tperkiraan.setDocument(new batasInput((int) 20).getKata(Tperkiraan));
-        Tlainya.setDocument(new batasInput((int) 100).getKata(Tlainya));
+        TlainyaInd.setDocument(new batasInput((int) 100).getKata(TlainyaInd));
+        TlainyaEng.setDocument(new batasInput((int) 100).getKata(TlainyaEng));
         TnmSaksiKlg.setDocument(new batasInput((int) 150).getKata(TnmSaksiKlg));        
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         
@@ -363,7 +367,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel20 = new widget.Label();
         jLabel21 = new widget.Label();
         cmbTerhadapInd = new widget.ComboBox();
-        Tlainya = new widget.TextBox();
+        TlainyaInd = new widget.TextBox();
         jLabel22 = new widget.Label();
         cmbTerhadapEng = new widget.ComboBox();
         jLabel23 = new widget.Label();
@@ -383,6 +387,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         scrollPane14 = new widget.ScrollPane();
         gambarQR = new Painter();
         jLabel82 = new widget.Label();
+        TlainyaEng = new widget.TextBox();
         panelGlass12 = new widget.panelisi();
         panelGlass13 = new widget.panelisi();
         Scroll2 = new widget.ScrollPane();
@@ -833,16 +838,16 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         FormInput.add(cmbTerhadapInd);
         cmbTerhadapInd.setBounds(265, 577, 70, 23);
 
-        Tlainya.setBackground(new java.awt.Color(245, 250, 240));
-        Tlainya.setForeground(new java.awt.Color(0, 0, 0));
-        Tlainya.setName("Tlainya"); // NOI18N
-        Tlainya.addKeyListener(new java.awt.event.KeyAdapter() {
+        TlainyaInd.setBackground(new java.awt.Color(245, 250, 240));
+        TlainyaInd.setForeground(new java.awt.Color(0, 0, 0));
+        TlainyaInd.setName("TlainyaInd"); // NOI18N
+        TlainyaInd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TlainyaKeyPressed(evt);
+                TlainyaIndKeyPressed(evt);
             }
         });
-        FormInput.add(Tlainya);
-        Tlainya.setBounds(342, 577, 380, 23);
+        FormInput.add(TlainyaInd);
+        TlainyaInd.setBounds(342, 577, 180, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("<html><i>Of Myselft * : </i></html>");
@@ -854,6 +859,11 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         cmbTerhadapEng.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "I*", "Child*", "Wife*", "Husband*", "Father*", "Mother*", "Other" }));
         cmbTerhadapEng.setName("cmbTerhadapEng"); // NOI18N
         cmbTerhadapEng.setPreferredSize(new java.awt.Dimension(55, 23));
+        cmbTerhadapEng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTerhadapEngActionPerformed(evt);
+            }
+        });
         FormInput.add(cmbTerhadapEng);
         cmbTerhadapEng.setBounds(265, 605, 80, 23);
 
@@ -912,7 +922,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel27.setText("Tgl. Persetujuan : ");
         jLabel27.setName("jLabel27"); // NOI18N
         FormInput.add(jLabel27);
-        jLabel27.setBounds(345, 605, 110, 23);
+        jLabel27.setBounds(520, 605, 110, 23);
 
         TtglPersetujuan.setEditable(false);
         TtglPersetujuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2026" }));
@@ -921,7 +931,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         TtglPersetujuan.setOpaque(false);
         TtglPersetujuan.setPreferredSize(new java.awt.Dimension(90, 23));
         FormInput.add(TtglPersetujuan);
-        TtglPersetujuan.setBounds(460, 605, 90, 23);
+        TtglPersetujuan.setBounds(632, 605, 90, 23);
 
         BtnPerawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPerawat.setMnemonic('2');
@@ -994,6 +1004,17 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel82.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         FormInput.add(jLabel82);
         jLabel82.setBounds(760, 375, 210, 60);
+
+        TlainyaEng.setBackground(new java.awt.Color(245, 250, 240));
+        TlainyaEng.setForeground(new java.awt.Color(0, 0, 0));
+        TlainyaEng.setName("TlainyaEng"); // NOI18N
+        TlainyaEng.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TlainyaEngKeyPressed(evt);
+            }
+        });
+        FormInput.add(TlainyaEng);
+        TlainyaEng.setBounds(352, 605, 170, 23);
 
         Scroll1.setViewportView(FormInput);
 
@@ -1293,11 +1314,11 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
                 saksiKeluarga = TnmSaksiKlg.getText() + " (Saksi Keluarga)";
             }
             
-            if (Sequel.menyimpantf("persetujuan_tindakan_hemodialisis", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 26, new String[]{
+            if (Sequel.menyimpantf("persetujuan_tindakan_hemodialisis", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 27, new String[]{
                 TNoRw.getText(), sttsrwt, TrgRawat.getText(), pembuatPernyataan, Tumur.getText(), cmbJenkel.getSelectedItem().toString(),
                 Talamat.getText(), TnoBukti.getText(), Tdiagnosis.getText(), Ttujuan.getText(), Talternatif.getText(), Tresiko.getText(), Tprognosis.getText(),
                 Tperkiraan.getText(), TketIndonesia.getText(), TketEnglish.getText(), cmbTerhadapInd.getSelectedItem().toString(), cmbTerhadapEng.getSelectedItem().toString(),
-                Tlainya.getText(), Valid.SetTgl(TtglPersetujuan.getSelectedItem() + ""), nipDokter, nipSaksi, saksiKeluarga, "", "",
+                TlainyaInd.getText(), TlainyaEng.getText(), Valid.SetTgl(TtglPersetujuan.getSelectedItem() + ""), nipDokter, nipSaksi, saksiKeluarga, "", "",
                 Sequel.cariIsi("select now()")
             }) == true) {
 
@@ -1345,12 +1366,12 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
             
             if (Sequel.mengedittf("persetujuan_tindakan_hemodialisis", "waktu_simpan=?", "nm_betttd=?, umur=?, jenkel=?, alamat=?, no_bukti_diri=?, "
                     + "diagnosis=?, tujuan_tindakan=?, alternatif_tindakan=?, resiko=?, prognosis=?, perkiraan_biaya=?, ket_hemodialisis_indonesia=?, ket_hemodialisis_english=?, "
-                    + "terhadap_ind=?, terhadap_eng=?, ket_lainya=?, tgl_persetujuan=?, nip_dokter=?, nip_saksi_rs=?, nm_saksi_klg=?", 21, new String[]{
+                    + "terhadap_ind=?, terhadap_eng=?, ket_lainya_ind=?, ket_lainya_eng=?, tgl_persetujuan=?, nip_dokter=?, nip_saksi_rs=?, nm_saksi_klg=?", 22, new String[]{
                         pembuatPernyataan, Tumur.getText(), cmbJenkel.getSelectedItem().toString(),
                         Talamat.getText(), TnoBukti.getText(), Tdiagnosis.getText(), Ttujuan.getText(), Talternatif.getText(), Tresiko.getText(), Tprognosis.getText(),
                         Tperkiraan.getText(), TketIndonesia.getText(), TketEnglish.getText(), cmbTerhadapInd.getSelectedItem().toString(), cmbTerhadapEng.getSelectedItem().toString(),
-                        Tlainya.getText(), Valid.SetTgl(TtglPersetujuan.getSelectedItem() + ""), nipDokter, nipSaksi, saksiKeluarga,
-                        tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString()
+                        TlainyaInd.getText(), TlainyaEng.getText(), Valid.SetTgl(TtglPersetujuan.getSelectedItem() + ""), nipDokter, nipSaksi, saksiKeluarga,
+                        tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 34).toString()
                     }) == true) {
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Persetujuan Tindakan Kedokteran (Hemodialisis)", "Ganti");
@@ -1448,7 +1469,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 if (Sequel.queryu2tf("delete from persetujuan_tindakan_hemodialisis where waktu_simpan=?", 1, new String[]{
-                    tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString()
+                    tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 34).toString()
                 }) == true) {
                     if (!idFileBerttd.equals("")) {
                         Sequel.hapusSemuaTtd(idFileBerttd);
@@ -1551,17 +1572,34 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
                 param.put("ketEng", TketEnglish.getText());
             }
             
-            if (Tlainya.getText().equals("")) {
-                param.put("terhadapInd", cmbTerhadapInd.getSelectedItem().toString());
-                param.put("terhadapEng", cmbTerhadapEng.getSelectedItem().toString());
+            if (cmbTerhadapInd.getSelectedIndex() == 7) {
+                if (TlainyaInd.getText().equals("")) {
+                    param.put("terhadapInd", "......................");
+                } else {
+                    param.put("terhadapInd", TlainyaInd.getText());
+                }
+            } else if (cmbTerhadapInd.getSelectedIndex() == 0) {
+                param.put("terhadapInd", "......................");
             } else {
-                param.put("terhadapInd", Tlainya.getText());
+                param.put("terhadapInd", cmbTerhadapInd.getSelectedItem().toString());
+            }
+            
+            if (cmbTerhadapEng.getSelectedIndex() == 7) {
+                if (TlainyaEng.getText().equals("")) {
+                    param.put("terhadapEng", "......................");
+                } else {
+                    param.put("terhadapEng", TlainyaEng.getText());
+                }
+            } else if (cmbTerhadapEng.getSelectedIndex() == 0) {
+                param.put("terhadapEng", "......................");
+            } else {
+                param.put("terhadapEng", cmbTerhadapEng.getSelectedItem().toString());
             }
             
             param.put("umurPasien", Sequel.cariIsi("select concat(rp.umurdaftar,' ',rp.sttsumur,'. / ',if(p.jk='L','Laki-laki','Perempuan')) from reg_periksa rp "
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + TNoRw.getText() + "'"));
             param.put("ruangrwt", TrgRawat.getText());
-            param.put("tglPersetujuan", "Martapura, " + Valid.SetTglINDONESIA(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 27).toString()));
+            param.put("tglPersetujuan", "Martapura, " + Valid.SetTglINDONESIA(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 28).toString()));
             param.put("nmDokter", TnmDokter.getText());
             param.put("nmSaksiRS", TnmSaksiRS.getText());
             
@@ -1612,9 +1650,9 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
             if (cmbPilihCetak.getSelectedIndex() == 0) {
                 String isiDokter = "", isiSaksiRS = "", tglSimpan = "", jamSimpan = "";
                 tglSimpan = Sequel.cariIsi("select date_format(tgl_persetujuan,'%d/%m/%Y') from persetujuan_tindakan_hemodialisis where "
-                        + "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString() + "'");
+                        + "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 34).toString() + "'");
                 jamSimpan = Sequel.cariIsi("select time(waktu_simpan) from persetujuan_tindakan_hemodialisis where "
-                        + "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString() + "'");                
+                        + "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 34).toString() + "'");                
                 param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
                 
                 //dokter
@@ -1737,39 +1775,39 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TperkiraanKeyPressed
 
-    private void TlainyaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlainyaKeyPressed
+    private void TlainyaIndKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlainyaIndKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            TtglPersetujuan.requestFocus();
+            TlainyaEng.requestFocus();
         }
-    }//GEN-LAST:event_TlainyaKeyPressed
+    }//GEN-LAST:event_TlainyaIndKeyPressed
 
     private void cmbTerhadapIndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTerhadapIndActionPerformed
-        Tlainya.setText("");
+        TlainyaInd.setText("");
         if (cmbTerhadapInd.getSelectedIndex() == 0) {
             cmbTerhadapEng.setSelectedIndex(0);
-            Tlainya.setEnabled(false);
+            TlainyaInd.setEnabled(false);
         } else if (cmbTerhadapInd.getSelectedIndex() == 1) {
             cmbTerhadapEng.setSelectedIndex(1);
-            Tlainya.setEnabled(false);
+            TlainyaInd.setEnabled(false);
         } else if (cmbTerhadapInd.getSelectedIndex() == 2) {
             cmbTerhadapEng.setSelectedIndex(2);
-            Tlainya.setEnabled(false);
+            TlainyaInd.setEnabled(false);
         } else if (cmbTerhadapInd.getSelectedIndex() == 3) {
             cmbTerhadapEng.setSelectedIndex(3);
-            Tlainya.setEnabled(false);
+            TlainyaInd.setEnabled(false);
         } else if (cmbTerhadapInd.getSelectedIndex() == 4) {
             cmbTerhadapEng.setSelectedIndex(4);
-            Tlainya.setEnabled(false);
+            TlainyaInd.setEnabled(false);
         } else if (cmbTerhadapInd.getSelectedIndex() == 5) {
             cmbTerhadapEng.setSelectedIndex(5);
-            Tlainya.setEnabled(false);
+            TlainyaInd.setEnabled(false);
         } else if (cmbTerhadapInd.getSelectedIndex() == 6) {
             cmbTerhadapEng.setSelectedIndex(6);
-            Tlainya.setEnabled(false);
+            TlainyaInd.setEnabled(false);
         } else if (cmbTerhadapInd.getSelectedIndex() == 7) {
             cmbTerhadapEng.setSelectedIndex(7);
-            Tlainya.setEnabled(true);
-            Tlainya.requestFocus();
+            TlainyaInd.setEnabled(true);
+            TlainyaInd.requestFocus();
         }
     }//GEN-LAST:event_cmbTerhadapIndActionPerformed
 
@@ -1815,7 +1853,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
                             JOptionPane.showMessageDialog(null, "Pembuat pernyataan pasien ini belum melakukan tanda tangan...!");
                         } else {
                             if (Sequel.hapusFileTTD(idFileBerttd) == true) {
-                                Sequel.mengedit("persetujuan_tindakan_hemodialisis", "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString() + "'", "id_file_nm_berttd=''");
+                                Sequel.mengedit("persetujuan_tindakan_hemodialisis", "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 34).toString() + "'", "id_file_nm_berttd=''");
                                 tampil();
                                 emptTeks();
                             }
@@ -1852,7 +1890,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
                             JOptionPane.showMessageDialog(null, "Saksi dari keluarga pasien ini belum melakukan tanda tangan...!!!!");
                         } else {
                             if (Sequel.hapusFileTTD(idFileSaksiKlg) == true) {
-                                Sequel.mengedit("persetujuan_tindakan_hemodialisis", "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString() + "'", "id_file_nm_saksi_klg=''");
+                                Sequel.mengedit("persetujuan_tindakan_hemodialisis", "waktu_simpan='" + tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 34).toString() + "'", "id_file_nm_saksi_klg=''");
                                 tampil();
                                 emptTeks();
                             }
@@ -1934,6 +1972,22 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         WindowNomorDokumenRM.dispose();
     }//GEN-LAST:event_BtnCloseIn2ActionPerformed
 
+    private void TlainyaEngKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlainyaEngKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            TtglPersetujuan.requestFocus();
+        }
+    }//GEN-LAST:event_TlainyaEngKeyPressed
+
+    private void cmbTerhadapEngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTerhadapEngActionPerformed
+        TlainyaEng.setText("");
+        if (cmbTerhadapEng.getSelectedIndex() == 7) {
+            TlainyaEng.setEnabled(true);
+            TlainyaEng.requestFocus();
+        } else {
+            TlainyaEng.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbTerhadapEngActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1983,7 +2037,8 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     private widget.TextBox Tdiagnosis;
     private widget.TextArea TketEnglish;
     private widget.TextArea TketIndonesia;
-    private widget.TextBox Tlainya;
+    private widget.TextBox TlainyaEng;
+    private widget.TextBox TlainyaInd;
     private widget.TextBox TnmBerttd;
     private widget.TextBox TnmDokter;
     private widget.TextBox TnmSaksiKlg;
@@ -2111,7 +2166,8 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
                         rs.getString("ket_hemodialisis_english"),
                         rs.getString("terhadap_ind"),
                         rs.getString("terhadap_eng"),
-                        rs.getString("ket_lainya"),
+                        rs.getString("ket_lainya_ind"),
+                        rs.getString("ket_lainya_eng"),
                         rs.getString("tgl_persetujuan"),
                         rs.getString("nip_dokter"),
                         rs.getString("nip_saksi_rs"),
@@ -2137,7 +2193,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         LCount.setText("" + tabMode.getRowCount());
     }
     
-    public void emptTeks() {  
+    public void emptTeks() {
         TNoRw.setText("");
         TNoRM.setText("");
         TPasien.setText("");
@@ -2145,7 +2201,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         Tumur.setText("");
         cmbJenkel.setSelectedIndex(0);
         Talamat.setText("");
-        TnoBukti.setText("");        
+        TnoBukti.setText("");
         Tdiagnosis.setText("");
         Ttujuan.setText("");
         Talternatif.setText("");
@@ -2155,8 +2211,11 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         TketIndonesia.setText("");
         TketEnglish.setText("");
         cmbTerhadapInd.setSelectedIndex(0);
-        Tlainya.setText("");
-        cmbTerhadapEng.setSelectedIndex(0);        
+        TlainyaInd.setEnabled(false);
+        TlainyaInd.setText("");
+        cmbTerhadapEng.setSelectedIndex(0);
+        TlainyaEng.setEnabled(false);
+        TlainyaEng.setText("");
         TtglPersetujuan.setDate(new Date());
         TrgRawat.setText("");
         nipDokter = "-";
@@ -2197,22 +2256,29 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
             TketEnglish.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 23).toString());
             cmbTerhadapInd.setSelectedItem(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 24).toString());
             cmbTerhadapEng.setSelectedItem(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 25).toString());
-            Tlainya.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 26).toString());
-            Valid.SetTgl(TtglPersetujuan, tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 27).toString());
+            TlainyaInd.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 26).toString());
+            TlainyaEng.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 27).toString());            
+            Valid.SetTgl(TtglPersetujuan, tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 28).toString());
             TrgRawat.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 10).toString());
-            nipDokter = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 28).toString();
-            TnmDokter.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 7).toString()); 
-            nipSaksi = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 29).toString();
+            nipDokter = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 29).toString();
+            TnmDokter.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 7).toString());
+            nipSaksi = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 30).toString();
             TnmSaksiRS.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 8).toString());
-            TnmSaksiKlg.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 30).toString());
-            idFileBerttd = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 31).toString();
-            idFileSaksiKlg = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 32).toString();
+            TnmSaksiKlg.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 31).toString());
+            idFileBerttd = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 32).toString();
+            idFileSaksiKlg = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 33).toString();
             tampilTTD();
 
             if (cmbTerhadapInd.getSelectedIndex() == 7) {
-                Tlainya.setEnabled(true);
+                TlainyaInd.setEnabled(true);
             } else {
-                Tlainya.setEnabled(false);
+                TlainyaInd.setEnabled(false);
+            }
+            
+            if (cmbTerhadapEng.getSelectedIndex() == 7) {
+                TlainyaEng.setEnabled(true);
+            } else {
+                TlainyaEng.setEnabled(false);
             }
         }
     }
