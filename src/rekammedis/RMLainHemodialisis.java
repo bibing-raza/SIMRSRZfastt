@@ -955,7 +955,6 @@ public class RMLainHemodialisis extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -996,7 +995,6 @@ public class RMLainHemodialisis extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1015,7 +1013,6 @@ public class RMLainHemodialisis extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -1034,7 +1031,6 @@ public class RMLainHemodialisis extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1048,7 +1044,6 @@ public class RMLainHemodialisis extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -1070,7 +1065,6 @@ public class RMLainHemodialisis extends javax.swing.JDialog {
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
-        BtnPrint.setEnabled(false);
         BtnPrint.setName("BtnPrint"); // NOI18N
         BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -1087,7 +1081,6 @@ public class RMLainHemodialisis extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1106,7 +1099,6 @@ public class RMLainHemodialisis extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1318,12 +1310,155 @@ public class RMLainHemodialisis extends javax.swing.JDialog {
             param.put("namars", akses.getnamars());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
             param.put("norm", TNoRM.getText());
-            param.put("nmpasien", TPasien.getText());            
+            param.put("nmpasien", TPasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
             
-            Valid.MyReport("rptStatusHemodialisis2.jasper", "report", "::[ Status Hemodialisis (Data Status) ]::",
-                    "SELECT date(now()) tgl", param);
+            if (cekMening.equals("ya")) {
+                param.put("tglMeninggal", Valid.SetTglINDONESIA(tbStatus.getValueAt(tbStatus.getSelectedRow(), 10).toString()));
+                if (TtmptMeninggal.getText().equals("")) {
+                    param.put("tmptMeninggal", "..................");
+                } else {
+                    param.put("tmptMeninggal", TtmptMeninggal.getText());
+                }
+
+                if (TpenyeMeninggal.getText().equals("")) {
+                    param.put("penyebab", "..................");
+                } else {
+                    param.put("penyebab", TpenyeMeninggal.getText());
+                }
+            } else {
+                param.put("tglMeninggal", "..................");
+                param.put("tmptMeninggal", "..................");
+                param.put("penyebab", "..................");
+            }
             
-            Valid.MyReport("rptStatusHemodialisis1.jasper", "report", "::[ Status Hemodialisis (Sampul/Cover) ]::",
+            if (cekPindahHD.equals("ya")) {
+                param.put("tglPindahHD", Valid.SetTglINDONESIA(tbStatus.getValueAt(tbStatus.getSelectedRow(), 14).toString()));
+                if (TpindahHD.getText().equals("")) {
+                    param.put("pindahhd", "..................");
+                } else {
+                    param.put("pindahhd", TpindahHD.getText());
+                }
+
+                if (TalasanPindahHd.getText().equals("")) {
+                    param.put("alasanpindahhd", "..................");
+                } else {
+                    param.put("alasanpindahhd", TalasanPindahHd.getText());
+                }
+            } else {
+                param.put("tglPindahHD", "..................");
+                param.put("pindahhd", "..................");
+                param.put("alasanpindahhd", "..................");
+            }
+            
+            if (cekPindahCAPD.equals("ya")) {
+                param.put("tglPindahCapd", Valid.SetTglINDONESIA(tbStatus.getValueAt(tbStatus.getSelectedRow(), 18).toString()));
+                if (TalasanCapd.getText().equals("")) {
+                    param.put("alasanCapd", "..................");
+                } else {
+                    param.put("alasanCapd", TalasanCapd.getText());
+                }
+            } else {
+                param.put("tglPindahCapd", "..................");
+                param.put("alasanCapd", "..................");
+            }
+            
+            if (cekTglTranA.equals("ya")) {
+                param.put("tglTransA", Valid.SetTglINDONESIA(tbStatus.getValueAt(tbStatus.getSelectedRow(), 21).toString()));
+                if (Ttempat.getText().equals("")) {
+                    param.put("tempat", "..................");
+                } else {
+                    param.put("tempat", Ttempat.getText());
+                }
+                
+                if (Tdonor.getText().equals("")) {
+                    param.put("donor", "..................");
+                } else {
+                    param.put("donor", Tdonor.getText());
+                }
+                
+                if (Thubungan.getText().equals("")) {
+                    param.put("hubungan", "..................");
+                } else {
+                    param.put("hubungan", Thubungan.getText());
+                }
+            } else {
+                param.put("tglTransA", "..................");
+                param.put("tempat", "..................");
+                param.put("donor", "..................");
+                param.put("hubungan", "..................");
+            }
+            
+            if (cekTglTranB.equals("ya")) {
+                param.put("tglTransB", Valid.SetTglINDONESIA(tbStatus.getValueAt(tbStatus.getSelectedRow(), 26).toString()));
+                if (Tke.getText().equals("")) {
+                    param.put("ke", "..................");
+                } else {
+                    param.put("ke", Tke.getText());
+                }
+            } else {
+                param.put("tglTransB", "..................");
+                param.put("ke", "..................");
+            }
+            
+            if (cekTglTravel1.equals("ya")) {
+                param.put("tglTravel1", Valid.SetTglINDONESIA(tbStatus.getValueAt(tbStatus.getSelectedRow(), 29).toString()));
+                if (TtempatTravel1.getText().equals("")) {
+                    param.put("tempatTrav1", "..................");
+                } else {
+                    param.put("tempatTrav1", TtempatTravel1.getText());
+                }
+                
+                if (TalasanTravel1.getText().equals("")) {
+                    param.put("alasanTrav1", "..................");
+                } else {
+                    param.put("alasanTrav1", TalasanTravel1.getText());
+                }
+            } else {
+                param.put("tglTravel1", "..................");
+                param.put("tempatTrav1", "..................");
+                param.put("alasanTrav1", "..................");
+            }
+            
+            if (cekTglTravel2.equals("ya")) {
+                param.put("tglTravel2", Valid.SetTglINDONESIA(tbStatus.getValueAt(tbStatus.getSelectedRow(), 33).toString()));
+                if (TtempatTravel2.getText().equals("")) {
+                    param.put("tempatTrav2", "..................");
+                } else {
+                    param.put("tempatTrav2", TtempatTravel2.getText());
+                }
+                
+                if (TalasanTravel2.getText().equals("")) {
+                    param.put("alasanTrav2", "..................");
+                } else {
+                    param.put("alasanTrav2", TalasanTravel2.getText());
+                }
+            } else {
+                param.put("tglTravel2", "..................");
+                param.put("tempatTrav2", "..................");
+                param.put("alasanTrav2", "..................");
+            }
+            
+            if (cekTglTravel3.equals("ya")) {
+                param.put("tglTravel3", Valid.SetTglINDONESIA(tbStatus.getValueAt(tbStatus.getSelectedRow(), 37).toString()));
+                if (TtempatTravel3.getText().equals("")) {
+                    param.put("tempatTrav3", "..................");
+                } else {
+                    param.put("tempatTrav3", TtempatTravel3.getText());
+                }
+                
+                if (TalasanTravel3.getText().equals("")) {
+                    param.put("alasanTrav3", "..................");
+                } else {
+                    param.put("alasanTrav3", TalasanTravel3.getText());
+                }
+            } else {
+                param.put("tglTravel3", "..................");
+                param.put("tempatTrav3", "..................");
+                param.put("alasanTrav3", "..................");
+            }
+            
+            Valid.MyReport("rptLainHemodialisis.jasper", "report", "::[ Lain-lain (Hemodialisis) ]::",
                     "SELECT date(now()) tgl", param);
             
             emptTeks();
