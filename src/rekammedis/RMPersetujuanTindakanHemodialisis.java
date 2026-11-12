@@ -925,7 +925,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel27.setBounds(520, 605, 110, 23);
 
         TtglPersetujuan.setEditable(false);
-        TtglPersetujuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2026" }));
+        TtglPersetujuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-11-2026" }));
         TtglPersetujuan.setDisplayFormat("dd-MM-yyyy");
         TtglPersetujuan.setName("TtglPersetujuan"); // NOI18N
         TtglPersetujuan.setOpaque(false);
@@ -1042,6 +1042,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
+        Scroll.setPreferredSize(new java.awt.Dimension(452, 470));
 
         tbPersetujuan.setToolTipText("Silahkan klik untuk memilih data yang mau diperbaiki/dihapus");
         tbPersetujuan.setComponentPopupMenu(jPopupMenu1);
@@ -1073,7 +1074,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel49.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass10.add(jLabel49);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-11-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1087,7 +1088,7 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
         jLabel50.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel50);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-11-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

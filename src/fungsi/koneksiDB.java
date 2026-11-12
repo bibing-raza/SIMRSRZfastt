@@ -585,4 +585,14 @@ public final class koneksiDB {
         }
         return var;
     }
+    
+    public static String URLABSENSISERVER() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = prop.getProperty("URLABSENSISERVER");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
 }

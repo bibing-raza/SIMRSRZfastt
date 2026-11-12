@@ -3988,7 +3988,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnStatusHemodialisisActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="MnPersetujuanTindakan">
+                <MenuItem class="javax.swing.JMenuItem" name="MnPersetujuanTindakanHD">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="fe" green="ff" red="ff" type="rgb"/>
@@ -4006,16 +4006,16 @@
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                     <Property name="iconTextGap" type="int" value="5"/>
-                    <Property name="name" type="java.lang.String" value="MnPersetujuanTindakan" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="MnPersetujuanTindakanHD" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[220, 26]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnPersetujuanTindakanActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnPersetujuanTindakanHDActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="MnAsesmenAwalMedis">
+                <MenuItem class="javax.swing.JMenuItem" name="MnAsesmenAwalMedisHD">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="fe" green="ff" red="ff" type="rgb"/>
@@ -4033,16 +4033,16 @@
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                     <Property name="iconTextGap" type="int" value="5"/>
-                    <Property name="name" type="java.lang.String" value="MnAsesmenAwalMedis" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="MnAsesmenAwalMedisHD" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[220, 26]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnAsesmenAwalMedisActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnAsesmenAwalMedisHDActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="MnAsesmenAwalKeperawatan">
+                <MenuItem class="javax.swing.JMenuItem" name="MnAsesmenAwalKeperawatanHD">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="fe" green="ff" red="ff" type="rgb"/>
@@ -4060,16 +4060,16 @@
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                     <Property name="iconTextGap" type="int" value="5"/>
-                    <Property name="name" type="java.lang.String" value="MnAsesmenAwalKeperawatan" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="MnAsesmenAwalKeperawatanHD" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[220, 26]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnAsesmenAwalKeperawatanActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnAsesmenAwalKeperawatanHDActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="MnAsesmenUlang">
+                <MenuItem class="javax.swing.JMenuItem" name="MnAsesmenUlangHD">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="fe" green="ff" red="ff" type="rgb"/>
@@ -4087,13 +4087,13 @@
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                     <Property name="iconTextGap" type="int" value="5"/>
-                    <Property name="name" type="java.lang.String" value="MnAsesmenUlang" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="MnAsesmenUlangHD" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[220, 26]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnAsesmenUlangActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnAsesmenUlangHDActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="MnLembarObservasiHD">
@@ -4123,7 +4123,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnLembarObservasiHDActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="MnLainlain">
+                <MenuItem class="javax.swing.JMenuItem" name="MnLainlainHD">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="fe" green="ff" red="ff" type="rgb"/>
@@ -4141,13 +4141,13 @@
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                     <Property name="iconTextGap" type="int" value="5"/>
-                    <Property name="name" type="java.lang.String" value="MnLainlain" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="MnLainlainHD" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[220, 26]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnLainlainActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnLainlainHDActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -6091,7 +6091,7 @@
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="07-11-2026"/>
+                    <StringItem index="0" value="10-11-2026"/>
                   </StringArray>
                 </Property>
                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7984,7 +7984,7 @@
         <Property name="editable" type="boolean" value="false"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="07-11-2026"/>
+            <StringItem index="0" value="10-11-2026"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -8012,7 +8012,7 @@
         <Property name="editable" type="boolean" value="false"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="07-11-2026"/>
+            <StringItem index="0" value="10-11-2026"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -8445,7 +8445,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="07-11-2026"/>
+                        <StringItem index="0" value="10-11-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -8476,7 +8476,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="07-11-2026"/>
+                        <StringItem index="0" value="10-11-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>

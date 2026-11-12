@@ -11,7 +11,7 @@
  Target Server Version : 100131 (10.1.31-MariaDB)
  File Encoding         : 65001
 
- Date: 09/11/2026 08:10:13
+ Date: 10/11/2026 16:10:59
 */
 
 SET NAMES utf8mb4;
@@ -3523,15 +3523,15 @@ CREATE TABLE `asesmen_ulang_hemodialisis`  (
   `diagnosa_medis` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `cc` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `riwayat_alergi` enum('-','Ya','Tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `ket_riwayat_alergi` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ket_riwayat_alergi` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `sesak_nafas` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `mual_muntah` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `gatal` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `lain_lain` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `ket_lain_lain` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `nyeri_nrs` enum('-','Tidak','Ya') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `jenis_nyeri` enum('-','Tidak Nyeri (0)','Ringan (1 - 3)','Sedang (4 - 6)','Berat (7 - 10)','Akut (> 10)','Kronik') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `ket_kronik` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `skala_nyeri` enum('-','Tidak Nyeri (0)','Ringan (1 - 3)','Sedang (4 - 6)','Berat (7 - 10)','Akut (> 10)','Kronik') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ket_kronik` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `keadaan_umum` enum('-','Baik','Sedang','Buruk','Lain-lain') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `ket_keadaan_umum` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `kesadaran` enum('-','Compos Mentis','Apatis','Delirium','Somnolen','Sopor','Coma') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -3561,7 +3561,7 @@ CREATE TABLE `asesmen_ulang_hemodialisis`  (
   `bb_kering` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `bb_post_hd` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `av_fistula` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `femoral` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `femoral_akses` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `sub_clavian` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `jugular` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `femoral_hd` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -3570,6 +3570,7 @@ CREATE TABLE `asesmen_ulang_hemodialisis`  (
   `kes_jatuh_pre_hd` enum('-','0 - 24 (Tidak beresiko)','24 - 45 (Resiko sedang)','45 (Resiko Tinggi)') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `kes_jatuh_post_hd` enum('-','0 - 24 (Tidak beresiko)','24 - 45 (Resiko sedang)','45 (Resiko Tinggi)') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `pemeriksaan_penunjang` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `cek_tgl_gizi` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `tgl_gizi` date NULL DEFAULT NULL,
   `mst` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `skor_total` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -3635,7 +3636,7 @@ CREATE TABLE `asesmen_ulang_hemodialisis`  (
   `dialisat_temperatur` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `sirkulasi` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `awal` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `mantenance` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `maintenance` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `continues` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `intermiten` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `lmwh` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -3659,9 +3660,9 @@ CREATE TABLE `asesmen_ulang_hemodialisis`  (
   `menggigil` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `lain_penyulit` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `evaluasi_hd` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `evaluasi_qb` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `evaluasi_qb` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `evaluasi_kt` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `discharge_planing` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `discharge_planing` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   `obat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   `catatan_medis` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   `nip_dokter2` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,

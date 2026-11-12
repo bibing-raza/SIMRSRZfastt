@@ -36,6 +36,7 @@ import rekammedis.RMAsesmenPraSedasi;
 import rekammedis.RMAsesmenPraSedasiKonsepIAR;
 import rekammedis.RMAsesmenPreInduksi;
 import rekammedis.RMAsesmenRestrain;
+import rekammedis.RMAsesmenUlangHemodialisis;
 import rekammedis.RMAsesmenUlangResikoJatuhAnak;
 import rekammedis.RMAsesmenUlangResikoJatuhDewasa;
 import rekammedis.RMAsuhanGiziRanap;
@@ -247,6 +248,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnStatusHemodialisis = new widget.ButtonBig();
         BtnPersetujuanTindakanHD = new widget.ButtonBig();
         BtnLainHemodialisis = new widget.ButtonBig();
+        BtnAsesmenUlangHD = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1578,6 +1580,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnLainHemodialisis);
+
+        BtnAsesmenUlangHD.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenUlangHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/mp_viewer.png"))); // NOI18N
+        BtnAsesmenUlangHD.setText("<html><div style=\"text-align: center;\">Assesmen Ulang Pasien<br>Dengan Hemodialisis</div></html>");
+        BtnAsesmenUlangHD.setIconTextGap(0);
+        BtnAsesmenUlangHD.setName("BtnAsesmenUlangHD"); // NOI18N
+        BtnAsesmenUlangHD.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnAsesmenUlangHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenUlangHDActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnAsesmenUlangHD);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -3165,6 +3180,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnLainHemodialisisActionPerformed
 
+    private void BtnAsesmenUlangHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenUlangHDActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMAsesmenUlangHemodialisis form = new RMAsesmenUlangHemodialisis(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnAsesmenUlangHD.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnAsesmenUlangHDActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -3173,6 +3204,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnAsesmenMedikKebidanan;
     private widget.ButtonBig BtnAsesmenPasienTerminal;
     private widget.ButtonBig BtnAsesmenPraSedasiKonsepIAR;
+    private widget.ButtonBig BtnAsesmenUlangHD;
     private widget.ButtonBig BtnCatatanDiagnosa;
     private widget.ButtonBig BtnCatatanRuangPemulihan;
     private widget.ButtonBig BtnCatatanSedasiAnestesi;
@@ -3755,6 +3787,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             jmlmenu++;
         }
         
+        if (akses.gethemodialisa() && BtnAsesmenUlangHD.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnAsesmenUlangHD);
+            jmlmenu++;
+        }
+        
         if (akses.gethemodialisa() && BtnLainHemodialisis.getText().toLowerCase().trim().contains(cari)) {
             FormMenu.add(BtnLainHemodialisis);
             jmlmenu++;
@@ -4261,6 +4298,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         
         if (akses.gethemodialisa()== true) {
             FormMenu.add(BtnPersetujuanTindakanHD);
+            jmlmenu++;
+        }
+        
+        if (akses.gethemodialisa()== true) {
+            FormMenu.add(BtnAsesmenUlangHD);
             jmlmenu++;
         }
         

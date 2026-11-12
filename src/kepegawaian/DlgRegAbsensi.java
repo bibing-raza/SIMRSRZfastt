@@ -12,6 +12,7 @@
 
 package kepegawaian;
 import fungsi.akses;
+import fungsi.koneksiDB;
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -24,6 +25,20 @@ import me.friwi.jcefmaven.CefAppBuilder;
 import org.cef.CefApp;
 import org.cef.CefClient;
 import org.cef.browser.CefBrowser;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.KeyStore;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
+import java.util.Collections;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
 import simrskhanza.frmUtama;
 
 /**
@@ -36,6 +51,7 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
     private CefBrowser browser;
     private boolean sedangMemuat;
     private boolean browserDitutup;
+    private boolean sudahCekURL = false;
     private String urlTerakhir;
     private frmUtama formUtama;
         
@@ -66,13 +82,22 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
     public DlgRegAbsensi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        System.out.println("Java Home : " + System.getProperty("java.home"));
+        System.out.println("SSL TrustStore : " + System.getProperty("javax.net.ssl.trustStore"));
+        System.out.println("SSL TrustStore Type : " + System.getProperty("javax.net.ssl.trustStoreType"));
+
         initComponents2();
     }
     
     private void initComponents2() {
         PanelContent.setLayout(new BorderLayout());
-        urlTerakhir = "http://localhost:8080/absensirz/regabsensi/registrasi.php";
-//        urlTerakhir = "https://192.168.0.230:8443/absensi/regabsensi/registrasi.php";
+
+        if ("AKTIF".equalsIgnoreCase(koneksiDB.URLABSENSISERVER().trim())) {
+            urlTerakhir = "https://192.168.0.230:8443/absensi/regabsensi/registrasi.php";
+        } else {
+            urlTerakhir = "http://localhost:8080/absensirz/regabsensi/registrasi.php";
+        }
 
         PanelContent.addHierarchyListener(e -> {
             if ((e.getChangeFlags()
@@ -82,7 +107,7 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
                     && !sedangMemuat
                     && browser == null) {
 
-                loadURL(urlTerakhir);
+                cekURLDanTampilkan();
             }
         });
     }
@@ -320,5 +345,165 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
         System.out.println("JCEF: dispose dipanggil, panelTampil=" + PanelContent.isShowing());
         super.dispose();
     }
- 
+
+    private boolean cekAksesURL(String alamatURL) {
+        HttpURLConnection conn = null;
+
+        try {
+            URL url = new URL(alamatURL);
+            conn = (HttpURLConnection) url.openConnection();
+
+            // Khusus HTTPS server absensi, gunakan Root CA Caddy.
+            if (conn instanceof HttpsURLConnection) {
+                HttpsURLConnection https = (HttpsURLConnection) conn;
+                https.setSSLSocketFactory(buatSSLAbsensi());
+
+                // Hostname verification bawaan tetap aktif.
+            }
+
+            conn.setRequestMethod("GET");
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(5000);
+            conn.setInstanceFollowRedirects(false);
+            conn.setUseCaches(false);
+
+            int responseCode = conn.getResponseCode();
+
+            System.out.println("URL Absensi : " + alamatURL);
+            System.out.println("HTTP Status : " + responseCode);
+
+            return responseCode >= 200 && responseCode < 300;
+
+        } catch (Exception e) {
+            System.err.println("Gagal mengakses URL absensi: " + alamatURL);
+            e.printStackTrace();
+            return false;
+
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+    }
+    
+    private void cekURLDanTampilkan() {
+        if (sudahCekURL || sedangMemuat || browserDitutup || browser != null) {
+            return;
+        }
+
+        sudahCekURL = true;
+        sedangMemuat = true;
+
+        PanelContent.removeAll();
+        PanelContent.add(new JLabel("Memeriksa koneksi server absensi...", JLabel.CENTER), BorderLayout.CENTER);
+        PanelContent.revalidate();
+        PanelContent.repaint();
+
+        final String urlDicek = urlTerakhir;
+
+        new SwingWorker<Boolean, Void>() {
+
+            @Override
+            protected Boolean doInBackground() {
+                return cekAksesURL(urlDicek);
+            }
+
+            @Override
+            protected void done() {
+                sedangMemuat = false;
+
+                if (browserDitutup || !PanelContent.isShowing()) {
+                    return;
+                }
+
+                boolean bisaDiakses = false;
+
+                try {
+                    bisaDiakses = get();
+                } catch (Exception e) {
+                    System.out.println("Gagal memeriksa URL: " + e.getMessage());
+                }
+
+                if (bisaDiakses) {
+                    loadURL(urlDicek);
+                } else {
+                    PanelContent.removeAll();
+                    PanelContent.add(new JLabel("Layanan registrasi absensi tidak dapat diakses.", JLabel.CENTER), BorderLayout.CENTER);
+                    PanelContent.revalidate();
+                    PanelContent.repaint();
+
+                    JOptionPane.showMessageDialog(DlgRegAbsensi.this, "Layanan registrasi absensi tidak dapat diakses.\n"
+                            + "Alamat : " + urlDicek + "        \n"
+                            + "Pastikan server aktif dan koneksi jaringan tersedia.", "Informasi Koneksi Absensi", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        }.execute();
+    }
+
+    private javax.net.ssl.SSLSocketFactory buatSSLAbsensi() throws Exception {
+        // Mendapatkan lokasi aplikasi SIMRS yang sedang dijalankan.
+        // Mendukung NetBeans (build/classes) dan distribusi file JAR.
+        Path lokasiAplikasi = Paths.get(DlgRegAbsensi.class.getProtectionDomain().getCodeSource().getLocation().toURI()).toAbsolutePath().normalize();
+
+        // Jika lokasi berupa file JAR, gunakan folder induknya.
+        // Jika berupa direktori classes, gunakan direktori tersebut.
+        Path folderAplikasi = java.nio.file.Files.isDirectory(lokasiAplikasi)
+                ? lokasiAplikasi
+                : lokasiAplikasi.getParent();
+
+        File fileCA = null;
+        Path folderCari = folderAplikasi;
+
+        // Cari sertifikat dari lokasi aplikasi hingga 4 tingkat ke atas.
+        // Contoh:
+        // 1. dist/setting/absensi-root.crt
+        // 2. build/classes/setting/absensi-root.crt
+        // 3. build/setting/absensi-root.crt
+        // 4. setting/absensi-root.crt (folder project)
+        for (int i = 0; i < 4 && folderCari != null; i++) {
+            File kandidat = folderCari.resolve("setting")
+                    .resolve("absensi-root.crt").toFile();
+
+            if (kandidat.isFile()) {
+                fileCA = kandidat;
+                break;
+            }
+
+            folderCari = folderCari.getParent();
+        }
+
+        // Jika sertifikat tidak ditemukan, hentikan koneksi HTTPS.
+        if (fileCA == null) {
+            throw new java.io.FileNotFoundException("File setting/absensi-root.crt tidak ditemukan. " + "Lokasi aplikasi: " + folderAplikasi);
+        }
+
+        System.out.println("Sertifikat CA Absensi : " + fileCA.getAbsolutePath());
+
+        // Membaca sertifikat Root CA Caddy (X.509).
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+        Certificate sertifikat;
+
+        try (InputStream input = new FileInputStream(fileCA)) {
+            sertifikat = cf.generateCertificate(input);
+        }
+
+        // Membuat truststore khusus absensi di memori.
+        // Tidak mengubah truststore bawaan Java.
+        KeyStore trustStore = KeyStore.getInstance("PKCS12");
+        trustStore.load(null, null);
+        trustStore.setCertificateEntry("absensi-caddy-root", sertifikat);
+
+        // Menyiapkan TrustManager untuk memvalidasi sertifikat HTTPS.
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance(
+                TrustManagerFactory.getDefaultAlgorithm()
+        );
+        tmf.init(trustStore);
+
+        // Membuat SSLContext dengan validasi sertifikat aktif.
+        SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(null, tmf.getTrustManagers(), null);
+
+        // Mengembalikan SSLSocketFactory untuk koneksi HTTPS absensi.
+        return sslContext.getSocketFactory();
+    }
 }
