@@ -966,7 +966,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
 
                             Sequel.menyimpanQrTte("temporary_tte",
                                     "'" + TNoRM.getText() + "',"
-                                    + "'" + TPasien.getText() + "',"
+                                    + "'" + TPasien.getText().replaceAll("'", " ") + "',"
                                     + "'" + Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + "',"
                                     + "'" + "DARI UNIT : " + cmbUnitDari.getSelectedItem() + ", KE UNIT : " + cmbUnitKe.getSelectedItem() + "',"
                                     + "'" + "TANGAL : " + Sequel.cariIsi("select date_format(tgl_minta,'%d-%m-%Y') from surat_konsul_unit_ranap where waktu_simpan='" + wktSimpan + "'")
