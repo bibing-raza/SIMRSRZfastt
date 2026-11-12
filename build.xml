@@ -80,7 +80,7 @@
             <fileset dir="report/" includes="**/*.jasper" />
         </copy>                
         <copy todir="${build.dir}/setting">
-            <fileset dir="setting/" includes="**/*.xml, **/*.png, **/*.jpg" />
+            <fileset dir="setting/" includes="**/*.xml, **/*.png, **/*.jpg, **/*.crt" />
         </copy>
         <copy todir="${build.dir}/suara">
             <fileset dir="suara/" includes="**/*.mp3, **/*.rar" />
@@ -100,7 +100,7 @@
             <fileset dir="report/" includes="**/*.jasper" />
         </copy>               
         <copy todir="${dist.dir}/setting">
-            <fileset dir="setting/" includes="**/*.xml, **/*.png, **/*.jpg" />
+            <fileset dir="setting/" includes="**/*.xml, **/*.png, **/*.jpg, **/*.crt" />
         </copy>
         <copy todir="${dist.dir}/suara">
             <fileset dir="suara/" includes="**/*.mp3, **/*.rar" />
