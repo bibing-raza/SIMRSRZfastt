@@ -1,7 +1,11 @@
 package widget;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.awt.geom.RoundRectangle2D;
 
 /**
  *
@@ -9,18 +13,30 @@ import java.awt.Insets;
  */
 public class Button extends usu.widget.ButtonGlass {
 
-    /*
-     * Serial version UID
-     */
     private static final long serialVersionUID = 1L;
+    private static final int DIAMETER_SUDUT = 8;
 
     public Button() {
         super();
-        setFont(new java.awt.Font("Tahoma", 1, 11));
-        setForeground(new Color(90,120,80));
-        setGlassColor(new Color(184,239,239));
+        setFont(new Font("Tahoma", Font.BOLD, 11));
+        setForeground(Color.BLACK);
+        setGlassColor(new Color(184, 239, 239));
         setMargin(new Insets(2, 7, 2, 7));
         setIconTextGap(4);
-        setRoundRect(true);
+        setRoundRect(false);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        Graphics2D gambar = (Graphics2D) g.create();
+        try {
+            gambar.clip(new RoundRectangle2D.Double(
+                    0, 0, getWidth(), getHeight(),
+                    DIAMETER_SUDUT, DIAMETER_SUDUT
+            ));
+            super.paint(gambar);
+        } finally {
+            gambar.dispose();
+        }
     }
 }

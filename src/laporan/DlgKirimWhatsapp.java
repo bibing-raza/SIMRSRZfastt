@@ -269,6 +269,8 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
             notaNaikKelasBpjs();
         } else if (nmDokumen.equals("hasil expertise radiologi")) {
             hasilExpertiseRadiologi();
+        } else if (nmDokumen.equals("surkon bpjs")) {
+            suratRencanaKontrolBpjs();
         }
     }
     
@@ -1862,5 +1864,46 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                 }
             }
         }
+    }
+    
+    private void suratRencanaKontrolBpjs() {
+        String dokter = "";
+        dokter = Sequel.cariIsi("select ifnull(nmdpjpLayan,'-') from bridging_sep where no_rawat='" + norawat + "'");
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("logo", Sequel.cariGambar("select bpjs from gambar"));
+        param.put("dokter_layan", dokter);
+        param.put("tgl_lahir", Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%d') from pasien where no_rkm_medis='" + norkmJT + "'") + " "
+                + Sequel.bulanINDONESIA("select DATE_FORMAT(tgl_lahir,'%m') from pasien where no_rkm_medis='" + norkmJT + "'") + " "
+                + Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%Y') from pasien where no_rkm_medis='" + norkmJT + "'"));
+        param.put("tgl_rencana", Sequel.cariIsi("select DATE_FORMAT(tgl_rencana,'%d') from bridging_surat_kontrol_bpjs where no_surat='" + noPanjarP + "'") + " "
+                + Sequel.bulanINDONESIA("select DATE_FORMAT(tgl_rencana,'%m') from bridging_surat_kontrol_bpjs where no_surat='" + noPanjarP + "'") + " "
+                + Sequel.cariIsi("select DATE_FORMAT(tgl_rencana,'%Y') from bridging_surat_kontrol_bpjs where no_surat='" + noPanjarP + "'"));
+        nmFile = "Surat Rencana Kontrol (" + noPanjarP + ")";
+
+        String isi = "";
+        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                        "Surat Rencana Kontrol", dokter,
+                        Sequel.cariIsi("select date_format(now(),'%d/%m/%Y')"),
+                        Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='002'");
+
+        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat Rencana Kontrol", Sequel.cariFolderPrintTte());
+        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+        Valid.MyReportToPDF("rptBridgingSuratKontrol2Qr.jasper", "report", "::[ Cetak Surat Rencana Kontrol ]::",
+                " SELECT bsk.no_surat, bsk.nm_dokter_bpjs, bsk.nm_poli_bpjs, bs.no_kartu, "
+                + "CONCAT(bs.nama_pasien,' (',IF(bs.jkel='L','Laki-laki','Perempuan'),')') peserta, "
+                + "IF(rp.kd_poli='HIV',bs.diagawal,CONCAT(bs.diagawal,' - ',bs.nmdiagnosaawal)) diagnosa, bs.nomr FROM bridging_surat_kontrol_bpjs bsk "
+                + "INNER JOIN bridging_sep bs ON bs.no_rawat=bsk.no_rawat INNER JOIN reg_periksa rp ON rp.no_rawat=bsk.no_rawat "
+                + "WHERE bsk.no_surat='" + noPanjarP + "'", param, Sequel.cariFolderTte(), nmFile);
+        
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
     }
 }

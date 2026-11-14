@@ -718,7 +718,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -737,7 +736,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -751,7 +749,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -786,7 +783,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -805,7 +801,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -824,7 +819,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -838,7 +832,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -869,7 +862,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -888,7 +880,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1331,7 +1322,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnDrOperator.setForeground(new java.awt.Color(0, 0, 0));
         BtnDrOperator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDrOperator.setMnemonic('1');
         BtnDrOperator.setToolTipText("Alt+1");
         BtnDrOperator.setName("BtnDrOperator"); // NOI18N
         BtnDrOperator.addActionListener(new java.awt.event.ActionListener() {
@@ -1344,7 +1334,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnAsisten.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsisten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnAsisten.setMnemonic('1');
         BtnAsisten.setToolTipText("Alt+1");
         BtnAsisten.setName("BtnAsisten"); // NOI18N
         BtnAsisten.addActionListener(new java.awt.event.ActionListener() {
@@ -1357,7 +1346,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnInstrumen.setForeground(new java.awt.Color(0, 0, 0));
         BtnInstrumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnInstrumen.setMnemonic('1');
         BtnInstrumen.setToolTipText("Alt+1");
         BtnInstrumen.setName("BtnInstrumen"); // NOI18N
         BtnInstrumen.addActionListener(new java.awt.event.ActionListener() {
@@ -1370,7 +1358,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnOnloop.setForeground(new java.awt.Color(0, 0, 0));
         BtnOnloop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnOnloop.setMnemonic('1');
         BtnOnloop.setToolTipText("Alt+1");
         BtnOnloop.setName("BtnOnloop"); // NOI18N
         BtnOnloop.addActionListener(new java.awt.event.ActionListener() {
@@ -1383,7 +1370,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnDrAnestesi.setForeground(new java.awt.Color(0, 0, 0));
         BtnDrAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDrAnestesi.setMnemonic('1');
         BtnDrAnestesi.setToolTipText("Alt+1");
         BtnDrAnestesi.setName("BtnDrAnestesi"); // NOI18N
         BtnDrAnestesi.addActionListener(new java.awt.event.ActionListener() {
@@ -1396,7 +1382,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnPrwtAnestesi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrwtAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPrwtAnestesi.setMnemonic('1');
         BtnPrwtAnestesi.setToolTipText("Alt+1");
         BtnPrwtAnestesi.setName("BtnPrwtAnestesi"); // NOI18N
         BtnPrwtAnestesi.addActionListener(new java.awt.event.ActionListener() {
@@ -1663,7 +1648,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         chkCekSelesai.setBounds(145, 659, 80, 23);
 
         TtglOperasi.setEditable(false);
-        TtglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2026" }));
+        TtglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         TtglOperasi.setDisplayFormat("dd-MM-yyyy");
         TtglOperasi.setName("TtglOperasi"); // NOI18N
         TtglOperasi.setOpaque(false);
@@ -2089,7 +2074,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel92.setBounds(0, 1914, 140, 23);
 
         TtglLaporan.setEditable(false);
-        TtglLaporan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2026" }));
+        TtglLaporan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         TtglLaporan.setDisplayFormat("dd-MM-yyyy");
         TtglLaporan.setName("TtglLaporan"); // NOI18N
         TtglLaporan.setOpaque(false);
@@ -2171,7 +2156,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnTindakan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTindakan.setMnemonic('2');
         BtnTindakan.setText("Template");
         BtnTindakan.setToolTipText("Alt+2");
         BtnTindakan.setName("BtnTindakan"); // NOI18N
@@ -2186,7 +2170,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnCatatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnCatatan.setMnemonic('2');
         BtnCatatan.setText("Template");
         BtnCatatan.setToolTipText("Alt+2");
         BtnCatatan.setName("BtnCatatan"); // NOI18N
@@ -2201,7 +2184,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnInstruksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnInstruksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnInstruksi.setMnemonic('2');
         BtnInstruksi.setText("Template");
         BtnInstruksi.setToolTipText("Alt+2");
         BtnInstruksi.setName("BtnInstruksi"); // NOI18N
@@ -2216,7 +2198,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         cmbJnsOperasi.setBackground(new java.awt.Color(245, 253, 240));
         cmbJnsOperasi.setForeground(new java.awt.Color(0, 0, 0));
-        cmbJnsOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Op Pterygium", "Op Phacoemulsifikasi" }));
+        cmbJnsOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Op Pterygium", "Op Phacoemulsifikasi", "Op ECCE", "Op Eviserasi", "Op Trabekulektomi" }));
         cmbJnsOperasi.setLightWeightPopupEnabled(false);
         cmbJnsOperasi.setName("cmbJnsOperasi"); // NOI18N
         cmbJnsOperasi.addActionListener(new java.awt.event.ActionListener() {
@@ -2273,7 +2255,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2288,7 +2270,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2332,7 +2314,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -2350,7 +2331,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -3438,6 +3418,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnInstruksiActionPerformed
 
     private void cmbJnsOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbJnsOperasiActionPerformed
+            //Op Pterygium
         if (cmbJnsOperasi.getSelectedIndex() == 1) {
             TCttnOperasi.setText("- Anestesi sub conjungtiva\n"
                     + "- Insisi jaringan pterigium sampai bare sklera\n"
@@ -3448,6 +3429,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
                     + "- Evaluasi perdarahan\n"
                     + "- Salep mata\n"
                     + "- Operasi selesai");
+            
+            //Op Phacoemulsifikasi
         } else if (cmbJnsOperasi.getSelectedIndex() == 2) {
             TCttnOperasi.setText("- Topical anestesi\n"
                     + "- Main port, Second port\n"
@@ -3459,6 +3442,58 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
                     + "- Antibiotik Intra Camera\n"
                     + "- Tetes mata\n"
                     + "- Operasi selesai");
+
+            //Op ECCE
+        } else if (cmbJnsOperasi.getSelectedIndex() == 3) {
+            TCttnOperasi.setText("1. desinfeksi dg betadine\n"
+                    + "2. eyedrape dan spreader dipasang\n"
+                    + "3. injeksi lidocain subtenon di jam 4\n"
+                    + "4. peritomi konjunctiva dari jam 3 sd jam 9, area superior bulbi\n"
+                    + "5. incisi side port kornea di jam 9\n"
+                    + "6. injeksi trypan blue ke BMD, diirgasi\n"
+                    + "7. Injeksi viskoelastik ke BMD\n"
+                    + "8. pupil kecil dg sinekia +, dilakukan sinekiolisis dg spatula iris\n"
+                    + "9. kapsulotomi kapsul anterior dg jarum kapsulotomi\n"
+                    + "10. Incisi korneasklera dari jam 3 sd 9 (180 derajat)\n"
+                    + "11. nukleus diluxir ke anterior menggunakan irigasi simcoe\n"
+                    + "12. delivery nukleus\n"
+                    + "13. kornea sklera dijahit dg nylon 10.0, lalu irigasi dan aspirasi korteks dg simcoe\n"
+                    + "14. jahitan di jam 12 di lepas, dimasukkan viskoelastik dan iris direposisi\n"
+                    + "15. Insersi IOL PMMA in the bag, korneosklera jam 12 dijahit kembali dg nylon 10 0\n"
+                    + "16. Irigasi dan aspirasi\n"
+                    + "17. injeksi myostat ke BMD, hidrasi corneal side port\n"
+                    + "18. diinjeksi airbubble, dan injeksi genta-dexa subkonjunctiva\n"
+                    + "19. diberi salep mata, dibebat\n"
+                    + "20. selesai");
+            
+            //Op Eviserasi
+        } else if (cmbJnsOperasi.getSelectedIndex() == 4) {
+            TCttnOperasi.setText("1. pasien terlentang dlm keadaan general narkose\n"
+                    + "2. dilakukan desinfeksi dg betadine\n"
+                    + "3. eyedrappe dan eyespreader dipasang\n"
+                    + "4. peritomi konjunctiva 360 derajat di limbus\n"
+                    + "5. incisi kornea 360 derajat di limbus, tampak cavum sklera\n"
+                    + "6. isi bola mata dilakukakn kuretase dg sendok eviscerasi sampai bersih\n"
+                    + "7. perdarahan dirawat\n"
+                    + "8. cavum sklera diisi dg nebacetin powder\n"
+                    + "9. sklera dijahit dg silk 6.0\n"
+                    + "10. konjunctiva dijahit dg vicryl 6.0\n"
+                    + "11. diberi salep mata\n"
+                    + "12. selesai");
+
+            //Op Trabekulektomi
+        } else if (cmbJnsOperasi.getSelectedIndex() == 5) {
+            TCttnOperasi.setText("1. desinfeksi dg betadine\n"
+                    + "2. eyedrape dan spreader dipasang\n"
+                    + "3. injeksi lidocain sub konjunctiva\n"
+                    + "4. dibuat flap konjungtiva limbal base ukuran 10 x 10 mm\n"
+                    + "5. dibuat flap sklera limbal base bentuk segitiga, dgn dasar di limbal 6 mm\n"
+                    + "6. sklerotomi\n"
+                    + "7. iridektomi perifer\n"
+                    + "8. saluran patent, lalu flap sklera dijahit dgn nylon 10.0\n"
+                    + "9. flap konjunctiva dijahit dg vicryl 8.0\n"
+                    + "10. diberi salep mata dan dibebat\n"
+                    + "11. selesai");
         } else {
             TCttnOperasi.setText("");
         }

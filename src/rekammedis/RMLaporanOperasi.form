@@ -2672,7 +2672,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="14-07-2026"/>
+                            <StringItem index="0" value="14-11-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3664,7 +3664,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="14-07-2026"/>
+                            <StringItem index="0" value="14-11-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4043,10 +4043,13 @@
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="3">
+                          <StringArray count="6">
                             <StringItem index="0" value="-"/>
                             <StringItem index="1" value="Op Pterygium"/>
                             <StringItem index="2" value="Op Phacoemulsifikasi"/>
+                            <StringItem index="3" value="Op ECCE"/>
+                            <StringItem index="4" value="Op Eviserasi"/>
+                            <StringItem index="5" value="Op Trabekulektomi"/>
                           </StringArray>
                         </Property>
                         <Property name="lightWeightPopupEnabled" type="boolean" value="false"/>
@@ -4169,7 +4172,7 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="14-07-2026"/>
+                                <StringItem index="0" value="14-11-2026"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4198,7 +4201,7 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="14-07-2026"/>
+                                <StringItem index="0" value="14-11-2026"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>

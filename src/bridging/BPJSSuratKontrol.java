@@ -35,6 +35,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import laporan.DlgKirimWhatsapp;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.conn.scheme.Scheme;
@@ -313,6 +314,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         MnSurat = new javax.swing.JMenu();
         MnTTDsurat = new javax.swing.JMenuItem();
         MnTTEsurat = new javax.swing.JMenuItem();
+        MnKirimWhatsApp = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnAmbilSuratKontrolVCLAIM = new javax.swing.JMenuItem();
         MnCekRujukanJKN = new javax.swing.JMenuItem();
@@ -398,7 +400,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         MnTTDsurat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnTTDsurat.setIconTextGap(5);
         MnTTDsurat.setName("MnTTDsurat"); // NOI18N
-        MnTTDsurat.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDsurat.setPreferredSize(new java.awt.Dimension(145, 26));
         MnTTDsurat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnTTDsuratActionPerformed(evt);
@@ -413,13 +415,28 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         MnTTEsurat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnTTEsurat.setIconTextGap(5);
         MnTTEsurat.setName("MnTTEsurat"); // NOI18N
-        MnTTEsurat.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEsurat.setPreferredSize(new java.awt.Dimension(145, 26));
         MnTTEsurat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnTTEsuratActionPerformed(evt);
             }
         });
         MnSurat.add(MnTTEsurat);
+
+        MnKirimWhatsApp.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnKirimWhatsApp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
+        MnKirimWhatsApp.setText("Kirim Ke WhatsApp");
+        MnKirimWhatsApp.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnKirimWhatsApp.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnKirimWhatsApp.setIconTextGap(5);
+        MnKirimWhatsApp.setName("MnKirimWhatsApp"); // NOI18N
+        MnKirimWhatsApp.setPreferredSize(new java.awt.Dimension(145, 26));
+        MnKirimWhatsApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnKirimWhatsAppActionPerformed(evt);
+            }
+        });
+        MnSurat.add(MnKirimWhatsApp);
 
         jPopupMenu1.add(MnSurat);
 
@@ -504,7 +521,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         panelGlass8.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
         BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
@@ -523,7 +539,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnSimpan);
 
-        BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
         BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
@@ -542,7 +557,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnBatal);
 
-        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
@@ -561,7 +575,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnHapus);
 
-        BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
         BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
@@ -580,7 +593,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnEdit);
 
-        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
@@ -599,7 +611,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnPrint);
 
-        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
@@ -618,7 +629,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnAll);
 
-        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -649,7 +659,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel6.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass10.add(jLabel6);
 
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(300, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -659,7 +668,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         });
         panelGlass10.add(TCari);
 
-        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('T');
         BtnCari.setText("Tampilkan Data");
@@ -708,10 +716,9 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         panelCari.add(R1);
 
         tglSurat1.setEditable(false);
-        tglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
+        tglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         tglSurat1.setDisplayFormat("dd-MM-yyyy");
         tglSurat1.setName("tglSurat1"); // NOI18N
-        tglSurat1.setOpaque(false);
         tglSurat1.setPreferredSize(new java.awt.Dimension(95, 23));
         tglSurat1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -728,10 +735,9 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         panelCari.add(jLabel22);
 
         tglSurat2.setEditable(false);
-        tglSurat2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
+        tglSurat2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         tglSurat2.setDisplayFormat("dd-MM-yyyy");
         tglSurat2.setName("tglSurat2"); // NOI18N
-        tglSurat2.setOpaque(false);
         tglSurat2.setPreferredSize(new java.awt.Dimension(95, 23));
         tglSurat2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -750,10 +756,9 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         panelCari.add(R2);
 
         tglKontrol1.setEditable(false);
-        tglKontrol1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
+        tglKontrol1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         tglKontrol1.setDisplayFormat("dd-MM-yyyy");
         tglKontrol1.setName("tglKontrol1"); // NOI18N
-        tglKontrol1.setOpaque(false);
         tglKontrol1.setPreferredSize(new java.awt.Dimension(95, 23));
         tglKontrol1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -770,10 +775,9 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         panelCari.add(jLabel25);
 
         tglKontrol2.setEditable(false);
-        tglKontrol2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
+        tglKontrol2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         tglKontrol2.setDisplayFormat("dd-MM-yyyy");
         tglKontrol2.setName("tglKontrol2"); // NOI18N
-        tglKontrol2.setOpaque(false);
         tglKontrol2.setPreferredSize(new java.awt.Dimension(95, 23));
         tglKontrol2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -835,7 +839,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel4.setBounds(246, 10, 60, 23);
 
         NoRawat.setEditable(false);
-        NoRawat.setForeground(new java.awt.Color(0, 0, 0));
         NoRawat.setName("NoRawat"); // NOI18N
         panelisi1.add(NoRawat);
         NoRawat.setBounds(94, 10, 150, 23);
@@ -847,27 +850,23 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel9.setBounds(0, 129, 90, 23);
 
         NmDokter.setEditable(false);
-        NmDokter.setForeground(new java.awt.Color(0, 0, 0));
         NmDokter.setHighlighter(null);
         NmDokter.setName("NmDokter"); // NOI18N
         panelisi1.add(NmDokter);
         NmDokter.setBounds(158, 129, 350, 23);
 
         NoSEP.setEditable(false);
-        NoSEP.setForeground(new java.awt.Color(0, 0, 0));
         NoSEP.setComponentPopupMenu(jPopupMenu2);
         NoSEP.setName("NoSEP"); // NOI18N
         panelisi1.add(NoSEP);
         NoSEP.setBounds(310, 10, 150, 23);
 
         KdDokter.setEditable(false);
-        KdDokter.setForeground(new java.awt.Color(0, 0, 0));
         KdDokter.setHighlighter(null);
         KdDokter.setName("KdDokter"); // NOI18N
         panelisi1.add(KdDokter);
         KdDokter.setBounds(94, 129, 60, 23);
 
-        BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
         BtnDokter.setMnemonic('X');
         BtnDokter.setToolTipText("Alt+X");
@@ -892,20 +891,17 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel11.setBounds(0, 100, 90, 23);
 
         KdPoli.setEditable(false);
-        KdPoli.setForeground(new java.awt.Color(0, 0, 0));
         KdPoli.setHighlighter(null);
         KdPoli.setName("KdPoli"); // NOI18N
         panelisi1.add(KdPoli);
         KdPoli.setBounds(94, 100, 50, 23);
 
         NmPoli.setEditable(false);
-        NmPoli.setForeground(new java.awt.Color(0, 0, 0));
         NmPoli.setHighlighter(null);
         NmPoli.setName("NmPoli"); // NOI18N
         panelisi1.add(NmPoli);
         NmPoli.setBounds(147, 100, 360, 23);
 
-        BtnPoli.setForeground(new java.awt.Color(0, 0, 0));
         BtnPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
         BtnPoli.setMnemonic('X');
         BtnPoli.setToolTipText("Alt+X");
@@ -930,10 +926,9 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         label_rencana.setBounds(295, 70, 120, 23);
 
         TanggalKontrol.setEditable(false);
-        TanggalKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
+        TanggalKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         TanggalKontrol.setDisplayFormat("dd-MM-yyyy");
         TanggalKontrol.setName("TanggalKontrol"); // NOI18N
-        TanggalKontrol.setOpaque(false);
         TanggalKontrol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TanggalKontrolActionPerformed(evt);
@@ -943,7 +938,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         TanggalKontrol.setBounds(416, 70, 95, 23);
 
         NoSurat.setEditable(false);
-        NoSurat.setForeground(new java.awt.Color(0, 0, 0));
         NoSurat.setName("NoSurat"); // NOI18N
         panelisi1.add(NoSurat);
         NoSurat.setBounds(94, 70, 200, 23);
@@ -961,7 +955,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel8.setBounds(463, 10, 70, 23);
 
         NoKartu.setEditable(false);
-        NoKartu.setForeground(new java.awt.Color(0, 0, 0));
         NoKartu.setComponentPopupMenu(jPopupMenu2);
         NoKartu.setName("NoKartu"); // NOI18N
         panelisi1.add(NoKartu);
@@ -974,20 +967,17 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel12.setBounds(0, 40, 90, 23);
 
         NmPasien.setEditable(false);
-        NmPasien.setForeground(new java.awt.Color(0, 0, 0));
         NmPasien.setHighlighter(null);
         NmPasien.setName("NmPasien"); // NOI18N
         panelisi1.add(NmPasien);
         NmPasien.setBounds(167, 40, 260, 23);
 
         NoRM.setEditable(false);
-        NoRM.setForeground(new java.awt.Color(0, 0, 0));
         NoRM.setName("NoRM"); // NOI18N
         panelisi1.add(NoRM);
         NoRM.setBounds(94, 40, 70, 23);
 
         TglLahir.setEditable(false);
-        TglLahir.setForeground(new java.awt.Color(0, 0, 0));
         TglLahir.setName("TglLahir"); // NOI18N
         panelisi1.add(TglLahir);
         TglLahir.setBounds(495, 40, 95, 23);
@@ -1005,7 +995,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         jLabel16.setBounds(590, 40, 60, 23);
 
         JK.setEditable(false);
-        JK.setForeground(new java.awt.Color(0, 0, 0));
         JK.setName("JK"); // NOI18N
         panelisi1.add(JK);
         JK.setBounds(650, 40, 95, 23);
@@ -1029,7 +1018,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         label_hari.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         label_hari.setName("label_hari"); // NOI18N
         panelisi1.add(label_hari);
-        label_hari.setBounds(578, 67, 350, 85);
+        label_hari.setBounds(585, 67, 350, 85);
 
         internalFrame2.add(panelisi1, java.awt.BorderLayout.CENTER);
 
@@ -1598,6 +1587,30 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_MnTTEsuratActionPerformed
 
+    private void MnKirimWhatsAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKirimWhatsAppActionPerformed
+        if (tbSuratKontrol.getSelectedRow() > -1) {
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+
+            akses.setform("BPJSSuratKontrol");
+            DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
+            form.setSize(557, 148);
+            form.setLocationRelativeTo(internalFrame1);
+            form.emptTeks();
+            form.setData("surkon bpjs", tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 0).toString(), "", 
+                    tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 4).toString());
+            form.jaminanTrans("", "", "", "", tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 3).toString(),
+                    tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 9).toString(), "", "", "", "", "");
+            form.dataKirim();
+            form.setVisible(true);
+            form.toFront();
+            form.requestFocus();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tampil();
+            tbSuratKontrol.requestFocus();
+        }
+    }//GEN-LAST:event_MnKirimWhatsAppActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1633,6 +1646,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label LCount;
     private javax.swing.JMenuItem MnAmbilSuratKontrolVCLAIM;
     private javax.swing.JMenuItem MnCekRujukanJKN;
+    private javax.swing.JMenuItem MnKirimWhatsApp;
     private javax.swing.JMenu MnSurat;
     private javax.swing.JMenuItem MnTTDsurat;
     private javax.swing.JMenuItem MnTTEsurat;
