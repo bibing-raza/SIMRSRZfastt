@@ -22,6 +22,7 @@ import rekammedis.DlgHistoriIPAddressPetugasERM;
 import rekammedis.DlgMasterMaterialOperasi;
 import rekammedis.DlgMonevAsuhanGizi;
 import rekammedis.RMAsesmenAwalKebidanan1;
+import rekammedis.RMAsesmenAwalMedisHemodialisis;
 import rekammedis.RMAsesmenKeperawatanAnakRanap;
 import rekammedis.RMAsesmenKeperawatanDewasaRanap;
 import rekammedis.RMAsesmenKeperawatanPerinatologi;
@@ -249,6 +250,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnPersetujuanTindakanHD = new widget.ButtonBig();
         BtnLainHemodialisis = new widget.ButtonBig();
         BtnAsesmenUlangHD = new widget.ButtonBig();
+        BtnAsesmenAwalMedisHD = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -273,7 +275,6 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         jLabel3.setPreferredSize(new java.awt.Dimension(100, 23));
         internalFrame2.add(jLabel3);
 
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(400, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -283,7 +284,6 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         });
         internalFrame2.add(TCari);
 
-        btnClear.setForeground(new java.awt.Color(0, 0, 0));
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
         btnClear.setGlassColor(new java.awt.Color(255, 255, 255));
         btnClear.setMinimumSize(new java.awt.Dimension(28, 23));
@@ -297,9 +297,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         internalFrame2.add(btnClear);
 
         ChkInput.setBorder(null);
-        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
         ChkInput.setText("Pencarian");
         ChkInput.setToolTipText("Alt+C");
@@ -1593,6 +1591,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnAsesmenUlangHD);
+
+        BtnAsesmenAwalMedisHD.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenAwalMedisHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnAsesmenAwalMedisHD.setText("<html><div style=\"text-align: center;\">Assesmen Awal Medis<br>Hemodialisis</div></html>");
+        BtnAsesmenAwalMedisHD.setIconTextGap(0);
+        BtnAsesmenAwalMedisHD.setName("BtnAsesmenAwalMedisHD"); // NOI18N
+        BtnAsesmenAwalMedisHD.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnAsesmenAwalMedisHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenAwalMedisHDActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnAsesmenAwalMedisHD);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -3196,11 +3207,28 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenUlangHDActionPerformed
 
+    private void BtnAsesmenAwalMedisHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenAwalMedisHDActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMAsesmenAwalMedisHemodialisis form = new RMAsesmenAwalMedisHemodialisis(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnAsesmenAwalMedisHD.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnAsesmenAwalMedisHDActionPerformed
+
     /**
     * @param args the command line arguments
     */    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private widget.ButtonBig BtnAsesmenAwalMedisHD;
     private widget.ButtonBig BtnAsesmenMedikKebidanan;
     private widget.ButtonBig BtnAsesmenPasienTerminal;
     private widget.ButtonBig BtnAsesmenPraSedasiKonsepIAR;
@@ -3792,6 +3820,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             jmlmenu++;
         }
         
+        if (akses.gethemodialisa() && BtnAsesmenAwalMedisHD.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnAsesmenAwalMedisHD);
+            jmlmenu++;
+        }
+        
         if (akses.gethemodialisa() && BtnLainHemodialisis.getText().toLowerCase().trim().contains(cari)) {
             FormMenu.add(BtnLainHemodialisis);
             jmlmenu++;
@@ -4303,6 +4336,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         
         if (akses.gethemodialisa()== true) {
             FormMenu.add(BtnAsesmenUlangHD);
+            jmlmenu++;
+        }
+        
+        if (akses.gethemodialisa()== true) {
+            FormMenu.add(BtnAsesmenAwalMedisHD);
             jmlmenu++;
         }
         

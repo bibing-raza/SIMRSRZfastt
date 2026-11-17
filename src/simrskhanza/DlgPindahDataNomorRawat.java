@@ -258,10 +258,9 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi4.add(jLabel21);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-11-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
-        DTPCari1.setOpaque(false);
         DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
         panelisi4.add(DTPCari1);
 
@@ -272,14 +271,12 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelisi4.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-11-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
-        DTPCari2.setOpaque(false);
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelisi4.add(DTPCari2);
 
-        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('4');
         BtnCari.setText("Tampilkan Data");
@@ -298,7 +295,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         });
         panelisi4.add(BtnCari);
 
-        BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
         BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
@@ -329,7 +325,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         PanelInput.setPreferredSize(new java.awt.Dimension(192, 235));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
-        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
         ChkInput.setMnemonic('M');
         ChkInput.setText(".: Input Data");
@@ -361,14 +356,12 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel63.setBounds(0, 10, 150, 23);
 
         TNoRwTerpilih.setEditable(false);
-        TNoRwTerpilih.setForeground(new java.awt.Color(0, 0, 0));
         TNoRwTerpilih.setName("TNoRwTerpilih"); // NOI18N
         TNoRwTerpilih.setPreferredSize(new java.awt.Dimension(135, 23));
         FormInput.add(TNoRwTerpilih);
         TNoRwTerpilih.setBounds(152, 10, 125, 23);
 
         pasienTerpilih.setEditable(false);
-        pasienTerpilih.setForeground(new java.awt.Color(0, 0, 0));
         pasienTerpilih.setHighlighter(null);
         pasienTerpilih.setName("pasienTerpilih"); // NOI18N
         pasienTerpilih.setPreferredSize(new java.awt.Dimension(135, 23));
@@ -382,7 +375,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel64.setBounds(0, 38, 150, 23);
 
         TRgRawatTerpilih.setEditable(false);
-        TRgRawatTerpilih.setForeground(new java.awt.Color(0, 0, 0));
         TRgRawatTerpilih.setName("TRgRawatTerpilih"); // NOI18N
         TRgRawatTerpilih.setPreferredSize(new java.awt.Dimension(135, 23));
         FormInput.add(TRgRawatTerpilih);
@@ -394,7 +386,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         FormInput.add(jLabel65);
         jLabel65.setBounds(0, 66, 150, 23);
 
-        TNoRwTujuan.setForeground(new java.awt.Color(0, 0, 0));
         TNoRwTujuan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         TNoRwTujuan.setName("TNoRwTujuan"); // NOI18N
         TNoRwTujuan.setPreferredSize(new java.awt.Dimension(135, 23));
@@ -408,7 +399,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel66.setBounds(0, 94, 150, 23);
 
         TRgRawatTujuan.setEditable(false);
-        TRgRawatTujuan.setForeground(new java.awt.Color(0, 0, 0));
         TRgRawatTujuan.setName("TRgRawatTujuan"); // NOI18N
         TRgRawatTujuan.setPreferredSize(new java.awt.Dimension(135, 23));
         FormInput.add(TRgRawatTujuan);
@@ -421,7 +411,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel67.setBounds(0, 122, 150, 23);
 
         ChkRMranap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        ChkRMranap.setForeground(new java.awt.Color(0, 0, 0));
         ChkRMranap.setText("Semua Rekam Medis RAWAT INAP");
         ChkRMranap.setBorderPainted(true);
         ChkRMranap.setBorderPaintedFlat(true);
@@ -437,7 +426,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         ChkRMranap.setBounds(152, 122, 210, 23);
 
         ChkRMigd.setBorder(null);
-        ChkRMigd.setForeground(new java.awt.Color(0, 0, 0));
         ChkRMigd.setText("Semua Rekam Medis IGD/Ponek");
         ChkRMigd.setBorderPainted(true);
         ChkRMigd.setBorderPaintedFlat(true);
@@ -458,8 +446,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         FormInput.add(jLabel108);
         jLabel108.setBounds(0, 150, 150, 23);
 
-        cmbJnsTran.setForeground(new java.awt.Color(0, 0, 0));
-        cmbJnsTran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "FARMASI", "RADIOLOGI", "LABORATORIUM", "PENANGANAN DOKTER", "PENANGANAN PETUGAS", "PENANGANAN DOKTER & PETUGAS", "DIET HARIAN", "ASESMEN MEDIK DEWASA RAWAT INAP", "ASESMEN KEPERAWATAN DEWASA RAWAT INAP", "CPPT RAWAT INAP", "CPPT IGD", "CATATAN RESEP RAWAT INAP", "CATATAN RESEP IGD", "RINGKASAN PULANG RAWAT INAP", "TRANSFER SERAH TERIMA RAWAT INAP", "TRANSFER SERAH TERIMA IGD", "CATATAN TINDAKAN KEPERAWATAN RAWAT INAP", "JADWAL PEMBERIAN OBAT RAWAT INAP", "JADWAL PEMBERIAN OBAT IGD", "KONSUL ANTAR UNIT RAWAT INAP", "DATA PERSALINAN", "SPIROMETRI", "SURAT ISTIRAHAT SAKIT", "DATA PERSALINAN DINKES KABUPATEN", "SURAT KETERANGAN SAKIT", "DPJP RAWAT INAP", "PERMINTAAN PERIKSA LAB.", "PERMINTAAN PERIKSA RADIOLOGI", "PEMANTAUAN HARIAN PASIEN RAWAT INAP", "TRIASE IGD", "ASESMEN MEDIK IGD", "ASESMEN KEPERAWATAN IGD", "PROTOKOL KEMOTERAPI", "ASESMEN ULANG RESIKO JATUH DEWASA", "PENGELOLAAN TRANSFUSI DARAH", "MONITORING EWS DEWASA", "ASESMEN KEPERAWATAN ANAK RAWAT INAP", "ASESMEN MEDIK ANAK RAWAT INAP", "ASESMEN ULANG RESIKO JATUH ANAK", "MONITORING PEDIATRIC EWS", "ASESMEN RESTRAIN RAWAT INAP", "OBSERVASI RESTRAIN RAWAT INAP", "SKRINING GIZI ULANG", "MONITORING DAN EVALUASI ASUHAN GIZI", "ASESMEN ULANG GIZI RAWAT INAP", "LEMBAR OBSERVASI PASIEN", "TRANSFER PASIEN UNTUK TINDAKAN", "ASESMEN PRA SEDASI", "CHECKLIST PRA OPERASI", "CHECKLIST KESIAPAN ANESTESI", "ASESMEN PRE INDUKSI", "ASESMEN KEPERAWATAN PERIOPERATIF", "PERENCANAAN PULANG (DISCHARGE PLANNING)", "CHECKLIST KESELAMATAN OPERASI", "CATATAN PEMAKAIAN OBAT & MATERIAL OPERASI", "ASESMEN MEDIK BEDAH RAWAT INAP", "ASESMEN MEDIK PERINATOLOGI", "ASESMEN KEPERAWATAN PERINATOLOGI", "SKOR APGAR, DOWNE, CAP JARI IBU & BAYI", "LEMBARAN BANTUAN PENGAMATAN MENYUSUI", "REKONSILIASI OBAT", "TRIASE PEDIATRIK", "SERAH TERIMA BAYI PULANG", "PEMBERIAN INFORMASI & EDUKASI", "TRIASE PONEK", "MONITORING EWS OBSGYN", "PERUBAHAN DPJP RANAP", "ASESMEN AWAL KEBIDANAN", "GENERAL CONSENT", "PERSETUJUAN RAWAT INAP", "SURAT PERNYATAAN RANAP PESERTA BPJS", "SURAT PERNYATAAN NAIK KELAS RAWAT BPJS", "SURAT PERNYATAAN BUKAN KASUS KLL", "SURAT PERNYATAAN PEMBAYARAN DENDA", "SURAT PERNYATAAN RANAP NON BPJS", "OBSERVASI KALA 1 KEBIDANAN", "PARTOGRAF PERSALINAN", "ASESMEN MEDIK KEBIDANAN", "LAPORAN OPERASI", "CATATAN RUANG PEMULIHAN", "FORMULIR SITE MARKING OPERASI", "SERAH TERIMA PASIEN PASCA OPERASI", "INFORMASI TINDAKAN PEMBIUSAN", "EVALUASI PRA ANESTESI", "ASESMEN PRA SEDASI KONSEP IAR", "CATATAN SEDASI / ANESTESI", "MASALAH KEPERAWATAN NYERI AKUT", "MASALAH KEPERAWATAN PERFUSI PERIFER TIDAK EFEKTIF", "MASALAH KEPERAWATAN RESIKO HIPOTERMIA", "RINGKASAN PULANG RAWAT JALAN", "MASALAH KEPERAWATAN RESIKO HIPOVOLEMIA", "REGISTER CANCER (CanReg)", "MASALAH KEPERAWATAN BERSIHAN JALAN NAPAS TIDAK EFEKTIF", "MASALAH KEPERAWATAN KETIDAKSTABILAN GLUKOSA DARAH", "SURAT PERNYATAAN DNR (DO NOT RESUCITATE)", "INSTRUKSI DOKTER UNTUK DNR (DO NOT RESUCITATE)", "ASESMEN PASIEN TERMINAL DAN KELUARGANYA", "FORMULIR SITE MARKING ODONTOGRAM", "STATUS HEMODIALISIS", "PERSETUJUAN TINDAKAN KEDOKTERAN (HEMODIALISIS)", "LAIN-LAIN (HEMODIALISIS)", "ASESMEN ULANG PASIEN DENGAN HEMODIALISIS" }));
+        cmbJnsTran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "FARMASI", "RADIOLOGI", "LABORATORIUM", "PENANGANAN DOKTER", "PENANGANAN PETUGAS", "PENANGANAN DOKTER & PETUGAS", "DIET HARIAN", "ASESMEN MEDIK DEWASA RAWAT INAP", "ASESMEN KEPERAWATAN DEWASA RAWAT INAP", "CPPT RAWAT INAP", "CPPT IGD", "CATATAN RESEP RAWAT INAP", "CATATAN RESEP IGD", "RINGKASAN PULANG RAWAT INAP", "TRANSFER SERAH TERIMA RAWAT INAP", "TRANSFER SERAH TERIMA IGD", "CATATAN TINDAKAN KEPERAWATAN RAWAT INAP", "JADWAL PEMBERIAN OBAT RAWAT INAP", "JADWAL PEMBERIAN OBAT IGD", "KONSUL ANTAR UNIT RAWAT INAP", "DATA PERSALINAN", "SPIROMETRI", "SURAT ISTIRAHAT SAKIT", "DATA PERSALINAN DINKES KABUPATEN", "SURAT KETERANGAN SAKIT", "DPJP RAWAT INAP", "PERMINTAAN PERIKSA LAB.", "PERMINTAAN PERIKSA RADIOLOGI", "PEMANTAUAN HARIAN PASIEN RAWAT INAP", "TRIASE IGD", "ASESMEN MEDIK IGD", "ASESMEN KEPERAWATAN IGD", "PROTOKOL KEMOTERAPI", "ASESMEN ULANG RESIKO JATUH DEWASA", "PENGELOLAAN TRANSFUSI DARAH", "MONITORING EWS DEWASA", "ASESMEN KEPERAWATAN ANAK RAWAT INAP", "ASESMEN MEDIK ANAK RAWAT INAP", "ASESMEN ULANG RESIKO JATUH ANAK", "MONITORING PEDIATRIC EWS", "ASESMEN RESTRAIN RAWAT INAP", "OBSERVASI RESTRAIN RAWAT INAP", "SKRINING GIZI ULANG", "MONITORING DAN EVALUASI ASUHAN GIZI", "ASESMEN ULANG GIZI RAWAT INAP", "LEMBAR OBSERVASI PASIEN", "TRANSFER PASIEN UNTUK TINDAKAN", "ASESMEN PRA SEDASI", "CHECKLIST PRA OPERASI", "CHECKLIST KESIAPAN ANESTESI", "ASESMEN PRE INDUKSI", "ASESMEN KEPERAWATAN PERIOPERATIF", "PERENCANAAN PULANG (DISCHARGE PLANNING)", "CHECKLIST KESELAMATAN OPERASI", "CATATAN PEMAKAIAN OBAT & MATERIAL OPERASI", "ASESMEN MEDIK BEDAH RAWAT INAP", "ASESMEN MEDIK PERINATOLOGI", "ASESMEN KEPERAWATAN PERINATOLOGI", "SKOR APGAR, DOWNE, CAP JARI IBU & BAYI", "LEMBARAN BANTUAN PENGAMATAN MENYUSUI", "REKONSILIASI OBAT", "TRIASE PEDIATRIK", "SERAH TERIMA BAYI PULANG", "PEMBERIAN INFORMASI & EDUKASI", "TRIASE PONEK", "MONITORING EWS OBSGYN", "PERUBAHAN DPJP RANAP", "ASESMEN AWAL KEBIDANAN", "GENERAL CONSENT", "PERSETUJUAN RAWAT INAP", "SURAT PERNYATAAN RANAP PESERTA BPJS", "SURAT PERNYATAAN NAIK KELAS RAWAT BPJS", "SURAT PERNYATAAN BUKAN KASUS KLL", "SURAT PERNYATAAN PEMBAYARAN DENDA", "SURAT PERNYATAAN RANAP NON BPJS", "OBSERVASI KALA 1 KEBIDANAN", "PARTOGRAF PERSALINAN", "ASESMEN MEDIK KEBIDANAN", "LAPORAN OPERASI", "CATATAN RUANG PEMULIHAN", "FORMULIR SITE MARKING OPERASI", "SERAH TERIMA PASIEN PASCA OPERASI", "INFORMASI TINDAKAN PEMBIUSAN", "EVALUASI PRA ANESTESI", "ASESMEN PRA SEDASI KONSEP IAR", "CATATAN SEDASI / ANESTESI", "MASALAH KEPERAWATAN NYERI AKUT", "MASALAH KEPERAWATAN PERFUSI PERIFER TIDAK EFEKTIF", "MASALAH KEPERAWATAN RESIKO HIPOTERMIA", "RINGKASAN PULANG RAWAT JALAN", "MASALAH KEPERAWATAN RESIKO HIPOVOLEMIA", "REGISTER CANCER (CanReg)", "MASALAH KEPERAWATAN BERSIHAN JALAN NAPAS TIDAK EFEKTIF", "MASALAH KEPERAWATAN KETIDAKSTABILAN GLUKOSA DARAH", "SURAT PERNYATAAN DNR (DO NOT RESUCITATE)", "INSTRUKSI DOKTER UNTUK DNR (DO NOT RESUCITATE)", "ASESMEN PASIEN TERMINAL DAN KELUARGANYA", "FORMULIR SITE MARKING ODONTOGRAM", "STATUS HEMODIALISIS", "PERSETUJUAN TINDAKAN KEDOKTERAN (HEMODIALISIS)", "LAIN-LAIN (HEMODIALISIS)", "ASESMEN ULANG PASIEN DENGAN HEMODIALISIS", "ASESMEN AWAL MEDIS HEMODIALISIS" }));
         cmbJnsTran.setName("cmbJnsTran"); // NOI18N
         cmbJnsTran.setPreferredSize(new java.awt.Dimension(115, 23));
         cmbJnsTran.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -477,7 +464,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel107.setBounds(0, 178, 150, 23);
 
         tglDari.setEditable(false);
-        tglDari.setForeground(new java.awt.Color(0, 0, 0));
         tglDari.setName("tglDari"); // NOI18N
         tglDari.setPreferredSize(new java.awt.Dimension(135, 23));
         FormInput.add(tglDari);
@@ -490,14 +476,12 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel110.setBounds(234, 178, 40, 23);
 
         pukulDari.setEditable(false);
-        pukulDari.setForeground(new java.awt.Color(0, 0, 0));
         pukulDari.setName("pukulDari"); // NOI18N
         pukulDari.setPreferredSize(new java.awt.Dimension(135, 23));
         FormInput.add(pukulDari);
         pukulDari.setBounds(274, 178, 80, 23);
 
         ChkTglTran.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        ChkTglTran.setForeground(new java.awt.Color(0, 0, 0));
         ChkTglTran.setText("Dipilih");
         ChkTglTran.setBorderPainted(true);
         ChkTglTran.setBorderPaintedFlat(true);
@@ -513,21 +497,18 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         ChkTglTran.setBounds(359, 178, 200, 23);
 
         TNoRmTerpilih.setEditable(false);
-        TNoRmTerpilih.setForeground(new java.awt.Color(0, 0, 0));
         TNoRmTerpilih.setName("TNoRmTerpilih"); // NOI18N
         TNoRmTerpilih.setPreferredSize(new java.awt.Dimension(135, 23));
         FormInput.add(TNoRmTerpilih);
         TNoRmTerpilih.setBounds(280, 10, 83, 23);
 
         TNoRmTujuan.setEditable(false);
-        TNoRmTujuan.setForeground(new java.awt.Color(0, 0, 0));
         TNoRmTujuan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         TNoRmTujuan.setName("TNoRmTujuan"); // NOI18N
         TNoRmTujuan.setPreferredSize(new java.awt.Dimension(135, 23));
         FormInput.add(TNoRmTujuan);
         TNoRmTujuan.setBounds(335, 66, 90, 23);
 
-        btnNomor.setForeground(new java.awt.Color(0, 0, 0));
         btnNomor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnNomor.setMnemonic('3');
         btnNomor.setToolTipText("Alt+3");
@@ -538,9 +519,8 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnNomor);
-        btnNomor.setBounds(463, 66, 28, 23);
+        btnNomor.setBounds(468, 66, 28, 23);
 
-        btnUlangi.setForeground(new java.awt.Color(0, 0, 0));
         btnUlangi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
         btnUlangi.setMnemonic('3');
         btnUlangi.setToolTipText("Alt+3");
@@ -551,7 +531,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnUlangi);
-        btnUlangi.setBounds(426, 66, 28, 23);
+        btnUlangi.setBounds(431, 66, 28, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -608,7 +588,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         panelGlass8.setPreferredSize(new java.awt.Dimension(55, 44));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 9, 5));
 
-        BtnCekData.setForeground(new java.awt.Color(0, 0, 0));
         BtnCekData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search.png"))); // NOI18N
         BtnCekData.setMnemonic('C');
         BtnCekData.setText("Cek Data");
@@ -622,7 +601,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnCekData);
 
-        BtnProsesData.setForeground(new java.awt.Color(0, 0, 0));
         BtnProsesData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
         BtnProsesData.setMnemonic('P');
         BtnProsesData.setText("Proses Pindah");
@@ -636,7 +614,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnProsesData);
 
-        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -1117,6 +1094,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("persetujuan_tindakan_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("lainlain_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("asesmen_ulang_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("asesmen_awal_medis_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("triase_igd", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("penilaian_awal_medis_igd", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
@@ -1173,6 +1151,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("persetujuan_tindakan_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("lainlain_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("asesmen_ulang_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("asesmen_awal_medis_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
     }
     
@@ -1309,6 +1288,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("persetujuan_tindakan_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("lainlain_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("asesmen_ulang_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("asesmen_awal_medis_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("catatan_tindakan_keperawatan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("evaluasi_catatan_tindakan_keperawatan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
@@ -1441,6 +1421,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("persetujuan_tindakan_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("lainlain_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("asesmen_ulang_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("asesmen_awal_medis_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
     }
     
@@ -1920,6 +1901,11 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             } else if (cmbJnsTran.getSelectedIndex() == 102) {
                 ps1 = koneksi.prepareStatement("select no_rawat, date(waktu_simpan) tgl, time(waktu_simpan) jam, ruang_rawat data "
                         + "from asesmen_ulang_hemodialisis where no_rawat ='" + TNoRwTerpilih.getText() + "' "
+                        + "order by waktu_simpan desc limit 1");
+                //asesmen awal medis hemodialisis
+            } else if (cmbJnsTran.getSelectedIndex() == 103) {
+                ps1 = koneksi.prepareStatement("select no_rawat, date(waktu_simpan) tgl, time(waktu_simpan) jam, ruang_rawat data "
+                        + "from asesmen_awal_medis_hemodialisis where no_rawat ='" + TNoRwTerpilih.getText() + "' "
                         + "order by waktu_simpan desc limit 1");
             }
 
@@ -2424,6 +2410,11 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             } else if (cmbJnsTran.getSelectedIndex() == 102) {
                 ps2 = koneksi.prepareStatement("select no_rawat, date(waktu_simpan) tgl, time(waktu_simpan) jam, ruang_rawat data "
                         + "from asesmen_ulang_hemodialisis where no_rawat ='" + TNoRwTujuan.getText() + "' "
+                        + "order by waktu_simpan desc limit 1");
+                //asesmen awal medis hemodialisis
+            } else if (cmbJnsTran.getSelectedIndex() == 103) {
+                ps2 = koneksi.prepareStatement("select no_rawat, date(waktu_simpan) tgl, time(waktu_simpan) jam, ruang_rawat data "
+                        + "from asesmen_awal_medis_hemodialisis where no_rawat ='" + TNoRwTujuan.getText() + "' "
                         + "order by waktu_simpan desc limit 1");
             }
 
@@ -3538,6 +3529,26 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("asesmen_ulang_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("asesmen_ulang_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+        }
+
+        tampil();
+        tampilTujuan();
+        pilihan = 0;
+        ChkTglTran.setSelected(false);
+        ChkTglTran.setText("Semua Tgl. Transaksi");
+        tglDari.setText("");
+        pukulDari.setText("");
+        ChkRMranap.setSelected(false);
+        ChkRMigd.setSelected(false);
+    }
+    
+    private void asesmenAwalMedisHemodialisis() {
+        if (pilihan == 1) {
+            Sequel.mengedit("asesmen_awal_medis_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("obat_asesmen_awal_medis_hemodialisis", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+        } else if (pilihan == 2) {
+            Sequel.mengedit("asesmen_awal_medis_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("obat_asesmen_awal_medis_hemodialisis", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
 
         tampil();
@@ -5760,6 +5771,11 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 asesmenUlangHemodialisis();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 102) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                asesmenAwalMedisHemodialisis();
             }
         }
     }

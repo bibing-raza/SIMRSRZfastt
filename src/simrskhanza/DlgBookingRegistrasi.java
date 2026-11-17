@@ -1194,7 +1194,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         Popup1.add(ppRencanaKontrollagi1);
 
         TanggalBooking.setEditable(false);
-        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
+        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         TanggalBooking.setDisplayFormat("dd-MM-yyyy");
         TanggalBooking.setName("TanggalBooking"); // NOI18N
         TanggalBooking.addItemListener(new java.awt.event.ItemListener() {
@@ -1331,7 +1331,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelisi3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -1383,7 +1382,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelisi6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 4, 9));
 
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -1396,7 +1394,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelisi6.add(BtnSimpan1);
 
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -1562,7 +1559,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1580,7 +1576,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelGlass8.add(BtnSimpan);
 
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -1598,7 +1593,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelGlass8.add(BtnBatal);
 
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -1616,7 +1610,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelGlass8.add(BtnGanti);
 
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Batal Booking");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1634,7 +1627,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelGlass8.add(BtnHapus);
 
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1652,7 +1644,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelGlass8.add(BtnPrint);
 
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1670,7 +1661,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelGlass8.add(BtnAll);
 
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1688,7 +1678,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelGlass8.add(BtnKeluar);
 
         BtnJadwal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
-        BtnJadwal.setMnemonic('J');
         BtnJadwal.setText("Jadwal Dokter");
         BtnJadwal.setToolTipText("Alt+J");
         BtnJadwal.setName("BtnJadwal"); // NOI18N
@@ -1727,7 +1716,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelGlass10.add(TCari);
 
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -1772,7 +1760,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(125, 23));
         panelCari.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -1790,7 +1778,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -1810,7 +1798,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(135, 23));
         panelCari.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -1828,7 +1816,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -1848,9 +1836,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         PanelInput.setPreferredSize(new java.awt.Dimension(192, 395));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
-        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('M');
         ChkInput.setText(".: Input Data");
         ChkInput.setBorderPainted(true);
         ChkInput.setBorderPaintedFlat(true);
@@ -1926,7 +1912,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         KdDokter.setBounds(75, 94, 90, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter.setMnemonic('X');
         BtnDokter.setToolTipText("Alt+X");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -1961,7 +1946,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         NmPoli.setBounds(148, 38, 320, 23);
 
         BtnPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPoli.setMnemonic('X');
         BtnPoli.setToolTipText("Alt+X");
         BtnPoli.setName("BtnPoli"); // NOI18N
         BtnPoli.addActionListener(new java.awt.event.ActionListener() {
@@ -1984,7 +1968,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel14.setBounds(0, 66, 115, 23);
 
         TanggalPeriksa.setEditable(false);
-        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
+        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         TanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         TanggalPeriksa.setName("TanggalPeriksa"); // NOI18N
         TanggalPeriksa.addActionListener(new java.awt.event.ActionListener() {
@@ -2013,7 +1997,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel18.setBounds(215, 66, 50, 23);
 
         BtnPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPasien.setMnemonic('X');
         BtnPasien.setToolTipText("Alt+X");
         BtnPasien.setName("BtnPasien"); // NOI18N
         BtnPasien.addActionListener(new java.awt.event.ActionListener() {
@@ -2052,7 +2035,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         nmpnj.setBounds(148, 123, 320, 23);
 
         btnPenjab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPenjab.setMnemonic('2');
         btnPenjab.setToolTipText("ALt+2");
         btnPenjab.setName("btnPenjab"); // NOI18N
         btnPenjab.addActionListener(new java.awt.event.ActionListener() {
@@ -2128,7 +2110,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         nmsuku.setBounds(340, 152, 128, 23);
 
         BtnSuku.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnSuku.setMnemonic('1');
         BtnSuku.setToolTipText("ALt+1");
         BtnSuku.setName("BtnSuku"); // NOI18N
         BtnSuku.addActionListener(new java.awt.event.ActionListener() {
@@ -2156,7 +2137,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         nmbahasa.setBounds(340, 181, 128, 23);
 
         BtnBahasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnBahasa.setMnemonic('1');
         BtnBahasa.setToolTipText("ALt+1");
         BtnBahasa.setName("BtnBahasa"); // NOI18N
         BtnBahasa.addActionListener(new java.awt.event.ActionListener() {
@@ -2190,7 +2170,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 
         ChkNoTelp.setBackground(new java.awt.Color(255, 255, 250));
         ChkNoTelp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        ChkNoTelp.setForeground(new java.awt.Color(0, 0, 0));
         ChkNoTelp.setText("Gunakan No. Telp/HP Pasien sebagai No. Telpn. Pemesan (Jika opsi ini diconteng)");
         ChkNoTelp.setBorderPainted(true);
         ChkNoTelp.setBorderPaintedFlat(true);
@@ -2220,7 +2199,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         label_hari.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         label_hari.setName("label_hari"); // NOI18N
         panelisi1.add(label_hari);
-        label_hari.setBounds(607, 64, 350, 85);
+        label_hari.setBounds(607, 66, 350, 85);
 
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setText("Antrian Khusus : ");
@@ -2349,7 +2328,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         NoRujukan.setBounds(510, 37, 208, 23);
 
         btnNoRujukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnNoRujukan.setMnemonic('X');
         btnNoRujukan.setToolTipText("Alt+X");
         btnNoRujukan.setName("btnNoRujukan"); // NOI18N
         btnNoRujukan.addActionListener(new java.awt.event.ActionListener() {
@@ -2373,7 +2351,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel28.setBounds(0, 67, 95, 23);
 
         TanggalRujuk.setEditable(false);
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setPreferredSize(new java.awt.Dimension(95, 23));
@@ -2406,7 +2384,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         noSurat.setBounds(490, 67, 228, 23);
 
         btnNoSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnNoSurat.setMnemonic('X');
         btnNoSurat.setToolTipText("Alt+X");
         btnNoSurat.setName("btnNoSurat"); // NOI18N
         btnNoSurat.addActionListener(new java.awt.event.ActionListener() {
@@ -2471,7 +2448,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         NmDPJP.setBounds(518, 96, 200, 23);
 
         btnDPJP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnDPJP.setMnemonic('X');
         btnDPJP.setToolTipText("Alt+X");
         btnDPJP.setName("btnDPJP"); // NOI18N
         btnDPJP.addActionListener(new java.awt.event.ActionListener() {
@@ -2508,7 +2484,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         NmPpkRujukan.setBounds(180, 125, 180, 23);
 
         btnPPKRujukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPPKRujukan.setMnemonic('X');
         btnPPKRujukan.setToolTipText("Alt+X");
         btnPPKRujukan.setName("btnPPKRujukan"); // NOI18N
         btnPPKRujukan.addActionListener(new java.awt.event.ActionListener() {
@@ -2545,7 +2520,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         NmPenyakit.setBounds(180, 153, 180, 23);
 
         btnDiagnosa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnDiagnosa.setMnemonic('X');
         btnDiagnosa.setToolTipText("Alt+X");
         btnDiagnosa.setName("btnDiagnosa"); // NOI18N
         btnDiagnosa.addActionListener(new java.awt.event.ActionListener() {
@@ -2582,7 +2556,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         NmPoli1.setBounds(180, 181, 180, 23);
 
         btnPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPoli.setMnemonic('X');
         btnPoli.setToolTipText("Alt+X");
         btnPoli.setName("btnPoli"); // NOI18N
         btnPoli.addActionListener(new java.awt.event.ActionListener() {
@@ -2787,7 +2760,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         nmdpjpLayan.setBounds(180, 209, 180, 23);
 
         btnDPJPlayan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnDPJPlayan.setMnemonic('X');
         btnDPJPlayan.setToolTipText("Alt+X");
         btnDPJPlayan.setName("btnDPJPlayan"); // NOI18N
         btnDPJPlayan.addActionListener(new java.awt.event.ActionListener() {
@@ -2949,7 +2921,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         LabTglkll.setBounds(0, 38, 90, 23);
 
         TanggalKejadian.setEditable(false);
-        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2026" }));
+        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         TanggalKejadian.setDisplayFormat("dd-MM-yyyy");
         TanggalKejadian.setName("TanggalKejadian"); // NOI18N
         TanggalKejadian.setPreferredSize(new java.awt.Dimension(95, 23));
@@ -3003,7 +2975,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         NmProv.setBounds(158, 96, 170, 23);
 
         btnProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnProv.setMnemonic('X');
         btnProv.setToolTipText("Alt+X");
         btnProv.setName("btnProv"); // NOI18N
         btnProv.addActionListener(new java.awt.event.ActionListener() {
@@ -3040,7 +3011,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         NmKab.setBounds(158, 125, 170, 23);
 
         btnKab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnKab.setMnemonic('X');
         btnKab.setToolTipText("Alt+X");
         btnKab.setName("btnKab"); // NOI18N
         btnKab.addActionListener(new java.awt.event.ActionListener() {
@@ -3077,7 +3047,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         NmKec.setBounds(158, 154, 170, 23);
 
         btnKec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnKec.setMnemonic('X');
         btnKec.setToolTipText("Alt+X");
         btnKec.setName("btnKec"); // NOI18N
         btnKec.addActionListener(new java.awt.event.ActionListener() {

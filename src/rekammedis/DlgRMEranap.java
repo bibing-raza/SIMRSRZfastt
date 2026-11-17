@@ -268,6 +268,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnSamplingPemanfaatanRM = new widget.ButtonBig();
         BtnPersetujuanTindakanHD = new widget.ButtonBig();
         BtnAsesmenUlangHD = new widget.ButtonBig();
+        BtnAsesmenAwalMedisHD = new widget.ButtonBig();
         BtnLainHemodialisis = new widget.ButtonBig();
         internalFrame10 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -338,7 +339,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         internalFrame15.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame15.setLayout(null);
 
-        BtnCloseIn10.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
         BtnCloseIn10.setMnemonic('U');
         BtnCloseIn10.setText("Tutup");
@@ -352,7 +352,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         internalFrame15.add(BtnCloseIn10);
         BtnCloseIn10.setBounds(480, 60, 100, 30);
 
-        BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
         BtnSimpan6.setMnemonic('S');
         BtnSimpan6.setText("Simpan");
@@ -373,18 +372,15 @@ public class DlgRMEranap extends javax.swing.JDialog {
         jLabel52.setBounds(0, 32, 77, 23);
 
         kddpjp.setEditable(false);
-        kddpjp.setForeground(new java.awt.Color(0, 0, 0));
         kddpjp.setName("kddpjp"); // NOI18N
         internalFrame15.add(kddpjp);
         kddpjp.setBounds(81, 32, 100, 23);
 
         nmdpjp.setEditable(false);
-        nmdpjp.setForeground(new java.awt.Color(0, 0, 0));
         nmdpjp.setName("nmdpjp"); // NOI18N
         internalFrame15.add(nmdpjp);
         nmdpjp.setBounds(183, 32, 380, 23);
 
-        btnDPJP.setForeground(new java.awt.Color(0, 0, 0));
         btnDPJP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnDPJP.setMnemonic('7');
         btnDPJP.setToolTipText("ALt+7");
@@ -423,19 +419,16 @@ public class DlgRMEranap extends javax.swing.JDialog {
         jLabel3.setBounds(0, 10, 103, 23);
 
         TNoRW.setEditable(false);
-        TNoRW.setForeground(new java.awt.Color(0, 0, 0));
         TNoRW.setName("TNoRW"); // NOI18N
         internalFrame4.add(TNoRW);
         TNoRW.setBounds(107, 10, 122, 23);
 
         TNoRM.setEditable(false);
-        TNoRM.setForeground(new java.awt.Color(0, 0, 0));
         TNoRM.setName("TNoRM"); // NOI18N
         internalFrame4.add(TNoRM);
         TNoRM.setBounds(233, 10, 70, 23);
 
         TNmPasien.setEditable(false);
-        TNmPasien.setForeground(new java.awt.Color(0, 0, 0));
         TNmPasien.setName("TNmPasien"); // NOI18N
         internalFrame4.add(TNmPasien);
         TNmPasien.setBounds(308, 10, 291, 23);
@@ -447,7 +440,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         jLabel13.setBounds(0, 38, 103, 23);
 
         nmUnit.setEditable(false);
-        nmUnit.setForeground(new java.awt.Color(0, 0, 0));
         nmUnit.setName("nmUnit"); // NOI18N
         internalFrame4.add(nmUnit);
         nmUnit.setBounds(107, 38, 492, 23);
@@ -459,7 +451,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         jLabel4.setBounds(0, 66, 103, 23);
 
         TtglMasuk.setEditable(false);
-        TtglMasuk.setForeground(new java.awt.Color(0, 0, 0));
         TtglMasuk.setName("TtglMasuk"); // NOI18N
         internalFrame4.add(TtglMasuk);
         TtglMasuk.setBounds(107, 66, 210, 23);
@@ -1240,6 +1231,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         FormMenuRanap.add(BtnAsesmenUlangHD);
 
+        BtnAsesmenAwalMedisHD.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenAwalMedisHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnAsesmenAwalMedisHD.setText("<html><div style=\"text-align: center;\">Assesmen Awal Medis<br>Hemodialisis</div></html>");
+        BtnAsesmenAwalMedisHD.setIconTextGap(0);
+        BtnAsesmenAwalMedisHD.setName("BtnAsesmenAwalMedisHD"); // NOI18N
+        BtnAsesmenAwalMedisHD.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnAsesmenAwalMedisHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenAwalMedisHDActionPerformed(evt);
+            }
+        });
+        FormMenuRanap.add(BtnAsesmenAwalMedisHD);
+
         BtnLainHemodialisis.setForeground(new java.awt.Color(0, 0, 0));
         BtnLainHemodialisis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_Address Book_32590.png"))); // NOI18N
         BtnLainHemodialisis.setText("Lain - Lain (Hemodialisis)");
@@ -1284,7 +1288,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         jLabel5.setPreferredSize(new java.awt.Dimension(100, 23));
         internalFrame3.add(jLabel5);
 
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(280, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1294,7 +1297,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         internalFrame3.add(TCari);
 
-        btnClear.setForeground(new java.awt.Color(0, 0, 0));
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
         btnClear.setMinimumSize(new java.awt.Dimension(28, 23));
         btnClear.setName("btnClear"); // NOI18N
@@ -1307,7 +1309,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         internalFrame3.add(btnClear);
 
         ChkInput.setBorder(null);
-        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
         ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
@@ -1332,7 +1333,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         internalFrame3.add(ChkInput);
 
-        BtnRefres.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
         BtnRefres.setMnemonic('R');
         BtnRefres.setText("Refresh Rekam Medis");
@@ -1346,7 +1346,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         internalFrame3.add(BtnRefres);
 
-        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -1486,7 +1485,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         jLabel6.setPreferredSize(new java.awt.Dimension(100, 23));
         internalFrame7.add(jLabel6);
 
-        TCari1.setForeground(new java.awt.Color(0, 0, 0));
         TCari1.setName("TCari1"); // NOI18N
         TCari1.setPreferredSize(new java.awt.Dimension(280, 23));
         TCari1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1496,7 +1494,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         internalFrame7.add(TCari1);
 
-        btnClear1.setForeground(new java.awt.Color(0, 0, 0));
         btnClear1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
         btnClear1.setMinimumSize(new java.awt.Dimension(28, 23));
         btnClear1.setName("btnClear1"); // NOI18N
@@ -1509,7 +1506,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         internalFrame7.add(btnClear1);
 
         ChkInput1.setBorder(null);
-        ChkInput1.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
         ChkInput1.setMnemonic('C');
         ChkInput1.setSelected(true);
@@ -1534,7 +1530,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         internalFrame7.add(ChkInput1);
 
-        BtnRefres1.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
         BtnRefres1.setMnemonic('R');
         BtnRefres1.setText("Refresh Rekam Medis");
@@ -1548,7 +1543,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         internalFrame7.add(BtnRefres1);
 
-        BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
@@ -1857,7 +1851,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         internalFrame9.setPreferredSize(new java.awt.Dimension(12, 44));
         internalFrame9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 9, 7));
 
-        BtnRefres2.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
         BtnRefres2.setMnemonic('R');
         BtnRefres2.setText("Refresh Rekam Medis");
@@ -1871,7 +1864,6 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         internalFrame9.add(BtnRefres2);
 
-        BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar2.setMnemonic('K');
         BtnKeluar2.setText("Keluar");
@@ -3445,6 +3437,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenUlangHDActionPerformed
 
+    private void BtnAsesmenAwalMedisHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenAwalMedisHDActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMAsesmenAwalMedisHemodialisis form = new RMAsesmenAwalMedisHemodialisis(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), "ranap", nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnAsesmenAwalMedisHDActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3462,6 +3471,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private widget.ButtonBig BtnAsesmenAwalMedisHD;
     private widget.ButtonBig BtnAsesmenKeperawatanAnak;
     private widget.ButtonBig BtnAsesmenKeperawatanDewasa;
     private widget.ButtonBig BtnAsesmenKeperawatanPerinatologi;
@@ -3671,6 +3681,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPersetujuanTindakanHD.setEnabled(akses.gethemodialisa());
         BtnLainHemodialisis.setEnabled(akses.gethemodialisa());
         BtnAsesmenUlangHD.setEnabled(akses.gethemodialisa());
+        BtnAsesmenAwalMedisHD.setEnabled(akses.gethemodialisa());
         BtnMaskepNyeriAkut.setEnabled(akses.getcppt());
         BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
         BtnMaskepResikoHipotermia.setEnabled(akses.getcppt());
@@ -4199,6 +4210,11 @@ public class DlgRMEranap extends javax.swing.JDialog {
             jmlmenu++;
         }
         
+        if (akses.gethemodialisa() && BtnAsesmenAwalMedisHD.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenAwalMedisHD);
+            jmlmenu++;
+        }
+        
         if (akses.gethemodialisa() && BtnLainHemodialisis.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnLainHemodialisis);
             jmlmenu++;
@@ -4570,7 +4586,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 + "    UNION ALL SELECT 48, 'status_hemodialisis', 'Status Hemodialisis' "
                 + "    UNION ALL SELECT 49, 'persetujuan_tindakan_hemodialisis', 'Persetujuan Tindakan (Hemodialisis)' "
                 + "    UNION ALL SELECT 50, 'lainlain_hemodialisis', 'Lain-Lain (Hemodialisis)' "
-                + "    UNION ALL SELECT 51, 'asesmen_ulang_hemodialisis', 'Assesmen Ulang Pasien Hemodialisis') AS t";
+                + "    UNION ALL SELECT 51, 'asesmen_ulang_hemodialisis', 'Assesmen Ulang Pasien Hemodialisis' "
+                + "    UNION ALL SELECT 52, 'asesmen_awal_medis_hemodialisis', 'Assesmen Awal Medis Hemodialisis') AS t";
 
         if (TNoRW.getText().isEmpty()) {
             return;

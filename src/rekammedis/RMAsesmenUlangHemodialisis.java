@@ -5078,9 +5078,6 @@ public final class RMAsesmenUlangHemodialisis extends javax.swing.JDialog {
                 getData();
             } catch (java.lang.NullPointerException e) {
             }
-            if ((evt.getClickCount() == 2) && (tbAsesmen.getSelectedColumn() == 0)) {
-                TabRawat.setSelectedIndex(0);
-            }
         }
 }//GEN-LAST:event_tbAsesmenMouseClicked
 

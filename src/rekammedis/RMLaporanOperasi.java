@@ -6,14 +6,10 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,11 +36,9 @@ import simrskhanza.DlgCariDokter;
 import org.vosk.Model;
 import org.vosk.Recognizer;
 import javax.sound.sampled.*;
-import javax.swing.SwingUtilities;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.File;
-import javax.sound.sampled.*;
 import simrskhanza.frmUtama;
 
 /**
@@ -706,7 +700,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel36.setRequestFocusEnabled(false);
         panelisi4.add(jLabel36);
 
-        TCari1.setForeground(new java.awt.Color(0, 0, 0));
         TCari1.setName("TCari1"); // NOI18N
         TCari1.setPreferredSize(new java.awt.Dimension(250, 23));
         TCari1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -716,8 +709,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         });
         panelisi4.add(TCari1);
 
-        BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -734,8 +727,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         });
         panelisi4.add(BtnCari1);
 
-        BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -747,8 +740,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         });
         panelisi4.add(BtnCopas);
 
-        BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -781,8 +774,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         panelGlass8.setPreferredSize(new java.awt.Dimension(55, 47));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -799,8 +792,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnSimpan);
 
-        BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -817,8 +810,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnBatal);
 
-        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -830,8 +823,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnHapus);
 
-        BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -854,14 +847,13 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel95.setPreferredSize(new java.awt.Dimension(120, 23));
         panelGlass8.add(jLabel95);
 
-        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
         cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
         cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
         cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
         panelGlass8.add(cmbPilihCetak);
 
-        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -878,8 +870,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnPrint);
 
-        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -919,19 +911,16 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel10.setBounds(0, 10, 140, 23);
 
         TNoRw.setEditable(false);
-        TNoRw.setForeground(new java.awt.Color(0, 0, 0));
         TNoRw.setName("TNoRw"); // NOI18N
         FormInput.add(TNoRw);
         TNoRw.setBounds(145, 10, 131, 23);
 
         TNoRM.setEditable(false);
-        TNoRM.setForeground(new java.awt.Color(0, 0, 0));
         TNoRM.setName("TNoRM"); // NOI18N
         FormInput.add(TNoRM);
         TNoRM.setBounds(279, 10, 70, 23);
 
         TPasien.setEditable(false);
-        TPasien.setForeground(new java.awt.Color(0, 0, 0));
         TPasien.setHighlighter(null);
         TPasien.setName("TPasien"); // NOI18N
         FormInput.add(TPasien);
@@ -944,7 +933,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel63.setBounds(0, 38, 140, 23);
 
         TrgRawat.setEditable(false);
-        TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat.setName("TrgRawat"); // NOI18N
         FormInput.add(TrgRawat);
         TrgRawat.setBounds(145, 38, 615, 23);
@@ -962,7 +950,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel64);
         jLabel64.setBounds(0, 94, 140, 23);
 
-        TpraBedah.setForeground(new java.awt.Color(0, 0, 0));
         TpraBedah.setName("TpraBedah"); // NOI18N
         TpraBedah.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -978,7 +965,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel65);
         jLabel65.setBounds(0, 122, 140, 23);
 
-        TpascaBedah.setForeground(new java.awt.Color(0, 0, 0));
         TpascaBedah.setName("TpascaBedah"); // NOI18N
         TpascaBedah.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1021,7 +1007,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkKhusus.setBackground(new java.awt.Color(255, 255, 250));
         chkKhusus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkKhusus.setForeground(new java.awt.Color(0, 0, 0));
         chkKhusus.setText("Khusus");
         chkKhusus.setBorderPainted(true);
         chkKhusus.setBorderPaintedFlat(true);
@@ -1035,7 +1020,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkBesar.setBackground(new java.awt.Color(255, 255, 250));
         chkBesar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkBesar.setForeground(new java.awt.Color(0, 0, 0));
         chkBesar.setText("Besar");
         chkBesar.setBorderPainted(true);
         chkBesar.setBorderPaintedFlat(true);
@@ -1049,7 +1033,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkSedang.setBackground(new java.awt.Color(255, 255, 250));
         chkSedang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkSedang.setForeground(new java.awt.Color(0, 0, 0));
         chkSedang.setText("Sedang");
         chkSedang.setBorderPainted(true);
         chkSedang.setBorderPaintedFlat(true);
@@ -1063,7 +1046,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkKecil.setBackground(new java.awt.Color(255, 255, 250));
         chkKecil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkKecil.setForeground(new java.awt.Color(0, 0, 0));
         chkKecil.setText("Kecil");
         chkKecil.setBorderPainted(true);
         chkKecil.setBorderPaintedFlat(true);
@@ -1083,7 +1065,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkElektif.setBackground(new java.awt.Color(255, 255, 250));
         chkElektif.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkElektif.setForeground(new java.awt.Color(0, 0, 0));
         chkElektif.setText("Elektif");
         chkElektif.setBorderPainted(true);
         chkElektif.setBorderPaintedFlat(true);
@@ -1097,7 +1078,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkDarurat.setBackground(new java.awt.Color(255, 255, 250));
         chkDarurat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkDarurat.setForeground(new java.awt.Color(0, 0, 0));
         chkDarurat.setText("Darurat");
         chkDarurat.setBorderPainted(true);
         chkDarurat.setBorderPaintedFlat(true);
@@ -1111,7 +1091,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkOdc.setBackground(new java.awt.Color(255, 255, 250));
         chkOdc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkOdc.setForeground(new java.awt.Color(0, 0, 0));
         chkOdc.setText("One Day Care");
         chkOdc.setBorderPainted(true);
         chkOdc.setBorderPaintedFlat(true);
@@ -1131,7 +1110,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkBersih.setBackground(new java.awt.Color(255, 255, 250));
         chkBersih.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkBersih.setForeground(new java.awt.Color(0, 0, 0));
         chkBersih.setText("Bersih");
         chkBersih.setBorderPainted(true);
         chkBersih.setBorderPaintedFlat(true);
@@ -1145,7 +1123,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkKontaminasi.setBackground(new java.awt.Color(255, 255, 250));
         chkKontaminasi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkKontaminasi.setForeground(new java.awt.Color(0, 0, 0));
         chkKontaminasi.setText("Kontaminasi");
         chkKontaminasi.setBorderPainted(true);
         chkKontaminasi.setBorderPaintedFlat(true);
@@ -1159,7 +1136,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkKotor.setBackground(new java.awt.Color(255, 255, 250));
         chkKotor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkKotor.setForeground(new java.awt.Color(0, 0, 0));
         chkKotor.setText("Kotor / Infeksi");
         chkKotor.setBorderPainted(true);
         chkKotor.setBorderPaintedFlat(true);
@@ -1179,7 +1155,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkJml1.setBackground(new java.awt.Color(255, 255, 250));
         chkJml1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkJml1.setForeground(new java.awt.Color(0, 0, 0));
         chkJml1.setText("1");
         chkJml1.setBorderPainted(true);
         chkJml1.setBorderPaintedFlat(true);
@@ -1193,7 +1168,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkJml2.setBackground(new java.awt.Color(255, 255, 250));
         chkJml2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkJml2.setForeground(new java.awt.Color(0, 0, 0));
         chkJml2.setText("2");
         chkJml2.setBorderPainted(true);
         chkJml2.setBorderPaintedFlat(true);
@@ -1207,7 +1181,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkJml3.setBackground(new java.awt.Color(255, 255, 250));
         chkJml3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkJml3.setForeground(new java.awt.Color(0, 0, 0));
         chkJml3.setText("3");
         chkJml3.setBorderPainted(true);
         chkJml3.setBorderPaintedFlat(true);
@@ -1221,7 +1194,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkJmlLain.setBackground(new java.awt.Color(255, 255, 250));
         chkJmlLain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkJmlLain.setForeground(new java.awt.Color(0, 0, 0));
         chkJmlLain.setText(":");
         chkJmlLain.setBorderPainted(true);
         chkJmlLain.setBorderPaintedFlat(true);
@@ -1238,7 +1210,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(chkJmlLain);
         chkJmlLain.setBounds(294, 351, 30, 23);
 
-        TketJml.setForeground(new java.awt.Color(0, 0, 0));
         TketJml.setName("TketJml"); // NOI18N
         TketJml.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1255,7 +1226,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel70.setBounds(0, 407, 140, 23);
 
         TnmDrOperator.setEditable(false);
-        TnmDrOperator.setForeground(new java.awt.Color(0, 0, 0));
         TnmDrOperator.setName("TnmDrOperator"); // NOI18N
         FormInput.add(TnmDrOperator);
         TnmDrOperator.setBounds(145, 407, 410, 23);
@@ -1267,7 +1237,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel71.setBounds(0, 435, 140, 23);
 
         TnmAsisten.setEditable(false);
-        TnmAsisten.setForeground(new java.awt.Color(0, 0, 0));
         TnmAsisten.setName("TnmAsisten"); // NOI18N
         FormInput.add(TnmAsisten);
         TnmAsisten.setBounds(145, 435, 410, 23);
@@ -1279,7 +1248,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel72.setBounds(0, 463, 140, 23);
 
         TnmInstrumen.setEditable(false);
-        TnmInstrumen.setForeground(new java.awt.Color(0, 0, 0));
         TnmInstrumen.setName("TnmInstrumen"); // NOI18N
         FormInput.add(TnmInstrumen);
         TnmInstrumen.setBounds(145, 463, 410, 23);
@@ -1291,7 +1259,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel73.setBounds(0, 491, 140, 23);
 
         TnmOnloop.setEditable(false);
-        TnmOnloop.setForeground(new java.awt.Color(0, 0, 0));
         TnmOnloop.setName("TnmOnloop"); // NOI18N
         FormInput.add(TnmOnloop);
         TnmOnloop.setBounds(145, 491, 410, 23);
@@ -1303,7 +1270,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel74.setBounds(0, 519, 140, 23);
 
         TnmDrAnestesi.setEditable(false);
-        TnmDrAnestesi.setForeground(new java.awt.Color(0, 0, 0));
         TnmDrAnestesi.setName("TnmDrAnestesi"); // NOI18N
         FormInput.add(TnmDrAnestesi);
         TnmDrAnestesi.setBounds(145, 519, 410, 23);
@@ -1315,13 +1281,12 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel75.setBounds(0, 547, 140, 23);
 
         TnmPrwtAnestesi.setEditable(false);
-        TnmPrwtAnestesi.setForeground(new java.awt.Color(0, 0, 0));
         TnmPrwtAnestesi.setName("TnmPrwtAnestesi"); // NOI18N
         FormInput.add(TnmPrwtAnestesi);
         TnmPrwtAnestesi.setBounds(145, 547, 410, 23);
 
-        BtnDrOperator.setForeground(new java.awt.Color(0, 0, 0));
         BtnDrOperator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnDrOperator.setMnemonic('1');
         BtnDrOperator.setToolTipText("Alt+1");
         BtnDrOperator.setName("BtnDrOperator"); // NOI18N
         BtnDrOperator.addActionListener(new java.awt.event.ActionListener() {
@@ -1332,8 +1297,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnDrOperator);
         BtnDrOperator.setBounds(560, 407, 28, 23);
 
-        BtnAsisten.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsisten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnAsisten.setMnemonic('1');
         BtnAsisten.setToolTipText("Alt+1");
         BtnAsisten.setName("BtnAsisten"); // NOI18N
         BtnAsisten.addActionListener(new java.awt.event.ActionListener() {
@@ -1344,8 +1309,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnAsisten);
         BtnAsisten.setBounds(560, 435, 28, 23);
 
-        BtnInstrumen.setForeground(new java.awt.Color(0, 0, 0));
         BtnInstrumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnInstrumen.setMnemonic('1');
         BtnInstrumen.setToolTipText("Alt+1");
         BtnInstrumen.setName("BtnInstrumen"); // NOI18N
         BtnInstrumen.addActionListener(new java.awt.event.ActionListener() {
@@ -1356,8 +1321,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnInstrumen);
         BtnInstrumen.setBounds(560, 463, 28, 23);
 
-        BtnOnloop.setForeground(new java.awt.Color(0, 0, 0));
         BtnOnloop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnOnloop.setMnemonic('1');
         BtnOnloop.setToolTipText("Alt+1");
         BtnOnloop.setName("BtnOnloop"); // NOI18N
         BtnOnloop.addActionListener(new java.awt.event.ActionListener() {
@@ -1368,8 +1333,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnOnloop);
         BtnOnloop.setBounds(560, 491, 28, 23);
 
-        BtnDrAnestesi.setForeground(new java.awt.Color(0, 0, 0));
         BtnDrAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnDrAnestesi.setMnemonic('1');
         BtnDrAnestesi.setToolTipText("Alt+1");
         BtnDrAnestesi.setName("BtnDrAnestesi"); // NOI18N
         BtnDrAnestesi.addActionListener(new java.awt.event.ActionListener() {
@@ -1380,8 +1345,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnDrAnestesi);
         BtnDrAnestesi.setBounds(560, 519, 28, 23);
 
-        BtnPrwtAnestesi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrwtAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPrwtAnestesi.setMnemonic('1');
         BtnPrwtAnestesi.setToolTipText("Alt+1");
         BtnPrwtAnestesi.setName("BtnPrwtAnestesi"); // NOI18N
         BtnPrwtAnestesi.addActionListener(new java.awt.event.ActionListener() {
@@ -1398,7 +1363,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel76);
         jLabel76.setBounds(0, 575, 140, 23);
 
-        cmbJam1.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam1.setName("cmbJam1"); // NOI18N
         cmbJam1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1409,7 +1373,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbJam1);
         cmbJam1.setBounds(233, 575, 45, 23);
 
-        cmbMnt1.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt1.setName("cmbMnt1"); // NOI18N
         cmbMnt1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1420,7 +1383,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbMnt1);
         cmbMnt1.setBounds(286, 575, 45, 23);
 
-        cmbDtk1.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk1.setName("cmbDtk1"); // NOI18N
         cmbDtk1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1438,7 +1400,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel275);
         jLabel275.setBounds(390, 575, 120, 23);
 
-        cmbJam2.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam2.setName("cmbJam2"); // NOI18N
         cmbJam2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1449,7 +1410,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbJam2);
         cmbJam2.setBounds(233, 603, 45, 23);
 
-        cmbMnt2.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt2.setName("cmbMnt2"); // NOI18N
         cmbMnt2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1460,7 +1420,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbMnt2);
         cmbMnt2.setBounds(286, 603, 45, 23);
 
-        cmbDtk2.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk2.setName("cmbDtk2"); // NOI18N
         cmbDtk2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1478,7 +1437,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel276);
         jLabel276.setBounds(390, 603, 120, 23);
 
-        cmbJam3.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam3.setName("cmbJam3"); // NOI18N
         cmbJam3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1489,7 +1447,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbJam3);
         cmbJam3.setBounds(233, 631, 45, 23);
 
-        cmbMnt3.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt3.setName("cmbMnt3"); // NOI18N
         cmbMnt3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1500,7 +1457,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbMnt3);
         cmbMnt3.setBounds(286, 631, 45, 23);
 
-        cmbDtk3.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk3.setName("cmbDtk3"); // NOI18N
         cmbDtk3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1518,7 +1474,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel277);
         jLabel277.setBounds(390, 631, 50, 23);
 
-        cmbJam4.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam4.setName("cmbJam4"); // NOI18N
         cmbJam4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1529,7 +1484,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbJam4);
         cmbJam4.setBounds(233, 659, 45, 23);
 
-        cmbMnt4.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt4.setName("cmbMnt4"); // NOI18N
         cmbMnt4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1540,7 +1494,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbMnt4);
         cmbMnt4.setBounds(286, 659, 45, 23);
 
-        cmbDtk4.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk4.setName("cmbDtk4"); // NOI18N
         cmbDtk4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1573,7 +1526,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkCekSignIn.setBackground(new java.awt.Color(255, 255, 250));
         chkCekSignIn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkCekSignIn.setForeground(new java.awt.Color(0, 0, 0));
         chkCekSignIn.setText("Sign In :");
         chkCekSignIn.setBorderPainted(true);
         chkCekSignIn.setBorderPaintedFlat(true);
@@ -1592,7 +1544,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkCekTime.setBackground(new java.awt.Color(255, 255, 250));
         chkCekTime.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkCekTime.setForeground(new java.awt.Color(0, 0, 0));
         chkCekTime.setText("Time Out :");
         chkCekTime.setBorderPainted(true);
         chkCekTime.setBorderPaintedFlat(true);
@@ -1611,7 +1562,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkCekSignOut.setBackground(new java.awt.Color(255, 255, 250));
         chkCekSignOut.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkCekSignOut.setForeground(new java.awt.Color(0, 0, 0));
         chkCekSignOut.setText("Sign Out :");
         chkCekSignOut.setBorderPainted(true);
         chkCekSignOut.setBorderPaintedFlat(true);
@@ -1630,7 +1580,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         chkCekSelesai.setBackground(new java.awt.Color(255, 255, 250));
         chkCekSelesai.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkCekSelesai.setForeground(new java.awt.Color(0, 0, 0));
         chkCekSelesai.setText("Selesai :");
         chkCekSelesai.setBorderPainted(true);
         chkCekSelesai.setBorderPaintedFlat(true);
@@ -1648,10 +1597,9 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         chkCekSelesai.setBounds(145, 659, 80, 23);
 
         TtglOperasi.setEditable(false);
-        TtglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
+        TtglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         TtglOperasi.setDisplayFormat("dd-MM-yyyy");
         TtglOperasi.setName("TtglOperasi"); // NOI18N
-        TtglOperasi.setOpaque(false);
         TtglOperasi.setPreferredSize(new java.awt.Dimension(90, 23));
         FormInput.add(TtglOperasi);
         TtglOperasi.setBounds(512, 575, 90, 23);
@@ -1662,7 +1610,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel77);
         jLabel77.setBounds(0, 379, 140, 23);
 
-        TketImplan.setForeground(new java.awt.Color(0, 0, 0));
         TketImplan.setName("TketImplan"); // NOI18N
         TketImplan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1673,7 +1620,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         TketImplan.setBounds(259, 379, 500, 23);
 
         cmbImplan.setBackground(new java.awt.Color(245, 253, 240));
-        cmbImplan.setForeground(new java.awt.Color(0, 0, 0));
         cmbImplan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Tidak Ada", "Ada, Sebutkan" }));
         cmbImplan.setLightWeightPopupEnabled(false);
         cmbImplan.setName("cmbImplan"); // NOI18N
@@ -1698,7 +1644,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel78);
         jLabel78.setBounds(0, 1150, 140, 23);
 
-        cmbJam5.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam5.setName("cmbJam5"); // NOI18N
         cmbJam5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1709,7 +1654,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbJam5);
         cmbJam5.setBounds(145, 1150, 45, 23);
 
-        cmbMnt5.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt5.setName("cmbMnt5"); // NOI18N
         cmbMnt5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1720,7 +1664,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbMnt5);
         cmbMnt5.setBounds(198, 1150, 45, 23);
 
-        cmbDtk5.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk5.setName("cmbDtk5"); // NOI18N
         cmbDtk5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1750,7 +1693,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel280);
         jLabel280.setBounds(145, 1178, 50, 23);
 
-        Tsistol.setForeground(new java.awt.Color(0, 0, 0));
         Tsistol.setName("Tsistol"); // NOI18N
         Tsistol.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1766,7 +1708,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel281);
         jLabel281.setBounds(125, 1206, 70, 23);
 
-        Tdistol.setForeground(new java.awt.Color(0, 0, 0));
         Tdistol.setName("Tdistol"); // NOI18N
         Tdistol.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1782,7 +1723,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel282);
         jLabel282.setBounds(265, 1178, 60, 23);
 
-        Tnadi.setForeground(new java.awt.Color(0, 0, 0));
         Tnadi.setName("Tnadi"); // NOI18N
         Tnadi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1798,7 +1738,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel283);
         jLabel283.setBounds(265, 1206, 60, 23);
 
-        Trr.setForeground(new java.awt.Color(0, 0, 0));
         Trr.setName("Trr"); // NOI18N
         Trr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1820,7 +1759,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel285);
         jLabel285.setBounds(390, 1206, 60, 23);
 
-        Tspo.setForeground(new java.awt.Color(0, 0, 0));
         Tspo.setName("Tspo"); // NOI18N
         Tspo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1830,7 +1768,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(Tspo);
         Tspo.setBounds(456, 1206, 60, 23);
 
-        Tsuhu.setForeground(new java.awt.Color(0, 0, 0));
         Tsuhu.setName("Tsuhu"); // NOI18N
         Tsuhu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1860,10 +1797,9 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(Scroll2);
         Scroll2.setBounds(145, 1240, 500, 150);
 
-        BtnBaruTtv.setForeground(new java.awt.Color(0, 0, 0));
         BtnBaruTtv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
         BtnBaruTtv.setText("Baru");
-        BtnBaruTtv.setToolTipText("Data DJJ Baru");
+        BtnBaruTtv.setToolTipText("Data Observasi TTV Baru");
         BtnBaruTtv.setName("BtnBaruTtv"); // NOI18N
         BtnBaruTtv.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnBaruTtv.addActionListener(new java.awt.event.ActionListener() {
@@ -1874,10 +1810,9 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnBaruTtv);
         BtnBaruTtv.setBounds(660, 1240, 90, 30);
 
-        BtnTambahTtv.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahTtv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
         BtnTambahTtv.setText("Tambah");
-        BtnTambahTtv.setToolTipText("Tambah Data Air Ketuban/Mulase");
+        BtnTambahTtv.setToolTipText("Tambah Data Observasi TTV");
         BtnTambahTtv.setName("BtnTambahTtv"); // NOI18N
         BtnTambahTtv.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnTambahTtv.addActionListener(new java.awt.event.ActionListener() {
@@ -1888,10 +1823,9 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnTambahTtv);
         BtnTambahTtv.setBounds(660, 1279, 90, 30);
 
-        BtnHapusTtv.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusTtv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
         BtnHapusTtv.setText("Hapus");
-        BtnHapusTtv.setToolTipText("Hapus Air Ketuban/Mulase");
+        BtnHapusTtv.setToolTipText("Hapus Observasi TTV");
         BtnHapusTtv.setName("BtnHapusTtv"); // NOI18N
         BtnHapusTtv.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnHapusTtv.addActionListener(new java.awt.event.ActionListener() {
@@ -1902,10 +1836,9 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnHapusTtv);
         BtnHapusTtv.setBounds(660, 1318, 90, 30);
 
-        BtnGantiTtv.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiTtv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
         BtnGantiTtv.setText("Ganti");
-        BtnGantiTtv.setToolTipText("Ganti Air Ketuban/Mulase");
+        BtnGantiTtv.setToolTipText("Ganti Observasi TTV");
         BtnGantiTtv.setName("BtnGantiTtv"); // NOI18N
         BtnGantiTtv.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnGantiTtv.addActionListener(new java.awt.event.ActionListener() {
@@ -1935,7 +1868,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel80);
         jLabel80.setBounds(0, 1830, 140, 23);
 
-        TjmlPerdarahan.setForeground(new java.awt.Color(0, 0, 0));
         TjmlPerdarahan.setName("TjmlPerdarahan"); // NOI18N
         TjmlPerdarahan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1953,7 +1885,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel81.setBounds(220, 1830, 90, 23);
 
         cmbTransfusi.setBackground(new java.awt.Color(245, 253, 240));
-        cmbTransfusi.setForeground(new java.awt.Color(0, 0, 0));
         cmbTransfusi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
         cmbTransfusi.setLightWeightPopupEnabled(false);
         cmbTransfusi.setName("cmbTransfusi"); // NOI18N
@@ -1972,7 +1903,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel82.setBounds(375, 1830, 50, 23);
 
         cmbJnsTransfusi.setBackground(new java.awt.Color(245, 253, 240));
-        cmbJnsTransfusi.setForeground(new java.awt.Color(0, 0, 0));
         cmbJnsTransfusi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "WB", "PRC" }));
         cmbJnsTransfusi.setLightWeightPopupEnabled(false);
         cmbJnsTransfusi.setName("cmbJnsTransfusi"); // NOI18N
@@ -1985,7 +1915,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel83);
         jLabel83.setBounds(485, 1830, 55, 23);
 
-        TjmlTrans.setForeground(new java.awt.Color(0, 0, 0));
         TjmlTrans.setName("TjmlTrans"); // NOI18N
         TjmlTrans.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2009,7 +1938,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel85.setBounds(0, 1858, 140, 23);
 
         cmbJaringan.setBackground(new java.awt.Color(245, 253, 240));
-        cmbJaringan.setForeground(new java.awt.Color(0, 0, 0));
         cmbJaringan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ada", "Tidak" }));
         cmbJaringan.setLightWeightPopupEnabled(false);
         cmbJaringan.setName("cmbJaringan"); // NOI18N
@@ -2027,7 +1955,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel88);
         jLabel88.setBounds(210, 1858, 90, 23);
 
-        TjnsJaringan.setForeground(new java.awt.Color(0, 0, 0));
         TjnsJaringan.setName("TjnsJaringan"); // NOI18N
         TjnsJaringan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2044,7 +1971,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel90.setBounds(0, 1886, 140, 23);
 
         cmbPemeriksaan.setBackground(new java.awt.Color(245, 253, 240));
-        cmbPemeriksaan.setForeground(new java.awt.Color(0, 0, 0));
         cmbPemeriksaan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
         cmbPemeriksaan.setLightWeightPopupEnabled(false);
         cmbPemeriksaan.setName("cmbPemeriksaan"); // NOI18N
@@ -2057,7 +1983,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel91);
         jLabel91.setBounds(210, 1886, 90, 23);
 
-        Tkomplikasi.setForeground(new java.awt.Color(0, 0, 0));
         Tkomplikasi.setName("Tkomplikasi"); // NOI18N
         Tkomplikasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2074,10 +1999,9 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel92.setBounds(0, 1914, 140, 23);
 
         TtglLaporan.setEditable(false);
-        TtglLaporan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
+        TtglLaporan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         TtglLaporan.setDisplayFormat("dd-MM-yyyy");
         TtglLaporan.setName("TtglLaporan"); // NOI18N
-        TtglLaporan.setOpaque(false);
         TtglLaporan.setPreferredSize(new java.awt.Dimension(90, 23));
         FormInput.add(TtglLaporan);
         TtglLaporan.setBounds(145, 1914, 90, 23);
@@ -2088,7 +2012,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel93);
         jLabel93.setBounds(240, 1914, 60, 23);
 
-        cmbJam6.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam6.setName("cmbJam6"); // NOI18N
         cmbJam6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2099,7 +2022,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbJam6);
         cmbJam6.setBounds(304, 1914, 45, 23);
 
-        cmbMnt6.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt6.setName("cmbMnt6"); // NOI18N
         cmbMnt6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2110,7 +2032,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbMnt6);
         cmbMnt6.setBounds(357, 1914, 45, 23);
 
-        cmbDtk6.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk6.setName("cmbDtk6"); // NOI18N
         cmbDtk6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2128,7 +2049,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel286);
         jLabel286.setBounds(461, 1914, 50, 23);
 
-        BtnMicCatatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnMicCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mic_off.png"))); // NOI18N
         BtnMicCatatan.setText("MIC OFF");
         BtnMicCatatan.setName("BtnMicCatatan"); // NOI18N
@@ -2141,7 +2061,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnMicCatatan);
         BtnMicCatatan.setBounds(550, 645, 210, 40);
 
-        BtnMicInstruksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnMicInstruksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mic_off.png"))); // NOI18N
         BtnMicInstruksi.setText("MIC OFF");
         BtnMicInstruksi.setName("BtnMicInstruksi"); // NOI18N
@@ -2154,8 +2073,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnMicInstruksi);
         BtnMicInstruksi.setBounds(550, 1396, 210, 40);
 
-        BtnTindakan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnTindakan.setMnemonic('2');
         BtnTindakan.setText("Template");
         BtnTindakan.setToolTipText("Alt+2");
         BtnTindakan.setName("BtnTindakan"); // NOI18N
@@ -2168,8 +2087,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnTindakan);
         BtnTindakan.setBounds(770, 150, 100, 23);
 
-        BtnCatatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnCatatan.setMnemonic('2');
         BtnCatatan.setText("Template");
         BtnCatatan.setToolTipText("Alt+2");
         BtnCatatan.setName("BtnCatatan"); // NOI18N
@@ -2182,8 +2101,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnCatatan);
         BtnCatatan.setBounds(770, 687, 100, 23);
 
-        BtnInstruksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnInstruksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnInstruksi.setMnemonic('2');
         BtnInstruksi.setText("Template");
         BtnInstruksi.setToolTipText("Alt+2");
         BtnInstruksi.setName("BtnInstruksi"); // NOI18N
@@ -2197,7 +2116,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         BtnInstruksi.setBounds(770, 1436, 100, 23);
 
         cmbJnsOperasi.setBackground(new java.awt.Color(245, 253, 240));
-        cmbJnsOperasi.setForeground(new java.awt.Color(0, 0, 0));
         cmbJnsOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Op Pterygium", "Op Phacoemulsifikasi", "Op ECCE", "Op Eviserasi", "Op Trabekulektomi" }));
         cmbJnsOperasi.setLightWeightPopupEnabled(false);
         cmbJnsOperasi.setName("cmbJnsOperasi"); // NOI18N
@@ -2255,10 +2173,9 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
-        DTPCari1.setOpaque(false);
         DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass12.add(DTPCari1);
 
@@ -2270,10 +2187,9 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
-        DTPCari2.setOpaque(false);
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass12.add(DTPCari2);
 
@@ -2302,7 +2218,6 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel6.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass10.add(jLabel6);
 
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(200, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -2312,8 +2227,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         });
         panelGlass10.add(TCari);
 
-        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -2329,8 +2244,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         });
         panelGlass10.add(BtnCari);
 
-        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
