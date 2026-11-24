@@ -1951,7 +1951,6 @@ public class RMLainHemodialisis extends javax.swing.JDialog {
         cekTglTravel2 = "";
         cekTglTravel3 = "";
         tglReg = "";
-        sttsrwt = "";
         rgrawat = "";       
         
         if (tbStatus.getSelectedRow() != -1) {

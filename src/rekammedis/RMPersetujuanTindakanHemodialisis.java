@@ -2230,7 +2230,6 @@ public class RMPersetujuanTindakanHemodialisis extends javax.swing.JDialog {
     }
 
     private void getData() {
-        sttsrwt = "";
         nipSaksi = "";
         nipDokter = "";
         idFileSaksiKlg = "";

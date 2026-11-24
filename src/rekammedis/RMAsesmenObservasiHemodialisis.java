@@ -6937,7 +6937,6 @@ public final class RMAsesmenObservasiHemodialisis extends javax.swing.JDialog {
         nipDokter2 = "";
         tglReg = "";
         jamReg = "";
-        sttsrwt = "";
         cekSesak = "";
         cekMual = "";
         cekGatal = "";

@@ -3102,7 +3102,6 @@ public class RMLembarObservasiHemodialisis extends javax.swing.JDialog {
         cekMenggigil = "";
         tglReg = "";
         jamReg = "";
-        sttsrwt = "";
     }
 
     private void cekAngka() {

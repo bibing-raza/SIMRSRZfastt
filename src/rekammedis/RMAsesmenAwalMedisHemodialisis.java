@@ -34,6 +34,7 @@ import laporan.DlgHasilPenunjangMedis;
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import java.util.Objects;
 import simrskhanza.frmUtama;
 
 /**
@@ -56,6 +57,11 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
             cekTerapi = "", cekDialisis = "", cekSled = "", cekCrrt = "", cekHf = "", cekCito = "", cekElektif = "", cekPrepar = "", cekTraveling = "", cekRegulerTndkn = "",
             cekLow = "", cekHigh = "", cekAVShunt = "", cekGraft = "", cekTunel = "", cekTempor = "", cekFemoral = "", tglReg = "", jamReg = "", sttsrwt = "";
     private frmUtama formUtama;
+    private String isiAtauStrip(Object nilai) {
+        String teks = Objects.toString(nilai, "").trim();
+        return teks.isEmpty() ? "-" : teks;
+    }    
+    
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -3501,6 +3507,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
                 if (Sequel.queryu2tf("delete from asesmen_awal_medis_hemodialisis where no_rawat=?", 1, new String[]{
                     tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                 }) == true) {
+                    Sequel.meghapus("obat_asesmen_awal_medis_hemodialisis", "no_rawat", tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString());
                     tampil();
                     emptTeks();
                 } else {
@@ -3746,6 +3753,15 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
                 row.put("namaObat", tabMode1.getValueAt(i, 1).toString());
                 row.put("dosiss", tabMode1.getValueAt(i, 2).toString());
                 row.put("waktuPenggunaan", tabMode1.getValueAt(i, 3).toString());
+                dataObat.add(row);
+            }
+            
+            //jika data obat kosong
+            if (dataObat.isEmpty()) {
+                Map<String, Object> row = new HashMap<>();
+                row.put("namaObat", "-");
+                row.put("dosiss", "-");
+                row.put("waktuPenggunaan", "-");
                 dataObat.add(row);
             }
             
@@ -6180,7 +6196,6 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         cekFemoral = "";
         tglReg = "";
         jamReg = "";
-        sttsrwt = "";
     }
     
     private void cekData() {
