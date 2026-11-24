@@ -9,6 +9,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import inventory.DlgCatatanResepBiasaAntibiotik;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -629,6 +630,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         jLabel68 = new widget.Label();
         cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
+        BtnResep = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
@@ -883,6 +885,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         BtnTambah = new widget.Button();
         BtnHapusObat = new widget.Button();
         BtnGantiTtv = new widget.Button();
+        chkSaya = new widget.CekBox();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAsesmen = new widget.Table();
@@ -948,6 +951,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -965,6 +969,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         panelGlass8.add(BtnSimpan);
 
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -982,6 +987,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         panelGlass8.add(BtnBatal);
 
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -999,6 +1005,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         panelGlass8.add(BtnHapus);
 
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -1027,6 +1034,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1043,7 +1051,20 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnPrint);
 
+        BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
+        BtnResep.setText("Resep Obat");
+        BtnResep.setToolTipText("Alt+R");
+        BtnResep.setName("BtnResep"); // NOI18N
+        BtnResep.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResepActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnResep);
+
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1061,6 +1082,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         panelGlass8.add(BtnAll);
 
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1143,7 +1165,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         jLabel12.setBounds(0, 38, 110, 23);
 
         TtglAses.setEditable(false);
-        TtglAses.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2026" }));
+        TtglAses.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2026" }));
         TtglAses.setDisplayFormat("dd-MM-yyyy");
         TtglAses.setName("TtglAses"); // NOI18N
         TtglAses.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -1410,7 +1432,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         jLabel14.setBounds(0, 262, 110, 23);
 
         TtglAnam.setEditable(false);
-        TtglAnam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2026" }));
+        TtglAnam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2026" }));
         TtglAnam.setDisplayFormat("dd-MM-yyyy");
         TtglAnam.setName("TtglAnam"); // NOI18N
         TtglAnam.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -2723,7 +2745,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         label103.setBounds(0, 1925, 130, 23);
 
         TtglPelaksanaan.setEditable(false);
-        TtglPelaksanaan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2026" }));
+        TtglPelaksanaan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2026" }));
         TtglPelaksanaan.setDisplayFormat("dd-MM-yyyy");
         TtglPelaksanaan.setName("TtglPelaksanaan"); // NOI18N
         TtglPelaksanaan.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -3137,6 +3159,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         jLabel122.setBounds(0, 2233, 110, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnDokter.setMnemonic('2');
         BtnDokter.setToolTipText("Alt+2");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -3149,6 +3172,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         BtnDokter.setBounds(480, 178, 28, 23);
 
         BtnSupervisor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnSupervisor.setMnemonic('2');
         BtnSupervisor.setToolTipText("Alt+2");
         BtnSupervisor.setName("BtnSupervisor"); // NOI18N
         BtnSupervisor.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -3161,6 +3185,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         BtnSupervisor.setBounds(480, 206, 28, 23);
 
         BtnPengisi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPengisi.setMnemonic('2');
         BtnPengisi.setToolTipText("Alt+2");
         BtnPengisi.setName("BtnPengisi"); // NOI18N
         BtnPengisi.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -3191,6 +3216,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         chkTglPelaksanaan.setBounds(5, 1953, 125, 23);
 
         BtnPasteHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnPasteHasil.setMnemonic('L');
         BtnPasteHasil.setText("Paste");
         BtnPasteHasil.setToolTipText("Alt+L");
         BtnPasteHasil.setName("BtnPasteHasil"); // NOI18N
@@ -3263,6 +3289,24 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         FormInput.add(BtnGantiTtv);
         BtnGantiTtv.setBounds(740, 735, 90, 30);
 
+        chkSaya.setBackground(new java.awt.Color(255, 255, 250));
+        chkSaya.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkSaya.setText("Saya Sendiri");
+        chkSaya.setBorderPainted(true);
+        chkSaya.setBorderPaintedFlat(true);
+        chkSaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkSaya.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkSaya.setName("chkSaya"); // NOI18N
+        chkSaya.setOpaque(false);
+        chkSaya.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkSaya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkSayaActionPerformed(evt);
+            }
+        });
+        FormInput.add(chkSaya);
+        chkSaya.setBounds(516, 178, 100, 23);
+
         scrollInput.setViewportView(FormInput);
 
         TabRawat.addTab("Input Assesmen", scrollInput);
@@ -3304,7 +3348,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -3317,7 +3361,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -3339,6 +3383,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         panelGlass9.add(TCari);
 
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('T');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+T");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -4264,14 +4309,14 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
                 }
 
                 Valid.MyReportDataSource("rptAsesmenAwalMedisHDQr1.jasper", "report", "::[ Assesmen Awal Medis Hemodialisis (hal. 1) ]::", dataSource, param);
-//                Valid.MyReport("rptAsesmenAwalMedisHDQr2.jasper", "report", "::[ Assesmen Awal Medis Hemodialisis (hal. 2) ]::",
-//                        "SELECT now() tanggal", param);
+                Valid.MyReport("rptAsesmenAwalMedisHDQr2.jasper", "report", "::[ Assesmen Awal Medis Hemodialisis (hal. 2) ]::",
+                        "SELECT now() tanggal", param);
 
                 Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             } else {                
                 Valid.MyReportDataSource("rptAsesmenAwalMedisHD1.jasper", "report", "::[ Assesmen Awal Medis Hemodialisis (hal. 1) ]::", dataSource, param);
-//                Valid.MyReport("rptAsesmenAwalMedisHD2.jasper", "report", "::[ Assesmen Awal Medis Hemodialisis (hal. 2) ]::",
-//                        "SELECT now() tanggal", param);
+                Valid.MyReport("rptAsesmenAwalMedisHD2.jasper", "report", "::[ Assesmen Awal Medis Hemodialisis (hal. 2) ]::",
+                        "SELECT now() tanggal", param);
             }
             BtnBatalActionPerformed(null);
             TabRawat.setSelectedIndex(1);
@@ -5112,6 +5157,33 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnGantiTtvActionPerformed
 
+    private void chkSayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSayaActionPerformed
+        if (chkSaya.isSelected() == true) {
+            if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
+                nipDokter = akses.getkode();
+                TnmDokter.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipDokter + "'"));
+            } else {
+                nipDokter = "-";
+                TnmDokter.setText("-");
+            }
+        } else {
+            nipDokter = "-";
+            TnmDokter.setText("-");
+        }
+    }//GEN-LAST:event_chkSayaActionPerformed
+
+    private void BtnResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("RMAsesmenAwalMedisHemodialisis");
+        DlgCatatanResepBiasaAntibiotik form = new DlgCatatanResepBiasaAntibiotik(null, false);
+        form.isCek();
+        form.setData(TNoRw.getText(), "ranap");
+        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnResepActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -5142,6 +5214,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
     private widget.Button BtnPasteHasil;
     private widget.Button BtnPengisi;
     private widget.Button BtnPrint;
+    private widget.Button BtnResep;
     private widget.Button BtnSimpan;
     private widget.Button BtnSupervisor;
     private widget.Button BtnTambah;
@@ -5260,6 +5333,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
     public widget.CekBox chkReguler;
     public widget.CekBox chkRegulerTindk;
     public widget.CekBox chkRenal;
+    public widget.CekBox chkSaya;
     public widget.CekBox chkSimetris;
     public widget.CekBox chkSled;
     public widget.CekBox chkStroke;
@@ -5776,6 +5850,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
         Teritropoetin.setText("");
         nipPengisi = "-";
         TnmPengisi.setText("-");
+        chkSaya.setSelected(false);
     }
 
     private void getData() {
@@ -5979,6 +6054,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
                             nipDokter = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
                             TnmDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
                             BtnDokter.requestFocus();
+                            chkSaya.setSelected(false);
                         }                        
                     }
                 }
@@ -6415,6 +6491,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
     }
     
     private void dataCek() {
+        chkSaya.setSelected(false);
         if (cmbRujukan.getSelectedIndex() == 1) {
             cmbYaRujukan.setEnabled(true);
             TketYaLainya.setEnabled(false);
