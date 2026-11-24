@@ -5244,27 +5244,15 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                     }
                 }
             } else {
-                if (Sequel.cariInteger("select count(-1) from rawat_jl_drpr where no_rawat='" + TNoRw.getText() + "'") > 0
-                        || Sequel.cariInteger("select count(-1) from pemeriksaan_ralan where no_rawat='" + TNoRw.getText() + "'") > 0
-                        || Sequel.cariInteger("select count(-1) from pemeriksaan_ralan_petugas where no_rawat='" + TNoRw.getText() + "'") > 0) {
-                    JOptionPane.showMessageDialog(null, "SEP gagal dihapus, masih ada data tindakan atau pemeriksaan dokter yang tersimpan...!");
+                if (akses.getadmin() == true) {
+                    hapusSEPralan();
                 } else {
-                    try {
-                        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                        if (x == JOptionPane.YES_OPTION) {
-                            if (!Sequel.cariIsi("select urutan_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "'").equals("1")) {
-                                Sequel.queryu("delete from bridging_sep where no_rawat='" + TNoRw.getText() + "' and no_sep='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 0).toString() + "'");
-                                tampil();
-                                emptTeks();
-                            } else {
-                                bodyWithDeleteRequest();
-                            }
-                        }
-                    } catch (Exception ex) {
-                        System.out.println("Notifikasi Bridging : " + ex);
-                        if (ex.toString().contains("UnknownHostException")) {
-                            JOptionPane.showMessageDialog(null, "Koneksi ke server BPJS terputus...!");
-                        }
+                    if (Sequel.cariInteger("select count(-1) from rawat_jl_drpr where no_rawat='" + TNoRw.getText() + "'") > 0
+                            || Sequel.cariInteger("select count(-1) from pemeriksaan_ralan where no_rawat='" + TNoRw.getText() + "'") > 0
+                            || Sequel.cariInteger("select count(-1) from pemeriksaan_ralan_petugas where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                        JOptionPane.showMessageDialog(null, "SEP gagal dihapus, masih ada data tindakan atau pemeriksaan dokter yang tersimpan...!");
+                    } else {
+                        hapusSEPralan();
                     }
                 }
             }
@@ -10882,6 +10870,26 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
+        }
+    }
+
+    private void hapusSEPralan() {
+        try {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (!Sequel.cariIsi("select urutan_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "'").equals("1")) {
+                    Sequel.queryu("delete from bridging_sep where no_rawat='" + TNoRw.getText() + "' and no_sep='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 0).toString() + "'");
+                    tampil();
+                    emptTeks();
+                } else {
+                    bodyWithDeleteRequest();
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Notifikasi Bridging : " + ex);
+            if (ex.toString().contains("UnknownHostException")) {
+                JOptionPane.showMessageDialog(null, "Koneksi ke server BPJS terputus...!");
+            }
         }
     }
 }

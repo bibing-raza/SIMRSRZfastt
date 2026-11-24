@@ -11,7 +11,7 @@
  Target Server Version : 100131 (10.1.31-MariaDB)
  File Encoding         : 65001
 
- Date: 19/11/2026 15:19:26
+ Date: 24/11/2026 14:28:41
 */
 
 SET NAMES utf8mb4;
@@ -3714,7 +3714,6 @@ CREATE TABLE `asesmen_ulang_hemodialisis`  (
   `bb_kering` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `bb_post_hd` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `av_fistula` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `femoral_akses` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `sub_clavian` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `jugular` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `femoral_hd` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -13454,6 +13453,34 @@ CREATE TABLE `detail_nota_jalan`  (
 
 -- ----------------------------
 -- Records of detail_nota_jalan
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for detail_observasi_hemodialisis
+-- ----------------------------
+DROP TABLE IF EXISTS `detail_observasi_hemodialisis`;
+CREATE TABLE `detail_observasi_hemodialisis`  (
+  `no_rawat` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `jam_intra` time NULL DEFAULT NULL,
+  `qb` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `uf_rate` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `td` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `nadi` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `suhu` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `respirasi` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `nm_intake` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `jml_intake` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `jml_output` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `keterangan` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `waktu_simpan_obs` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `waktu_simpan_intra` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`waktu_simpan_intra`) USING BTREE,
+  INDEX `no_rawat`(`no_rawat` ASC) USING BTREE,
+  CONSTRAINT `detail_observasi_hemodialisis_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `reg_periksa` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of detail_observasi_hemodialisis
 -- ----------------------------
 
 -- ----------------------------
@@ -247055,6 +247082,55 @@ CREATE TABLE `obatbhp_ok`  (
 
 -- ----------------------------
 -- Records of obatbhp_ok
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for observasi_hemodialisis
+-- ----------------------------
+DROP TABLE IF EXISTS `observasi_hemodialisis`;
+CREATE TABLE `observasi_hemodialisis`  (
+  `no_rawat` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `status_rawat` enum('ralan','ranap') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ruang_rawat` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `jam_pre_hd` time NULL DEFAULT NULL,
+  `cek_jam_post` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `jam_post_hd` time NULL DEFAULT NULL,
+  `total_intake` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `total_output` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `total_balance` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `hd` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `kt_v` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `total_uf` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `masalah_akses` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `perdarahan` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `first` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `alergi_thd_dializer` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `kram` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `hiperkalemia` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `hipertensi` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `hipotensi` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `nyeri_dada` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `aritmia` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `gatal_gatal` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `demam` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `menggigil` enum('ya','tidak') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `discharge_planing` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `nip_akses_vaskuler` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `obat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `catatan_medis` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `nip_dokter` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `waktu_simpan_obs` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`no_rawat`) USING BTREE,
+  INDEX `no_rawat`(`no_rawat` ASC) USING BTREE,
+  INDEX `nip_akses_vaskuler`(`nip_akses_vaskuler` ASC) USING BTREE,
+  INDEX `nip_dokter`(`nip_dokter` ASC) USING BTREE,
+  CONSTRAINT `observasi_hemodialisis_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `reg_periksa` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `observasi_hemodialisis_ibfk_2` FOREIGN KEY (`nip_akses_vaskuler`) REFERENCES `pegawai` (`nik`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `observasi_hemodialisis_ibfk_3` FOREIGN KEY (`nip_dokter`) REFERENCES `pegawai` (`nik`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of observasi_hemodialisis
 -- ----------------------------
 
 -- ----------------------------

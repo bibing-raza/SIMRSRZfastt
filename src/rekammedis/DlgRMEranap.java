@@ -267,8 +267,9 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnStatusHemodialisis = new widget.ButtonBig();
         BtnSamplingPemanfaatanRM = new widget.ButtonBig();
         BtnPersetujuanTindakanHD = new widget.ButtonBig();
-        BtnAsesmenUlangHD = new widget.ButtonBig();
+        BtnAsesmenObservasiHD = new widget.ButtonBig();
         BtnAsesmenAwalMedisHD = new widget.ButtonBig();
+        BtnObservasiHemodialisis = new widget.ButtonBig();
         BtnLainHemodialisis = new widget.ButtonBig();
         internalFrame10 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -1218,18 +1219,18 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         FormMenuRanap.add(BtnPersetujuanTindakanHD);
 
-        BtnAsesmenUlangHD.setForeground(new java.awt.Color(0, 0, 0));
-        BtnAsesmenUlangHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
-        BtnAsesmenUlangHD.setText("<html><div style=\"text-align: center;\">Assesmen Ulang Pasien<br>Dengan Hemodialisis</div></html>");
-        BtnAsesmenUlangHD.setIconTextGap(0);
-        BtnAsesmenUlangHD.setName("BtnAsesmenUlangHD"); // NOI18N
-        BtnAsesmenUlangHD.setPreferredSize(new java.awt.Dimension(200, 105));
-        BtnAsesmenUlangHD.addActionListener(new java.awt.event.ActionListener() {
+        BtnAsesmenObservasiHD.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenObservasiHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnAsesmenObservasiHD.setText("<html><div style=\"text-align: center;\">Assesmen Dan Observasi<br>Pasien Dengan Hemodialisis</div></html>");
+        BtnAsesmenObservasiHD.setIconTextGap(0);
+        BtnAsesmenObservasiHD.setName("BtnAsesmenObservasiHD"); // NOI18N
+        BtnAsesmenObservasiHD.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnAsesmenObservasiHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAsesmenUlangHDActionPerformed(evt);
+                BtnAsesmenObservasiHDActionPerformed(evt);
             }
         });
-        FormMenuRanap.add(BtnAsesmenUlangHD);
+        FormMenuRanap.add(BtnAsesmenObservasiHD);
 
         BtnAsesmenAwalMedisHD.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenAwalMedisHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -1243,6 +1244,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormMenuRanap.add(BtnAsesmenAwalMedisHD);
+
+        BtnObservasiHemodialisis.setForeground(new java.awt.Color(0, 0, 0));
+        BtnObservasiHemodialisis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_Address Book_32590.png"))); // NOI18N
+        BtnObservasiHemodialisis.setText("Lembar Observasi (Hemodialisis)");
+        BtnObservasiHemodialisis.setIconTextGap(0);
+        BtnObservasiHemodialisis.setName("BtnObservasiHemodialisis"); // NOI18N
+        BtnObservasiHemodialisis.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnObservasiHemodialisis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnObservasiHemodialisisActionPerformed(evt);
+            }
+        });
+        FormMenuRanap.add(BtnObservasiHemodialisis);
 
         BtnLainHemodialisis.setForeground(new java.awt.Color(0, 0, 0));
         BtnLainHemodialisis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_Address Book_32590.png"))); // NOI18N
@@ -3420,13 +3434,13 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnLainHemodialisisActionPerformed
 
-    private void BtnAsesmenUlangHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenUlangHDActionPerformed
+    private void BtnAsesmenObservasiHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenObservasiHDActionPerformed
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setform("DlgRMEranap");
-            RMAsesmenUlangHemodialisis form = new RMAsesmenUlangHemodialisis(null, false);
+            RMAsesmenObservasiHemodialisis form = new RMAsesmenObservasiHemodialisis(null, false);
             form.emptTeks();
             form.isCek();
             form.setData(TNoRW.getText(), "ranap", nmUnit.getText());
@@ -3435,7 +3449,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             form.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
-    }//GEN-LAST:event_BtnAsesmenUlangHDActionPerformed
+    }//GEN-LAST:event_BtnAsesmenObservasiHDActionPerformed
 
     private void BtnAsesmenAwalMedisHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenAwalMedisHDActionPerformed
         if (TNoRW.getText().equals("")) {
@@ -3453,6 +3467,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnAsesmenAwalMedisHDActionPerformed
+
+    private void BtnObservasiHemodialisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnObservasiHemodialisisActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMLembarObservasiHemodialisis form = new RMLembarObservasiHemodialisis(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), "ranap", nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnObservasiHemodialisisActionPerformed
 
     /**
     * @param args the command line arguments
@@ -3480,13 +3511,13 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnAsesmenMedikBedah;
     private widget.ButtonBig BtnAsesmenMedikDewasa;
     private widget.ButtonBig BtnAsesmenMedikPerinatologi;
+    private widget.ButtonBig BtnAsesmenObservasiHD;
     private widget.ButtonBig BtnAsesmenPasienTerminal;
     private widget.ButtonBig BtnAsesmenPraSedasi;
     private widget.ButtonBig BtnAsesmenPraSedasiKonsepIAR;
     private widget.ButtonBig BtnAsesmenPreInduksi;
     private widget.ButtonBig BtnAsesmenRestrain;
     private widget.ButtonBig BtnAsesmenUlangGizi;
-    private widget.ButtonBig BtnAsesmenUlangHD;
     private widget.ButtonBig BtnAsesmenUlangRJAnak;
     private widget.ButtonBig BtnAsesmenUlangRJDewasa;
     private widget.ButtonBig BtnAsuhanGizi;
@@ -3526,6 +3557,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnMonitoringEWSdewasa;
     private widget.ButtonBig BtnMonitoringEWSobsgyn;
     private widget.ButtonBig BtnMonitoringPEWSanak;
+    private widget.ButtonBig BtnObservasiHemodialisis;
     private widget.ButtonBig BtnObservasiKala1;
     private widget.ButtonBig BtnObservasiRestrain;
     private widget.ButtonBig BtnPantauHarianPasien;
@@ -3680,8 +3712,9 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnStatusHemodialisis.setEnabled(akses.gethemodialisa());
         BtnPersetujuanTindakanHD.setEnabled(akses.gethemodialisa());
         BtnLainHemodialisis.setEnabled(akses.gethemodialisa());
-        BtnAsesmenUlangHD.setEnabled(akses.gethemodialisa());
+        BtnAsesmenObservasiHD.setEnabled(akses.gethemodialisa());
         BtnAsesmenAwalMedisHD.setEnabled(akses.gethemodialisa());
+        BtnObservasiHemodialisis.setEnabled(akses.gethemodialisa());
         BtnMaskepNyeriAkut.setEnabled(akses.getcppt());
         BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
         BtnMaskepResikoHipotermia.setEnabled(akses.getcppt());
@@ -4205,13 +4238,18 @@ public class DlgRMEranap extends javax.swing.JDialog {
             jmlmenu++;
         }
         
-        if (akses.gethemodialisa() && BtnAsesmenUlangHD.getText().toLowerCase().trim().contains(cari)) {
-            FormMenuRanap.add(BtnAsesmenUlangHD);
+        if (akses.gethemodialisa() && BtnAsesmenObservasiHD.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnAsesmenObservasiHD);
             jmlmenu++;
         }
         
         if (akses.gethemodialisa() && BtnAsesmenAwalMedisHD.getText().toLowerCase().trim().contains(cari)) {
             FormMenuRanap.add(BtnAsesmenAwalMedisHD);
+            jmlmenu++;
+        }
+        
+        if (akses.gethemodialisa() && BtnObservasiHemodialisis.getText().toLowerCase().trim().contains(cari)) {
+            FormMenuRanap.add(BtnObservasiHemodialisis);
             jmlmenu++;
         }
         
@@ -4586,8 +4624,9 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 + "    UNION ALL SELECT 48, 'status_hemodialisis', 'Status Hemodialisis' "
                 + "    UNION ALL SELECT 49, 'persetujuan_tindakan_hemodialisis', 'Persetujuan Tindakan (Hemodialisis)' "
                 + "    UNION ALL SELECT 50, 'lainlain_hemodialisis', 'Lain-Lain (Hemodialisis)' "
-                + "    UNION ALL SELECT 51, 'asesmen_ulang_hemodialisis', 'Assesmen Ulang Pasien Hemodialisis' "
-                + "    UNION ALL SELECT 52, 'asesmen_awal_medis_hemodialisis', 'Assesmen Awal Medis Hemodialisis') AS t";
+                + "    UNION ALL SELECT 51, 'asesmen_ulang_hemodialisis', 'Assesmen & Observasi Pasien Dengan Hemodialisis' "
+                + "    UNION ALL SELECT 52, 'asesmen_awal_medis_hemodialisis', 'Assesmen Awal Medis Hemodialisis' "
+                + "    UNION ALL SELECT 53, 'observasi_hemodialisis', 'Observasi Hemodialisis') AS t";
 
         if (TNoRW.getText().isEmpty()) {
             return;

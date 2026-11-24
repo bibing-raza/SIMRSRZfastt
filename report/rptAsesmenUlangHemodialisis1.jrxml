@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="1.8181818181818235"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="343"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -64,7 +64,6 @@
 	<parameter name="bbKering" class="java.lang.String"/>
 	<parameter name="bbPostHD" class="java.lang.String"/>
 	<parameter name="avFistula" class="java.lang.String"/>
-	<parameter name="femoAkses" class="java.lang.String"/>
 	<parameter name="sub" class="java.lang.String"/>
 	<parameter name="jugular" class="java.lang.String"/>
 	<parameter name="femoHD" class="java.lang.String"/>
@@ -164,7 +163,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ASSESMEN ULANG PASIEN DENGAN HEMODIALISIS]]></text>
+				<text><![CDATA[ASSESMEN DAN OBSERVASI PASIEN DENGAN HEMODIALISIS]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="72" width="519" height="1">
@@ -1100,35 +1099,13 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{avFistula}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement positionType="Float" mode="Transparent" x="150" y="359" width="11" height="11"/>
+				<reportElement positionType="Float" mode="Transparent" x="214" y="359" width="11" height="11"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement positionType="Float" x="165" y="359" width="85" height="11">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<text><![CDATA[Femoral   HD Kateter :]]></text>
-			</staticText>
-			<textField>
-				<reportElement positionType="Float" x="150" y="359" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{femoAkses}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement positionType="Float" mode="Transparent" x="250" y="359" width="11" height="11"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</rectangle>
-			<staticText>
-				<reportElement positionType="Float" x="265" y="359" width="45" height="11">
+				<reportElement positionType="Float" x="229" y="359" width="45" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
@@ -1137,20 +1114,20 @@
 				<text><![CDATA[Sub Clavian]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="250" y="359" width="11" height="11"/>
+				<reportElement positionType="Float" x="214" y="359" width="11" height="11"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{sub}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement positionType="Float" mode="Transparent" x="315" y="359" width="11" height="11"/>
+				<reportElement positionType="Float" mode="Transparent" x="279" y="359" width="11" height="11"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement positionType="Float" x="330" y="359" width="28" height="11">
+				<reportElement positionType="Float" x="294" y="359" width="30" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
@@ -1159,27 +1136,27 @@
 				<text><![CDATA[Jugular]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="315" y="359" width="11" height="11"/>
+				<reportElement positionType="Float" x="279" y="359" width="11" height="11"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{jugular}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement positionType="Float" mode="Transparent" x="361" y="359" width="11" height="11"/>
+				<reportElement positionType="Float" mode="Transparent" x="328" y="359" width="11" height="11"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement positionType="Float" x="361" y="359" width="11" height="11"/>
+				<reportElement positionType="Float" x="328" y="359" width="11" height="11"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{femoHD}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="376" y="359" width="70" height="11">
+				<reportElement positionType="Float" x="343" y="359" width="70" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
@@ -1188,13 +1165,13 @@
 				<text><![CDATA[Femoral    Lokasi :]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement positionType="Float" mode="Transparent" x="446" y="359" width="11" height="11"/>
+				<reportElement positionType="Float" mode="Transparent" x="413" y="359" width="11" height="11"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement positionType="Float" x="461" y="359" width="26" height="11">
+				<reportElement positionType="Float" x="428" y="359" width="30" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
@@ -1203,21 +1180,21 @@
 				<text><![CDATA[Kanan]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="446" y="359" width="11" height="11"/>
+				<reportElement positionType="Float" x="413" y="359" width="11" height="11"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{kanan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="489" y="359" width="11" height="11"/>
+				<reportElement positionType="Float" x="461" y="359" width="11" height="11"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{kiri}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="504" y="359" width="15" height="11">
+				<reportElement positionType="Float" x="476" y="359" width="15" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
@@ -1226,7 +1203,7 @@
 				<text><![CDATA[Kiri]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement positionType="Float" mode="Transparent" x="489" y="359" width="11" height="11"/>
+				<reportElement positionType="Float" mode="Transparent" x="461" y="359" width="11" height="11"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -1531,7 +1508,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<text><![CDATA[2. Gangguan Perfusi Jaringan]]></text>
+				<text><![CDATA[2. Gangguan Perfusi Jaringan Renal]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" x="30" y="567" width="143" height="11">
@@ -1673,6 +1650,15 @@
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement positionType="Float" x="165" y="359" width="50" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[HD Kateter :]]></text>
+			</staticText>
 		</band>
 	</title>
 </jasperReport>

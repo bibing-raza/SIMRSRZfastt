@@ -37,7 +37,7 @@ import rekammedis.RMAsesmenPraSedasi;
 import rekammedis.RMAsesmenPraSedasiKonsepIAR;
 import rekammedis.RMAsesmenPreInduksi;
 import rekammedis.RMAsesmenRestrain;
-import rekammedis.RMAsesmenUlangHemodialisis;
+import rekammedis.RMAsesmenObservasiHemodialisis;
 import rekammedis.RMAsesmenUlangResikoJatuhAnak;
 import rekammedis.RMAsesmenUlangResikoJatuhDewasa;
 import rekammedis.RMAsuhanGiziRanap;
@@ -56,6 +56,7 @@ import rekammedis.RMInstruksiDokterDNR;
 import rekammedis.RMLainHemodialisis;
 import rekammedis.RMLaporanOperasi;
 import rekammedis.RMLembarObservasi;
+import rekammedis.RMLembarObservasiHemodialisis;
 import rekammedis.RMMasalahKeperawatanBersihanJlnNafas;
 import rekammedis.RMMasalahKeperawatanHipotermia;
 import rekammedis.RMMasalahKeperawatanHipovolemia;
@@ -249,8 +250,9 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnStatusHemodialisis = new widget.ButtonBig();
         BtnPersetujuanTindakanHD = new widget.ButtonBig();
         BtnLainHemodialisis = new widget.ButtonBig();
-        BtnAsesmenUlangHD = new widget.ButtonBig();
+        BtnAsesmenObservasiHD = new widget.ButtonBig();
         BtnAsesmenAwalMedisHD = new widget.ButtonBig();
+        BtnObservasiHemodialisis = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -298,6 +300,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         ChkInput.setBorder(null);
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
         ChkInput.setText("Pencarian");
         ChkInput.setToolTipText("Alt+C");
@@ -1579,18 +1582,18 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         });
         FormMenu.add(BtnLainHemodialisis);
 
-        BtnAsesmenUlangHD.setForeground(new java.awt.Color(0, 0, 0));
-        BtnAsesmenUlangHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/mp_viewer.png"))); // NOI18N
-        BtnAsesmenUlangHD.setText("<html><div style=\"text-align: center;\">Assesmen Ulang Pasien<br>Dengan Hemodialisis</div></html>");
-        BtnAsesmenUlangHD.setIconTextGap(0);
-        BtnAsesmenUlangHD.setName("BtnAsesmenUlangHD"); // NOI18N
-        BtnAsesmenUlangHD.setPreferredSize(new java.awt.Dimension(200, 105));
-        BtnAsesmenUlangHD.addActionListener(new java.awt.event.ActionListener() {
+        BtnAsesmenObservasiHD.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenObservasiHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/mp_viewer.png"))); // NOI18N
+        BtnAsesmenObservasiHD.setText("<html><div style=\"text-align: center;\">Assesmen Dan Observasi<br>Pasien Dengan Hemodialisis</div></html>");
+        BtnAsesmenObservasiHD.setIconTextGap(0);
+        BtnAsesmenObservasiHD.setName("BtnAsesmenObservasiHD"); // NOI18N
+        BtnAsesmenObservasiHD.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnAsesmenObservasiHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAsesmenUlangHDActionPerformed(evt);
+                BtnAsesmenObservasiHDActionPerformed(evt);
             }
         });
-        FormMenu.add(BtnAsesmenUlangHD);
+        FormMenu.add(BtnAsesmenObservasiHD);
 
         BtnAsesmenAwalMedisHD.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenAwalMedisHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -1604,6 +1607,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnAsesmenAwalMedisHD);
+
+        BtnObservasiHemodialisis.setForeground(new java.awt.Color(0, 0, 0));
+        BtnObservasiHemodialisis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_Address Book_32590.png"))); // NOI18N
+        BtnObservasiHemodialisis.setText("Lembar Observasi (Hemodialisis)");
+        BtnObservasiHemodialisis.setIconTextGap(0);
+        BtnObservasiHemodialisis.setName("BtnObservasiHemodialisis"); // NOI18N
+        BtnObservasiHemodialisis.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnObservasiHemodialisis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnObservasiHemodialisisActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnObservasiHemodialisis);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -3191,21 +3207,21 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnLainHemodialisisActionPerformed
 
-    private void BtnAsesmenUlangHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenUlangHDActionPerformed
+    private void BtnAsesmenObservasiHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenObservasiHDActionPerformed
         try {
             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            RMAsesmenUlangHemodialisis form = new RMAsesmenUlangHemodialisis(formUtama, false);
+            RMAsesmenObservasiHemodialisis form = new RMAsesmenObservasiHemodialisis(formUtama, false);
             form.emptTeks();
             form.isCek();
             form.awalData();
             formUtama.tampilkanDialogDiPanelUtama(form);
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnAsesmenUlangHD.getText() + ".\n" + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnAsesmenObservasiHD.getText() + ".\n" + e.getMessage());
         } finally {
             setCursor(Cursor.getDefaultCursor());
         }
-    }//GEN-LAST:event_BtnAsesmenUlangHDActionPerformed
+    }//GEN-LAST:event_BtnAsesmenObservasiHDActionPerformed
 
     private void BtnAsesmenAwalMedisHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenAwalMedisHDActionPerformed
         try {
@@ -3223,6 +3239,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenAwalMedisHDActionPerformed
 
+    private void BtnObservasiHemodialisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnObservasiHemodialisisActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMLembarObservasiHemodialisis form = new RMLembarObservasiHemodialisis(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnObservasiHemodialisis.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnObservasiHemodialisisActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -3230,9 +3262,9 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.ButtonBig BtnAsesmenAwalMedisHD;
     private widget.ButtonBig BtnAsesmenMedikKebidanan;
+    private widget.ButtonBig BtnAsesmenObservasiHD;
     private widget.ButtonBig BtnAsesmenPasienTerminal;
     private widget.ButtonBig BtnAsesmenPraSedasiKonsepIAR;
-    private widget.ButtonBig BtnAsesmenUlangHD;
     private widget.ButtonBig BtnCatatanDiagnosa;
     private widget.ButtonBig BtnCatatanRuangPemulihan;
     private widget.ButtonBig BtnCatatanSedasiAnestesi;
@@ -3253,6 +3285,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnMaskepKetidakstabilanGlukosa;
     private widget.ButtonBig BtnMasterICDOmorphology;
     private widget.ButtonBig BtnMasterICDOtopography;
+    private widget.ButtonBig BtnObservasiHemodialisis;
     private widget.ButtonBig BtnPartograf;
     private widget.ButtonBig BtnPersetujuanTindakanHD;
     private widget.ButtonBig BtnRegisterCancer;
@@ -3815,13 +3848,18 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             jmlmenu++;
         }
         
-        if (akses.gethemodialisa() && BtnAsesmenUlangHD.getText().toLowerCase().trim().contains(cari)) {
-            FormMenu.add(BtnAsesmenUlangHD);
+        if (akses.gethemodialisa() && BtnAsesmenObservasiHD.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnAsesmenObservasiHD);
             jmlmenu++;
         }
         
         if (akses.gethemodialisa() && BtnAsesmenAwalMedisHD.getText().toLowerCase().trim().contains(cari)) {
             FormMenu.add(BtnAsesmenAwalMedisHD);
+            jmlmenu++;
+        }
+        
+        if (akses.gethemodialisa() && BtnObservasiHemodialisis.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnObservasiHemodialisis);
             jmlmenu++;
         }
         
@@ -4335,12 +4373,17 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
         
         if (akses.gethemodialisa()== true) {
-            FormMenu.add(BtnAsesmenUlangHD);
+            FormMenu.add(BtnAsesmenObservasiHD);
             jmlmenu++;
         }
         
         if (akses.gethemodialisa()== true) {
             FormMenu.add(BtnAsesmenAwalMedisHD);
+            jmlmenu++;
+        }
+        
+        if (akses.gethemodialisa()== true) {
+            FormMenu.add(BtnObservasiHemodialisis);
             jmlmenu++;
         }
         
