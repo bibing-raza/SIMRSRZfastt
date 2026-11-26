@@ -20,8 +20,6 @@ import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -2236,7 +2234,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                                     + "INNER JOIN poliklinik pl on pl.kd_poli=r.kd_poli INNER JOIN pasien p on p.no_rkm_medis=r.no_rkm_medis "
                                     + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
                                     + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab left join iter_obat_bpjs iob on iob.no_rawat=c.no_rawat where "
-                                    + "c.no_rawat ='" + TNoRw.getText() + "' and c.noId in (" + resepDipilih + ") order by c.noId", param);
+                                    + "c.no_rawat ='" + TNoRw.getText() + "' and c.noId in (" + resepDipilih + ") order by c.nama_obat", param);
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                         } else {
                             Valid.MyReport("rptResepRalan.jasper", "report", "::[ Resep Dokter Poliklinik/Unit Rawat Jalan ]::",
@@ -2247,7 +2245,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                                     + "INNER JOIN poliklinik pl on pl.kd_poli=r.kd_poli INNER JOIN pasien p on p.no_rkm_medis=r.no_rkm_medis "
                                     + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
                                     + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab left join iter_obat_bpjs iob on iob.no_rawat=c.no_rawat where "
-                                    + "c.no_rawat ='" + TNoRw.getText() + "' and c.noId in (" + resepDipilih + ") order by c.noId", param);
+                                    + "c.no_rawat ='" + TNoRw.getText() + "' and c.noId in (" + resepDipilih + ") order by c.nama_obat", param);
                         }
                         this.setCursor(Cursor.getDefaultCursor());
                     }
@@ -2301,7 +2299,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                                     + "INNER JOIN dokter d ON d.kd_dokter = c.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis "
                                     + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec "
                                     + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab WHERE "
-                                    + "c.no_rawat = '" + TNoRw.getText() + "' AND c.noId IN (" + resepDipilih + ") ORDER BY c.noId", param);
+                                    + "c.no_rawat = '" + TNoRw.getText() + "' AND c.noId IN (" + resepDipilih + ") ORDER BY c.nama_obat", param);
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                         } else {
                             Valid.MyReport("rptResepRanap.jasper", "report", "::[ Resep Dokter Rawat Inap ]::",
@@ -2312,7 +2310,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                                     + "INNER JOIN dokter d ON d.kd_dokter = c.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis "
                                     + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec "
                                     + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab WHERE "
-                                    + "c.no_rawat = '" + TNoRw.getText() + "' AND c.noId IN (" + resepDipilih + ") ORDER BY c.noId", param);
+                                    + "c.no_rawat = '" + TNoRw.getText() + "' AND c.noId IN (" + resepDipilih + ") ORDER BY c.nama_obat", param);
                         }
                         this.setCursor(Cursor.getDefaultCursor());
                     }

@@ -60,8 +60,7 @@ public final class RMAsesmenAwalMedisHemodialisis extends javax.swing.JDialog {
     private String isiAtauStrip(Object nilai) {
         String teks = Objects.toString(nilai, "").trim();
         return teks.isEmpty() ? "-" : teks;
-    }    
-    
+    }
 
     /** Creates new form DlgRujuk
      * @param parent

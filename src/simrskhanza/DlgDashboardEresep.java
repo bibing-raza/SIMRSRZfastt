@@ -10,8 +10,6 @@ import fungsi.akses;
 import inventory.DlgCariObat;
 import inventory.DlgCariObat2;
 import inventory.DlgPemberianObat;
-import inventory.DlgResepObat;
-import inventory.DlgReturJual;
 import java.awt.Canvas;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -23,10 +21,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Blob;
@@ -34,24 +29,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.Timer;
-import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import static org.codehaus.groovy.ast.tools.GeneralUtils.param;
-import org.codehaus.groovy.syntax.Numbers;
-import setting.DlgSetAplikasi;
 import simrskhanza.frmUtama;
 
 public class DlgDashboardEresep extends javax.swing.JDialog {
@@ -63,7 +48,6 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     public DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
     public DlgCariObat dlgobtjalan = new DlgCariObat(null, false);
     private validasi Valid = new validasi();
-    private Properties prop = new Properties();
     private PreparedStatement ps, ps1, ps2, ps3;
     private ResultSet rs, rs1, rs2, rs3;
     private int i = 0, x = 0;
@@ -1094,7 +1078,8 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                             + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, cr.nama_obat, concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
-                            + "WHERE cr.no_rawat='" + norawat + "' AND cr.noId IN (" + idObat + ") ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC", param);
+                            + "WHERE cr.no_rawat='" + norawat + "' AND cr.noId IN (" + idObat + ") ORDER BY cr.nama_obat", param);
+//                            + "WHERE cr.no_rawat='" + norawat + "' AND cr.noId IN (" + idObat + ") ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC", param);
                 } else if (tbPasien1.getSelectedRow() != -1) {
                     //tte dokter
                     String isi = "";
@@ -1119,7 +1104,8 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                             + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep_antibiotik cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
-                            + "WHERE cr.no_rawat='" + norawat + "' AND cr.noId IN (" + idObat + ") ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC", param);
+                            + "WHERE cr.no_rawat='" + norawat + "' AND cr.noId IN (" + idObat + ") ORDER BY cr.nama_obat", param);
+//                            + "WHERE cr.no_rawat='" + norawat + "' AND cr.noId IN (" + idObat + ") ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC", param);
                 }
                 Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 this.setCursor(Cursor.getDefaultCursor());
@@ -1255,7 +1241,8 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                             + "INNER JOIN poliklinik pl on pl.kd_poli=r.kd_poli INNER JOIN pasien p on p.no_rkm_medis=r.no_rkm_medis "
                             + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
                             + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab left join iter_obat_bpjs iob on iob.no_rawat=c.no_rawat where "
-                            + "c.no_rawat ='" + norawat + "' AND c.noId in (" + idObat + ") ORDER BY c.tgl_perawatan DESC, c.jam_perawatan DESC", param);
+                            + "c.no_rawat ='" + norawat + "' AND c.noId in (" + idObat + ") ORDER BY c.nama_obat", param);
+//                            + "c.no_rawat ='" + norawat + "' AND c.noId in (" + idObat + ") ORDER BY c.tgl_perawatan DESC, c.jam_perawatan DESC", param);
                 } else if (tbPasien1.getSelectedRow() != -1) {
                     Valid.MyReport("rptResepRalanAntibiotik.jasper", "report", "::[ Resep Dokter Poliklinik/Unit Rawat Jalan Kertas HVS/A5 ]::",
                             " select c.no_rawat, pl.nm_poli, d.nm_dokter, CONCAT(if(iob.no_rawat is null,'','(RESEP ITER) '),'Martapura, ',DATE_FORMAT(c.tgl_perawatan,'%d/%m/%Y')) tgl_resep, "
@@ -1266,7 +1253,8 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                             + "INNER JOIN poliklinik pl on pl.kd_poli=r.kd_poli INNER JOIN pasien p on p.no_rkm_medis=r.no_rkm_medis "
                             + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
                             + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab left join iter_obat_bpjs iob on iob.no_rawat=c.no_rawat where "
-                            + "c.no_rawat ='" + norawat + "' AND c.noId in (" + idObat + ") ORDER BY c.tgl_perawatan DESC, c.jam_perawatan DESC", param);
+                            + "c.no_rawat ='" + norawat + "' AND c.noId in (" + idObat + ") ORDER BY c.nama_obat", param);
+//                            + "c.no_rawat ='" + norawat + "' AND c.noId in (" + idObat + ") ORDER BY c.tgl_perawatan DESC, c.jam_perawatan DESC", param);
                 }
                 this.setCursor(Cursor.getDefaultCursor());
             }
@@ -1478,7 +1466,8 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                             + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, cr.nama_obat, concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
-                            + "WHERE cr.noId in (" + idObat + ") ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC, cr.noId DESC", param);
+                            + "WHERE cr.noId in (" + idObat + ") ORDER BY cr.nama_obat", param);
+//                            + "WHERE cr.noId in (" + idObat + ") ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC, cr.noId DESC", param);
                 } else if (tbPasien1.getSelectedRow() != -1) {
                     Valid.MyReport("rptCatatanResepRalan.jasper", "report", "::[ Cetak e-Resep ]::",
                             "SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
@@ -1486,7 +1475,8 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                             + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep_antibiotik cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
-                            + "WHERE cr.noId in (" + idObat + ") ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC, cr.noId DESC", param);
+                            + "WHERE cr.noId in (" + idObat + ") ORDER BY cr.nama_obat", param);
+//                            + "WHERE cr.noId in (" + idObat + ") ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC, cr.noId DESC", param);
                 }
                 this.setCursor(Cursor.getDefaultCursor());
             }

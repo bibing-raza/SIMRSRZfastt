@@ -1,7 +1,6 @@
 package simrskhanza;
 
 import fungsi.BackgroundMusic;
-import fungsi.WarnaTable;
 import fungsi.WarnaTableDasbordApotekRanap;
 import fungsi.WarnaTableResepRanap1;
 import fungsi.batasInput;
@@ -9,11 +8,8 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import inventory.DlgCariObat;
 import inventory.DlgCariObat2;
 import inventory.DlgPemberianObat;
-import inventory.DlgResepObat;
-import inventory.DlgReturJual;
 import java.awt.Canvas;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -26,7 +22,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Blob;
@@ -34,22 +29,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.Timer;
-import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import org.codehaus.groovy.syntax.Numbers;
-import setting.DlgSetAplikasi;
 import simrskhanza.frmUtama;
 
 public class DlgDashboardEresepRanap extends javax.swing.JDialog {
@@ -59,7 +47,6 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
     public DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
     private validasi Valid = new validasi();
-    private Properties prop = new Properties();
     private PreparedStatement ps, ps1, ps2, ps3, ps4;
     private ResultSet rs, rs1, rs2, rs3, rs4;
     private int i = 0, x = 0, cito = 0, iniResep = 0;
@@ -1020,7 +1007,8 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                             + "where c.noId in (" + idObat + ") order by c.noId desc limit 1"));
                     Valid.MyReport("rptStrukResepRanap.jasper", "report", "::[ Struk Resep Dokter Rawat Inap Kertas Thermal ]::",
                             " SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, nama_obat obatnya "
-                            + "from catatan_resep_ranap where noId in (" + idObat + ") order by status, noId desc", param);
+                            + "from catatan_resep_ranap where noId in (" + idObat + ") order by nama_obat", param);
+//                            + "from catatan_resep_ranap where noId in (" + idObat + ") order by status, noId desc", param);
                 } else if (tbPasien1.getSelectedRow() > -1) {
                     //tte dokter
                     String isi = "";
@@ -1046,7 +1034,8 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                     Valid.MyReport("rptStrukResepRanap.jasper", "report", "::[ Struk Resep Dokter Rawat Inap Kertas Thermal ]::",
                             " SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, "
                             + "if(hari_ke not in ('1','6','11','16','21','26'),concat(nama_obat,' (Hari ke ',hari_ke,')'),concat(nama_obat,' (ket. ',keterangan,', Hari ke ',hari_ke,')')) obatnya "
-                            + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by status, noId desc", param);
+                            + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by nama_obat", param);
+//                            + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by status, noId desc", param);
                 }
                 
                 Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
@@ -1223,7 +1212,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                             + "INNER JOIN dokter d ON d.kd_dokter = c.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis "
                             + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec "
                             + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab WHERE "
-                            + "c.no_rawat = '" + norawat + "' AND c.noId IN (" + idObat + ") ORDER BY c.noId", param);
+                            + "c.no_rawat = '" + norawat + "' AND c.noId IN (" + idObat + ") ORDER BY c.nama_obat", param);
                 } else if (tbPasien1.getSelectedRow() > -1) {
                     Valid.MyReport("rptResepRanapAntibiotik.jasper", "report", "::[ Resep Dokter Rawat Inap ]::",
                             "SELECT c.no_rawat, d.nm_dokter, CONCAT('Martapura, ',DATE_FORMAT(c.tgl_perawatan, '%d/%m/%Y')) tgl_resep, "
@@ -1234,7 +1223,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                             + "INNER JOIN dokter d ON d.kd_dokter = c.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis "
                             + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec "
                             + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab WHERE "
-                            + "c.no_rawat = '" + norawat + "' AND c.noId IN (" + idObat + ") ORDER BY c.noId", param);
+                            + "c.no_rawat = '" + norawat + "' AND c.noId IN (" + idObat + ") ORDER BY c.nama_obat", param);
                 }
                 
                 MnHapusContengActionPerformed(null);
@@ -1387,14 +1376,16 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
 
                     Valid.MyReport("rptCatatanResep.jasper", "report", "::[ Cetak e-Resep ]::",
                             "SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, nama_obat obatnya "
-                            + "from catatan_resep_ranap where noId in (" + idObat + ") order by status, noId desc", param);
+                            + "from catatan_resep_ranap where noId in (" + idObat + ") order by nama_obat", param);
+//                            + "from catatan_resep_ranap where noId in (" + idObat + ") order by status, noId desc", param);
                 } else if (tbPasien1.getSelectedRow() > -1) {
                     param.put("dokterPeresep", Sequel.cariIsi("SELECT d.nm_dokter from catatan_resep_ranap_antibiotik c inner join dokter d on d.kd_dokter=c.kd_dokter "
                             + "where noId in (" + idObat + ") order by noId desc limit 1"));
                     Valid.MyReport("rptCatatanResep.jasper", "report", "::[ Cetak e-Resep ]::",
                             "SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, "
                             + "if(hari_ke not in ('1','6','11','16','21','26'),concat(nama_obat,' (Hari ke ',hari_ke,')'),concat(nama_obat,' (ket. ',keterangan,', Hari ke ',hari_ke,')')) obatnya "
-                            + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by status, noId desc", param);
+                            + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by nama_obat", param);
+//                            + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by status, noId desc", param);
                 }
                 
                 MnHapusContengActionPerformed(null);

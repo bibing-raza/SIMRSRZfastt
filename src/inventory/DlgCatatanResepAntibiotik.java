@@ -20,8 +20,6 @@ import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -784,10 +782,9 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-09-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
-        DTPCari3.setOpaque(false);
         DTPCari3.setPreferredSize(new java.awt.Dimension(90, 23));
         internalFrame17.add(DTPCari3);
 
@@ -798,10 +795,9 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-09-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
-        DTPCari4.setOpaque(false);
         DTPCari4.setPreferredSize(new java.awt.Dimension(90, 23));
         internalFrame17.add(DTPCari4);
 
@@ -811,7 +807,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel32.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel32);
 
-        TCari2.setForeground(new java.awt.Color(0, 0, 0));
         TCari2.setName("TCari2"); // NOI18N
         TCari2.setPreferredSize(new java.awt.Dimension(250, 23));
         TCari2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -821,9 +816,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         });
         internalFrame17.add(TCari2);
 
-        BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari2.setMnemonic('1');
         BtnCari2.setText("Tampilkan Data");
         BtnCari2.setToolTipText("Alt+1");
         BtnCari2.setName("BtnCari2"); // NOI18N
@@ -861,9 +854,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         internalFrame19.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 7, 9));
 
-        BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll1.setMnemonic('2');
         BtnAll1.setText("Semua Data");
         BtnAll1.setToolTipText("Alt+2");
         BtnAll1.setName("BtnAll1"); // NOI18N
@@ -880,9 +871,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         });
         internalFrame19.add(BtnAll1);
 
-        BtnRestor.setForeground(new java.awt.Color(0, 0, 0));
         BtnRestor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnRestor.setMnemonic('U');
         BtnRestor.setText("Restore");
         BtnRestor.setToolTipText("Alt+U");
         BtnRestor.setName("BtnRestor"); // NOI18N
@@ -894,9 +883,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         });
         internalFrame19.add(BtnRestor);
 
-        BtnCloseIn10.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn10.setMnemonic('U');
         BtnCloseIn10.setText("Tutup");
         BtnCloseIn10.setToolTipText("Alt+U");
         BtnCloseIn10.setName("BtnCloseIn10"); // NOI18N
@@ -974,7 +961,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel68.setPreferredSize(new java.awt.Dimension(120, 23));
         panelGlass6.add(jLabel68);
 
-        cmbConteng.setForeground(new java.awt.Color(0, 0, 0));
         cmbConteng.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Semuanya", "Dibatalkan" }));
         cmbConteng.setName("cmbConteng"); // NOI18N
         cmbConteng.setPreferredSize(new java.awt.Dimension(96, 23));
@@ -998,9 +984,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         LCount2.setPreferredSize(new java.awt.Dimension(40, 23));
         panelGlass6.add(LCount2);
 
-        BtnCopyResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopyResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnCopyResep.setMnemonic('R');
         BtnCopyResep.setText("Copy Resep");
         BtnCopyResep.setToolTipText("Alt+R");
         BtnCopyResep.setName("BtnCopyResep"); // NOI18N
@@ -1017,9 +1001,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         });
         panelGlass6.add(BtnCopyResep);
 
-        BtnCloseIn8.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn8.setMnemonic('U');
         BtnCloseIn8.setText("Tutup");
         BtnCloseIn8.setToolTipText("Alt+U");
         BtnCloseIn8.setName("BtnCloseIn8"); // NOI18N
@@ -1112,20 +1094,16 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel14.setBounds(0, 10, 100, 23);
 
         kddokter.setEditable(false);
-        kddokter.setForeground(new java.awt.Color(0, 0, 0));
         kddokter.setName("kddokter"); // NOI18N
         panelisi3.add(kddokter);
         kddokter.setBounds(100, 10, 90, 23);
 
         TDokter.setEditable(false);
-        TDokter.setForeground(new java.awt.Color(0, 0, 0));
         TDokter.setName("TDokter"); // NOI18N
         panelisi3.add(TDokter);
         TDokter.setBounds(193, 10, 350, 23);
 
-        btnCariDokter.setForeground(new java.awt.Color(0, 0, 0));
         btnCariDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        btnCariDokter.setMnemonic('7');
         btnCariDokter.setToolTipText("ALt+7");
         btnCariDokter.setName("btnCariDokter"); // NOI18N
         btnCariDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -1143,9 +1121,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelisi5.setPreferredSize(new java.awt.Dimension(100, 47));
         panelisi5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 4, 9));
 
-        BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -1157,9 +1133,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         });
         panelisi5.add(BtnSimpan1);
 
-        BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -1224,10 +1198,9 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel54.setBounds(0, 66, 105, 23);
 
         DTPCariA.setEditable(false);
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-09-2026" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2026" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
-        DTPCariA.setOpaque(false);
         DTPCariA.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass13.add(DTPCariA);
         DTPCariA.setBounds(105, 66, 90, 23);
@@ -1241,10 +1214,9 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel55.setBounds(200, 66, 23, 23);
 
         DTPCariB.setEditable(false);
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-09-2026" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2026" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
-        DTPCariB.setOpaque(false);
         DTPCariB.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass13.add(DTPCariB);
         DTPCariB.setBounds(230, 66, 90, 23);
@@ -1256,7 +1228,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass13.add(jLabel56);
         jLabel56.setBounds(320, 66, 80, 23);
 
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(205, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1267,9 +1238,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass13.add(TCari);
         TCari.setBounds(404, 66, 270, 23);
 
-        BtnCariObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCariObat.setMnemonic('3');
         BtnCariObat.setText("Tampilkan Data");
         BtnCariObat.setToolTipText("Alt+3");
         BtnCariObat.setName("BtnCariObat"); // NOI18N
@@ -1290,19 +1259,16 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel57.setBounds(6, 10, 97, 23);
 
         TNoRw.setEditable(false);
-        TNoRw.setForeground(new java.awt.Color(0, 0, 0));
         TNoRw.setName("TNoRw"); // NOI18N
         panelGlass13.add(TNoRw);
         TNoRw.setBounds(105, 10, 131, 23);
 
         TNoRM.setEditable(false);
-        TNoRM.setForeground(new java.awt.Color(0, 0, 0));
         TNoRM.setName("TNoRM"); // NOI18N
         panelGlass13.add(TNoRM);
         TNoRM.setBounds(240, 10, 70, 23);
 
         TPasien.setEditable(false);
-        TPasien.setForeground(new java.awt.Color(0, 0, 0));
         TPasien.setName("TPasien"); // NOI18N
         panelGlass13.add(TPasien);
         TPasien.setBounds(315, 10, 360, 23);
@@ -1314,7 +1280,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel5.setBounds(0, 38, 105, 23);
 
         TtglLahir.setEditable(false);
-        TtglLahir.setForeground(new java.awt.Color(0, 0, 0));
         TtglLahir.setName("TtglLahir"); // NOI18N
         panelGlass13.add(TtglLahir);
         TtglLahir.setBounds(105, 38, 100, 23);
@@ -1326,7 +1291,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel9.setBounds(204, 38, 90, 23);
 
         Tjk.setEditable(false);
-        Tjk.setForeground(new java.awt.Color(0, 0, 0));
         Tjk.setName("Tjk"); // NOI18N
         panelGlass13.add(Tjk);
         Tjk.setBounds(297, 38, 90, 23);
@@ -1338,7 +1302,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel10.setBounds(387, 38, 76, 23);
 
         Tcara_byr.setEditable(false);
-        Tcara_byr.setForeground(new java.awt.Color(0, 0, 0));
         Tcara_byr.setName("Tcara_byr"); // NOI18N
         panelGlass13.add(Tcara_byr);
         Tcara_byr.setBounds(465, 38, 210, 23);
@@ -1358,9 +1321,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass13.add(LCount);
         LCount.setBounds(889, 66, 50, 23);
 
-        BtnResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/tasksgroup.png"))); // NOI18N
-        BtnResep.setMnemonic('8');
         BtnResep.setText("Riwayat Resep");
         BtnResep.setToolTipText("Alt+8");
         BtnResep.setName("BtnResep"); // NOI18N
@@ -1380,9 +1341,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass8.setPreferredSize(new java.awt.Dimension(100, 56));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1394,9 +1353,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnSimpan);
 
-        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1408,9 +1365,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnHapus);
 
-        BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -1433,15 +1388,12 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel105.setPreferredSize(new java.awt.Dimension(120, 23));
         panelGlass8.add(jLabel105);
 
-        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
         cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
         cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
         cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
         panelGlass8.add(cmbPilihCetak);
 
-        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak Resep");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1458,9 +1410,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnPrint);
 
-        BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnNotepad.setMnemonic('N');
         BtnNotepad.setText("Notepad");
         BtnNotepad.setToolTipText("Alt+N");
         BtnNotepad.setName("BtnNotepad"); // NOI18N
@@ -1472,9 +1422,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnNotepad);
 
-        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnKeluar.setMnemonic('T');
         BtnKeluar.setText("Tutup");
         BtnKeluar.setToolTipText("Alt+T");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1497,15 +1445,12 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel12.setPreferredSize(new java.awt.Dimension(160, 23));
         panelGlass8.add(jLabel12);
 
-        cmbJnsResep.setForeground(new java.awt.Color(0, 0, 0));
         cmbJnsResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "CITO", "BIASA" }));
         cmbJnsResep.setName("cmbJnsResep"); // NOI18N
         cmbJnsResep.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass8.add(cmbJnsResep);
 
-        BtnSetuju.setForeground(new java.awt.Color(0, 0, 0));
         BtnSetuju.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
-        BtnSetuju.setMnemonic('U');
         BtnSetuju.setText("Setuju");
         BtnSetuju.setToolTipText("Alt+U");
         BtnSetuju.setGlassColor(new java.awt.Color(0, 153, 0));
@@ -1544,7 +1489,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass16.add(jLabel53);
         jLabel53.setBounds(0, 9, 75, 23);
 
-        TResepObat.setForeground(new java.awt.Color(0, 0, 0));
         TResepObat.setName("TResepObat"); // NOI18N
         TResepObat.setPreferredSize(new java.awt.Dimension(370, 24));
         TResepObat.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1560,7 +1504,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
 
         ChkCito.setBackground(new java.awt.Color(255, 255, 250));
         ChkCito.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        ChkCito.setForeground(new java.awt.Color(0, 0, 0));
         ChkCito.setText("Resep CITO");
         ChkCito.setBorderPainted(true);
         ChkCito.setBorderPaintedFlat(true);
@@ -1579,16 +1522,13 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass16.add(jLabel58);
         jLabel58.setBounds(583, 9, 65, 23);
 
-        cmbIniResep.setForeground(new java.awt.Color(0, 0, 0));
         cmbIniResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dalam Perawatan", "Pulang" }));
         cmbIniResep.setName("cmbIniResep"); // NOI18N
         cmbIniResep.setPreferredSize(new java.awt.Dimension(117, 24));
         panelGlass16.add(cmbIniResep);
         cmbIniResep.setBounds(655, 9, 117, 24);
 
-        BtnCopyResepTerakhir.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopyResepTerakhir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopyResepTerakhir.setMnemonic('P');
         BtnCopyResepTerakhir.setText("Copy Resep Terakhir");
         BtnCopyResepTerakhir.setName("BtnCopyResepTerakhir"); // NOI18N
         BtnCopyResepTerakhir.setPreferredSize(new java.awt.Dimension(170, 23));
@@ -1620,7 +1560,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass16.add(Tket);
         Tket.setBounds(221, 37, 680, 24);
 
-        cmbHari.setForeground(new java.awt.Color(0, 0, 0));
         cmbHari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         cmbHari.setName("cmbHari"); // NOI18N
         cmbHari.setPreferredSize(new java.awt.Dimension(55, 28));
@@ -1653,7 +1592,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel63.setBounds(126, 65, 90, 23);
 
         TnmDokter.setEditable(false);
-        TnmDokter.setForeground(new java.awt.Color(0, 0, 0));
         TnmDokter.setName("TnmDokter"); // NOI18N
         TnmDokter.setPreferredSize(new java.awt.Dimension(370, 24));
         panelGlass16.add(TnmDokter);
@@ -1672,7 +1610,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass16.add(BtnDokter);
         BtnDokter.setBounds(635, 65, 28, 23);
 
-        BtnHapusNmObatAnti.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusNmObatAnti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
         BtnHapusNmObatAnti.setMnemonic('P');
         BtnHapusNmObatAnti.setToolTipText("Hapus nama obat");
@@ -1684,9 +1621,8 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
             }
         });
         panelGlass16.add(BtnHapusNmObatAnti);
-        BtnHapusNmObatAnti.setBounds(454, 9, 30, 23);
+        BtnHapusNmObatAnti.setBounds(455, 9, 30, 23);
 
-        BtnKeterangan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeterangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
         BtnKeterangan.setMnemonic('P');
         BtnKeterangan.setToolTipText("Hapus keterangan");
@@ -1698,7 +1634,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
             }
         });
         panelGlass16.add(BtnKeterangan);
-        BtnKeterangan.setBounds(903, 37, 30, 23);
+        BtnKeterangan.setBounds(905, 37, 30, 23);
 
         jPanel4.add(panelGlass16, java.awt.BorderLayout.PAGE_START);
 
@@ -1730,7 +1666,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         PanelInput1.setPreferredSize(new java.awt.Dimension(816, 260));
         PanelInput1.setLayout(new java.awt.BorderLayout(1, 1));
 
-        ChkInput1.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
         ChkInput1.setText(".: Riwayat Obat Farmasi");
         ChkInput1.setToolTipText("");
@@ -1791,7 +1726,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass17.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 3));
 
         ChkPoli1.setBorder(null);
-        ChkPoli1.setForeground(new java.awt.Color(0, 0, 0));
         ChkPoli1.setSelected(true);
         ChkPoli1.setText("Hanya dipoli/inst. ini");
         ChkPoli1.setBorderPainted(true);
@@ -1857,9 +1791,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelisi4.setPreferredSize(new java.awt.Dimension(100, 80));
         panelisi4.setLayout(null);
 
-        BtnPilih.setForeground(new java.awt.Color(0, 0, 0));
         BtnPilih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnPilih.setMnemonic('P');
         BtnPilih.setText("Pilih Obat/Alkes :");
         BtnPilih.setToolTipText("Alt+P");
         BtnPilih.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1874,7 +1806,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelisi4.add(BtnPilih);
         BtnPilih.setBounds(8, 43, 125, 23);
 
-        cmbObat.setForeground(new java.awt.Color(0, 0, 0));
         cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbObat.setName("cmbObat"); // NOI18N
         cmbObat.setPreferredSize(new java.awt.Dimension(55, 28));
@@ -1893,7 +1824,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelisi4.add(jLabel64);
         jLabel64.setBounds(0, 10, 80, 23);
 
-        TCariObat.setForeground(new java.awt.Color(0, 0, 0));
         TCariObat.setName("TCariObat"); // NOI18N
         TCariObat.setPreferredSize(new java.awt.Dimension(250, 23));
         TCariObat.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1904,7 +1834,6 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelisi4.add(TCariObat);
         TCariObat.setBounds(85, 10, 250, 23);
 
-        BtnCariObat2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariObat2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnCariObat2.setText("Cek");
         BtnCariObat2.setName("BtnCariObat2"); // NOI18N
@@ -2461,7 +2390,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                                     + "INNER JOIN poliklinik pl on pl.kd_poli=r.kd_poli INNER JOIN pasien p on p.no_rkm_medis=r.no_rkm_medis "
                                     + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
                                     + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab left join iter_obat_bpjs iob on iob.no_rawat=c.no_rawat where "
-                                    + "c.no_rawat ='" + TNoRw.getText() + "' and c.noId in (" + resepDipilih + ") order by c.noId", param);
+                                    + "c.no_rawat ='" + TNoRw.getText() + "' and c.noId in (" + resepDipilih + ") order by c.nama_obat", param);
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                         } else {
                             Valid.MyReport("rptResepRalanAntibiotik.jasper", "report", "::[ Resep Dokter Poliklinik/Unit Rawat Jalan ]::",
@@ -2473,7 +2402,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                                     + "INNER JOIN poliklinik pl on pl.kd_poli=r.kd_poli INNER JOIN pasien p on p.no_rkm_medis=r.no_rkm_medis "
                                     + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
                                     + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab left join iter_obat_bpjs iob on iob.no_rawat=c.no_rawat where "
-                                    + "c.no_rawat ='" + TNoRw.getText() + "' and c.noId in (" + resepDipilih + ") order by c.noId", param);
+                                    + "c.no_rawat ='" + TNoRw.getText() + "' and c.noId in (" + resepDipilih + ") order by c.nama_obat", param);
                         }
                         this.setCursor(Cursor.getDefaultCursor());
                     }
@@ -2553,7 +2482,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                                     + "INNER JOIN dokter d ON d.kd_dokter = c.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis "
                                     + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec "
                                     + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab WHERE "
-                                    + "c.no_rawat = '" + TNoRw.getText() + "' AND c.noId IN (" + resepDipilih + ") ORDER BY c.noId", param);
+                                    + "c.no_rawat = '" + TNoRw.getText() + "' AND c.noId IN (" + resepDipilih + ") ORDER BY c.nama_obat", param);
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                         } else {
                             Valid.MyReport("rptResepRanapAntibiotik.jasper", "report", "::[ Resep Dokter Rawat Inap ]::",
@@ -2565,7 +2494,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                                     + "INNER JOIN dokter d ON d.kd_dokter = c.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis "
                                     + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec "
                                     + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab WHERE "
-                                    + "c.no_rawat = '" + TNoRw.getText() + "' AND c.noId IN (" + resepDipilih + ") ORDER BY c.noId", param);
+                                    + "c.no_rawat = '" + TNoRw.getText() + "' AND c.noId IN (" + resepDipilih + ") ORDER BY c.nama_obat", param);
                         }
                         this.setCursor(Cursor.getDefaultCursor());
                     }

@@ -66,7 +66,7 @@ public final class DlgPetugas extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
-        Object[] row = {"NIP", "Nama Petugas", "J.K.", "Tmp. Lahir", "Tgl. Lahir", "G.D.", "Agama", "Stts. Nikah", 
+        String[] row = {"NIP", "Nama Petugas", "J.K.", "Tmp. Lahir", "Tgl. Lahir", "G.D.", "Agama", "Stts. Nikah", 
             "Alamat", "Jabatan", "No.Telp", "NIK/No. KTP", "User Id"};
         tabMode = new DefaultTableModel(null, row) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -1255,19 +1255,19 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     "SELECT petugas.nip, petugas.nama, petugas.jk, petugas.tmp_lahir, petugas.tgl_lahir, petugas.gol_darah, petugas.agama, "
                     + "petugas.stts_nikah, petugas.alamat, jabatan.nm_jbtn, petugas.no_telp, IF(pegawai.no_ktp='','-',pegawai.no_ktp) no_ktp, petugas.user_id "
                     + "FROM petugas INNER JOIN jabatan ON jabatan.kd_jbtn = petugas.kd_jbtn INNER JOIN pegawai ON pegawai.nik = petugas.nip where "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nama like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.jk like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.tmp_lahir like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.tgl_lahir like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.gol_darah like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.agama like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.alamat like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.no_telp like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and pegawai.no_ktp like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and jabatan.nm_jbtn like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.user_id like ? or "
-                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and pegawai.no_ktp like ? order by petugas.nip");
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and petugas.nip like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and petugas.nama like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and petugas.jk like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and petugas.tmp_lahir like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and petugas.tgl_lahir like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and petugas.gol_darah like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and petugas.agama like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and petugas.alamat like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and petugas.no_telp like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and pegawai.no_ktp like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and jabatan.nm_jbtn like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and petugas.user_id like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip not in ('-','--') and pegawai.no_ktp like ? order by petugas.nip");
             try {
                 ps.setString(1, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
                 ps.setString(2, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
@@ -1323,7 +1323,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 ps.setString(52, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{
+                    tabMode.addRow(new String[]{
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),

@@ -72,7 +72,7 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         btnDataJabatan = new widget.ButtonBig();
         btnMasterJabatanKomite = new widget.ButtonBig();
         btnDepartemen = new widget.ButtonBig();
-        btnPenggajian = new widget.ButtonBig();
+        btnKepegawaian = new widget.ButtonBig();
         btnPengaturanJamKerja = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -98,7 +98,6 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         jLabel3.setPreferredSize(new java.awt.Dimension(100, 23));
         internalFrame2.add(jLabel3);
 
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(400, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -108,7 +107,6 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         });
         internalFrame2.add(TCari);
 
-        btnClear.setForeground(new java.awt.Color(0, 0, 0));
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
         btnClear.setGlassColor(new java.awt.Color(255, 255, 255));
         btnClear.setMinimumSize(new java.awt.Dimension(28, 23));
@@ -122,8 +120,8 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         internalFrame2.add(btnClear);
 
         ChkInput.setBorder(null);
-        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
         ChkInput.setText("Pencarian");
         ChkInput.setToolTipText("Alt+C");
@@ -248,18 +246,18 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         });
         FormMenu.add(btnDepartemen);
 
-        btnPenggajian.setForeground(new java.awt.Color(0, 0, 0));
-        btnPenggajian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404046603_wallet.png"))); // NOI18N
-        btnPenggajian.setText("Kepegawaian");
-        btnPenggajian.setIconTextGap(0);
-        btnPenggajian.setName("btnPenggajian"); // NOI18N
-        btnPenggajian.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnPenggajian.addActionListener(new java.awt.event.ActionListener() {
+        btnKepegawaian.setForeground(new java.awt.Color(0, 0, 0));
+        btnKepegawaian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/administrator.png"))); // NOI18N
+        btnKepegawaian.setText("Kepegawaian");
+        btnKepegawaian.setIconTextGap(0);
+        btnKepegawaian.setName("btnKepegawaian"); // NOI18N
+        btnKepegawaian.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnKepegawaian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPenggajianActionPerformed(evt);
+                btnKepegawaianActionPerformed(evt);
             }
         });
-        FormMenu.add(btnPenggajian);
+        FormMenu.add(btnKepegawaian);
 
         btnPengaturanJamKerja.setForeground(new java.awt.Color(0, 0, 0));
         btnPengaturanJamKerja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360485865_schedule.png"))); // NOI18N
@@ -396,7 +394,7 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnDepartemenActionPerformed
 
-    private void btnPenggajianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenggajianActionPerformed
+    private void btnKepegawaianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKepegawaianActionPerformed
         try {
             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             DlgPegawai pegawai = new DlgPegawai(formUtama, false);
@@ -410,11 +408,11 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
             formUtama.tampilkanDialogDiPanelUtama(pegawai);
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnPenggajian.getText() + ".\n" + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnKepegawaian.getText() + ".\n" + e.getMessage());
         } finally {
             setCursor(Cursor.getDefaultCursor());
         }
-    }//GEN-LAST:event_btnPenggajianActionPerformed
+    }//GEN-LAST:event_btnKepegawaianActionPerformed
 
     private void btnRegAbsensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegAbsensiActionPerformed
         try {
@@ -473,9 +471,9 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
     private widget.ButtonBig btnDataJabatan;
     private widget.ButtonBig btnDepartemen;
     private widget.ButtonBig btnDokter;
+    private widget.ButtonBig btnKepegawaian;
     private widget.ButtonBig btnMasterJabatanKomite;
     private widget.ButtonBig btnPengaturanJamKerja;
-    private widget.ButtonBig btnPenggajian;
     private widget.ButtonBig btnPetugas;
     private widget.ButtonBig btnRegAbsensi;
     private widget.InternalFrame internalFrame1;
@@ -528,8 +526,8 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
             jmlmenu++;
         }
         
-        if ((akses.getpegawai_admin() || akses.getpegawai_user()) && btnPenggajian.getText().toLowerCase().trim().contains(cari)) {
-            FormMenu.add(btnPenggajian);
+        if ((akses.getpegawai_admin() || akses.getpegawai_user() || akses.getpetugas()) && btnKepegawaian.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(btnKepegawaian);
             jmlmenu++;
         }
     }
@@ -605,8 +603,8 @@ public class PanelMenuUtamaC extends javax.swing.JDialog {
             jmlmenu++;
         }
 
-        if ((akses.getpegawai_admin() == true) || (akses.getpegawai_user() == true)) {
-            FormMenu.add(btnPenggajian);
+        if ((akses.getpegawai_admin() == true) || (akses.getpegawai_user() == true) || akses.getpetugas() == true) {
+            FormMenu.add(btnKepegawaian);
             jmlmenu++;
         }
 

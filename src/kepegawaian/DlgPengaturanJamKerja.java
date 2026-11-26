@@ -132,6 +132,8 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         cmbJamPlgRama = new widget.ComboBox();
         cmbMntPlgRama = new widget.ComboBox();
         cmbDtkPlgRama = new widget.ComboBox();
+        jLabel28 = new widget.Label();
+        jLabel29 = new widget.Label();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -172,7 +174,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(jLabel21);
         jLabel21.setBounds(0, 10, 120, 23);
 
-        cmbKelompok.setForeground(new java.awt.Color(0, 0, 0));
         cmbKelompok.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Manajemen", "Instalasi Rawat Jalan (Poliklinik)", "Loket Pendaftaran (TPPRJ)", "Instalasi Sanitasi", "Instalasi Rawat Inap (Keperawatan)", "Instalasi Gawat Darurat (IGD)", "Dokter Jaga", "Kasir", "Sentral Opname (TPPRI)", "Tenaga Teknis Kefarmasian (TTK)", "IPSRS", "Instalasi Radiologi", "Instalasi Pemulasaran Jenazah", "Instalasi Laboratorium", "Instalasi Pengelolaan Air Limbah (IPAL)", "Kepala Ruangan Rawat Inap", "Kepala Instalasi", "Administrasi", "Gudang Farmasi", "Apoteker", "Unit Hemodialisa", "Instalasi Gizi", "Pengolah dan Penyaji Makanan/Layanan Konsumsi", "Laundry", "CSSD", "Informasi dan SIPO", "Dokter Spesialis" }));
         cmbKelompok.setName("cmbKelompok"); // NOI18N
         cmbKelompok.setPreferredSize(new java.awt.Dimension(55, 23));
@@ -190,7 +191,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(jLabel22);
         jLabel22.setBounds(0, 38, 120, 23);
 
-        cmbHari.setForeground(new java.awt.Color(0, 0, 0));
         cmbHari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Senin s.d Kamis", "Senin s.d Jumat", "Senin s.d Sabtu", "Senin s.d Minggu", "Jumat", "Sabtu", "Subuh", "Sore", "Sift 1 (Pagi)", "Sift 2 (Siang)", "Sift 3 (Malam)" }));
         cmbHari.setName("cmbHari"); // NOI18N
         cmbHari.setPreferredSize(new java.awt.Dimension(55, 23));
@@ -208,7 +208,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(jLabel24);
         jLabel24.setBounds(0, 66, 120, 23);
 
-        cmbJamDtgNormal.setForeground(new java.awt.Color(0, 0, 0));
         cmbJamDtgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJamDtgNormal.setName("cmbJamDtgNormal"); // NOI18N
         cmbJamDtgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -219,7 +218,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(cmbJamDtgNormal);
         cmbJamDtgNormal.setBounds(125, 66, 45, 23);
 
-        cmbMntDtgNormal.setForeground(new java.awt.Color(0, 0, 0));
         cmbMntDtgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMntDtgNormal.setName("cmbMntDtgNormal"); // NOI18N
         cmbMntDtgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,7 +228,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(cmbMntDtgNormal);
         cmbMntDtgNormal.setBounds(175, 66, 45, 23);
 
-        cmbDtkDtgNormal.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtkDtgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtkDtgNormal.setName("cmbDtkDtgNormal"); // NOI18N
         cmbDtkDtgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -248,7 +245,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(jLabel25);
         jLabel25.setBounds(280, 66, 80, 23);
 
-        cmbJamPlgNormal.setForeground(new java.awt.Color(0, 0, 0));
         cmbJamPlgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJamPlgNormal.setName("cmbJamPlgNormal"); // NOI18N
         cmbJamPlgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -259,7 +255,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(cmbJamPlgNormal);
         cmbJamPlgNormal.setBounds(360, 66, 45, 23);
 
-        cmbMntPlgNormal.setForeground(new java.awt.Color(0, 0, 0));
         cmbMntPlgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMntPlgNormal.setName("cmbMntPlgNormal"); // NOI18N
         cmbMntPlgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -270,7 +265,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(cmbMntPlgNormal);
         cmbMntPlgNormal.setBounds(412, 66, 45, 23);
 
-        cmbDtkPlgNormal.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtkPlgNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtkPlgNormal.setName("cmbDtkPlgNormal"); // NOI18N
         cmbDtkPlgNormal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -287,7 +281,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(jLabel26);
         jLabel26.setBounds(0, 94, 120, 30);
 
-        cmbJamDtgRama.setForeground(new java.awt.Color(0, 0, 0));
         cmbJamDtgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJamDtgRama.setName("cmbJamDtgRama"); // NOI18N
         cmbJamDtgRama.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -298,7 +291,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(cmbJamDtgRama);
         cmbJamDtgRama.setBounds(125, 94, 45, 23);
 
-        cmbMntDtgRama.setForeground(new java.awt.Color(0, 0, 0));
         cmbMntDtgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMntDtgRama.setName("cmbMntDtgRama"); // NOI18N
         cmbMntDtgRama.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -309,7 +301,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(cmbMntDtgRama);
         cmbMntDtgRama.setBounds(175, 94, 45, 23);
 
-        cmbDtkDtgRama.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtkDtgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtkDtgRama.setName("cmbDtkDtgRama"); // NOI18N
         cmbDtkDtgRama.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -327,7 +318,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(jLabel27);
         jLabel27.setBounds(280, 94, 80, 23);
 
-        cmbJamPlgRama.setForeground(new java.awt.Color(0, 0, 0));
         cmbJamPlgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJamPlgRama.setName("cmbJamPlgRama"); // NOI18N
         cmbJamPlgRama.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -338,7 +328,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(cmbJamPlgRama);
         cmbJamPlgRama.setBounds(360, 94, 45, 23);
 
-        cmbMntPlgRama.setForeground(new java.awt.Color(0, 0, 0));
         cmbMntPlgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMntPlgRama.setName("cmbMntPlgRama"); // NOI18N
         cmbMntPlgRama.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -349,7 +338,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         FormInput.add(cmbMntPlgRama);
         cmbMntPlgRama.setBounds(412, 94, 45, 23);
 
-        cmbDtkPlgRama.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtkPlgRama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtkPlgRama.setName("cmbDtkPlgRama"); // NOI18N
         cmbDtkPlgRama.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -359,6 +347,20 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         });
         FormInput.add(cmbDtkPlgRama);
         cmbDtkPlgRama.setBounds(464, 94, 45, 23);
+
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel28.setText("Wita");
+        jLabel28.setName("jLabel28"); // NOI18N
+        FormInput.add(jLabel28);
+        jLabel28.setBounds(515, 66, 40, 23);
+
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel29.setText("Wita");
+        jLabel29.setName("jLabel29"); // NOI18N
+        FormInput.add(jLabel29);
+        jLabel29.setBounds(515, 94, 40, 23);
 
         internalFrame1.add(FormInput, java.awt.BorderLayout.PAGE_START);
 
@@ -371,9 +373,7 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         panelGlass8.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -390,9 +390,7 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnSimpan);
 
-        BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -409,9 +407,7 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnBatal);
 
-        BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -428,9 +424,7 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
-        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -447,9 +441,7 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnAll);
 
-        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -478,7 +470,6 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         jLabel6.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass10.add(jLabel6);
 
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(250, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -488,9 +479,7 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
         });
         panelGlass10.add(TCari);
 
-        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -800,6 +789,8 @@ public class DlgPengaturanJamKerja extends javax.swing.JDialog {
     private widget.Label jLabel25;
     private widget.Label jLabel26;
     private widget.Label jLabel27;
+    private widget.Label jLabel28;
+    private widget.Label jLabel29;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;

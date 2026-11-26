@@ -11,7 +11,7 @@
  Target Server Version : 100131 (10.1.31-MariaDB)
  File Encoding         : 65001
 
- Date: 24/11/2026 14:28:41
+ Date: 26/11/2026 17:36:12
 */
 
 SET NAMES utf8mb4;
@@ -8338,7 +8338,7 @@ CREATE TABLE `catatan_tindakan_keperawatan`  (
   `sift` enum('-','Pagi','Sore','Malam') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `tanggal` date NULL DEFAULT NULL,
   `jam_tindakan` time NULL DEFAULT NULL,
-  `nm_tindakan` varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `nm_tindakan` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `nip_petugas` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `waktu_simpan` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`waktu_simpan`, `no_rawat`) USING BTREE,

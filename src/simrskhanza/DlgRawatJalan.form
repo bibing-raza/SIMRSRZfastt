@@ -1349,9 +1349,6 @@
           <SubComponents>
             <Component class="widget.Button" name="BtnCloseIn5">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/cross.png"/>
                 </Property>
@@ -1371,9 +1368,6 @@
             </Component>
             <Component class="widget.Button" name="BtnSimpan5">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/save-16x16.png"/>
                 </Property>
@@ -1408,9 +1402,6 @@
             <Component class="widget.TextBox" name="no_rawat">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
                   <ComponentRef name="null"/>
                 </Property>
@@ -1428,9 +1419,6 @@
             <Component class="widget.TextBox" name="no_rm">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="name" type="java.lang.String" value="no_rm" noResource="true"/>
               </Properties>
               <Constraints>
@@ -1456,9 +1444,6 @@
             <Component class="widget.TextBox" name="nm_pasien">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="name" type="java.lang.String" value="nm_pasien" noResource="true"/>
               </Properties>
               <Constraints>
@@ -1484,9 +1469,6 @@
             <Component class="widget.TextBox" name="tgl_reg">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
                   <ComponentRef name="null"/>
                 </Property>
@@ -1518,9 +1500,6 @@
             <Component class="widget.TextBox" name="nm_poli">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="name" type="java.lang.String" value="nm_poli" noResource="true"/>
               </Properties>
               <Constraints>
@@ -1759,9 +1738,6 @@
             </Container>
             <Component class="widget.Button" name="BtnBaru">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/Cancel-2-16x16.png"/>
                 </Property>
@@ -1788,9 +1764,6 @@
             </Component>
             <Component class="widget.Button" name="BtnHapus1">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/stop_f2.png"/>
                 </Property>
@@ -1814,9 +1787,6 @@
             </Component>
             <Component class="widget.Button" name="BtnEdit1">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/inventaris.png"/>
                 </Property>
@@ -1988,9 +1958,6 @@
                 <Component class="widget.TextBox" name="pasiendipilih">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="null"/>
                     </Property>
@@ -2005,9 +1972,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnRM">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/addressbook-edit24.png"/>
                     </Property>
@@ -2025,9 +1989,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnCloseIn7">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/cross.png"/>
                     </Property>
@@ -2116,9 +2077,6 @@
                         </LineBorder>
                       </Border>
                     </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Hanya Poliklinik Ini"/>
                     <Property name="borderPainted" type="boolean" value="true"/>
                     <Property name="borderPaintedFlat" type="boolean" value="true"/>
@@ -2147,9 +2105,6 @@
                     </Property>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Conteng Semua Item Resep"/>
                     <Property name="borderPainted" type="boolean" value="true"/>
@@ -2180,9 +2135,6 @@
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Hapus Semua Conteng Item Resep"/>
                     <Property name="borderPainted" type="boolean" value="true"/>
                     <Property name="borderPaintedFlat" type="boolean" value="true"/>
@@ -2199,9 +2151,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnCopyResep">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/category.png"/>
                     </Property>
@@ -2220,9 +2169,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnCloseIn8">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/cross.png"/>
                     </Property>
@@ -2445,9 +2391,6 @@
           <SubComponents>
             <Component class="widget.Button" name="BtnCloseIn9">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/cross.png"/>
                 </Property>
@@ -2467,9 +2410,6 @@
             </Component>
             <Component class="widget.Button" name="BtnSimpan7">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/save-16x16.png"/>
                 </Property>
@@ -2503,9 +2443,6 @@
             </Component>
             <Component class="widget.ComboBox" name="cmbRM">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
                     <StringItem index="0" value="-"/>
@@ -2625,12 +2562,11 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="03-11-2026"/>
+                            <StringItem index="0" value="26-11-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
                         <Property name="name" type="java.lang.String" value="DTPCari3" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[90, 23]"/>
                         </Property>
@@ -2653,12 +2589,11 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="03-11-2026"/>
+                            <StringItem index="0" value="26-11-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
                         <Property name="name" type="java.lang.String" value="DTPCari4" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[90, 23]"/>
                         </Property>
@@ -2678,9 +2613,6 @@
                     </Component>
                     <Component class="widget.TextBox" name="TCari2">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="name" type="java.lang.String" value="TCari2" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[250, 23]"/>
@@ -2692,9 +2624,6 @@
                     </Component>
                     <Component class="widget.Button" name="BtnCari2">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
                         </Property>
@@ -2765,9 +2694,6 @@
                   <SubComponents>
                     <Component class="widget.Button" name="BtnAll1">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/Search-16x16.png"/>
                         </Property>
@@ -2786,9 +2712,6 @@
                     </Component>
                     <Component class="widget.Button" name="BtnRestor">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/42a.png"/>
                         </Property>
@@ -2806,9 +2729,6 @@
                     </Component>
                     <Component class="widget.Button" name="BtnCloseIn10">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/cross.png"/>
                         </Property>
@@ -2930,9 +2850,6 @@
                 <Component class="widget.TextBox" name="kdpetugas">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="name" type="java.lang.String" value="kdpetugas" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -2944,9 +2861,6 @@
                 <Component class="widget.TextBox" name="TPetugas">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="name" type="java.lang.String" value="TPetugas" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -2957,9 +2871,6 @@
                 </Component>
                 <Component class="widget.Button" name="btnCariPetugas">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/download24.png"/>
                     </Property>
@@ -2995,12 +2906,11 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="03-11-2026"/>
+                        <StringItem index="0" value="26-11-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
                     <Property name="name" type="java.lang.String" value="TtglTindakan" noResource="true"/>
-                    <Property name="opaque" type="boolean" value="false"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[95, 23]"/>
                     </Property>
@@ -3037,9 +2947,6 @@
               <SubComponents>
                 <Component class="widget.Button" name="BtnSimpan1">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/save-16x16.png"/>
                     </Property>
@@ -3057,9 +2964,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnCloseIn1">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/cross.png"/>
                     </Property>
@@ -3122,9 +3026,6 @@
           <SubComponents>
             <Component class="widget.Button" name="BtnCloseIn11">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/cross.png"/>
                 </Property>
@@ -3144,9 +3045,6 @@
             </Component>
             <Component class="widget.Button" name="BtnSimpan8">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/export-excel.png"/>
                 </Property>
@@ -3182,12 +3080,11 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="03-11-2026"/>
+                    <StringItem index="0" value="26-11-2026"/>
                   </StringArray>
                 </Property>
                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
                 <Property name="name" type="java.lang.String" value="DTPCari5" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[95, 23]"/>
                 </Property>
@@ -3220,12 +3117,11 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="03-11-2026"/>
+                    <StringItem index="0" value="26-11-2026"/>
                   </StringArray>
                 </Property>
                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
                 <Property name="name" type="java.lang.String" value="DTPCari6" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[95, 23]"/>
                 </Property>
@@ -3291,9 +3187,6 @@
     </Component>
     <Component class="widget.TextBox" name="DiagnosaRJdokter">
       <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
-        </Property>
         <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="null"/>
         </Property>
@@ -3321,9 +3214,6 @@
     <Component class="widget.TextBox" name="TNoRw2">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
-        </Property>
         <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="null"/>
         </Property>
@@ -3341,12 +3231,11 @@
         <Property name="editable" type="boolean" value="false"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="03-11-2026"/>
+            <StringItem index="0" value="26-11-2026"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
         <Property name="name" type="java.lang.String" value="TglKunRwt" noResource="true"/>
-        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TNoKirim">
@@ -3359,9 +3248,6 @@
     <Component class="widget.TextBox" name="kode_iter">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
-        </Property>
         <Property name="name" type="java.lang.String" value="kode_iter" noResource="true"/>
       </Properties>
     </Component>
@@ -3759,9 +3645,6 @@
               <SubComponents>
                 <Component class="widget.Button" name="BtnSimpan">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/save-16x16.png"/>
                     </Property>
@@ -3780,9 +3663,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnBatal">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/Cancel-2-16x16.png"/>
                     </Property>
@@ -3801,9 +3681,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnHapus">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/stop_f2.png"/>
                     </Property>
@@ -3822,9 +3699,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnEdit">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/inventaris.png"/>
                     </Property>
@@ -3843,9 +3717,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnPrint">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/b_print.png"/>
                     </Property>
@@ -3889,9 +3760,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnKeluar">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/exit.png"/>
                     </Property>
@@ -3910,9 +3778,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnCari">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/accept.png"/>
                     </Property>
@@ -3931,9 +3796,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnCariRekamMedis">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/barralan.png"/>
                     </Property>
@@ -3975,9 +3837,6 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Tgl.Rawat :"/>
                     <Property name="borderPainted" type="boolean" value="true"/>
                     <Property name="borderPaintedFlat" type="boolean" value="true"/>
@@ -3998,12 +3857,11 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="03-11-2026"/>
+                        <StringItem index="0" value="26-11-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
                     <Property name="name" type="java.lang.String" value="DTPCari1" noResource="true"/>
-                    <Property name="opaque" type="boolean" value="false"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[90, 23]"/>
                     </Property>
@@ -4026,12 +3884,11 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="03-11-2026"/>
+                        <StringItem index="0" value="26-11-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
                     <Property name="name" type="java.lang.String" value="DTPCari2" noResource="true"/>
-                    <Property name="opaque" type="boolean" value="false"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[90, 23]"/>
                     </Property>
@@ -4068,9 +3925,6 @@
                 <Component class="widget.TextBox" name="kdpoli">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
@@ -4083,9 +3937,6 @@
                 <Component class="widget.TextBox" name="TPoli">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
@@ -4097,9 +3948,6 @@
                 </Component>
                 <Component class="widget.Button" name="BtnUnit">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/download24.png"/>
                     </Property>
@@ -4144,9 +3992,6 @@
                 </Component>
                 <Component class="widget.TextBox" name="TCari">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="name" type="java.lang.String" value="TCari" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[250, 23]"/>
@@ -4160,9 +4005,6 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Lihat Riwayat Perawatan : "/>
                     <Property name="borderPainted" type="boolean" value="true"/>
@@ -4181,9 +4023,6 @@
                 </Component>
                 <Component class="widget.ComboBox" name="cmbBulan">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="12">
                         <StringItem index="0" value="1"/>
@@ -4350,9 +4189,6 @@
                     <Component class="widget.TextBox" name="kdptg">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="name" type="java.lang.String" value="kdptg" noResource="true"/>
                       </Properties>
                       <Events>
@@ -4367,9 +4203,6 @@
                     </Component>
                     <Component class="widget.Button" name="BtnSeekPetugas2">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/download24.png"/>
                         </Property>
@@ -4391,9 +4224,6 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ca" green="ca" red="ca" type="rgb"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="name" type="java.lang.String" value="TPerawat" noResource="true"/>
                       </Properties>
@@ -4420,9 +4250,6 @@
                     <Component class="widget.TextBox" name="KdDok">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="name" type="java.lang.String" value="KdDok" noResource="true"/>
                       </Properties>
                       <Events>
@@ -4438,9 +4265,6 @@
                     <Component class="widget.TextBox" name="TDokter">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="name" type="java.lang.String" value="TDokter" noResource="true"/>
                       </Properties>
                       <Constraints>
@@ -4451,9 +4275,6 @@
                     </Component>
                     <Component class="widget.Button" name="BtnSeekDokter2">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/download24.png"/>
                         </Property>
@@ -4627,9 +4448,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TSuhu">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="TSuhu" noResource="true"/>
                               </Properties>
@@ -4658,9 +4476,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TTensi">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TTensi" noResource="true"/>
                               </Properties>
                               <Events>
@@ -4688,9 +4503,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TBerat">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="TBerat" noResource="true"/>
                               </Properties>
@@ -4733,9 +4545,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TTinggi">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TTinggi" noResource="true"/>
                               </Properties>
                               <Events>
@@ -4763,9 +4572,6 @@
                             </Component>
                             <Component class="widget.ComboBox" name="cmbImun">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="14">
                                     <StringItem index="0" value="-"/>
@@ -4814,9 +4620,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TNadi">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="TNadi" noResource="true"/>
                               </Properties>
@@ -4859,9 +4662,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TRespirasi">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TRespirasi" noResource="true"/>
                               </Properties>
                               <Events>
@@ -4890,9 +4690,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TGCS">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="TGCS" noResource="true"/>
                               </Properties>
@@ -5169,9 +4966,6 @@
                                     </LineBorder>
                                   </Border>
                                 </Property>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="text" type="java.lang.String" value="Lihat Hasil Pemeriksaan Pasien Oleh Perawat/Bidan"/>
                                 <Property name="borderPainted" type="boolean" value="true"/>
                                 <Property name="borderPaintedFlat" type="boolean" value="true"/>
@@ -5203,9 +4997,6 @@
                                     </LineBorder>
                                   </Border>
                                 </Property>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="text" type="java.lang.String" value="Copy Pemeriksaan Dokter Ke Pemeriksaan Perawat/Bidan"/>
                                 <Property name="borderPainted" type="boolean" value="true"/>
                                 <Property name="borderPaintedFlat" type="boolean" value="true"/>
@@ -5236,9 +5027,6 @@
                                       <Color PropertyName="color" blue="fa" green="ff" red="ff" type="rgb"/>
                                     </LineBorder>
                                   </Border>
-                                </Property>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Sebagai Data ke PRMRJ"/>
                                 <Property name="borderPainted" type="boolean" value="true"/>
@@ -5275,9 +5063,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="Tspo2">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="Tspo2" noResource="true"/>
                               </Properties>
@@ -5292,9 +5077,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnPasteResep">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/Vial-Pills.png"/>
                                 </Property>
@@ -5331,9 +5113,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TnmPemeriksaanTHT">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TnmPemeriksaanTHT" noResource="true"/>
                               </Properties>
                               <Events>
@@ -5405,9 +5184,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnPasteDikeluhan">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/paste.png"/>
                                 </Property>
@@ -5428,9 +5204,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnPasteDipemeriksaan">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/paste.png"/>
                                 </Property>
@@ -5451,9 +5224,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnPasteDidiagnosa">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/paste.png"/>
                                 </Property>
@@ -5474,9 +5244,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnPasteDirencana">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/paste.png"/>
                                 </Property>
@@ -5497,9 +5264,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnPasteDirincian">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/paste.png"/>
                                 </Property>
@@ -5622,9 +5386,6 @@
                                       <Color PropertyName="color" blue="fa" green="ff" red="ff" type="rgb"/>
                                     </LineBorder>
                                   </Border>
-                                </Property>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Reasesmen"/>
                                 <Property name="borderPainted" type="boolean" value="true"/>
@@ -6003,9 +5764,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TSuhu1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="TSuhu1" noResource="true"/>
                               </Properties>
@@ -6034,9 +5792,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TTensi1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TTensi1" noResource="true"/>
                               </Properties>
                               <Events>
@@ -6064,9 +5819,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TBerat1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="TBerat1" noResource="true"/>
                               </Properties>
@@ -6109,9 +5861,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TTinggi1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TTinggi1" noResource="true"/>
                               </Properties>
                               <Events>
@@ -6139,9 +5888,6 @@
                             </Component>
                             <Component class="widget.ComboBox" name="cmbImun1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="14">
                                     <StringItem index="0" value="-"/>
@@ -6190,9 +5936,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TNadi1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="TNadi1" noResource="true"/>
                               </Properties>
@@ -6235,9 +5978,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TRespirasi1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TRespirasi1" noResource="true"/>
                               </Properties>
                               <Events>
@@ -6266,9 +6006,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TGCS1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="TGCS1" noResource="true"/>
                               </Properties>
@@ -6431,9 +6168,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="kdptg1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="kdptg1" noResource="true"/>
                               </Properties>
                               <Events>
@@ -6452,9 +6186,6 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ca" green="ca" red="ca" type="rgb"/>
                                 </Property>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TPerawat1" noResource="true"/>
                               </Properties>
                               <Constraints>
@@ -6465,9 +6196,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnSeekPetugas1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/download24.png"/>
                                 </Property>
@@ -6615,9 +6343,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="Tspo21">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="Tspo21" noResource="true"/>
                               </Properties>
@@ -6646,9 +6371,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="Tkesadaran">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="Tkesadaran" noResource="true"/>
                               </Properties>
@@ -6677,9 +6399,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TlingkarPerut">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
                                 <Property name="name" type="java.lang.String" value="TlingkarPerut" noResource="true"/>
                               </Properties>
@@ -6703,9 +6422,6 @@
                                       <Color PropertyName="color" blue="fa" green="ff" red="ff" type="rgb"/>
                                     </LineBorder>
                                   </Border>
-                                </Property>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Copy Terapi Pemeriksaan Dokter"/>
                                 <Property name="borderPainted" type="boolean" value="true"/>
@@ -6891,9 +6607,6 @@
                     </Component>
                     <Component class="widget.TextBox" name="TResepObat">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="name" type="java.lang.String" value="TResepObat" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[450, 24]"/>
@@ -6906,9 +6619,6 @@
                     </Component>
                     <Component class="widget.Button" name="BtnSimpanObat">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/save-16x16.png"/>
                         </Property>
@@ -6926,9 +6636,6 @@
                     </Component>
                     <Component class="widget.Button" name="BtnEditObat">
                       <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/inventaris.png"/>
                         </Property>
@@ -6949,9 +6656,6 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
                         </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="text" type="java.lang.String" value="Program PRB BPJS"/>
                         <Property name="borderPainted" type="boolean" value="true"/>
                         <Property name="borderPaintedFlat" type="boolean" value="true"/>
@@ -6970,9 +6674,6 @@
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="selected" type="boolean" value="true"/>
                         <Property name="text" type="java.lang.String" value="Cetak resep dengan TTE"/>
@@ -7056,9 +6757,6 @@
                           <SubComponents>
                             <Component class="widget.Button" name="BtnPrinResep">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/PrinterSettings.png"/>
                                 </Property>
@@ -7075,9 +6773,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnCopyResepTerakhir">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/paste.png"/>
                                 </Property>
@@ -7094,9 +6789,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnResep">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/tasksgroup.png"/>
                                 </Property>
@@ -7114,9 +6806,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnResepIter">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/FirstAidKit.png"/>
                                 </Property>
@@ -7134,9 +6823,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnResepIterBatal">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/42a.png"/>
                                 </Property>
@@ -7206,9 +6892,6 @@
                           <SubComponents>
                             <Component class="widget.CekBox" name="ChkInput1">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/143.png"/>
                                 </Property>
@@ -7340,9 +7023,6 @@
                                           <Properties>
                                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                               <Border info="null"/>
-                                            </Property>
-                                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                              <Color blue="0" green="0" red="0" type="rgb"/>
                                             </Property>
                                             <Property name="selected" type="boolean" value="true"/>
                                             <Property name="text" type="java.lang.String" value="Hanya dipoliklinik ini"/>
@@ -7480,9 +7160,6 @@
                           <SubComponents>
                             <Component class="widget.Button" name="BtnPilih">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/accept.png"/>
                                 </Property>
@@ -7511,9 +7188,6 @@
                             </Component>
                             <Component class="widget.ComboBox" name="cmbObat">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
                                     <StringItem index="0" value="-"/>
@@ -7552,9 +7226,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TCariObat">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TCariObat" noResource="true"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[250, 23]"/>
@@ -7571,9 +7242,6 @@
                             </Component>
                             <Component class="widget.Button" name="BtnCariObat">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/picture/Search-16x16.png"/>
                                 </Property>
@@ -7876,9 +7544,6 @@
                         </Component>
                         <Component class="widget.TextBox" name="TCari7">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="TCari7" noResource="true"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[190, 23]"/>
@@ -7902,9 +7567,6 @@
                         </Component>
                         <Component class="widget.ComboBox" name="cmbHlm3">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="11">
                                 <StringItem index="0" value="5"/>
@@ -7928,9 +7590,6 @@
                         </Component>
                         <Component class="widget.Button" name="BtnCari10">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/picture/accept.png"/>
                             </Property>
@@ -8164,9 +7823,6 @@
                             <Component class="widget.TextBox" name="TDariPoli">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
@@ -8184,9 +7840,6 @@
                             <Component class="widget.TextBox" name="tglDirujuk">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
@@ -8204,9 +7857,6 @@
                             <Component class="widget.TextBox" name="OlehDokter">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
@@ -8271,9 +7921,6 @@
                             <Component class="widget.TextBox" name="Tnorawat">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
@@ -8387,9 +8034,6 @@
                             <Component class="widget.TextBox" name="dokterMenjawab">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="dokterMenjawab" noResource="true"/>
                               </Properties>
                               <Constraints>
@@ -8401,9 +8045,6 @@
                             <Component class="widget.TextBox" name="poliMenjawab">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="poliMenjawab" noResource="true"/>
                               </Properties>
                               <Constraints>
@@ -8428,9 +8069,6 @@
                             </Component>
                             <Component class="widget.ComboBox" name="cmbStatus">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="2">
                                     <StringItem index="0" value="Terjawab"/>
@@ -8848,9 +8486,6 @@
                         </Component>
                         <Component class="widget.TextBox" name="TCari1">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="TCari1" noResource="true"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[190, 23]"/>
@@ -8874,9 +8509,6 @@
                         </Component>
                         <Component class="widget.ComboBox" name="cmbHlm">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="10">
                                 <StringItem index="0" value="10"/>
@@ -8899,9 +8531,6 @@
                         </Component>
                         <Component class="widget.Button" name="BtnCari3">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/picture/accept.png"/>
                             </Property>
@@ -9101,9 +8730,6 @@
                       <SubComponents>
                         <Component class="widget.Button" name="BtnConteng">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/picture/inventaris.png"/>
                             </Property>
@@ -9121,9 +8747,6 @@
                         </Component>
                         <Component class="widget.Button" name="BtnHapus2">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/picture/42a.png"/>
                             </Property>
@@ -9141,9 +8764,6 @@
                         </Component>
                         <Component class="widget.Button" name="BtnCopy">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/picture/paste.png"/>
                             </Property>
@@ -9161,9 +8781,6 @@
                         </Component>
                         <Component class="widget.Button" name="BtnPrinLab">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/picture/PrinterSettings.png"/>
                             </Property>
@@ -9374,9 +8991,6 @@
                             <Component class="widget.TextBox" name="TPoliAwal">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
@@ -9394,9 +9008,6 @@
                             <Component class="widget.TextBox" name="TtglKonsulMinta">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
@@ -9414,9 +9025,6 @@
                             <Component class="widget.TextBox" name="OlehDokterKonsul">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
@@ -9481,9 +9089,6 @@
                             <Component class="widget.TextBox" name="TNoRwKonsul">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
@@ -9515,9 +9120,6 @@
                             <Component class="widget.TextBox" name="TJnsKonsul">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
@@ -9549,9 +9151,6 @@
                             <Component class="widget.TextBox" name="TTujuanKonsul">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
@@ -9713,9 +9312,6 @@
                             <Component class="widget.TextBox" name="dokterMenjawabKonsul">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="dokterMenjawabKonsul" noResource="true"/>
                               </Properties>
                               <Constraints>
@@ -9727,9 +9323,6 @@
                             <Component class="widget.TextBox" name="TPoliMenjawabKonsul">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TPoliMenjawabKonsul" noResource="true"/>
                               </Properties>
                               <Constraints>
@@ -9754,9 +9347,6 @@
                             </Component>
                             <Component class="widget.ComboBox" name="cmbStatusKonsul">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="2">
                                     <StringItem index="0" value="Terjawab"/>
@@ -9791,9 +9381,6 @@
                             </Component>
                             <Component class="widget.TextBox" name="TKasusDitemukan">
                               <Properties>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="name" type="java.lang.String" value="TKasusDitemukan" noResource="true"/>
                               </Properties>
                               <Events>
@@ -9831,9 +9418,6 @@
                                     </LineBorder>
                                   </Border>
                                 </Property>
-                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="0" green="0" red="0" type="rgb"/>
-                                </Property>
                                 <Property name="text" type="java.lang.String" value="Dijadwalkan Tgl."/>
                                 <Property name="borderPainted" type="boolean" value="true"/>
                                 <Property name="borderPaintedFlat" type="boolean" value="true"/>
@@ -9862,12 +9446,11 @@
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="03-11-2026"/>
+                                    <StringItem index="0" value="26-11-2026"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
                                 <Property name="name" type="java.lang.String" value="TtglKonsulUlang" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -10057,9 +9640,6 @@
                         </Component>
                         <Component class="widget.TextBox" name="TCari6">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="TCari6" noResource="true"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[190, 23]"/>
@@ -10083,9 +9663,6 @@
                         </Component>
                         <Component class="widget.ComboBox" name="cmbHlm2">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="10">
                                 <StringItem index="0" value="10"/>
@@ -10108,9 +9685,6 @@
                         </Component>
                         <Component class="widget.Button" name="BtnCari9">
                           <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/picture/accept.png"/>
                             </Property>
@@ -10343,9 +9917,6 @@
           <SubComponents>
             <Component class="widget.CekBox" name="ChkInput">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/picture/143.png"/>
                 </Property>
@@ -10414,9 +9985,6 @@
                 <Component class="widget.TextBox" name="TNoRw">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="name" type="java.lang.String" value="TNoRw" noResource="true"/>
                   </Properties>
                   <Events>
@@ -10431,9 +9999,6 @@
                 <Component class="widget.TextBox" name="TNoRM">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="name" type="java.lang.String" value="TNoRM" noResource="true"/>
                   </Properties>
                   <Events>
@@ -10448,9 +10013,6 @@
                 <Component class="widget.TextBox" name="TPasien">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="name" type="java.lang.String" value="TPasien" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -10475,9 +10037,6 @@
                 </Component>
                 <Component class="widget.Button" name="btnTindakan">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/download24.png"/>
                     </Property>
@@ -10498,9 +10057,6 @@
                 <Component class="widget.TextBox" name="TKdPrw">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="name" type="java.lang.String" value="TKdPrw" noResource="true"/>
                   </Properties>
                   <Events>
@@ -10515,9 +10071,6 @@
                 <Component class="widget.TextBox" name="TNmPrw">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="name" type="java.lang.String" value="TNmPrw" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -10544,12 +10097,11 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="03-11-2026"/>
+                        <StringItem index="0" value="26-11-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
                     <Property name="name" type="java.lang.String" value="DTPTgl" noResource="true"/>
-                    <Property name="opaque" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="DTPTglKeyPressed"/>
@@ -10562,9 +10114,6 @@
                 </Component>
                 <Component class="widget.ComboBox" name="cmbJam">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="24">
                         <StringItem index="0" value="00"/>
@@ -10609,9 +10158,6 @@
                 </Component>
                 <Component class="widget.ComboBox" name="cmbMnt">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="60">
                         <StringItem index="0" value="00"/>
@@ -10692,9 +10238,6 @@
                 </Component>
                 <Component class="widget.ComboBox" name="cmbDtk">
                   <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="60">
                         <StringItem index="0" value="00"/>
@@ -10784,9 +10327,6 @@
                           <Color PropertyName="color" blue="c3" green="d7" red="c3" type="rgb"/>
                         </LineBorder>
                       </Border>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="selected" type="boolean" value="true"/>
                     <Property name="borderPainted" type="boolean" value="true"/>
@@ -10930,9 +10470,6 @@
                             <EtchetBorder/>
                           </Border>
                         </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
                         </Property>
@@ -10953,7 +10490,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnTarifTindakanActionPerformed"/>
@@ -10965,9 +10501,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -10989,7 +10522,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPemeriksaanDRActionPerformed"/>
@@ -11001,9 +10533,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11025,7 +10554,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPemeriksaanPRActionPerformed"/>
@@ -11037,9 +10565,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11061,7 +10586,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPRMRJActionPerformed"/>
@@ -11073,9 +10597,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11097,7 +10618,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCatatanResepActionPerformed"/>
@@ -11109,9 +10629,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11133,7 +10650,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRingkasanRiwayatActionPerformed"/>
@@ -11145,9 +10661,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11169,7 +10682,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRingkasanPulangRanapActionPerformed"/>
@@ -11181,9 +10693,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11205,7 +10714,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPenilaianKeperawatanActionPerformed"/>
@@ -11217,9 +10725,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11241,7 +10746,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMenjawabRujukanActionPerformed"/>
@@ -11253,9 +10757,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11277,7 +10778,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPenilaianAwalMedisTHTActionPerformed"/>
@@ -11289,9 +10789,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11313,7 +10810,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnHasilPemeriksaanRadActionPerformed"/>
@@ -11325,9 +10821,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11349,7 +10842,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPenilaianAwalMedisMataActionPerformed"/>
@@ -11361,9 +10853,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11385,7 +10874,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnHasilPemeriksaanLabActionPerformed"/>
@@ -11397,9 +10885,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11421,7 +10906,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRiwayatRujukanKeluarActionPerformed"/>
@@ -11433,9 +10917,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11457,7 +10938,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMenjawabKonsulActionPerformed"/>
@@ -11469,9 +10949,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11493,7 +10970,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnHasilPemeriksaanLabPAActionPerformed"/>
@@ -11505,9 +10981,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11529,7 +11002,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnPemberianObatIGDActionPerformed"/>
@@ -11541,9 +11013,6 @@
                           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                             <EtchetBorder/>
                           </Border>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/picture/accept.png"/>
@@ -11565,7 +11034,6 @@
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 23]"/>
                         </Property>
-                        <Property name="roundRect" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAskepIGDActionPerformed"/>

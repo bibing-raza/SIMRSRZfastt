@@ -71,7 +71,7 @@ public class DlgDokter extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
-        Object[] row={
+        String[] row={
             "Kode Dokter", "Nama Dokter", "J.K.", "Tmp.Lahir", "Tgl.Lahir", "G.D.", "Agama",
             "Alamat Tinggal", "No.HP/Telp", "Stts.Nikah", "Spesialis", "Alumni", "No.Ijin Praktek",
             "NIK/No. KTP", "Status Kerja", "URL Foto", "Kode Dokter BPJS", "Kode Dokter Satu Sehat"
@@ -126,7 +126,7 @@ public class DlgDokter extends javax.swing.JDialog {
         }
         tbDokter.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode1=new DefaultTableModel(null,new Object[]{
+        tabMode1=new DefaultTableModel(null,new String[]{
             "Kode Dokter", "Nama Dokter", "J.K.", "Tmp.Lahir", "Tgl.Lahir", "G.D.", "Agama",
             "Alamat Tinggal", "No.HP/Telp", "Stts.Nikah", "Spesialis", "Alumni", "No.Ijin Praktek", 
             "NIK/No. KTP", "Status Kerja", "URL Foto"
@@ -443,9 +443,7 @@ public class DlgDokter extends javax.swing.JDialog {
         panelGlass6.setPreferredSize(new java.awt.Dimension(44, 44));
         panelGlass6.setLayout(null);
 
-        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -462,9 +460,7 @@ public class DlgDokter extends javax.swing.JDialog {
         panelGlass6.add(BtnSimpan);
         BtnSimpan.setBounds(6, 10, 100, 30);
 
-        BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -481,9 +477,7 @@ public class DlgDokter extends javax.swing.JDialog {
         panelGlass6.add(BtnBatal);
         BtnBatal.setBounds(108, 10, 100, 30);
 
-        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setEnabled(false);
@@ -501,9 +495,7 @@ public class DlgDokter extends javax.swing.JDialog {
         panelGlass6.add(BtnHapus);
         BtnHapus.setBounds(210, 10, 100, 30);
 
-        BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -520,9 +512,7 @@ public class DlgDokter extends javax.swing.JDialog {
         panelGlass6.add(BtnEdit);
         BtnEdit.setBounds(312, 10, 100, 30);
 
-        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setEnabled(false);
@@ -540,9 +530,7 @@ public class DlgDokter extends javax.swing.JDialog {
         panelGlass6.add(BtnPrint);
         BtnPrint.setBounds(414, 10, 100, 30);
 
-        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -573,9 +561,7 @@ public class DlgDokter extends javax.swing.JDialog {
         panelGlass6.add(LCount);
         LCount.setBounds(700, 14, 60, 23);
 
-        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -604,7 +590,6 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel14.setPreferredSize(new java.awt.Dimension(40, 23));
         panelGlass8.add(jLabel14);
 
-        cmbCrJk.setForeground(new java.awt.Color(0, 0, 0));
         cmbCrJk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "LAKI-LAKI", "PEREMPUAN" }));
         cmbCrJk.setLightWeightPopupEnabled(false);
         cmbCrJk.setName("cmbCrJk"); // NOI18N
@@ -627,7 +612,6 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel11.setPreferredSize(new java.awt.Dimension(40, 23));
         panelGlass8.add(jLabel11);
 
-        CmbCrGd.setForeground(new java.awt.Color(0, 0, 0));
         CmbCrGd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "A", "B", "AB", "O", "-" }));
         CmbCrGd.setLightWeightPopupEnabled(false);
         CmbCrGd.setName("CmbCrGd"); // NOI18N
@@ -650,7 +634,6 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel16.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass8.add(jLabel16);
 
-        CmbCrStts.setForeground(new java.awt.Color(0, 0, 0));
         CmbCrStts.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "BELUM MENIKAH", "MENIKAH", "JANDA", "DUDA" }));
         CmbCrStts.setLightWeightPopupEnabled(false);
         CmbCrStts.setName("CmbCrStts"); // NOI18N
@@ -681,7 +664,6 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel6.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel6);
 
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(230, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -694,9 +676,7 @@ public class DlgDokter extends javax.swing.JDialog {
         });
         panelGlass8.add(TCari);
 
-        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+2");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -738,7 +718,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel4);
         jLabel4.setBounds(2, 42, 153, 23);
 
-        TTmp.setForeground(new java.awt.Color(0, 0, 0));
         TTmp.setName("TTmp"); // NOI18N
         TTmp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -748,7 +727,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(TTmp);
         TTmp.setBounds(160, 102, 155, 23);
 
-        CmbJk.setForeground(new java.awt.Color(0, 0, 0));
         CmbJk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LAKI-LAKI", "PEREMPUAN" }));
         CmbJk.setName("CmbJk"); // NOI18N
         CmbJk.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -759,7 +737,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(CmbJk);
         CmbJk.setBounds(160, 72, 95, 23);
 
-        TNm.setForeground(new java.awt.Color(0, 0, 0));
         TNm.setName("TNm"); // NOI18N
         TNm.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -781,7 +758,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel9);
         jLabel9.setBounds(260, 72, 100, 23);
 
-        CMbGd.setForeground(new java.awt.Color(0, 0, 0));
         CMbGd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "B", "AB", "O", "-" }));
         CMbGd.setName("CMbGd"); // NOI18N
         CMbGd.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -798,10 +774,9 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(2, 102, 153, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2026" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
-        DTPLahir.setOpaque(false);
         DTPLahir.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 DTPLahirKeyPressed(evt);
@@ -816,7 +791,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(422, 12, 60, 23);
 
-        cmbAgama.setForeground(new java.awt.Color(0, 0, 0));
         cmbAgama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "ISLAM", "KRISTEN", "KATOLIK", "HINDU", "BUDHA", "KONG HU CHU" }));
         cmbAgama.setLightWeightPopupEnabled(false);
         cmbAgama.setName("cmbAgama"); // NOI18N
@@ -829,7 +803,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel19);
         jLabel19.setBounds(593, 12, 80, 23);
 
-        CmbStts.setForeground(new java.awt.Color(0, 0, 0));
         CmbStts.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BELUM MENIKAH", "MENIKAH", "JANDA", "DUDA" }));
         CmbStts.setLightWeightPopupEnabled(false);
         CmbStts.setName("CmbStts"); // NOI18N
@@ -860,12 +833,10 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel12.setBounds(422, 102, 60, 23);
 
         TSpesialis.setEditable(false);
-        TSpesialis.setForeground(new java.awt.Color(0, 0, 0));
         TSpesialis.setName("TSpesialis"); // NOI18N
         FormInput.add(TSpesialis);
         TSpesialis.setBounds(568, 102, 296, 23);
 
-        TAlmt.setForeground(new java.awt.Color(0, 0, 0));
         TAlmt.setHighlighter(null);
         TAlmt.setName("TAlmt"); // NOI18N
         TAlmt.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -876,7 +847,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(TAlmt);
         TAlmt.setBounds(486, 42, 378, 23);
 
-        TTlp.setForeground(new java.awt.Color(0, 0, 0));
         TTlp.setName("TTlp"); // NOI18N
         TTlp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -887,7 +857,6 @@ public class DlgDokter extends javax.swing.JDialog {
         TTlp.setBounds(486, 72, 130, 23);
 
         TKd.setEditable(false);
-        TKd.setForeground(new java.awt.Color(0, 0, 0));
         TKd.setName("TKd"); // NOI18N
         TKd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -903,7 +872,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel15);
         jLabel15.setBounds(2, 132, 153, 23);
 
-        TNoi.setForeground(new java.awt.Color(0, 0, 0));
         TNoi.setName("TNoi"); // NOI18N
         TNoi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -919,7 +887,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel22);
         jLabel22.setBounds(422, 132, 60, 23);
 
-        TAlumni.setForeground(new java.awt.Color(0, 0, 0));
         TAlumni.setHighlighter(null);
         TAlumni.setName("TAlumni"); // NOI18N
         TAlumni.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -931,7 +898,6 @@ public class DlgDokter extends javax.swing.JDialog {
         TAlumni.setBounds(486, 132, 378, 23);
 
         KdSps.setEditable(false);
-        KdSps.setForeground(new java.awt.Color(0, 0, 0));
         KdSps.setHighlighter(null);
         KdSps.setName("KdSps"); // NOI18N
         KdSps.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -942,7 +908,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(KdSps);
         KdSps.setBounds(486, 102, 80, 23);
 
-        btnSpesial.setForeground(new java.awt.Color(0, 0, 0));
         btnSpesial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnSpesial.setMnemonic('1');
         btnSpesial.setToolTipText("ALt+1");
@@ -953,11 +918,9 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnSpesial);
-        btnSpesial.setBounds(865, 102, 28, 23);
+        btnSpesial.setBounds(870, 102, 28, 23);
 
-        BtnCariPegawai.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariPegawai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnCariPegawai.setMnemonic('1');
         BtnCariPegawai.setToolTipText("ALt+1");
         BtnCariPegawai.setName("BtnCariPegawai"); // NOI18N
         BtnCariPegawai.addActionListener(new java.awt.event.ActionListener() {
@@ -974,7 +937,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(620, 72, 94, 23);
 
-        TnoKTP.setForeground(new java.awt.Color(0, 0, 0));
         TnoKTP.setName("TnoKTP"); // NOI18N
         TnoKTP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -990,7 +952,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel24);
         jLabel24.setBounds(795, 12, 80, 23);
 
-        CmbSttsKerja.setForeground(new java.awt.Color(0, 0, 0));
         CmbSttsKerja.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AKTIF", "NON AKTIF" }));
         CmbSttsKerja.setName("CmbSttsKerja"); // NOI18N
         CmbSttsKerja.addActionListener(new java.awt.event.ActionListener() {
@@ -1012,7 +973,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel17);
         jLabel17.setBounds(2, 162, 153, 23);
 
-        Turl.setForeground(new java.awt.Color(0, 0, 0));
         Turl.setName("Turl"); // NOI18N
         Turl.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1024,9 +984,7 @@ public class DlgDokter extends javax.swing.JDialog {
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
-        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('I');
         ChkInput.setText(".: Input Data");
         ChkInput.setToolTipText("Alt+I");
         ChkInput.setBorderPainted(true);
@@ -1712,20 +1670,20 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     "SELECT dokter.kd_dokter, dokter.nm_dokter, dokter.jk, dokter.tmp_lahir, dokter.tgl_lahir, dokter.gol_drh, dokter.agama, dokter.almt_tgl, "
                     + "dokter.no_telp, dokter.stts_nikah, spesialis.nm_sps, dokter.alumni, dokter.no_ijn_praktek, IF(pegawai.no_ktp='','-',pegawai.no_ktp) no_ktp, "
                     + "if(dokter.status='1','AKTIF','NON AKTIF') status, ifnull(dokter.url_photo,'-') url_photo "
-                    + "FROM dokter INNER JOIN spesialis ON dokter.kd_sps = spesialis.kd_sps INNER JOIN pegawai ON pegawai.nik=dokter.kd_dokter "
-                    + "where dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.nm_dokter like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.tmp_lahir like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.tgl_lahir like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.agama like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.almt_tgl like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.no_telp like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.stts_nikah like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.url_photo like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and spesialis.nm_sps like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.alumni like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and pegawai.no_ktp like ? or "
-                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.no_ijn_praktek like ? "
+                    + "FROM dokter INNER JOIN spesialis ON dokter.kd_sps = spesialis.kd_sps INNER JOIN pegawai ON pegawai.nik=dokter.kd_dokter where "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.kd_dokter like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.nm_dokter like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.tmp_lahir like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.tgl_lahir like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.agama like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.almt_tgl like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.no_telp like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.stts_nikah like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.url_photo like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and spesialis.nm_sps like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.alumni like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and pegawai.no_ktp like ? or "
+                    + "dokter.status='1' and dokter.jk like ? and dokter.gol_drh like ? and dokter.stts_nikah like ? and dokter.kd_dokter not in ('-','--') and dokter.no_ijn_praktek like ? "
                     + "order by dokter.kd_dokter desc");
             try {
                 stat.setString(1, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");

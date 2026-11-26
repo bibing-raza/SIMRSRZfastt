@@ -13,6 +13,7 @@
 package kepegawaian;
 import fungsi.akses;
 import fungsi.koneksiDB;
+import fungsi.sekuel;
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -27,7 +28,6 @@ import org.cef.CefClient;
 import org.cef.browser.CefBrowser;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -35,7 +35,6 @@ import java.nio.file.Paths;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
-import java.util.Collections;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
@@ -52,7 +51,8 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
     private boolean sedangMemuat;
     private boolean browserDitutup;
     private boolean sudahCekURL = false;
-    private String urlTerakhir;
+    private String urlTerakhir, usernya = "", pwdnya = "", idParameter = "";
+    private sekuel Sequel = new sekuel();
     private frmUtama formUtama;
         
     private static synchronized CefApp ambilChromium() throws Exception {
@@ -86,11 +86,24 @@ public final class DlgRegAbsensi extends javax.swing.JDialog {
         System.out.println("Java Home : " + System.getProperty("java.home"));
         System.out.println("SSL TrustStore : " + System.getProperty("javax.net.ssl.trustStore"));
         System.out.println("SSL TrustStore Type : " + System.getProperty("javax.net.ssl.trustStoreType"));
-
+        
+        if (akses.getadmin() == true) {
+            usernya = "admin";
+            pwdnya = "satu";
+        } else {
+            usernya = akses.getkode();
+            pwdnya = Sequel.cariIsi("select AES_DECRYPT(u.password,'windi') from user u "
+                    + "inner join petugas pt on pt.nip=AES_DECRYPT(u.id_user,'nur') where AES_DECRYPT(u.id_user,'nur')='" + akses.getkode() + "'");
+        }
+        
         initComponents2();
     }
     
     private void initComponents2() {
+        idParameter = Sequel.cariIsi("select concat('rmeRZ',replace(date(now()),'-',''),'',replace(time(now()),':',''))");
+        Sequel.menyimpanQrTte("parameter_ttd_rme", "'" + idParameter + "','" + usernya + "','" + pwdnya + "','','','',"
+                + "'" + Sequel.cariIsi("select now()") + "'", "Paramater Akses", Sequel.cariFolderPrintTte());
+        
         PanelContent.setLayout(new BorderLayout());
 
         if ("AKTIF".equalsIgnoreCase(koneksiDB.URLABSENSISERVER().trim())) {
